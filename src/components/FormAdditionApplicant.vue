@@ -17,6 +17,17 @@
           required
         />
       </label>
+
+      <label class="form__label">
+        <span class="form__span">Вакансия</span>
+        <select class="form__select _light" required>
+          <option value="0" class="form__option">Выберите вакансию</option>
+          <option value="JFD" class="form__option">Junior Frontend Developer</option>
+          <option value="MFD" class="form__option">Middle Frontend Developer</option>
+          <option value="SFD" class="form__option">Senior Frontend Developer</option>
+          <option value="TFD" class="form__option">TeamLead Frontend Developer</option>
+        </select>
+      </label>
     </form>
   </div>
 </template>
@@ -73,7 +84,22 @@ $color-input-border: #dce5ea;
   border: 1px solid $color-input-border;
   background: $color-input-background;
   border-radius: 3px;
-  padding: 10px; 
+  padding: 10px;
+}
+
+%select {
+  height: 38px;
+  border: 1px solid $color-input-border;
+  background: $color-input-background;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+%option {
+  color: $color-text-black;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
 }
 
 h1,
@@ -97,7 +123,8 @@ input:-webkit-autofill:active {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border: 1px solid $color-input-focus;
 }
@@ -134,6 +161,20 @@ textarea:focus {
   }
 
   &__input::-webkit-input-placeholder {
+    color: $color-text-placeholder;
+  }
+
+  &__select {
+    @extend %select;
+    margin-top: 10px;
+    @extend %option;
+  }
+
+  &__option {
+    @extend %option;
+  }
+
+  ._light {
     color: $color-text-placeholder;
   }
 }
