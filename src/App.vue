@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <FormAdditionApplicant />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FormAdditionApplicant from './components/FormAdditionApplicant.vue'
 
 export default {
   name: 'app',
+
   components: {
-    HelloWorld
+    FormAdditionApplicant
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+$font-family-primary: 'Roboto', "Verdana", "Arial", sans-serif;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.wrapper *,
+.wrapper *::before,
+.wrapper *::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: $font-family-primary;
+  box-sizing: border-box;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: $font-family-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
