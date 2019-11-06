@@ -39,8 +39,8 @@ body {
 
 #app {
   font-family: $font-family-primary;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
 }
 </style>

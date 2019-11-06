@@ -31,7 +31,11 @@ export default {
 $color-gray: #808080;
 $color-white: #ffffff;
 $color-text: #475364;
-$color-text-input: #8ea4b5;
+$color-text-placeholder: #8ea4b5;
+$color-text-black: #000000;
+$color-input-focus: #aeb7bb;
+$color-input-background: #f4f9fb;
+$color-input-border: #dce5ea;
 
 %title {
   color: $color-text;
@@ -58,11 +62,18 @@ $color-text-input: #8ea4b5;
 }
 
 %text-input {
-  color: $color-text-input;
-  font-family: Roboto;
+  color: $color-text-black;
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
+}
+
+%input {
+  height: 16px;
+  border: 1px solid $color-input-border;
+  background: $color-input-background;
+  border-radius: 3px;
+  padding: 10px; 
 }
 
 h1,
@@ -78,11 +89,25 @@ p {
 .container {
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 10em white inset !important;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid $color-input-focus;
+}
+
 .form {
   width: 650px;
   height: 1000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
+  padding: 25px;
 
   &-title {
     @extend %title;
@@ -93,6 +118,9 @@ p {
   }
 
   &__label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
   }
 
   &__span {
@@ -101,6 +129,12 @@ p {
 
   &__input {
     @extend %text-input;
+    @extend %input;
+    margin-top: 10px;
+  }
+
+  &__input::-webkit-input-placeholder {
+    color: $color-text-placeholder;
   }
 }
 </style>
