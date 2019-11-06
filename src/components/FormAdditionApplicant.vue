@@ -28,6 +28,24 @@
           <option value="TFD" class="form__option">TeamLead Frontend Developer</option>
         </select>
       </label>
+
+      <label class="form__label">
+        <span class="form__span">Фотография</span>
+        <p
+          class="form__rem"
+        >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
+        <input
+          class="form__input"
+          type="file"
+          name="file"
+          autocomplete="on"
+          spellcheck="true"
+          required
+        />
+      </label>
+      <hr class="form-devider" />
+      <h2 class="form-subtitle">Контактные данные</h2>
+
     </form>
   </div>
 </template>
@@ -98,6 +116,13 @@ $color-input-border: #dce5ea;
 %option {
   color: $color-text-black;
   font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+}
+
+%text-rem {
+  color: $color-text-placeholder;
+  font-size: 10px;
   font-weight: 400;
   line-height: 12px;
 }
@@ -176,6 +201,11 @@ select:focus {
 
   ._light {
     color: $color-text-placeholder;
+  }
+
+  &__rem {
+    @extend %text-rem;
+    margin-top: 10px;
   }
 }
 </style>
