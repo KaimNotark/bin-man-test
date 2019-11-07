@@ -130,17 +130,16 @@
       </div>
 
       <hr class="form-devider" />
-      <input
-          type="reset"
-          class="form__input-btn-reset"
-          value="Отменить"
-        />
+
+      <div class="container-row">
+        <input type="reset" class="form__input-btn-reset" value="Отменить" />
         <input
           type="submit"
           class="form__input-btn-submit"
           value="Добавить соискателя"
           onclick="msg()"
         />
+      </div>
     </form>
   </div>
 </template>
@@ -222,6 +221,36 @@ $color-input-border: #dce5ea;
   line-height: 12px;
 }
 
+%btn-reset {
+  width: 49%;
+  height: 36px;
+  border: solid 1px #d4e2e7;
+  background-color: #ffffff;
+  border-radius: 3px;
+  color: #475364;
+  font-family: Roboto;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 13px;
+  text-transform: uppercase;
+  transition: background-color 0.1s ease, border-color 0.3s ease;
+}
+
+%btn-submit {
+  width: 49%;
+  height: 36px;
+  border: solid 1px #d4e2e7;
+  background: #386bf2;
+  border-radius: 3px;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 13px;
+  text-transform: uppercase;
+  transition: background-color 0.1s ease, border-color 0.3s ease;
+}
+
 h1,
 h2,
 h3,
@@ -247,6 +276,11 @@ textarea:focus,
 select:focus {
   outline: none;
   border: 1px solid $color-input-focus;
+}
+
+.container-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 .form {
@@ -311,6 +345,23 @@ select:focus {
   &__rem {
     @extend %text-rem;
     margin-top: 10px;
+  }
+
+  &__input-btn-reset {
+    @extend %btn-reset;
+  }
+  &__input-btn-submit {
+    @extend %btn-submit;
+  }
+
+  &__input-btn-reset:hover {
+    border-color: $color-input-focus;
+    background-color: #e4f0f5;
+  }
+
+  &__input-btn-submit:hover {
+    border-color: #1a56fa;
+    background-color: #4d7bf7;
   }
 }
 </style>
