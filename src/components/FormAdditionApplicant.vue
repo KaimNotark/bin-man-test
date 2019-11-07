@@ -29,19 +29,15 @@
         </select>
       </label>
 
-      <label class="form__label">
+      <!-- <label class="form__label">
         <span class="form__span">Фотография</span>
         <p
           class="form__rem"
         >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
-        <input
-          class="form__input"
-          type="file"
-          name="file"
-          autocomplete="off"
-          accept=".jpg .png"
-        />
-      </label>
+        <input class="form__input" type="file" name="file" autocomplete="off" accept=".jpg .png" />
+      </label> -->
+
+<InputLoadFile class="form__input-load-file"/>
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -138,93 +134,25 @@
           onclick="msg()"
         />
       </div>
-      <!-- experement -->
-<div class="fileform">
-<div id="fileformlabel"></div>
-<div class="selectbutton">Обзор</div>
-<input type="file" name="upload" id="upload" onchange="getName(this.value);" />
-</div>
-
-      <!-- / experement -->
+      
     </form>
   </div>
 </template>
 
 <script>
+import InputLoadFile from "./InputLoadFile.vue";
+
 export default {
-  name: "FormAdditionApplicant"
+  name: "FormAdditionApplicant",
 
-// function getName (str){
-//     if (str.lastIndexOf('\\')){
-//         var i = str.lastIndexOf('\\')+1;
-//     }
-//     else{
-//         var i = str.lastIndexOf('/')+1;
-//     }						
-//     var filename = str.slice(i);			
-//     var uploaded = document.getElementById("fileformlabel");
-//     uploaded.innerHTML = filename;
-// }
+  components: {
+    InputLoadFile
+  }
 };
-
 </script>
 
 <style lang="scss" scoped>
-.fileform { 
-    background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    border-radius: 2px;
-    cursor: pointer;
-    height: 26px;
-    overflow: hidden;
-    padding: 2px;
-    position: relative;
-    text-align: left;
-    vertical-align: middle;
-    width: 230px;
-}
- 
-.fileform .selectbutton { 
-    background-color: #A2A3A3;
-    border: 1px solid #939494;
-    border-radius: 2px;
-    color: #FFFFFF;
-    float: right;
-    font-size: 16px;
-    height: 20px;
-    line-height: 20px;
-    overflow: hidden;
-    padding: 2px 6px;
-    text-align: center;
-    vertical-align: middle;
-    width: 50px;
-}
- 
-.fileform #upload{
-    position:absolute; 
-    top:0; 
-    left:0; 
-    width:100%; 
-    -moz-opacity: 0; 
-    filter: alpha(opacity=0); 
-    opacity: 0; 
-    font-size: 150px; 
-    height: 30px; 
-    z-index:20;
-}
-.fileform #fileformlabel { 
-background-color: #FFFFFF;
-float: left;
-height: 22px;
-line-height: 22px;
-overflow: hidden;
-padding: 2px;
-text-align: left;
-vertical-align: middle;
-width:160px;
-}
 
-// ---------------------
 $color-gray: #808080;
 $color-white: #ffffff;
 $color-text: #475364;
