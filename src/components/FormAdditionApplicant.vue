@@ -40,12 +40,107 @@
           name="file"
           autocomplete="on"
           spellcheck="true"
+          accept=".jpg .png"
           required
         />
       </label>
+
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
 
+      <label class="form__label">
+        <span class="form__span">Номер телефона</span>
+        <input
+          class="form__input"
+          type="tel"
+          name="phone"
+          maxlength="11"
+          pattern="2[0-9]{3}-[0-9]{3}"
+          autocomplete="off"
+          placeholder="Введите номер телефона"
+          spellcheck="true"
+          required
+        />
+        <input
+          type="button"
+          class="form__input-btn"
+          value="Добавить еще один номер телефона"
+          onclick="msg()"
+        />
+      </label>
+
+      <label class="form__label">
+        <span class="form__span">Номер телефона</span>
+        <input
+          class="form__input"
+          type="email"
+          name="email"
+          autocomplete="on"
+          placeholder="Введите E-mail"
+          required
+        />
+        <input
+          type="button"
+          class="form__input-btn"
+          value="Добавить еще один e-mail"
+          onclick="msg()"
+        />
+      </label>
+
+      <hr class="form-devider" />
+      <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
+
+      <label class="form__label">
+        <span class="form__span">резюме</span>
+        <p
+          class="form__rem"
+        >Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc</p>
+        <input
+          class="form__input"
+          type="file"
+          name="file"
+          autocomplete="on"
+          spellcheck="true"
+          accept=".pdf .doc .docx"
+          required
+        />
+      </label>
+
+      <label class="form__label">
+        <span class="form__span">Архив с результатами тестового задания</span>
+        <p
+          class="form__rem"
+        >Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar</p>
+        <input
+          class="form__input"
+          type="file"
+          name="file"
+          autocomplete="on"
+          spellcheck="true"
+          accept=".zip .rar"
+          required
+        />
+      </label>
+
+      <hr class="form-devider" />
+      <h2 class="form-subtitle">Оценка соискателя</h2>
+
+      <div class="container-row">
+        <!-- add list with stars use v-for probably -->
+      </div>
+
+      <hr class="form-devider" />
+      <input
+          type="reset"
+          class="form__input-btn-reset"
+          value="Отменить"
+        />
+        <input
+          type="submit"
+          class="form__input-btn-submit"
+          value="Добавить соискателя"
+          onclick="msg()"
+        />
     </form>
   </div>
 </template>
@@ -91,7 +186,7 @@ $color-input-border: #dce5ea;
 }
 
 %text-input {
-  color: $color-text-black;
+  color: $color-text;
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
@@ -114,7 +209,7 @@ $color-input-border: #dce5ea;
 }
 
 %option {
-  color: $color-text-black;
+  color: $color-text;
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
@@ -155,11 +250,21 @@ select:focus {
 }
 
 .form {
-  width: 650px;
+  width: 600px;
   height: 1000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
   padding: 25px;
+
+  &-devider {
+    margin-top: 25px;
+    width: 650px;
+    border: none;
+    color: green; /* $color-input-background */
+    background-color: green;
+    height: 3px;
+    margin-left: -25px;
+  }
 
   &-title {
     @extend %title;
