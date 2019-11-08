@@ -4,11 +4,11 @@
     <p
       class="form__rem"
     >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
-    <label class="form__label">
       <input class="form__input-text" type="text" name="name" placeholder="Файл не выбран" disabled />
+    <label class="form__label" for="file">
       <button @click="addFilePhotoBtn()" class="form__input-btn" type="button">Выберите файл</button>
 
-      <input class="form__input-file" type="file" name="file" autocomplete="off" accept=".jpg .png" />
+      <input class="form__input-file" type="file" id="file" name="file" autocomplete="off" accept=".jpg .png" />
     </label>
 
     <!-- Alex 
@@ -66,9 +66,13 @@ export default {
     // addFilePhotoInp() {
     //   this.file = this.$refs.file.files[0];
     // },
-    // addFilePhotoBtn() {
-    //   this.file = this.$refs.file.files[0];
-    // },
+
+    addFilePhotoBtn() {
+      alert("button was pressed !" + this.file);
+      }
+                // console.log( "button was pressed !")
+      // this.file = this.$refs.file.files[0];
+    
     // Alex
     // addSpecialization(specKeyword) {
     //   if (specKeyword) {
@@ -96,8 +100,8 @@ export default {
     // }
   }
 };
+// https://medium.com/@frontman/%D1%81%D1%82%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8-%D0%BA%D0%B0%D1%81%D1%82%D0%BE%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-file-inputs-dea8e2de3ebc
 </script>
-
 <style lang="scss" scoped>
 // .file-select > .select-button {
 //   padding: 1rem;
@@ -160,6 +164,8 @@ $color-input-border: #dce5ea;
     display: flex;
     flex-direction: column;
     margin-top: 6px;
+    border: 2px solid red;
+    height: 30px;
   }
 
   &__span {
@@ -189,9 +195,10 @@ $color-input-border: #dce5ea;
     height: 26px;
     border: solid 1px #d4e2e7;
 
-    margin-top: -31px;
+    margin-top: 0px;
     margin-left: 7px;
     z-index: 3;
+    cursor: pointer;
 
     background: #386bf2;
     border-radius: 3px;
