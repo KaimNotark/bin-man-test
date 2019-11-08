@@ -4,12 +4,20 @@
     <p
       class="form__rem"
     >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
-      <input class="form__input-text" type="text" name="name" placeholder="Файл не выбран" disabled />
     <label class="form__label" for="file">
-      <button @click="addFilePhotoBtn()" class="form__input-btn" type="button">Выберите файл</button>
+      <p class="form__lable-text">Выберите файл</p>
+      <!-- <button @click="addFilePhotoBtn()" class="form__input-btn" type="button">Выберите файл</button> -->
 
-      <input class="form__input-file" type="file" id="file" name="file" autocomplete="off" accept=".jpg .png" />
+      <input
+        class="form__input-file"
+        type="file"
+        id="file"
+        name="file"
+        autocomplete="off"
+        accept=".jpg .png"
+      />
     </label>
+    <input class="form__input-text" type="text" name="name" placeholder="Файл не выбран" disabled />
 
     <!-- Alex 
     <label
@@ -69,10 +77,10 @@ export default {
 
     addFilePhotoBtn() {
       alert("button was pressed !" + this.file);
-      }
-                // console.log( "button was pressed !")
-      // this.file = this.$refs.file.files[0];
-    
+    }
+    // console.log( "button was pressed !")
+    // this.file = this.$refs.file.files[0];
+
     // Alex
     // addSpecialization(specKeyword) {
     //   if (specKeyword) {
@@ -144,28 +152,34 @@ $color-input-border: #dce5ea;
   text-transform: uppercase;
 }
 
-%text-input {
-  color: $color-text;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 12px;
-}
-
-%input {
-  height: 16px;
-  border: 1px solid $color-input-border;
-  background: $color-input-background;
-  border-radius: 3px;
-  padding: 10px 10px 10px 120px;
-}
-
 .form {
   &__label {
     display: flex;
-    flex-direction: column;
-    margin-top: 6px;
-    border: 2px solid red;
-    height: 30px;
+    position: absolute;
+    // flex-direction: column;
+    justify-content: center;
+
+    width: 104px;
+    height: 26px;
+    border: solid 1px #d4e2e7;
+
+    margin-top: 5px;
+    margin-left: 7px;
+    // z-index: 3;
+    cursor: pointer;
+
+    background: #386bf2;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 10px;
+    text-transform: uppercase;
+    transition: background-color 0.1s ease, border-color 0.3s ease;
+  }
+  &__label:hover {
+    border-color: #1a56fa;
+    background-color: #4d7bf7;
   }
 
   &__span {
@@ -173,9 +187,16 @@ $color-input-border: #dce5ea;
   }
 
   &__input-text {
-    @extend %text-input;
-    @extend %input;
-    margin-top: 5px;
+    width: 470px;
+    color: $color-text;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
+    height: 16px;
+    border: 1px solid $color-input-border;
+    background: $color-input-background;
+    border-radius: 3px;
+    padding: 10px 10px 10px 120px;
   }
 
   &__input-text::-webkit-input-placeholder {
@@ -190,29 +211,6 @@ $color-input-border: #dce5ea;
     margin-top: 10px;
   }
 
-  &__input-btn {
-    width: 104px;
-    height: 26px;
-    border: solid 1px #d4e2e7;
-
-    margin-top: 0px;
-    margin-left: 7px;
-    z-index: 3;
-    cursor: pointer;
-
-    background: #386bf2;
-    border-radius: 3px;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 10px;
-    text-transform: uppercase;
-    transition: background-color 0.1s ease, border-color 0.3s ease;
-  }
-  &__input-btn:hover {
-    border-color: #1a56fa;
-    background-color: #4d7bf7;
-  }
   &__input-file {
     width: 0.1px;
     height: 0.1px;
