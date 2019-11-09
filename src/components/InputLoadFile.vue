@@ -6,53 +6,26 @@
     >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
     <label class="form__label" for="file">
       <p class="form__lable-text">Выберите файл</p>
-      <!-- <button @click="addFilePhotoBtn()" class="form__input-btn" type="button">Выберите файл</button> -->
 
       <input
+        @change="addFilePhoto($event.target.files)"
+        id="file"
         class="form__input-file"
         type="file"
-        id="file"
         name="file"
         autocomplete="off"
         accept=".jpg .png"
       />
     </label>
-    <input class="form__input-text" type="text" name="name" placeholder="Файл не выбран" disabled />
-
-    <!-- Alex 
-    <label
-      v-if="CreateTask.attached.length < 4"
-      key="label"
-      for="attachFile"
-      class="attached-item _label"
-    >
-      <input
-        @change="filler($event.target.files)"
-        id="attachFile"
-        type="file"
-        multiple
-        accept="image"
-        name="attachFile"
-        class="attached-item__input"
-      />
-      <span>+</span>
-      <button
-        @click="addSpecialization(specKeyword)"
-        class="specialization-label__label-button"
-        type="button"
-        name="addSpecKeyword"
-        aria-label="Добавить специализацию"
-      >+</button>
-    </label>
-    / Alex-->
-
-    <!-- <label class="file-select">
-      <div class="select-button">
-        <span v-if="value">Selected File: {{value.name}}</span>
-        <span v-else>Select File</span>
-      </div>
-      <input type="file" @change="handleFileChange" />
-    </label>-->
+    <input
+      class="form__input-text"
+      type="text"
+      name="name"
+      placeholder="Файл не выбран"
+      disabled
+      :value="inputValue"
+    />
+    <!-- <span>inputValue = "{{ inputValue }}"</span> -->
   </div>
 </template>
 
@@ -60,73 +33,21 @@
 export default {
   name: "InputLoadFile",
 
-  props: {
-    value: File
-  },
-
-  data() {
-    return {
-      file: ""
-    };
-  },
+  data: () => ({
+    inputValue: ""
+  }),
 
   methods: {
-    // addFilePhotoInp() {
-    //   this.file = this.$refs.file.files[0];
-    // },
-
-    addFilePhotoBtn() {
-      alert("button was pressed !" + this.file);
+    addFilePhoto(files) {
+      let fileName = files[0].name;
+      this.inputValue = fileName;
+      console.log("fileName - " + fileName);
+      console.log("inputValue - " + this.inputValue);
     }
-    // console.log( "button was pressed !")
-    // this.file = this.$refs.file.files[0];
-
-    // Alex
-    // addSpecialization(specKeyword) {
-    //   if (specKeyword) {
-    //     this.$store.dispatch("addSpecialization", specKeyword);
-    //     this.specKeyword = "";
-    //   }
-    // },
-    // filler(files) {
-    //   const formData = new FormData();
-    //   for (let file of files) {
-    //     formData.append("image", file);
-    //   }
-    //   this.$http
-    //     .post("upload", formData)
-    //     .then(({ body }) => {
-    //       body.forEach(picture =>
-    //         this.$store.dispatch("addAttached", picture._id)
-    //       );
-    //     })
-    //     .catch(err => console.error(err));
-    // }
-    // / Alex
-    // handleFileChange(e) {
-    //   this.$emit("input", e.target.files[0]);
-    // }
   }
 };
-// https://medium.com/@frontman/%D1%81%D1%82%D0%B8%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8-%D0%BA%D0%B0%D1%81%D1%82%D0%BE%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-file-inputs-dea8e2de3ebc
 </script>
 <style lang="scss" scoped>
-// .file-select > .select-button {
-//   padding: 1rem;
-
-//   color: white;
-//   background-color: #2ea169;
-
-//   border-radius: 0.3rem;
-
-//   text-align: center;
-//   font-weight: bold;
-// }
-
-// .file-select > input[type="file"] {
-//   display: none;
-// }
-
 $color-gray: #808080;
 $color-white: #ffffff;
 $color-text: #475364;
