@@ -14,7 +14,7 @@
         type="file"
         name="fileSummary"
         autocomplete="off"
-        accept="*.pdf *.doc *.docx"
+        accept="application/pdf,application/msword"
       />
     </label>
     <span

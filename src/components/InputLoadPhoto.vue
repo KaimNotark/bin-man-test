@@ -14,7 +14,7 @@
         type="file"
         name="filePhoto"
         autocomplete="off"
-        accept="*.jpg *.png"
+        accept="image/jpeg,image/png"
       />
     </label>
     <span

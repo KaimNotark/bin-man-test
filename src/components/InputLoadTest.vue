@@ -14,7 +14,7 @@
         type="file"
         name="fileTest"
         autocomplete="off"
-        accept=".zip .rar"
+        accept="application/zip,application/rar"
       />
     </label>
     <span
