@@ -29,7 +29,7 @@
         </select>
       </label>
 
-      <InputLoadFile class="form__input-load-file" />
+      <InputLoadPhoto class="form__input-load-file" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -68,21 +68,7 @@
 
       <InputLoadSummary class="form__input-load-summary" />
 
-      <label class="form__label">
-        <span class="form__span">Архив с результатами тестового задания</span>
-        <p
-          class="form__rem"
-        >Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar</p>
-        <input
-          class="form__input"
-          type="file"
-          name="file"
-          autocomplete="on"
-          spellcheck="true"
-          accept=".zip .rar"
-          required
-        />
-      </label>
+      <InputLoadTest class="form__input-load-test" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
@@ -94,7 +80,7 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <btton type="reset" class="form__btn-reset">Отменить</btton>
+        <button type="reset" class="form__btn-reset">Отменить</button>
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
@@ -102,15 +88,17 @@
 </template>
 
 <script>
-import InputLoadFile from "./InputLoadFile.vue";
+import InputLoadPhoto from "./InputLoadPhoto.vue";
 import InputLoadSummary from "./InputLoadSummary.vue";
+import InputLoadTest from "./InputLoadTest.vue";
 
 export default {
   name: "FormAdditionApplicant",
 
   components: {
-    InputLoadFile,
-    InputLoadSummary
+    InputLoadPhoto,
+    InputLoadSummary,
+    InputLoadTest
   }
 };
 </script>

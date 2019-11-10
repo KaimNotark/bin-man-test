@@ -1,40 +1,40 @@
 <template>
   <div class="container">
-    <span class="form__span">резюме</span>
+    <span class="form__span">Архив с результатами тестового задания</span>
     <p
       class="form__rem"
-    >Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc</p>
-    <label class="form__label" for="fileSummary">
+    >Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar</p>
+    <label class="form__label" for="fileTest">
       <p class="form__lable-text">Выберите файл</p>
 
       <input
-        @change="addFileSummary($event.target.files)"
-        id="fileSummary"
+        @change="addFileTest($event.target.files)"
+        id="fileTest"
         class="form__input-file"
         type="file"
-        name="fileSummary"
+        name="fileTest"
         autocomplete="off"
-        accept="*.pdf *.doc *.docx"
+        accept=".zip .rar"
       />
     </label>
     <span
       :class="['form__span-file-name', 
-      fileSummaryName >= 'Файл не выбран' ? '_color-text-light' : '_color-text']"
-    >{{ fileSummaryName }}</span>
+      fileTestName >= 'Файл не выбран' ? '_color-text-light' : '_color-text']"
+    >{{ fileTestName }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "InputLoadSummary",
+  name: "InputLoadTest",
 
   data: () => ({
-    fileSummaryName: "Файл не выбран"
+    fileTestName: "Файл не выбран"
   }),
 
   methods: {
-    addFileSummary(files) {
-      this.fileSummaryName = files[0].name;
+    addFileTest(files) {
+      this.fileTestName = files[0].name;
     }
   }
 };

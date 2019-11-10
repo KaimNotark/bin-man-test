@@ -14,7 +14,7 @@
         type="file"
         name="filePhoto"
         autocomplete="off"
-        accept=".jpg .png"
+        accept="*.jpg *.png"
       />
     </label>
     <span
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "InputLoadFile",
+  name: "InputLoadPhoto",
 
   data: () => ({
     filePhotoName: "Файл не выбран"
