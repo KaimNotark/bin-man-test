@@ -29,14 +29,6 @@
         </select>
       </label>
 
-      <!-- <label class="form__label">
-        <span class="form__span">Фотография</span>
-        <p
-          class="form__rem"
-        >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
-        <input class="form__input" type="file" name="file" autocomplete="off" accept=".jpg .png" />
-      </label>-->
-
       <InputLoadFile class="form__input-load-file" />
 
       <hr class="form-devider" />
@@ -59,7 +51,7 @@
       </label>
 
       <label class="form__label">
-        <span class="form__span">Номер телефона</span>
+        <span class="form__span">e-mail</span>
         <input
           class="form__input"
           type="email"
@@ -74,21 +66,7 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <label class="form__label">
-        <span class="form__span">резюме</span>
-        <p
-          class="form__rem"
-        >Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc</p>
-        <input
-          class="form__input"
-          type="file"
-          name="file"
-          autocomplete="on"
-          spellcheck="true"
-          accept=".pdf .doc .docx"
-          required
-        />
-      </label>
+      <InputLoadSummary class="form__input-load-summary" />
 
       <label class="form__label">
         <span class="form__span">Архив с результатами тестового задания</span>
@@ -125,12 +103,14 @@
 
 <script>
 import InputLoadFile from "./InputLoadFile.vue";
+import InputLoadSummary from "./InputLoadSummary.vue";
 
 export default {
   name: "FormAdditionApplicant",
 
   components: {
-    InputLoadFile
+    InputLoadFile,
+    InputLoadSummary
   }
 };
 </script>
@@ -240,7 +220,7 @@ select:focus {
 }
 
 .form {
-  width: 600px;
+  width: 650px;
   height: 1000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
@@ -336,7 +316,13 @@ select:focus {
     line-height: 13px;
     text-transform: uppercase;
     transition: background-color 0.1s ease, border-color 0.3s ease;
+    cursor: pointer;
   }
+  &__btn-reset:hover {
+    border-color: $color-input-focus;
+    background-color: #e4f0f5;
+  }
+
   &__btn-submit {
     width: 49%;
     height: 36px;
@@ -350,13 +336,8 @@ select:focus {
     line-height: 13px;
     text-transform: uppercase;
     transition: background-color 0.1s ease, border-color 0.3s ease;
+    cursor: pointer;
   }
-
-  &__btn-reset:hover {
-    border-color: $color-input-focus;
-    background-color: #e4f0f5;
-  }
-
   &__btn-submit:hover {
     border-color: #1a56fa;
     background-color: #4d7bf7;
