@@ -17,15 +17,10 @@
         accept=".jpg .png"
       />
     </label>
-    <input
-      class="form__input-text"
-      type="text"
-      name="name"
-      placeholder="Файл не выбран"
-      disabled
-      :value="inputValue"
-    />
-    <!-- <span>inputValue = "{{ inputValue }}"</span> -->
+    <span
+      :class="['form__span-file-name', 
+      filePhotoName >= 'Файл не выбран' ? '_color-text-light' : '_color-text']"
+    >{{ filePhotoName }}</span>
   </div>
 </template>
 
@@ -34,39 +29,24 @@ export default {
   name: "InputLoadFile",
 
   data: () => ({
-    inputValue: ""
+    filePhotoName: "Файл не выбран"
   }),
 
   methods: {
     addFilePhoto(files) {
-      let fileName = files[0].name;
-      this.inputValue = fileName;
-      console.log("fileName - " + fileName);
-      console.log("inputValue - " + this.inputValue);
+      this.filePhotoName = files[0].name;
     }
   }
 };
 </script>
-<style lang="scss" scoped>
-$color-gray: #808080;
-$color-white: #ffffff;
-$color-text: #475364;
-$color-text-placeholder: #8ea4b5;
-$color-text-black: #000000;
-$color-input-focus: #aeb7bb;
-$color-input-background: #f4f9fb;
-$color-input-border: #dce5ea;
 
-%subtitle {
-  color: $color-text;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 14px;
-  text-transform: uppercase;
-}
+<style lang="scss" scoped>
+
+@import '../stylesheets/variables.scss';
+
 
 %text-span {
-  color: $color-text;
+  color: $color-text-main;
   font-size: 11px;
   font-weight: 700;
   line-height: 12px;
@@ -77,7 +57,6 @@ $color-input-border: #dce5ea;
   &__label {
     display: flex;
     position: absolute;
-    // flex-direction: column;
     justify-content: center;
 
     width: 104px;
@@ -86,7 +65,6 @@ $color-input-border: #dce5ea;
 
     margin-top: 5px;
     margin-left: 7px;
-    // z-index: 3;
     cursor: pointer;
 
     background: #386bf2;
@@ -107,9 +85,9 @@ $color-input-border: #dce5ea;
     @extend %text-span;
   }
 
-  &__input-text {
-    width: 470px;
-    color: $color-text;
+  &__span-file-name {
+    display: block;
+    width: 416px;
     font-size: 12px;
     font-weight: 400;
     line-height: 12px;
@@ -117,15 +95,17 @@ $color-input-border: #dce5ea;
     border: 1px solid $color-input-border;
     background: $color-input-background;
     border-radius: 3px;
-    padding: 10px 10px 10px 120px;
+    padding: 12px 10px 8px 120px;
   }
-
-  &__input-text::-webkit-input-placeholder {
-    color: $color-text-placeholder;
+  ._color-text {
+    color: $color-text-main;
+  }
+  ._color-text-light {
+    color: $color-text-light;
   }
 
   &__rem {
-    color: $color-text-placeholder;
+    color: $color-text-light;
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;

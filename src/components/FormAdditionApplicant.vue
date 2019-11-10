@@ -35,9 +35,9 @@
           class="form__rem"
         >Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png</p>
         <input class="form__input" type="file" name="file" autocomplete="off" accept=".jpg .png" />
-      </label> -->
+      </label>-->
 
-<InputLoadFile class="form__input-load-file"/>
+      <InputLoadFile class="form__input-load-file" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -55,12 +55,7 @@
           spellcheck="true"
           required
         />
-        <input
-          type="button"
-          class="form__input-btn"
-          value="Добавить еще один номер телефона"
-          onclick="msg()"
-        />
+        <button type="button" class="form__btn-add-phone">Добавить еще один номер телефона</button>
       </label>
 
       <label class="form__label">
@@ -73,12 +68,7 @@
           placeholder="Введите E-mail"
           required
         />
-        <input
-          type="button"
-          class="form__input-btn"
-          value="Добавить еще один e-mail"
-          onclick="msg()"
-        />
+        <button type="button" class="form__btn-add-mail">Добавить еще один e-mail</button>
       </label>
 
       <hr class="form-devider" />
@@ -126,15 +116,9 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <input type="reset" class="form__input-btn-reset" value="Отменить" />
-        <input
-          type="submit"
-          class="form__input-btn-submit"
-          value="Добавить соискателя"
-          onclick="msg()"
-        />
+        <btton type="reset" class="form__btn-reset">Отменить</btton>
+        <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
-      
     </form>
   </div>
 </template>
@@ -152,18 +136,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-$color-gray: #808080;
-$color-white: #ffffff;
-$color-text: #475364;
-$color-text-placeholder: #8ea4b5;
-$color-text-black: #000000;
-$color-input-focus: #aeb7bb;
-$color-input-background: #f4f9fb;
-$color-input-border: #dce5ea;
+@import "../stylesheets/variables.scss";
+@import "../stylesheets/resets.scss";
 
 %title {
-  color: $color-text;
+  color: $color-text-main;
   font-size: 14px;
   font-weight: 700;
   line-height: 14px;
@@ -171,7 +148,7 @@ $color-input-border: #dce5ea;
 }
 
 %subtitle {
-  color: $color-text;
+  color: $color-text-main;
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
@@ -179,7 +156,7 @@ $color-input-border: #dce5ea;
 }
 
 %text-span {
-  color: $color-text;
+  color: $color-text-main;
   font-size: 11px;
   font-weight: 700;
   line-height: 12px;
@@ -187,7 +164,7 @@ $color-input-border: #dce5ea;
 }
 
 %text-input {
-  color: $color-text;
+  color: $color-text-main;
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
@@ -210,57 +187,33 @@ $color-input-border: #dce5ea;
 }
 
 %option {
-  color: $color-text;
+  color: $color-text-main;
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
 }
 
 %text-rem {
-  color: $color-text-placeholder;
+  color: $color-text-light;
   font-size: 10px;
   font-weight: 400;
   line-height: 12px;
 }
 
-%btn-reset {
-  width: 49%;
-  height: 36px;
-  border: solid 1px #d4e2e7;
-  background-color: #ffffff;
-  border-radius: 3px;
-  color: #475364;
-  font-family: Roboto;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 13px;
-  text-transform: uppercase;
-  transition: background-color 0.1s ease, border-color 0.3s ease;
-}
-
-%btn-submit {
-  width: 49%;
-  height: 36px;
-  border: solid 1px #d4e2e7;
-  background: #386bf2;
-  border-radius: 3px;
-  color: #ffffff;
-  font-family: Roboto;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 13px;
-  text-transform: uppercase;
-  transition: background-color 0.1s ease, border-color 0.3s ease;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
+%btn-add {
+  height: 14px;
+  padding: 1px 0 0px 0;
+  color: $color-text-light;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid $color-text-light;
+  border-left: none;
+  background-color: $color-white;
+  transition: background-color 0.1s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
 .container {
@@ -328,7 +281,7 @@ select:focus {
   }
 
   &__input::-webkit-input-placeholder {
-    color: $color-text-placeholder;
+    color: $color-text-light;
   }
 
   &__select {
@@ -342,7 +295,7 @@ select:focus {
   }
 
   ._light {
-    color: $color-text-placeholder;
+    color: $color-text-light;
   }
 
   &__rem {
@@ -350,19 +303,61 @@ select:focus {
     margin-top: 10px;
   }
 
-  &__input-btn-reset {
-    @extend %btn-reset;
+  &__btn-add-phone {
+    @extend %btn-add;
+    width: 173px;
+    margin-top: 5px;
   }
-  &__input-btn-submit {
-    @extend %btn-submit;
+  &__btn-add-phone:hover {
+    color: $color-text-main;
+    border-color: $color-text-main;
   }
 
-  &__input-btn-reset:hover {
+  &__btn-add-mail {
+    @extend %btn-add;
+    width: 124px;
+    margin-top: 5px;
+  }
+  &__btn-add-mail:hover {
+    color: $color-text-main;
+    border-color: $color-text-main;
+  }
+
+  &__btn-reset {
+    width: 49%;
+    height: 36px;
+    border: solid 1px #d4e2e7;
+    background-color: #ffffff;
+    border-radius: 3px;
+    color: #475364;
+    font-family: Roboto;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 13px;
+    text-transform: uppercase;
+    transition: background-color 0.1s ease, border-color 0.3s ease;
+  }
+  &__btn-submit {
+    width: 49%;
+    height: 36px;
+    border: solid 1px #d4e2e7;
+    background: #386bf2;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 13px;
+    text-transform: uppercase;
+    transition: background-color 0.1s ease, border-color 0.3s ease;
+  }
+
+  &__btn-reset:hover {
     border-color: $color-input-focus;
     background-color: #e4f0f5;
   }
 
-  &__input-btn-submit:hover {
+  &__btn-submit:hover {
     border-color: #1a56fa;
     background-color: #4d7bf7;
   }
