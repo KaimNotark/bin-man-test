@@ -3,12 +3,12 @@
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
-      <h2 class="form-subtitle">Основные данные</h2>
+      <h2 class="form-subtitle _margin-top-27px">Основные данные</h2>
 
-      <label class="form__label">
+      <label class="form__label _margin-top-12px">
         <span class="form__span">ФИО</span>
         <input
-          class="form__input"
+          class="form__input _margin-top-7px"
           type="text"
           name="name"
           autocomplete="on"
@@ -18,9 +18,9 @@
         />
       </label>
 
-      <label class="form__label">
+      <label class="form__label _margin-top-21px">
         <span class="form__span">Вакансия</span>
-        <select class="form__select _light" required>
+        <select class="form__select _light _margin-top-5px" required>
           <option value="0" class="form__option">Выберите вакансию</option>
           <option value="JFD" class="form__option">Junior Frontend Developer</option>
           <option value="MFD" class="form__option">Middle Frontend Developer</option>
@@ -32,9 +32,9 @@
       <InputLoadPhoto class="form__input-load-file" />
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle">Контактные данные</h2>
+      <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
 
-      <label class="form__label">
+      <label class="form__label _margin-top-17px">
         <span class="form__span">Номер телефона</span>
         <input
           class="form__input"
@@ -147,7 +147,7 @@ export default {
 }
 
 %input {
-  height: 16px;
+  height: 35px;
   border: 1px solid $color-input-border;
   background: $color-input-background;
   border-radius: 3px;
@@ -217,13 +217,13 @@ select:focus {
 
 .form {
   width: 650px;
-  height: 2000px;
+  height: 1000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
-  padding: 25px;
+  padding: 23px;
 
   &-devider {
-    margin-top: 25px;
+    margin-top: 17px;
     width: 650px;
     border: none;
     color: $color-input-background;
@@ -234,6 +234,7 @@ select:focus {
 
   &-title {
     @extend %title;
+    margin-top: -2px;
   }
 
   &-subtitle {
@@ -243,7 +244,6 @@ select:focus {
   &__label {
     display: flex;
     flex-direction: column;
-    margin-top: 16px;
   }
 
   &__span {
@@ -253,7 +253,6 @@ select:focus {
   &__input {
     @extend %text-input;
     @extend %input;
-    margin-top: 10px;
   }
 
   &__input::-webkit-input-placeholder {
@@ -262,7 +261,6 @@ select:focus {
 
   &__select {
     @extend %select;
-    margin-top: 10px;
     @extend %option;
   }
 
@@ -278,7 +276,9 @@ select:focus {
     @extend %text-rem;
     margin-top: 10px;
   }
-
+  &__input-load-file {
+    margin-top: 16px;
+  }
   &__btn-add-phone {
     @extend %btn-add;
     width: 173px;
@@ -353,5 +353,27 @@ select:focus {
     border-color: #1a56fa;
     background-color: #4d7bf7;
   }
+}
+
+._margin-top-5px {
+  margin-top: 5px;
+}
+._margin-top-7px {
+  margin-top: 7px;
+}
+._margin-top-12px {
+  margin-top: 12px;
+}
+._margin-top-17px {
+  margin-top: 17px;
+}
+._margin-top-21px {
+  margin-top: 21px;
+}
+._margin-top-22px {
+  margin-top: 22px;
+}
+._margin-top-27px {
+  margin-top: 27px;
 }
 </style>
