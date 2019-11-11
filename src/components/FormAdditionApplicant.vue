@@ -73,13 +73,11 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
 
-      <div class="container-row">
-        <!-- add list with stars use v-for probably -->
+      <div class="form__rating-container">
+        <RatingSummary class="form__rating-summary"></RatingSummary>
+        <RatingTest class="form__rating-test"></RatingTest>
+        <RatingInterview class="form__rating-interview"></RatingInterview>
       </div>
-
-      <hr class="form-devider" />
-
-      <RatingStars class="form__rating-stars"></RatingStars>
 
       <hr class="form-devider" />
 
@@ -95,7 +93,9 @@
 import InputLoadPhoto from "./InputLoadPhoto.vue";
 import InputLoadSummary from "./InputLoadSummary.vue";
 import InputLoadTest from "./InputLoadTest.vue";
-import RatingStars from "./RatingStars.vue";
+import RatingSummary from "./RatingSummary.vue";
+import RatingTest from "./RatingTest.vue";
+import RatingInterview from "./RatingInterview.vue";
 
 export default {
   name: "FormAdditionApplicant",
@@ -104,7 +104,9 @@ export default {
     InputLoadPhoto,
     InputLoadSummary,
     InputLoadTest,
-    RatingStars
+    RatingSummary,
+    RatingTest,
+    RatingInterview
   }
 };
 </script>
@@ -296,6 +298,21 @@ select:focus {
     color: $color-text-main;
     border-color: $color-text-main;
   }
+  &__rating-container {
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+    margin-top: 25px;
+  }
+  // &__rating-summary {
+  //   display: block;
+  // }
+  // &__rating-test {
+  //   display: block;
+  // }
+  // &__rating-interview {
+  //   display: block;
+  // }
 
   &__btn-reset {
     width: 49%;
