@@ -79,6 +79,10 @@
 
       <hr class="form-devider" />
 
+      <RatingStars class="form__rating-stars"></RatingStars>
+
+      <hr class="form-devider" />
+
       <div class="container-row">
         <button type="reset" class="form__btn-reset">Отменить</button>
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
@@ -91,6 +95,7 @@
 import InputLoadPhoto from "./InputLoadPhoto.vue";
 import InputLoadSummary from "./InputLoadSummary.vue";
 import InputLoadTest from "./InputLoadTest.vue";
+import RatingStars from "./RatingStars.vue";
 
 export default {
   name: "FormAdditionApplicant",
@@ -98,7 +103,8 @@ export default {
   components: {
     InputLoadPhoto,
     InputLoadSummary,
-    InputLoadTest
+    InputLoadTest,
+    RatingStars
   }
 };
 </script>
@@ -209,7 +215,7 @@ select:focus {
 
 .form {
   width: 650px;
-  height: 1000px;
+  height: 2000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
   padding: 25px;
