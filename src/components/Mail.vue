@@ -1,18 +1,18 @@
 <template>
   <div class="container">
-    <div class="phone-border">
-      <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
+    <div class="mail-border">
+      <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
     </div>
-    <div class="phone-text">
-      <p class="phone-text__number">+7 (900) 800-70-60</p>
-      <button type="button" class="phone-text__button">Показать еще 1 номер</button>
+    <div class="mail-text">
+      <p class="mail-text__e-mail">ioan@binman.ru</p>
+      <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Phone"
+  name: "Mail"
 };
 </script>
 
@@ -23,10 +23,10 @@ export default {
 .container {
   display: flex;
   justify-content: flex-start;
-  width: 155px;
+  width: 150px;
 }
 
-.phone {
+.mail {
   &-border {
     width: 36px;
     height: 36px;
@@ -35,13 +35,13 @@ export default {
 
     &__img {
       display: block;
-      margin: 10px auto;
+      margin: 12px auto;
     }
   }
   &-text {
     margin-left: 10px;
 
-    &__number {
+    &__e-mail {
       color: $color-text-main;
       font-size: 12px;
       font-weight: 700;

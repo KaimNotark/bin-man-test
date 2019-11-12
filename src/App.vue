@@ -10,6 +10,10 @@
     <hr>
     <br>
     <Phone></Phone>
+    <br>
+    <hr>
+    <br>
+    <Mail></Mail>
   </div>
 </template>
 
@@ -18,6 +22,7 @@
 import ButtonsResumeArchiveFavorites from "./components/ButtonsResumeArchiveFavorites.vue";
 import Applicant from "./components/Applicant.vue";
 import Phone from "./components/Phone.vue";
+import Mail from "./components/Mail.vue";
 
 export default {
   name: "app",
@@ -26,7 +31,8 @@ export default {
     // FormAdditionApplicant,
     ButtonsResumeArchiveFavorites,
     Applicant,
-    Phone
+    Phone,
+    Mail
   }
 };
 </script>
