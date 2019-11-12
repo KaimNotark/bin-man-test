@@ -6,6 +6,10 @@
     <hr>
     <br>
     <Applicant />
+    <br>
+    <hr>
+    <br>
+    <Phone></Phone>
   </div>
 </template>
 
@@ -13,6 +17,7 @@
 // import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 import ButtonsResumeArchiveFavorites from "./components/ButtonsResumeArchiveFavorites.vue";
 import Applicant from "./components/Applicant.vue";
+import Phone from "./components/Phone.vue";
 
 export default {
   name: "app",
@@ -20,7 +25,8 @@ export default {
   components: {
     // FormAdditionApplicant,
     ButtonsResumeArchiveFavorites,
-    Applicant
+    Applicant,
+    Phone
   }
 };
 </script>
