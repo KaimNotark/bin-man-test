@@ -63,8 +63,8 @@ export default {
     height: 26px;
     border: solid 1px #d4e2e7;
 
-    margin-top: 5px;
-    margin-left: 7px;
+    margin-top: 1px;
+    margin-left: 4px;
     cursor: pointer;
 
     background: #386bf2;
@@ -87,7 +87,8 @@ export default {
 
   &__span-file-name {
     display: block;
-    width: 416px;
+    width: 468px;
+    margin-top: -4px;
     font-size: 12px;
     font-weight: 400;
     line-height: 12px;
@@ -109,7 +110,7 @@ export default {
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;
-    margin-top: 10px;
+    margin-top: 3px;
   }
 
   &__input-file {

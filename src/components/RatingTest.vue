@@ -38,6 +38,7 @@ export default {
 
 .form__rating-title {
   color: $color-text-main;
+  margin-bottom: 4px;
   font-size: 11px;
   font-weight: 700;
   line-height: 12px;

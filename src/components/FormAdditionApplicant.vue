@@ -3,9 +3,9 @@
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
-      <h2 class="form-subtitle _margin-top-27px">Основные данные</h2>
+      <h2 class="form-subtitle _margin-top-22px">Основные данные</h2>
 
-      <label class="form__label _margin-top-12px">
+      <label class="form__label _margin-top-17px">
         <span class="form__span">ФИО</span>
         <input
           class="form__input _margin-top-7px"
@@ -37,7 +37,7 @@
       <label class="form__label _margin-top-17px">
         <span class="form__span">Номер телефона</span>
         <input
-          class="form__input"
+          class="form__input _margin-top-7px"
           type="tel"
           name="phone"
           maxlength="11"
@@ -50,10 +50,10 @@
         <button type="button" class="form__btn-add-phone">Добавить еще один номер телефона</button>
       </label>
 
-      <label class="form__label">
+      <label class="form__label _margin-top-20px">
         <span class="form__span">e-mail</span>
         <input
-          class="form__input"
+          class="form__input _margin-top-7px"
           type="email"
           name="email"
           autocomplete="on"
@@ -64,16 +64,16 @@
       </label>
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
+      <h2 class="form-subtitle _margin-top-21px">Резюме и результаты тестового задания</h2>
 
-      <InputLoadSummary class="form__input-load-summary" />
+      <InputLoadSummary class="form__input-load-summary _margin-top-12px" />
 
-      <InputLoadTest class="form__input-load-test" />
+      <InputLoadTest class="form__input-load-test _margin-top-14px" />
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle">Оценка соискателя</h2>
+      <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
 
-      <div class="form__rating-container">
+      <div class="form__rating-container _margin-top-5px">
         <RatingSummary class="form__rating-summary"></RatingSummary>
         <RatingTest class="form__rating-test"></RatingTest>
         <RatingInterview class="form__rating-interview"></RatingInterview>
@@ -212,7 +212,7 @@ select:focus {
 .container-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .form {
@@ -307,9 +307,9 @@ select:focus {
   // &__rating-summary {
   //   display: block;
   // }
-  // &__rating-test {
-  //   display: block;
-  // }
+  &__rating-test {
+    margin-left: 73px;
+  }
   // &__rating-interview {
   //   display: block;
   // }
@@ -364,8 +364,17 @@ select:focus {
 ._margin-top-12px {
   margin-top: 12px;
 }
+._margin-top-13px {
+  margin-top: 13px;
+}
+._margin-top-14px {
+  margin-top: 14px;
+}
 ._margin-top-17px {
   margin-top: 17px;
+}
+._margin-top-20px {
+  margin-top: 20px;
 }
 ._margin-top-21px {
   margin-top: 21px;
