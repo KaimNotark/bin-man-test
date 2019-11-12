@@ -2,19 +2,25 @@
   <div id="app">
     <!-- <FormAdditionApplicant /> -->
     <ButtonsResumeArchiveFavorites />
+    <br>
+    <hr>
+    <br>
+    <Applicant />
   </div>
 </template>
 
 <script>
 // import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 import ButtonsResumeArchiveFavorites from "./components/ButtonsResumeArchiveFavorites.vue";
+import Applicant from "./components/Applicant.vue";
 
 export default {
   name: "app",
 
   components: {
     // FormAdditionApplicant,
-    ButtonsResumeArchiveFavorites
+    ButtonsResumeArchiveFavorites,
+    Applicant
   }
 };
 </script>
