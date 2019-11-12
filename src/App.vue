@@ -1,25 +1,28 @@
 <template>
   <div id="app">
-    <FormAdditionApplicant />
+    <!-- <FormAdditionApplicant /> -->
+    <ButtonsResumeArchiveFavorites />
   </div>
 </template>
 
 <script>
-import FormAdditionApplicant from './components/FormAdditionApplicant.vue'
+// import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
+import ButtonsResumeArchiveFavorites from "./components/ButtonsResumeArchiveFavorites.vue";
 
 export default {
-  name: 'app',
+  name: "app",
 
   components: {
-    FormAdditionApplicant
+    // FormAdditionApplicant,
+    ButtonsResumeArchiveFavorites
   }
-}
+};
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
-$font-family-primary: 'Roboto', "Verdana", "Arial", sans-serif;
+$font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
 html {
   scroll-behavior: smooth;
@@ -39,8 +42,8 @@ body {
 
 #app {
   font-family: $font-family-primary;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
 }
 </style>
