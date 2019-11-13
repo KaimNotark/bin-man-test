@@ -2,19 +2,37 @@
   <div id="app">
     <!-- <FormAdditionApplicant /> -->
     <ButtonsResumeArchiveFavorites />
+    <br>
+    <hr>
+    <br>
+    <Applicant />
+    <br>
+    <hr>
+    <br>
+    <Phone></Phone>
+    <br>
+    <hr>
+    <br>
+    <Mail></Mail>
   </div>
 </template>
 
 <script>
 // import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 import ButtonsResumeArchiveFavorites from "./components/ButtonsResumeArchiveFavorites.vue";
+import Applicant from "./components/Applicant.vue";
+import Phone from "./components/Phone.vue";
+import Mail from "./components/Mail.vue";
 
 export default {
   name: "app",
 
   components: {
     // FormAdditionApplicant,
-    ButtonsResumeArchiveFavorites
+    ButtonsResumeArchiveFavorites,
+    Applicant,
+    Phone,
+    Mail
   }
 };
 </script>
