@@ -85,7 +85,7 @@ body {
 
 .header {
   height: 66px;
-  background-color: $color-header;
+  background-color: $color-header__dark-gray;
   padding: 15px;
 
   &-img {
@@ -95,13 +95,13 @@ body {
 
 .nav {
   width: 80px;
-  background-color: $color-nav;
+  background-color: $color-nav__gray;
   padding: 15px;
 
   &-button {
     width: 50px;
     height: 40px;
-    border: 1px solid $color-nav;
+    border: 1px solid $color-nav__gray;
     background: none;
     border-radius: 3px;
     transition: border-color 0.3s ease, background-color 0.2s ease;
@@ -120,7 +120,5 @@ body {
 ._active {
   background-color: $color-nav__button-dark-gray;
 }
-// ._blue {
-//   background-color: $color-nav__button-blue;
-// }
+
 </style>
