@@ -1,18 +1,21 @@
 <template>
   <div id="app">
+    <header class="header">
+      <img src="../public/images/logo.png" alt class="header-img" />
+    </header>
     <!-- <FormAdditionApplicant /> -->
     <ButtonsResumeArchiveFavorites />
-    <br>
-    <hr>
-    <br>
+    <br />
+    <hr />
+    <br />
     <Applicant />
-    <br>
-    <hr>
-    <br>
+    <br />
+    <hr />
+    <br />
     <Phone></Phone>
-    <br>
-    <hr>
-    <br>
+    <br />
+    <hr />
+    <br />
     <Mail></Mail>
   </div>
 </template>
@@ -39,6 +42,8 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import "./stylesheets/variables.scss";
+@import "./stylesheets/resets.scss";
 
 $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
@@ -63,5 +68,16 @@ body {
   // -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
+}
+
+.header {
+  width: 1440px;
+  height: 66px;
+  background: $color-header;
+  padding: 15px;
+
+  &-img {
+    user-select: none;
+  }
 }
 </style>
