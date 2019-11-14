@@ -65,7 +65,11 @@
               <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
               <span class="main-button__text">Избранные</span>
             </button>
-            <button class="main-button__add" type="button">+ Добавить соискателя</button>
+
+            <button class="main-button__add" type="button">
+              <span class="_increase">+</span>
+              <span>Добавить соискателя</span>
+            </button>
           </div>
         </div>
 
@@ -202,5 +206,88 @@ body {
 }
 ._active {
   background-color: $color-nav__button-dark-gray;
+}
+
+.main {
+  width: 100%;
+  padding: 20px;
+  background-color: $color-input-background;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-title {
+    &__title {
+      color: $color-text-main;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+    &__counter {
+      color: $color-text-light;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 12px;
+      margin: 5px 0 0 0;
+    }
+  }
+
+  &-button {
+    display: flex;
+    justify-content: space-between;
+    width: 306px;
+
+    &__selected {
+      display: flex;
+      justify-content: space-around;
+      width: 116px;
+      height: 36px;
+      border: solid 1px $color-button-border;
+      border-radius: 3px;
+      background: $color-white;
+      transition: background-color 0.1s ease, border-color 0.3s ease;
+      cursor: pointer;
+    }
+    &__selected:hover {
+      background-color: $color-button-background-gray;
+      border-color: $color-gray;
+    }
+    &__img {
+    }
+    &__text {
+      color: $color-text-main;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 13px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    &__add {
+      display: flex;
+      justify-content: space-around;
+      width: 181px;
+      height: 36px;
+      border: solid 1px #d4e2e7;
+      background: #386bf2;
+      border-radius: 3px;
+      color: #ffffff;
+      font-family: Roboto;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 13px;
+      text-transform: uppercase;
+      transition: background-color 0.1s ease, border-color 0.3s ease;
+      cursor: pointer;
+    }
+    &__add:hover {
+      border-color: #1a56fa;
+      background-color: #4d7bf7;
+    }
+  }
+}
+._increase {
+  font-size: 22px;
 }
 </style>
