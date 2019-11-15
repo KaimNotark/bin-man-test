@@ -53,7 +53,9 @@
           </div>
         </td>
         <td></td>
-        <td></td>
+        <td>
+          <RaitingBinman />
+        </td>
         <td>
           <div class="container-buttons">
             <ul class="buttons-list">
@@ -121,7 +123,9 @@
           </div>
         </td>
         <td></td>
-        <td></td>
+        <td>
+          <RatingDurkov />
+        </td>
         <td>
           <div class="container-buttons">
             <ul class="buttons-list">
@@ -189,7 +193,9 @@
           </div>
         </td>
         <td></td>
-        <td></td>
+        <td>
+          <RatingLebedin />
+        </td>
         <td>
           <div class="container-buttons">
             <ul class="buttons-list">
@@ -257,7 +263,9 @@
           </div>
         </td>
         <td></td>
-        <td></td>
+        <td>
+          <RatingChulkov />
+        </td>
         <td>
           <div class="container-buttons">
             <ul class="buttons-list">
@@ -325,7 +333,9 @@
           </div>
         </td>
         <td></td>
-        <td></td>
+        <td>
+          <RatingFedora />
+        </td>
         <td>
           <div class="container-buttons">
             <ul class="buttons-list">
@@ -365,8 +375,22 @@
 </template>
 
 <script>
+import RaitingBinman from "./RatingBinman.vue";
+import RatingDurkov from "./RatingDurkov.vue";
+import RatingLebedin from "./RatingLebedin.vue";
+import RatingChulkov from "./RatingChulkov.vue";
+import RatingFedora from "./RatingFedora.vue";
+
 export default {
-  name: "Table"
+  name: "Table",
+
+  components: {
+    RaitingBinman,
+    RatingDurkov,
+    RatingLebedin,
+    RatingChulkov,
+    RatingFedora
+  }
 };
 </script>
 
