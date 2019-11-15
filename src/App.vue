@@ -1,56 +1,60 @@
 <template>
   <div id="app">
     <header class="header">
-      <img src="../public/images/logo.png" alt class="header-img" />
+      <div class="header-container">
+        <img src="../public/images/logo.png" alt class="header-img" />
+      </div>
     </header>
 
     <div class="container-nav-main">
       <nav class="nav">
-        <svg
-          aria-hidden="true"
-          style="position: absolute; width: 0; height: 0; overflow: hidden;"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <defs>
-            <symbol id="icon-home_w_svg" viewBox="-20 -20 76 76">
-              <title>Домашняя страница</title>
-              <path
-                d="M36 18l-6-6.461v-7.539h-4v4.192l-8-8.192-18 18v2h4v12h10v-10h8v10h10v-12h4v-2z"
-              />
-            </symbol>
-          </defs>
-        </svg>
+        <div class="nav-container">
+          <svg
+            aria-hidden="true"
+            style="position: absolute; width: 0; height: 0; overflow: hidden;"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <defs>
+              <symbol id="icon-home_w_svg" viewBox="-20 -20 76 76">
+                <title>Домашняя страница</title>
+                <path
+                  d="M36 18l-6-6.461v-7.539h-4v4.192l-8-8.192-18 18v2h4v12h10v-10h8v10h10v-12h4v-2z"
+                />
+              </symbol>
+            </defs>
+          </svg>
 
-        <svg class="nav-icon nav-icon__hover">
-          <use xlink:href="#icon-home_w_svg" />
-        </svg>
+          <svg class="nav-icon nav-icon__hover">
+            <use xlink:href="#icon-home_w_svg" />
+          </svg>
 
-        <button class="nav-button _active" type="button">
-          <img src="../public/images/clients.png" alt="Клиенты" class="nav-button__img" />
-        </button>
+          <button class="nav-button _active" type="button">
+            <img src="../public/images/clients.png" alt="Клиенты" class="nav-button__img" />
+          </button>
 
-        <svg
-          aria-hidden="true"
-          style="position: absolute; width: 0; height: 0; overflow: hidden;"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <defs>
-            <symbol id="icon-reports_w_svg" viewBox="-20 -20 76 76">
-              <title>Отчёты</title>
-              <path
-                d="M34.545 0h0.125c0.437 0 0.781 0.129 1.007 0.38 0.242 0.259 0.344 0.623 0.32 1.092l-0.102 2.241c-0.070 1.496-0.14 2.985-0.203 4.473-0.016 0.348-0.078 0.793-0.414 1.141-0.094 0.097-0.203 0.178-0.328 0.251-0.187 0.105-0.367 0.154-0.547 0.154-0.429 0-0.71-0.291-0.913-0.502l-1.71-1.763-13.114 13.66c-0.367 0.372-0.843 0.582-1.358 0.582s-0.999-0.21-1.358-0.582l-6.019-6.237-6.3 6.528c-0.359 0.372-0.835 0.582-1.351 0.582s-0.999-0.21-1.358-0.582l-0.359-0.372c-0.749-0.776-0.749-2.030 0-2.807l8.018-8.299c0.359-0.372 0.835-0.582 1.351-0.582s0.999 0.21 1.358 0.582l6.019 6.237 11.397-11.889c-0.39-0.396-0.781-0.801-1.163-1.205l-0.554-0.582c-0.219-0.227-0.679-0.704-0.351-1.44 0.062-0.146 0.14-0.267 0.242-0.372 0.32-0.332 0.726-0.348 1.023-0.364 2.217-0.105 4.427-0.218 6.644-0.324zM26 15.58v15.791c0 0.343 0.298 0.629 0.672 0.629h4.656c0.366 0 0.672-0.279 0.672-0.629v-22.063l-6 6.271zM10 31.289c0 0.388 0.298 0.711 0.672 0.711h4.656c0.366 0 0.672-0.315 0.672-0.711v-8.18l-6-6.137v14.317zM18.672 32c-0.374 0-0.672-0.272-0.672-0.598v-7.764c0.237-0.136 0.466-0.233 0.672-0.416l5.328-5.603v13.783c0 0.333-0.305 0.598-0.672 0.598h-4.656zM2 31.285c0 0.39 0.298 0.715 0.672 0.715h4.656c0.366 0 0.672-0.317 0.672-0.715v-12.383l-3.382 3.602c-0.718 0.756-1.354 1.536-2.618 1.536v7.246z"
-              />
-            </symbol>
-          </defs>
-        </svg>
+          <svg
+            aria-hidden="true"
+            style="position: absolute; width: 0; height: 0; overflow: hidden;"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <defs>
+              <symbol id="icon-reports_w_svg" viewBox="-20 -20 76 76">
+                <title>Отчёты</title>
+                <path
+                  d="M34.545 0h0.125c0.437 0 0.781 0.129 1.007 0.38 0.242 0.259 0.344 0.623 0.32 1.092l-0.102 2.241c-0.070 1.496-0.14 2.985-0.203 4.473-0.016 0.348-0.078 0.793-0.414 1.141-0.094 0.097-0.203 0.178-0.328 0.251-0.187 0.105-0.367 0.154-0.547 0.154-0.429 0-0.71-0.291-0.913-0.502l-1.71-1.763-13.114 13.66c-0.367 0.372-0.843 0.582-1.358 0.582s-0.999-0.21-1.358-0.582l-6.019-6.237-6.3 6.528c-0.359 0.372-0.835 0.582-1.351 0.582s-0.999-0.21-1.358-0.582l-0.359-0.372c-0.749-0.776-0.749-2.030 0-2.807l8.018-8.299c0.359-0.372 0.835-0.582 1.351-0.582s0.999 0.21 1.358 0.582l6.019 6.237 11.397-11.889c-0.39-0.396-0.781-0.801-1.163-1.205l-0.554-0.582c-0.219-0.227-0.679-0.704-0.351-1.44 0.062-0.146 0.14-0.267 0.242-0.372 0.32-0.332 0.726-0.348 1.023-0.364 2.217-0.105 4.427-0.218 6.644-0.324zM26 15.58v15.791c0 0.343 0.298 0.629 0.672 0.629h4.656c0.366 0 0.672-0.279 0.672-0.629v-22.063l-6 6.271zM10 31.289c0 0.388 0.298 0.711 0.672 0.711h4.656c0.366 0 0.672-0.315 0.672-0.711v-8.18l-6-6.137v14.317zM18.672 32c-0.374 0-0.672-0.272-0.672-0.598v-7.764c0.237-0.136 0.466-0.233 0.672-0.416l5.328-5.603v13.783c0 0.333-0.305 0.598-0.672 0.598h-4.656zM2 31.285c0 0.39 0.298 0.715 0.672 0.715h4.656c0.366 0 0.672-0.317 0.672-0.715v-12.383l-3.382 3.602c-0.718 0.756-1.354 1.536-2.618 1.536v7.246z"
+                />
+              </symbol>
+            </defs>
+          </svg>
 
-        <svg class="nav-icon nav-icon__hover">
-          <use xlink:href="#icon-reports_w_svg" />
-        </svg>
+          <svg class="nav-icon nav-icon__hover">
+            <use xlink:href="#icon-reports_w_svg" />
+          </svg>
+        </div>
       </nav>
 
       <main class="main">
@@ -150,9 +154,15 @@ body {
 }
 
 .header {
-  height: 66px;
-  background-color: $color-header__dark-gray;
-  padding: 15px;
+  height: 76px;
+  background-color: $color-input-background;
+
+  &-container {
+    height: 66px;
+    padding: 15px;
+    background-color: $color-header__dark-gray;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  }
 
   &-img {
     user-select: none;
@@ -160,9 +170,18 @@ body {
 }
 
 .nav {
-  width: 80px;
-  background-color: $color-nav__gray;
-  padding: 15px;
+  width: 90px;
+  background-color: $color-input-background;
+  margin-top: -10px;
+
+  &-container {
+    width: 80px;
+    height: 100%;
+    padding: 15px;
+    border-top: 1px solid $color-text-light;
+    background-color: $color-nav__gray;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  }
 
   &-button {
     width: 50px;
@@ -214,7 +233,7 @@ body {
 
 .main {
   width: 100%;
-  padding: 20px;
+  padding: 10px 20px 20px 10px;
   background-color: $color-input-background;
 
   &-header {
