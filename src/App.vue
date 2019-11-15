@@ -73,7 +73,9 @@
           </div>
         </div>
 
-        <div class="main-table"></div>
+        <div class="main-table">
+          <Table />
+        </div>
       </main>
     </div>
     <!-- <FormAdditionApplicant /> 
@@ -90,6 +92,7 @@
 // import Applicant from "./components/Applicant.vue";
 // import Phone from "./components/Phone.vue";
 // import Mail from "./components/Mail.vue";
+import Table from "./components/Table.vue";
 
 export default {
   name: "app",
@@ -99,7 +102,8 @@ export default {
     // ButtonsResumeArchiveFavorites,
     // Applicant,
     // Phone,
-    // Mail
+    // Mail,
+    Table
   },
 
   data: function() {
