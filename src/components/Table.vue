@@ -55,7 +55,7 @@
         <td></td>
         <td></td>
         <td>
-          <div class="container-button">
+          <div class="container-buttons">
             <ul class="buttons-list">
               <li class="buttons-item">
                 <button type="button" class="buttons-item__button">
@@ -91,9 +91,9 @@
       <tr>
         <td>
           <div class="container-applicant">
-            <img src="../../public/images/binman.png" alt="Аватар" class="applicant-img" />
+            <img src="../../public/images/durkoff.png" alt="Аватар" class="applicant-img" />
             <div class="applicant-text">
-              <p class="applicant-text__name">Бинман Иван Натанович</p>
+              <p class="applicant-text__name">Дурков Павел Валерьевич</p>
               <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
             </div>
           </div>
@@ -101,11 +101,11 @@
         <td>
           <div class="container-phone">
             <div class="phone-border">
-              <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
+              <img src="../../public/images/no-phone.png" alt="Телефон" class="phone-border__img" />
             </div>
             <div class="phone-text">
-              <p class="phone-text__number">+7 (900) 800-70-60</p>
-              <button type="button" class="phone-text__button">Показать еще 1 номер</button>
+              <p class="phone-text__number _light-gray">Телефон не указан</p>
+              <!-- <button type="button" class="phone-text__button">Показать еще 1 номер</button> -->
             </div>
           </div>
         </td>
@@ -115,8 +115,8 @@
               <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
             </div>
             <div class="mail-text">
-              <p class="mail-text__e-mail">ioan@binman.ru</p>
-              <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
+              <p class="mail-text__e-mail _margin-top-10px">durkov@vkontakte.ru</p>
+              <!-- <button type="button" class="mail-text__button">Показать еще 1 e-mail</button> -->
             </div>
           </div>
         </td>
@@ -159,10 +159,10 @@
       <tr>
         <td>
           <div class="container-applicant">
-            <img src="../../public/images/binman.png" alt="Аватар" class="applicant-img" />
+            <img src="../../public/images/lebedin.png" alt="Аватар" class="applicant-img" />
             <div class="applicant-text">
-              <p class="applicant-text__name">Бинман Иван Натанович</p>
-              <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
+              <p class="applicant-text__name">Лебедин Артеймий Андреевич</p>
+              <p class="applicant-text__vacancy">Вакансия: Web-дизайнер</p>
             </div>
           </div>
         </td>
@@ -172,8 +172,8 @@
               <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
             </div>
             <div class="phone-text">
-              <p class="phone-text__number">+7 (900) 800-70-60</p>
-              <button type="button" class="phone-text__button">Показать еще 1 номер</button>
+              <p class="phone-text__number _margin-top-10px">+7 (800) 555-35-35</p>
+              <!-- <button type="button" class="phone-text__button">Показать еще 1 номер</button> -->
             </div>
           </div>
         </td>
@@ -183,76 +183,8 @@
               <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
             </div>
             <div class="mail-text">
-              <p class="mail-text__e-mail">ioan@binman.ru</p>
-              <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
-            </div>
-          </div>
-        </td>
-        <td></td>
-        <td></td>
-        <td>
-          <div class="container-button">
-            <ul class="buttons-list">
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/resume.png"
-                    alt="Резюме"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/archive.png"
-                    alt="Архив"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/favorites.png"
-                    alt="Избранное"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="container-applicant">
-            <img src="../../public/images/binman.png" alt="Аватар" class="applicant-img" />
-            <div class="applicant-text">
-              <p class="applicant-text__name">Бинман Иван Натанович</p>
-              <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-phone">
-            <div class="phone-border">
-              <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
-            </div>
-            <div class="phone-text">
-              <p class="phone-text__number">+7 (900) 800-70-60</p>
-              <button type="button" class="phone-text__button">Показать еще 1 номер</button>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-mail">
-            <div class="mail-border">
-              <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
-            </div>
-            <div class="mail-text">
-              <p class="mail-text__e-mail">ioan@binman.ru</p>
-              <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
+              <p class="mail-text__e-mail _margin-top-10px">design@lebedin.ru</p>
+              <!-- <button type="button" class="mail-text__button">Показать еще 1 e-mail</button> -->
             </div>
           </div>
         </td>
@@ -295,10 +227,78 @@
       <tr>
         <td>
           <div class="container-applicant">
-            <img src="../../public/images/binman.png" alt="Аватар" class="applicant-img" />
+            <img src="../../public/images/noname.png" alt="Аватар" class="applicant-img" />
             <div class="applicant-text">
-              <p class="applicant-text__name">Бинман Иван Натанович</p>
-              <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
+              <p class="applicant-text__name">Чулков Олег</p>
+              <p class="applicant-text__vacancy">Вакансия: Web-дизайнер</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="container-phone">
+            <div class="phone-border">
+              <img src="../../public/images/no-phone.png" alt="Телефон" class="phone-border__img" />
+            </div>
+            <div class="phone-text">
+              <p class="phone-text__number _light-gray">Телефон не указан</p>
+              <!-- <button type="button" class="phone-text__button">Показать еще 1 номер</button> -->
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="container-mail">
+            <div class="mail-border">
+              <img src="../../public/images/no-mail.png" alt="E-mail" class="mail-border__img" />
+            </div>
+            <div class="mail-text">
+              <p class="mail-text__e-mail _light-gray">E-mail не указан</p>
+              <!-- <button type="button" class="mail-text__button">Показать еще 1 e-mail</button> -->
+            </div>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="container-buttons">
+            <ul class="buttons-list">
+              <li class="buttons-item">
+                <button type="button" class="buttons-item__button">
+                  <img
+                    src="../../public/images/resume.png"
+                    alt="Резюме"
+                    class="buttons-item__picture"
+                  />
+                </button>
+              </li>
+              <li class="buttons-item">
+                <button type="button" class="buttons-item__button">
+                  <img
+                    src="../../public/images/archive.png"
+                    alt="Архив"
+                    class="buttons-item__picture"
+                  />
+                </button>
+              </li>
+              <li class="buttons-item">
+                <button type="button" class="buttons-item__button">
+                  <img
+                    src="../../public/images/favorites.png"
+                    alt="Избранное"
+                    class="buttons-item__picture"
+                  />
+                </button>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="container-applicant">
+            <img src="../../public/images/fedora.png" alt="Аватар" class="applicant-img" />
+            <div class="applicant-text">
+              <p class="applicant-text__name">Федора Линукс Линусович</p>
+              <p class="applicant-text__vacancy">Вакансия: Front-end разработчик</p>
             </div>
           </div>
         </td>
@@ -308,7 +308,7 @@
               <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
             </div>
             <div class="phone-text">
-              <p class="phone-text__number">+7 (900) 800-70-60</p>
+              <p class="phone-text__number">+7 (800) 200-06-60</p>
               <button type="button" class="phone-text__button">Показать еще 1 номер</button>
             </div>
           </div>
@@ -374,6 +374,21 @@ export default {
 @import "../stylesheets/variables.scss";
 @import "../stylesheets/resets.scss";
 
+.main-table {
+  border-collapse: collapse;
+  background-color: $color-white;
+  margin-top: 15px;
+}
+
+th {
+  color: $color-text-main;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 12px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
 .container-applicant {
   display: flex;
   justify-content: flex-start;
@@ -410,7 +425,7 @@ export default {
 .container-phone {
   display: flex;
   justify-content: flex-start;
-  width: 155px;
+  width: 160px;
 }
 
 .phone {
@@ -463,7 +478,7 @@ export default {
 .container-mail {
   display: flex;
   justify-content: flex-start;
-  width: 150px;
+  width: 166px;
 }
 
 .mail {
@@ -544,5 +559,14 @@ export default {
     &__picture {
     }
   }
+}
+
+._light-gray {
+  color: $color-table__light-gray;
+  margin-top: 10px;
+}
+
+._margin-top-10px {
+  margin-top: 10px;
 }
 </style>

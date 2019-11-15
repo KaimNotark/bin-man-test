@@ -74,7 +74,7 @@
         </div>
 
         <div class="main-table">
-          <Table />
+          <Table class="table" />
         </div>
       </main>
     </div>
@@ -293,5 +293,9 @@ body {
 }
 ._increase {
   font-size: 22px;
+}
+
+.table {
+  width: 100%;
 }
 </style>
