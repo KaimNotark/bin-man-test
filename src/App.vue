@@ -181,7 +181,7 @@ body {
 
 .container-nav-main {
   display: flex;
-  height: 1015px;
+  height: 990px;
 }
 
 .header {
