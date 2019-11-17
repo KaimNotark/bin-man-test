@@ -224,12 +224,12 @@ select:focus {
 
   &-devider {
     margin-top: 17px;
-    width: 650px;
+    width: 648px;
     border: none;
     color: $color-input-background;
     background-color: $color-input-background;
     height: 1px;
-    margin-left: -25px;
+    margin-left: -23px;
   }
 
   &-title {
