@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="wrapper" class="wrapper">
+      <!-- <div class="child"> -->
       <header class="header">
         <div class="header-container">
           <img src="../public/images/logo.png" alt class="header-img" />
@@ -59,6 +60,19 @@
         </nav>
 
         <main class="main">
+          <!-- modal window form -->
+          <div
+            id="modal-overlay-form"
+            class="modal-overlay-form"
+            :class="{ _opened: modalIsOpened }"
+          >
+            <div modal-overlay-close="modal-overlay" class="modal__overlay">
+              <button class="modal-button-close" type="button" @click="modalClose">×</button>
+              <FormAdditionApplicant class="form-addition-applicant" />
+            </div>
+          </div>
+          <!-- / modal window form -->
+
           <div class="main-header">
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
@@ -71,7 +85,7 @@
                 <span class="main-button__text">Избранные</span>
               </button>
 
-              <button class="main-button__add" type="button">
+              <button class="main-button__add" type="button" @click="modalOpen">
                 <span class="_increase">+</span>
                 <span>Добавить соискателя</span>
               </button>
@@ -88,34 +102,38 @@
     <Applicant />
     <Phone></Phone>
       <Mail></Mail>-->
+      <!-- </div> -->
     </div>
   </div>
 </template>
 
 <script>
-// import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
-// import ButtonsResumeArchiveFavorites from "./components/ButtonsResumeArchiveFavorites.vue";
-// import Applicant from "./components/Applicant.vue";
-// import Phone from "./components/Phone.vue";
-// import Mail from "./components/Mail.vue";
 import Table from "./components/Table.vue";
+import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 
 export default {
   name: "app",
 
   components: {
-    // FormAdditionApplicant,
-    // ButtonsResumeArchiveFavorites,
-    // Applicant,
-    // Phone,
-    // Mail,
-    Table
+    Table,
+    FormAdditionApplicant
   },
 
   data: function() {
     return {
-      counterApplicants: 67
+      counterApplicants: 67,
+      modalIsOpened: false
     };
+  },
+
+  methods: {
+    modalOpen: function() {
+      this.modalIsOpened = true;
+    },
+
+    modalClose: function() {
+      this.modalIsOpened = false;
+    }
   }
 };
 </script>
@@ -146,7 +164,13 @@ body {
 .wrapper {
   max-width: 1440px;
   margin: 0 auto;
+  // display: flex;
+  // flex-direction: column;
 }
+
+// .child {
+//   flex: 1 1 auto;
+// }
 
 #app {
   font-family: $font-family-primary;
@@ -157,6 +181,7 @@ body {
 
 .container-nav-main {
   display: flex;
+  height: 1015px;
 }
 
 .header {
@@ -280,6 +305,7 @@ body {
       transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
+    &__selected:focus,
     &__selected:hover {
       background-color: $color-button-background-gray;
       border-color: $color-gray;
@@ -311,6 +337,7 @@ body {
       transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
+    &__add:focus,
     &__add:hover {
       border-color: #1a56fa;
       background-color: #4d7bf7;
@@ -323,5 +350,53 @@ body {
 
 .table {
   width: 100%;
+}
+
+// modal overlay form:
+
+.modal-overlay-form {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 900;
+  position: absolute;
+  width: 1360px;
+  height: 1000px;
+  margin-top: -20px;
+  margin-left: -34px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: visibility 200ms ease-in, opacity 200ms ease-in;
+}
+
+.modal-overlay-form._opened {
+  visibility: visible;
+  opacity: 1;
+  overflow-y: hidden;
+}
+
+.modal__overlay {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.modal-button-close {
+  display: block;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-right: 10px;
+  background: $color-white;
+  border: 1px solid $color-white;
+  border-radius: 3px;
+  transition: background-color 0.1s ease, border-color 0.3s ease;
+}
+.modal-button-close:hover {
+  background-color: $color-button-background-gray;
+  border-color: $color-gray;
+}
+
+.form-addition-applicant {
+  display: block;
 }
 </style>
