@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div id="wrapper" class="wrapper">
-      <!-- <div class="child"> -->
       <header class="header">
         <div class="header-container">
           <img src="../public/images/logo.png" alt class="header-img" />
@@ -97,12 +96,6 @@
           </div>
         </main>
       </div>
-      <!-- <FormAdditionApplicant /> 
-    <ButtonsResumeArchiveFavorites />
-    <Applicant />
-    <Phone></Phone>
-      <Mail></Mail>-->
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -164,19 +157,10 @@ body {
 .wrapper {
   max-width: 1440px;
   margin: 0 auto;
-  // display: flex;
-  // flex-direction: column;
 }
-
-// .child {
-//   flex: 1 1 auto;
-// }
 
 #app {
   font-family: $font-family-primary;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-  // margin-top: 60px;
 }
 
 .container-nav-main {
@@ -225,9 +209,6 @@ body {
     margin-bottom: 12px;
     margin-top: 4px;
     padding-top: 6px;
-
-    &__img {
-    }
   }
   &-button:hover {
     border-color: $color-nav__button-blue;
@@ -389,10 +370,11 @@ body {
   border: 1px solid $color-white;
   border-radius: 3px;
   transition: background-color 0.1s ease, border-color 0.3s ease;
+  cursor: pointer;
 }
 .modal-button-close:hover {
   background-color: $color-button-background-gray;
-  border-color: $color-gray;
+  border-color: $color-text-black;
 }
 
 .form-addition-applicant {
