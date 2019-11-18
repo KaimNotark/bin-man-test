@@ -39,6 +39,7 @@
         <input
           class="form__input _margin-top-7px"
           type="tel"
+          v-mask="'9 (999) 999-99-99'"
           name="phone"
           maxlength="11"
           pattern="2[0-9]{3}-[0-9]{3}"
@@ -90,6 +91,7 @@
 </template>
 
 <script>
+import AwesomeMask from 'awesome-mask';
 import InputLoadPhoto from "./InputLoadPhoto.vue";
 import InputLoadSummary from "./InputLoadSummary.vue";
 import InputLoadTest from "./InputLoadTest.vue";
@@ -107,6 +109,10 @@ export default {
     RatingSummary,
     RatingTest,
     RatingInterview
+  },
+
+  directives: {
+    'mask': AwesomeMask
   }
 };
 </script>
