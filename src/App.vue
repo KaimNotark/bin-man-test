@@ -265,7 +265,7 @@ body {
 
 .main {
   width: 100%;
-  padding: 10px 20px 20px 30px;
+  padding: 11px 30px 20px 26px;
   background-color: $color-input-background;
 
   &-header {
@@ -384,7 +384,7 @@ body {
   width: 30px;
   height: 30px;
   font-size: 25px;
-  margin-top: 20px;
+  margin-top: 12px;
   margin-right: 10px;
   background: $color-white;
   border: 1px solid $color-white;
