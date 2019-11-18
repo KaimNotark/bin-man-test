@@ -2,7 +2,9 @@
   <table class="main-table">
     <thead>
       <tr>
-        <th><span class="_margin-left-10px">Соискатель</span></th>
+        <th>
+          <span class="_margin-left-19px">Соискатель</span>
+        </th>
         <th>Телефон</th>
         <th>E-mail</th>
         <th class="_width-140px"></th>
@@ -69,7 +71,7 @@
                 </button>
               </li>
               <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
+                <button type="button" class="buttons-item__button _margin">
                   <img
                     src="../../public/images/archive.png"
                     alt="Архив"
@@ -139,7 +141,7 @@
                 </button>
               </li>
               <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
+                <button type="button" class="buttons-item__button _margin">
                   <img
                     src="../../public/images/archive.png"
                     alt="Архив"
@@ -209,7 +211,7 @@
                 </button>
               </li>
               <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
+                <button type="button" class="buttons-item__button _margin">
                   <img
                     src="../../public/images/archive.png"
                     alt="Архив"
@@ -279,7 +281,7 @@
                 </button>
               </li>
               <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
+                <button type="button" class="buttons-item__button _margin">
                   <img
                     src="../../public/images/archive.png"
                     alt="Архив"
@@ -349,7 +351,7 @@
                 </button>
               </li>
               <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
+                <button type="button" class="buttons-item__button _margin">
                   <img
                     src="../../public/images/archive.png"
                     alt="Архив"
@@ -401,12 +403,12 @@ export default {
 .main-table {
   border-collapse: collapse;
   background-color: $color-white;
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 .main-table__button {
   width: 100%;
-  height: 36px;
+  height: 34px;
   border: solid 1px $color-white;
   border-radius: 3px;
   background: $color-white;
@@ -431,7 +433,7 @@ th {
   line-height: 12px;
   text-transform: uppercase;
   text-align: left;
-  height: 36px;
+  height: 41px;
 }
 
 tr {
@@ -439,7 +441,7 @@ tr {
 }
 
 td {
-  height: 68px;
+  height: 70px;
 }
 
 ._height-36px {
@@ -449,8 +451,9 @@ td {
 .container-applicant {
   display: flex;
   justify-content: flex-start;
-  width: 250px;
-  margin-left: 10px;
+  width: 230px;
+  margin-left: 19px;
+  margin-right: -22px;
 }
 
 .applicant {
@@ -483,7 +486,7 @@ td {
 .container-phone {
   display: flex;
   justify-content: flex-start;
-  width: 160px;
+  width: 167px;
 }
 
 .phone {
@@ -536,7 +539,7 @@ td {
 .container-mail {
   display: flex;
   justify-content: flex-start;
-  width: 166px;
+  width: 174px;
 }
 
 .mail {
@@ -587,7 +590,7 @@ td {
 }
 
 .container-buttons {
-  width: 120px;
+  width: 91px;
 }
 
 .buttons {
@@ -623,6 +626,9 @@ td {
   color: $color-table__light-gray;
   margin-top: 10px;
 }
+._letter-spacing-03 {
+  letter-spacing: -1px;
+}
 
 ._margin-top-10px {
   margin-top: 10px;
@@ -630,7 +636,13 @@ td {
 ._margin-left-10px {
   margin-left: 10px;
 }
+._margin-left-19px {
+  margin-left: 19px;
+}
 ._width-140px {
   width: 140px;
+}
+._margin {
+  margin: 0 5px 0 5px;
 }
 </style>

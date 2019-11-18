@@ -7,7 +7,7 @@
         </button>
       </li>
       <li class="buttons-item">
-        <button type="button" class="buttons-item__button">
+        <button type="button" class="buttons-item__button _margin">
           <img src="../../public/images/archive.jpeg" alt="Архив" class="buttons-item__picture" />
         </button>
       </li>
@@ -65,5 +65,8 @@ export default {
     &__picture {
     }
   }
+}
+._margin {
+  margin: 0 5px 0 5px;
 }
 </style>
