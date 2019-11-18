@@ -14,7 +14,7 @@
         type="file"
         name="filePhoto"
         autocomplete="off"
-        accept="image/jpeg,image/png"
+        accept="image/jpeg, image/png"
       />
     </label>
     <span
@@ -41,9 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-@import '../stylesheets/variables.scss';
-
+@import "../stylesheets/variables.scss";
 
 %text-span {
   color: $color-text-main;
@@ -87,11 +85,11 @@ export default {
 
   &__span-file-name {
     display: block;
-    width: 468px;
+    width: 600px;
     font-size: 12px;
     font-weight: 400;
     line-height: 12px;
-    height: 16px;
+    height: 36px;
     border: 1px solid $color-input-border;
     background: $color-input-background;
     border-radius: 3px;
@@ -121,5 +119,8 @@ export default {
     position: absolute;
     z-index: -1;
   }
+}
+.form__lable-text {
+  margin: 7px auto;
 }
 </style>

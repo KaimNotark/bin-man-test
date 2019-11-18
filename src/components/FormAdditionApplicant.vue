@@ -64,11 +64,11 @@
       </label>
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle _margin-top-21px">Резюме и результаты тестового задания</h2>
+      <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
       <InputLoadSummary class="form__input-load-summary _margin-top-12px" />
 
-      <InputLoadTest class="form__input-load-test _margin-top-14px" />
+      <InputLoadTest class="form__input-load-test _margin-top-17px" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
@@ -224,12 +224,12 @@ select:focus {
 
   &-devider {
     margin-top: 17px;
-    width: 650px;
+    width: 648px;
     border: none;
     color: $color-input-background;
     background-color: $color-input-background;
     height: 1px;
-    margin-left: -25px;
+    margin-left: -23px;
   }
 
   &-title {
