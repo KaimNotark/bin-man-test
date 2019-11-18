@@ -361,8 +361,8 @@ body {
   position: absolute;
   width: 1360px;
   height: 1000px;
-  margin-top: -20px;
-  margin-left: -34px;
+  margin-top: -21px;
+  margin-left: -30px;
   background: rgba(0, 0, 0, 0.5);
   transition: visibility 200ms ease-in, opacity 200ms ease-in;
 }
@@ -376,7 +376,6 @@ body {
 .modal__overlay {
   display: flex;
   justify-content: flex-end;
-
 }
 
 .modal-button-close {
