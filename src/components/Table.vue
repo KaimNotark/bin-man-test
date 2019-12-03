@@ -22,377 +22,114 @@
     </tfoot>
 
     <tbody>
-      <tr>
-        <td>
-          <div class="container-applicant">
-            <img src="../../public/images/binman.png" alt="Аватар" class="applicant-img" />
-            <div class="applicant-text">
-              <p class="applicant-text__name">Бинман Иван Натанович</p>
-              <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-phone">
-            <div class="phone-border">
-              <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
-            </div>
-            <div class="phone-text">
-              <p class="phone-text__number">+7 (900) 800-70-60</p>
-              <button type="button" class="phone-text__button">Показать еще 1 номер</button>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-mail">
-            <div class="mail-border">
-              <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
-            </div>
-            <div class="mail-text">
-              <p class="mail-text__e-mail">ioan@binman.ru</p>
-              <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
-            </div>
-          </div>
-        </td>
-        <td class="_width-140px"></td>
-        <td>
-          <RaitingBinman />
-        </td>
-        <td>
-          <div class="container-buttons">
-            <ul class="buttons-list">
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/resume.png"
-                    alt="Резюме"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button _margin">
-                  <img
-                    src="../../public/images/archive.png"
-                    alt="Архив"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/favorites.png"
-                    alt="Избранное"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="container-applicant">
-            <img src="../../public/images/durkoff.png" alt="Аватар" class="applicant-img" />
-            <div class="applicant-text">
-              <p class="applicant-text__name">Дурков Павел Валерьевич</p>
-              <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-phone">
-            <div class="phone-border">
-              <img src="../../public/images/no-phone.png" alt="Телефон" class="phone-border__img" />
-            </div>
-            <div class="phone-text">
-              <p class="phone-text__number _light-gray">Телефон не указан</p>
-              <!-- <button type="button" class="phone-text__button">Показать еще 1 номер</button> -->
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-mail">
-            <div class="mail-border">
-              <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
-            </div>
-            <div class="mail-text">
-              <p class="mail-text__e-mail _margin-top-10px">durkov@vkontakte.ru</p>
-              <!-- <button type="button" class="mail-text__button">Показать еще 1 e-mail</button> -->
-            </div>
-          </div>
-        </td>
-        <td class="_width-140px"></td>
-        <td>
-          <RatingDurkov />
-        </td>
-        <td>
-          <div class="container-buttons">
-            <ul class="buttons-list">
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/resume.png"
-                    alt="Резюме"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button _margin">
-                  <img
-                    src="../../public/images/archive.png"
-                    alt="Архив"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/favorites.png"
-                    alt="Избранное"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="container-applicant">
-            <img src="../../public/images/lebedin.png" alt="Аватар" class="applicant-img" />
-            <div class="applicant-text">
-              <p class="applicant-text__name">Лебедин Артеймий Андреевич</p>
-              <p class="applicant-text__vacancy">Вакансия: Web-дизайнер</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-phone">
-            <div class="phone-border">
-              <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
-            </div>
-            <div class="phone-text">
-              <p class="phone-text__number _margin-top-10px">+7 (800) 555-35-35</p>
-              <!-- <button type="button" class="phone-text__button">Показать еще 1 номер</button> -->
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-mail">
-            <div class="mail-border">
-              <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
-            </div>
-            <div class="mail-text">
-              <p class="mail-text__e-mail _margin-top-10px">design@lebedin.ru</p>
-              <!-- <button type="button" class="mail-text__button">Показать еще 1 e-mail</button> -->
-            </div>
-          </div>
-        </td>
-        <td class="_width-140px"></td>
-        <td>
-          <RatingLebedin />
-        </td>
-        <td>
-          <div class="container-buttons">
-            <ul class="buttons-list">
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/resume.png"
-                    alt="Резюме"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button _margin">
-                  <img
-                    src="../../public/images/archive.png"
-                    alt="Архив"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/favorites.png"
-                    alt="Избранное"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="container-applicant">
-            <img src="../../public/images/noname.png" alt="Аватар" class="applicant-img" />
-            <div class="applicant-text">
-              <p class="applicant-text__name">Чулков Олег</p>
-              <p class="applicant-text__vacancy">Вакансия: Web-дизайнер</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-phone">
-            <div class="phone-border">
-              <img src="../../public/images/no-phone.png" alt="Телефон" class="phone-border__img" />
-            </div>
-            <div class="phone-text">
-              <p class="phone-text__number _light-gray">Телефон не указан</p>
-              <!-- <button type="button" class="phone-text__button">Показать еще 1 номер</button> -->
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-mail">
-            <div class="mail-border">
-              <img src="../../public/images/no-mail.png" alt="E-mail" class="mail-border__img" />
-            </div>
-            <div class="mail-text">
-              <p class="mail-text__e-mail _light-gray">E-mail не указан</p>
-              <!-- <button type="button" class="mail-text__button">Показать еще 1 e-mail</button> -->
-            </div>
-          </div>
-        </td>
-        <td class="_width-140px"></td>
-        <td>
-          <RatingChulkov />
-        </td>
-        <td>
-          <div class="container-buttons">
-            <ul class="buttons-list">
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/resume.png"
-                    alt="Резюме"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button _margin">
-                  <img
-                    src="../../public/images/archive.png"
-                    alt="Архив"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/favorites.png"
-                    alt="Избранное"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="container-applicant">
-            <img src="../../public/images/fedora.png" alt="Аватар" class="applicant-img" />
-            <div class="applicant-text">
-              <p class="applicant-text__name">Федора Линукс Линусович</p>
-              <p class="applicant-text__vacancy">Вакансия: Front-end разработчик</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-phone">
-            <div class="phone-border">
-              <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
-            </div>
-            <div class="phone-text">
-              <p class="phone-text__number">+7 (800) 200-06-60</p>
-              <button type="button" class="phone-text__button">Показать еще 1 номер</button>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="container-mail">
-            <div class="mail-border">
-              <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
-            </div>
-            <div class="mail-text">
-              <p class="mail-text__e-mail">ioan@binman.ru</p>
-              <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
-            </div>
-          </div>
-        </td>
-        <td class="_width-140px"></td>
-        <td>
-          <RatingFedora />
-        </td>
-        <td>
-          <div class="container-buttons">
-            <ul class="buttons-list">
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/resume.png"
-                    alt="Резюме"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button _margin">
-                  <img
-                    src="../../public/images/archive.png"
-                    alt="Архив"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-              <li class="buttons-item">
-                <button type="button" class="buttons-item__button">
-                  <img
-                    src="../../public/images/favorites.png"
-                    alt="Избранное"
-                    class="buttons-item__picture"
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        </td>
-      </tr>
+      <TableRow
+        v-for="row in rows"
+        :key="row.id"
+        :row="row"
+        :isHiddenPhone="row.isHiddenPhone"
+        :isHiddenMail="row.isHiddenMail"
+        :isLightGrayPhone="row.isLightGrayPhone"
+        :isLightGrayMail="row.isLightGrayMail"
+        class="main-table-row"
+      />
     </tbody>
   </table>
 </template>
 
 <script>
-import RaitingBinman from "./RatingBinman.vue";
-import RatingDurkov from "./RatingDurkov.vue";
-import RatingLebedin from "./RatingLebedin.vue";
-import RatingChulkov from "./RatingChulkov.vue";
-import RatingFedora from "./RatingFedora.vue";
+import TableRow from "./TableRow.vue";
 
 export default {
   name: "Table",
 
   components: {
-    RaitingBinman,
-    RatingDurkov,
-    RatingLebedin,
-    RatingChulkov,
-    RatingFedora
-  }
+    TableRow
+  },
+
+  data: () => ({
+    rows: [
+      {
+        id: "0",
+        avatar: "/images/binman.png",
+        name: "Бинман Иван Натанович",
+        vacancy: "Вакансия: Full-stack разработчик",
+        phoneImg: "/images/phone.png",
+        phone: "+7 (900) 800-70-60",
+        mailImg: "/images/mail.png",
+        mail: "ioan@binman.ru",
+        isHiddenPhone: false,
+        isHiddenMail: false,
+        isLightGrayPhone: false,
+        isLightGrayMail: false,
+        ratingColor: "#abd02d",
+        ratingValue: "4.0"
+      },
+      {
+        id: "1",
+        avatar: "/images/durkoff.png",
+        name: "Дурков Павел Валерьевич",
+        vacancy: "Вакансия: Full-stack разработчик",
+        phoneImg: "/images/no-phone.png",
+        phone: "Телефон не указан",
+        mailImg: "/images/mail.png",
+        mail: "durkov@vkontakte.ru",
+        isHiddenPhone: true,
+        isHiddenMail: true,
+        isLightGrayPhone: true,
+        isLightGrayMail: false,
+        ratingColor: "#ff5d00",
+        ratingValue: "1.0"
+      },
+      {
+        id: "2",
+        avatar: "/images/lebedin.png",
+        name: "Лебедин Артеймий Андреевич",
+        vacancy: "Вакансия: Web-дизайнер",
+        phoneImg: "/images/phone.png",
+        phone: "+7 (800) 555-35-35",
+        mailImg: "/images/mail.png",
+        mail: "design@lebedin.ru",
+        isHiddenPhone: true,
+        isHiddenMail: true,
+        isLightGrayPhone: false,
+        isLightGrayMail: false,
+        ratingColor: "#dae700",
+        ratingValue: "3.0"
+      },
+      {
+        id: "3",
+        avatar: "/images/noname.png",
+        name: "Чулков Олег",
+        vacancy: "Вакансия: Web-дизайнер",
+        phoneImg: "/images/no-phone.png",
+        phone: "Телефон не указан",
+        mailImg: "/images/no-mail.png",
+        mail: "E-mail не указан",
+        isHiddenPhone: true,
+        isHiddenMail: true,
+        isLightGrayPhone: true,
+        isLightGrayMail: true,
+        ratingColor: "#ffa800",
+        ratingValue: "2.0"
+      },
+      {
+        id: "4",
+        avatar: "/images/fedora.png",
+        name: "Федора Линукс Линусович",
+        vacancy: "Вакансия: Front-end разработчик",
+        phoneImg: "/images/phone.png",
+        phone: "+7 (800) 200-06-60",
+        mailImg: "/images/mail.png",
+        mail: "ioan@binman.ru",
+        isHiddenPhone: false,
+        isHiddenMail: false,
+        isLightGrayPhone: false,
+        isLightGrayMail: false,
+        ratingColor: "#67c600",
+        ratingValue: "5.0"
+      }
+    ]
+  })
 };
 </script>
 
@@ -436,213 +173,16 @@ th {
   height: 41px;
 }
 
-tr {
-  border-bottom: 2px solid $color-input-background;
+.main-table-row {
 }
 
-td {
-  height: 70px;
-}
-
-._height-36px {
-  height: 36px;
-}
-
-.container-applicant {
-  display: flex;
-  justify-content: flex-start;
-  width: 230px;
-  margin-left: 19px;
-  margin-right: -22px;
-}
-
-.applicant {
-  &-img {
-    width: 40px;
-    height: 40px;
-  }
-  &-text {
-    margin-left: 10px;
-
-    &__name {
-      color: $color-text-main;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 14px;
-      margin-top: 5px;
-      margin-bottom: 3px;
-    }
-    &__vacancy {
-      color: $color-text-light;
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 12px;
-      margin-top: 5px;
-      margin-bottom: 3px;
-    }
-  }
-}
-
-.container-phone {
-  display: flex;
-  justify-content: flex-start;
-  width: 167px;
-}
-
-.phone {
-  &-border {
-    width: 36px;
-    height: 36px;
-    border-radius: 3px;
-    background: $color-button-background-gray;
-
-    &__img {
-      display: block;
-      margin: 10px auto;
-    }
-  }
-  &-text {
-    margin-left: 10px;
-
-    &__number {
-      color: $color-text-main;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 14px;
-      letter-spacing: 0.3px;
-      margin-top: 2px;
-      margin-bottom: 3px;
-    }
-    &__button {
-      color: $color-text-light;
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 12px;
-      border-top: none;
-      border-left: none;
-      border-bottom: solid 1px $color-white;
-      border-right: none;
-      background-color: $color-white;
-      transition: background-color 0.1s ease, color 0.3s ease;
-      cursor: pointer;
-      padding: 0;
-      margin-top: 5px;
-      margin-bottom: 3px;
-    }
-    &__button:hover {
-      color: $color-text-main;
-      border-bottom: solid 1px $color-text-main;
-    }
-  }
-}
-
-.container-mail {
-  display: flex;
-  justify-content: flex-start;
-  width: 174px;
-}
-
-.mail {
-  &-border {
-    width: 36px;
-    height: 36px;
-    border-radius: 3px;
-    background: $color-button-background-gray;
-
-    &__img {
-      display: block;
-      margin: 12px auto;
-    }
-  }
-  &-text {
-    margin-left: 10px;
-
-    &__e-mail {
-      color: $color-text-main;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 14px;
-      letter-spacing: 0.3px;
-      margin-top: 2px;
-      margin-bottom: 3px;
-    }
-    &__button {
-      color: $color-text-light;
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 12px;
-      border-top: none;
-      border-left: none;
-      border-bottom: solid 1px $color-white;
-      border-right: none;
-      background-color: $color-white;
-      transition: background-color 0.1s ease, color 0.3s ease;
-      cursor: pointer;
-      padding: 0;
-      margin-top: 5px;
-      margin-bottom: 3px;
-    }
-    &__button:hover {
-      color: $color-text-main;
-      border-bottom: solid 1px $color-text-main;
-    }
-  }
-}
-
-.container-buttons {
-  width: 91px;
-}
-
-.buttons {
-  &-list {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &-item {
-    display: block;
-
-    &__button {
-      width: 36px;
-      height: 36px;
-      border: solid 1px $color-button-border;
-      border-radius: 3px;
-      background: $color-white;
-      transition: background-color 0.1s ease, border-color 0.3s ease;
-      cursor: pointer;
-    }
-    &__button:hover {
-      background-color: $color-button-background-gray;
-      border-color: $color-gray;
-      // transform: scale(1.05);
-    }
-
-    &__picture {
-    }
-  }
-}
-
-._light-gray {
-  color: $color-table__light-gray;
-  margin-top: 10px;
-}
-._letter-spacing-03 {
-  letter-spacing: -1px;
-}
-
-._margin-top-10px {
-  margin-top: 10px;
-}
-._margin-left-10px {
-  margin-left: 10px;
-}
 ._margin-left-19px {
   margin-left: 19px;
 }
 ._width-140px {
   width: 140px;
 }
-._margin {
-  margin: 0 5px 0 5px;
+._height-36px {
+  height: 36px;
 }
 </style>

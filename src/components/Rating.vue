@@ -11,16 +11,16 @@ npm install vue-star-rating
       star-size="13"
       :show-rating="false"
       :read-only="true"
-      :rating="3.0"
+      :rating="ratingValue"
       inactive-color="#ffffff"
-      active-color="#dae700"
-      border-color="#dae700"
+      :active-color="ratingColor"
+      :border-color="ratingColor"
       border-width="2"
       padding="0"
     ></star-rating>
     <p class="table__rating-title">
       Средний балл:
-      <span class="_black">3.0</span>
+      <span class="_black">{{ ratingValue }}</span>
     </p>
   </div>
 </template>
@@ -29,10 +29,22 @@ npm install vue-star-rating
 import StarRating from "vue-star-rating";
 
 export default {
-  name: "RatingLebedin",
+  name: "Rating",
 
   components: {
     StarRating
+  },
+
+  props: {
+    ratingColor: {
+      type: String,
+      required: true
+    },
+
+    ratingValue: {
+      type: Number,
+      required: true
+    }
   }
 };
 </script>
