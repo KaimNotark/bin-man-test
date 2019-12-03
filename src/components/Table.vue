@@ -22,12 +22,16 @@
     </tfoot>
 
     <tbody>
-      <TableRow v-for="row in rows" :key="row.id" :row="row" 
-      :isHiddenPhone="row.isHiddenPhone"
-      :isHiddenMail="row.isHiddenMail"
-      :isLightGrayPhone="row.isLightGrayPhone"
-      :isLightGrayMail="row.isLightGrayMail"
-      class="main-table-row" />
+      <TableRow
+        v-for="row in rows"
+        :key="row.id"
+        :row="row"
+        :isHiddenPhone="row.isHiddenPhone"
+        :isHiddenMail="row.isHiddenMail"
+        :isLightGrayPhone="row.isLightGrayPhone"
+        :isLightGrayMail="row.isLightGrayMail"
+        class="main-table-row"
+      />
     </tbody>
   </table>
 </template>
@@ -49,7 +53,6 @@ export default {
   },
 
   data: () => ({
-
     rows: [
       {
         id: "0",
@@ -63,7 +66,9 @@ export default {
         isHiddenPhone: false,
         isHiddenMail: false,
         isLightGrayPhone: false,
-        isLightGrayMail: false
+        isLightGrayMail: false,
+        ratingColor: "#abd02d",
+        ratingValue: "4.0"
       },
       {
         id: "1",
@@ -77,7 +82,9 @@ export default {
         isHiddenPhone: true,
         isHiddenMail: true,
         isLightGrayPhone: true,
-        isLightGrayMail: false
+        isLightGrayMail: false,
+        ratingColor: "#ff5d00",
+        ratingValue: "1.0"
       },
       {
         id: "2",
@@ -91,7 +98,9 @@ export default {
         isHiddenPhone: true,
         isHiddenMail: true,
         isLightGrayPhone: false,
-        isLightGrayMail: false
+        isLightGrayMail: false,
+        ratingColor: "#dae700",
+        ratingValue: "3.0"
       },
       {
         id: "3",
@@ -105,7 +114,9 @@ export default {
         isHiddenPhone: true,
         isHiddenMail: true,
         isLightGrayPhone: true,
-        isLightGrayMail: true
+        isLightGrayMail: true,
+        ratingColor: "#ffa800",
+        ratingValue: "2.0"
       },
       {
         id: "4",
@@ -119,7 +130,9 @@ export default {
         isHiddenPhone: false,
         isHiddenMail: false,
         isLightGrayPhone: false,
-        isLightGrayMail: false
+        isLightGrayMail: false,
+        ratingColor: "#67c600",
+        ratingValue: "5.0"
       }
     ]
   })

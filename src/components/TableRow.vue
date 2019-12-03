@@ -15,7 +15,10 @@
           <img :src="row.phoneImg" alt="Телефон" class="phone-border__img" />
         </div>
         <div class="phone-text">
-          <p class="phone-text__number" :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }">{{ row.phone }}</p>
+          <p
+            class="phone-text__number"
+            :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }"
+          >{{ row.phone }}</p>
           <button
             type="button"
             class="phone-text__button"
@@ -30,7 +33,10 @@
           <img :src="row.mailImg" alt="E-mail" class="mail-border__img" />
         </div>
         <div class="mail-text">
-          <p class="mail-text__e-mail" :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }">{{ row.mail }}</p>
+          <p
+            class="mail-text__e-mail"
+            :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }"
+          >{{ row.mail }}</p>
           <button
             type="button"
             class="mail-text__button"
@@ -41,7 +47,7 @@
     </td>
     <td class="_width-140px"></td>
     <td>
-      <RaitingBinman />
+      <Raiting :ratingColor="row.ratingColor" :ratingValue="row.ratingValue" />
     </td>
     <td>
       <div class="container-buttons">
@@ -72,13 +78,13 @@
 </template>
 
 <script>
-import RaitingBinman from "./RatingBinman.vue";
+import Raiting from "./Rating.vue";
 
 export default {
   name: "TableRow",
 
   components: {
-    RaitingBinman
+    Raiting
   },
 
   props: {
