@@ -22,7 +22,12 @@
     </tfoot>
 
     <tbody>
-      <TableRow v-for="row in rows" :key="row.id" :row="row" class="main-table-row" />
+      <TableRow v-for="row in rows" :key="row.id" :row="row" 
+      :isHiddenPhone="row.isHiddenPhone"
+      :isHiddenMail="row.isHiddenMail"
+      :isLightGrayPhone="row.isLightGrayPhone"
+      :isLightGrayMail="row.isLightGrayMail"
+      class="main-table-row" />
     </tbody>
   </table>
 </template>
@@ -44,46 +49,77 @@ export default {
   },
 
   data: () => ({
+
     rows: [
       {
         id: "0",
         avatar: "/images/binman.png",
         name: "Бинман Иван Натанович",
         vacancy: "Вакансия: Full-stack разработчик",
+        phoneImg: "/images/phone.png",
         phone: "+7 (900) 800-70-60",
-        mail: "ioan@binman.ru"
+        mailImg: "/images/mail.png",
+        mail: "ioan@binman.ru",
+        isHiddenPhone: false,
+        isHiddenMail: false,
+        isLightGrayPhone: false,
+        isLightGrayMail: false
       },
       {
         id: "1",
         avatar: "/images/durkoff.png",
         name: "Дурков Павел Валерьевич",
         vacancy: "Вакансия: Full-stack разработчик",
+        phoneImg: "/images/no-phone.png",
         phone: "Телефон не указан",
-        mail: "durkov@vkontakte.ru"
+        mailImg: "/images/mail.png",
+        mail: "durkov@vkontakte.ru",
+        isHiddenPhone: true,
+        isHiddenMail: true,
+        isLightGrayPhone: true,
+        isLightGrayMail: false
       },
       {
         id: "2",
         avatar: "/images/lebedin.png",
         name: "Лебедин Артеймий Андреевич",
         vacancy: "Вакансия: Web-дизайнер",
+        phoneImg: "/images/phone.png",
         phone: "+7 (800) 555-35-35",
-        mail: "design@lebedin.ru"
+        mailImg: "/images/mail.png",
+        mail: "design@lebedin.ru",
+        isHiddenPhone: true,
+        isHiddenMail: true,
+        isLightGrayPhone: false,
+        isLightGrayMail: false
       },
       {
         id: "3",
         avatar: "/images/noname.png",
         name: "Чулков Олег",
         vacancy: "Вакансия: Web-дизайнер",
+        phoneImg: "/images/no-phone.png",
         phone: "Телефон не указан",
-        mail: "E-mail не указан"
+        mailImg: "/images/no-mail.png",
+        mail: "E-mail не указан",
+        isHiddenPhone: true,
+        isHiddenMail: true,
+        isLightGrayPhone: true,
+        isLightGrayMail: true
       },
       {
         id: "4",
         avatar: "/images/fedora.png",
         name: "Федора Линукс Линусович",
         vacancy: "Вакансия: Front-end разработчик",
+        phoneImg: "/images/phone.png",
         phone: "+7 (800) 200-06-60",
-        mail: "ioan@binman.ru"
+        mailImg: "/images/mail.png",
+        mail: "ioan@binman.ru",
+        isHiddenPhone: false,
+        isHiddenMail: false,
+        isLightGrayPhone: false,
+        isLightGrayMail: false
       }
     ]
   })
@@ -130,7 +166,8 @@ th {
   height: 41px;
 }
 
-.main-table-row {}
+.main-table-row {
+}
 
 ._margin-left-19px {
   margin-left: 19px;

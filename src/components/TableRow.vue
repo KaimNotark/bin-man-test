@@ -1,81 +1,81 @@
 <template>
-    <tr>
-      <td>
-        <div class="container-applicant">
-          <img :src="row.avatar" alt="Аватар" class="applicant-img" />
-          <div class="applicant-text">
-            <p class="applicant-text__name">{{ row.name }}</p>
-            <p class="applicant-text__vacancy">{{ row.vacancy }}</p>
-          </div>
+  <tr>
+    <td>
+      <div class="container-applicant">
+        <img :src="row.avatar" alt="Аватар" class="applicant-img" />
+        <div class="applicant-text">
+          <p class="applicant-text__name">{{ row.name }}</p>
+          <p class="applicant-text__vacancy">{{ row.vacancy }}</p>
         </div>
-      </td>
-      <td>
-        <div class="container-phone">
-          <div class="phone-border">
-            <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" />
-          </div>
-          <div class="phone-text">
-            <p class="phone-text__number">{{ row.phone }}</p>
-            <button type="button" class="phone-text__button">Показать еще 1 номер</button>
-          </div>
+      </div>
+    </td>
+    <td>
+      <div class="container-phone">
+        <div class="phone-border">
+          <img :src="row.phoneImg" alt="Телефон" class="phone-border__img" />
         </div>
-      </td>
-      <td>
-        <div class="container-mail">
-          <div class="mail-border">
-            <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" />
-          </div>
-          <div class="mail-text">
-            <p class="mail-text__e-mail">{{ row.mail }}</p>
-            <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
-          </div>
+        <div class="phone-text">
+          <p class="phone-text__number" :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }">{{ row.phone }}</p>
+          <button
+            type="button"
+            class="phone-text__button"
+            :class="{ '_hidden': isHiddenPhone }"
+          >Показать еще 1 номер</button>
         </div>
-      </td>
-      <td class="_width-140px"></td>
-      <td>
-        <RaitingBinman />
-      </td>
-      <td>
-        <div class="container-buttons">
-          <ul class="buttons-list">
-            <li class="buttons-item">
-              <button type="button" class="buttons-item__button">
-                <img
-                  src="../../public/images/resume.png"
-                  alt="Резюме"
-                  class="buttons-item__picture"
-                />
-              </button>
-            </li>
-            <li class="buttons-item">
-              <button type="button" class="buttons-item__button _margin">
-                <img
-                  src="../../public/images/archive.png"
-                  alt="Архив"
-                  class="buttons-item__picture"
-                />
-              </button>
-            </li>
-            <li class="buttons-item">
-              <button type="button" class="buttons-item__button">
-                <img
-                  src="../../public/images/favorites.png"
-                  alt="Избранное"
-                  class="buttons-item__picture"
-                />
-              </button>
-            </li>
-          </ul>
+      </div>
+    </td>
+    <td>
+      <div class="container-mail">
+        <div class="mail-border">
+          <img :src="row.mailImg" alt="E-mail" class="mail-border__img" />
         </div>
-      </td>
-    </tr>
+        <div class="mail-text">
+          <p class="mail-text__e-mail" :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }">{{ row.mail }}</p>
+          <button
+            type="button"
+            class="mail-text__button"
+            :class="{ '_hidden': isHiddenMail }"
+          >Показать еще 1 e-mail</button>
+        </div>
+      </div>
+    </td>
+    <td class="_width-140px"></td>
+    <td>
+      <RaitingBinman />
+    </td>
+    <td>
+      <div class="container-buttons">
+        <ul class="buttons-list">
+          <li class="buttons-item">
+            <button type="button" class="buttons-item__button">
+              <img src="../../public/images/resume.png" alt="Резюме" class="buttons-item__picture" />
+            </button>
+          </li>
+          <li class="buttons-item">
+            <button type="button" class="buttons-item__button _margin">
+              <img src="../../public/images/archive.png" alt="Архив" class="buttons-item__picture" />
+            </button>
+          </li>
+          <li class="buttons-item">
+            <button type="button" class="buttons-item__button">
+              <img
+                src="../../public/images/favorites.png"
+                alt="Избранное"
+                class="buttons-item__picture"
+              />
+            </button>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tr>
 </template>
 
 <script>
 import RaitingBinman from "./RatingBinman.vue";
 
 export default {
-    name: "TableRow",
+  name: "TableRow",
 
   components: {
     RaitingBinman
@@ -84,6 +84,26 @@ export default {
   props: {
     row: {
       type: Object,
+      required: true
+    },
+
+    isHiddenPhone: {
+      type: Boolean,
+      required: true
+    },
+
+    isHiddenMail: {
+      type: Boolean,
+      required: true
+    },
+
+    isLightGrayPhone: {
+      type: Boolean,
+      required: true
+    },
+
+    isLightGrayMail: {
+      type: Boolean,
       required: true
     }
   }
@@ -276,10 +296,14 @@ td {
   }
 }
 
+._hidden {
+  display: none;
+}
+
 ._light-gray {
   color: $color-table__light-gray;
-  margin-top: 10px;
 }
+
 ._letter-spacing-03 {
   letter-spacing: -1px;
 }
@@ -303,5 +327,4 @@ td {
 ._height-36px {
   height: 36px;
 }
-
 </style>
