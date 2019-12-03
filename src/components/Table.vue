@@ -44,12 +44,6 @@ export default {
 
   components: {
     TableRow
-
-    // RaitingBinman,
-    // RatingDurkov,
-    // RatingLebedin,
-    // RatingChulkov,
-    // RatingFedora
   },
 
   data: () => ({
