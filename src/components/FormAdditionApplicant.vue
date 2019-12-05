@@ -29,7 +29,11 @@
         </select>
       </label>
 
-      <InputLoadPhoto class="form__input-load-file" />
+      <InputLoad
+        :loadHeader="loadHeaderPhoto"
+        :loadRem="loadRemPhoto"
+        class="form__input-load-file"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
@@ -67,9 +71,17 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
-      <InputLoadSummary class="form__input-load-summary _margin-top-12px" />
+      <InputLoad
+        :loadHeader="loadHeaderSummary"
+        :loadRem="loadRemSummary"
+        class="form__input-load-summary _margin-top-12px"
+      />
 
-      <InputLoadTest class="form__input-load-test _margin-top-17px" />
+      <InputLoad
+        :loadHeader="loadHeaderTest"
+        :loadRem="loadRemTest"
+        class="form__input-load-test _margin-top-17px"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
@@ -91,10 +103,8 @@
 </template>
 
 <script>
-import AwesomeMask from 'awesome-mask';
-import InputLoadPhoto from "./InputLoadPhoto.vue";
-import InputLoadSummary from "./InputLoadSummary.vue";
-import InputLoadTest from "./InputLoadTest.vue";
+import AwesomeMask from "awesome-mask";
+import InputLoad from "./InputLoad.vue";
 import RatingSummary from "./RatingSummary.vue";
 import RatingTest from "./RatingTest.vue";
 import RatingInterview from "./RatingInterview.vue";
@@ -103,17 +113,29 @@ export default {
   name: "FormAdditionApplicant",
 
   components: {
-    InputLoadPhoto,
-    InputLoadSummary,
-    InputLoadTest,
+    InputLoad,
     RatingSummary,
     RatingTest,
     RatingInterview
   },
 
   directives: {
-    'mask': AwesomeMask
-  }
+    mask: AwesomeMask
+  },
+
+  data: () => ({
+    loadHeaderPhoto: "Фотография",
+    loadRemPhoto:
+      "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
+
+    loadHeaderSummary: "резюме",
+    loadRemSummary:
+      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
+
+    loadHeaderTest: "Архив с результатами тестового задания",
+    loadRemTest:
+      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar"
+  })
 };
 </script>
 
