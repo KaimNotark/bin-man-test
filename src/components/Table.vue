@@ -30,7 +30,6 @@
         :isHiddenMail="row.isHiddenMail"
         :isLightGrayPhone="row.isLightGrayPhone"
         :isLightGrayMail="row.isLightGrayMail"
-        class="main-table-row"
       />
     </tbody>
   </table>
@@ -141,6 +140,7 @@ export default {
   border-collapse: collapse;
   background-color: $color-white;
   margin-top: 18px;
+  width: 100%;
 }
 
 .main-table__button {
@@ -171,9 +171,6 @@ th {
   text-transform: uppercase;
   text-align: left;
   height: 41px;
-}
-
-.main-table-row {
 }
 
 ._margin-left-19px {

@@ -67,7 +67,7 @@
           >
             <div modal-overlay-close="modal-overlay" class="modal__overlay">
               <button class="modal-button-close" type="button" @click="modalClose">×</button>
-              <FormAdditionApplicant class="form-addition-applicant" />
+              <FormAdditionApplicant />
             </div>
           </div>
           <!-- / modal window form -->
@@ -91,9 +91,7 @@
             </div>
           </div>
 
-          <div class="main-table">
-            <Table class="table" />
-          </div>
+          <Table />
         </main>
       </div>
     </div>
@@ -329,10 +327,6 @@ body {
   font-size: 22px;
 }
 
-.table {
-  width: 100%;
-}
-
 // modal overlay form:
 
 .modal-overlay-form {
@@ -375,9 +369,5 @@ body {
 .modal-button-close:hover {
   background-color: $color-button-background-gray;
   border-color: $color-text-black;
-}
-
-.form-addition-applicant {
-  display: block;
 }
 </style>

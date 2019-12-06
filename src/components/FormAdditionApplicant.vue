@@ -221,6 +221,7 @@ export default {
 }
 
 .container {
+  display: block;
 }
 
 input:-webkit-autofill,
