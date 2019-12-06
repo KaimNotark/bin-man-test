@@ -52,25 +52,11 @@
     <td>
       <div class="container-buttons">
         <ul class="buttons-list">
-          <li class="buttons-item">
-            <button type="button" class="buttons-item__button">
-              <img src="../../public/images/resume.png" alt="Резюме" class="buttons-item__picture" />
-            </button>
-          </li>
-          <li class="buttons-item">
-            <button type="button" class="buttons-item__button _margin">
-              <img src="../../public/images/archive.png" alt="Архив" class="buttons-item__picture" />
-            </button>
-          </li>
-          <li class="buttons-item">
-            <button type="button" class="buttons-item__button">
-              <img
-                src="../../public/images/favorites.png"
-                alt="Избранное"
-                class="buttons-item__picture"
-              />
-            </button>
-          </li>
+          <ButtonsResumeArchiveFavorites
+            v-for="button in buttons"
+            :key="button.id"
+            :button="button"
+          />
         </ul>
       </div>
     </td>
@@ -79,12 +65,14 @@
 
 <script>
 import Raiting from "./Rating.vue";
+import ButtonsResumeArchiveFavorites from "./ButtonsResumeArchiveFavorites.vue";
 
 export default {
   name: "TableRow",
 
   components: {
-    Raiting
+    Raiting,
+    ButtonsResumeArchiveFavorites
   },
 
   props: {
@@ -112,7 +100,27 @@ export default {
       type: Boolean,
       required: true
     }
-  }
+  },
+
+  data: () => ({
+    buttons: [
+      {
+        id: "0",
+        buttonImg: "/images/resume.png",
+        buttonInfo: "Резюме"
+      },
+      {
+        id: "1",
+        buttonImg: "/images/archive.png",
+        buttonInfo: "Архив"
+      },
+      {
+        id: "2",
+        buttonImg: "/images/favorites.png",
+        buttonInfo: "Избранное"
+      }
+    ]
+  })
 };
 </script>
 
@@ -270,35 +278,13 @@ td {
 }
 
 .container-buttons {
-  width: 91px;
+  width: 120px;
 }
 
 .buttons {
   &-list {
     display: flex;
     justify-content: space-between;
-  }
-
-  &-item {
-    display: block;
-
-    &__button {
-      width: 36px;
-      height: 36px;
-      border: solid 1px $color-button-border;
-      border-radius: 3px;
-      background: $color-white;
-      transition: background-color 0.1s ease, border-color 0.3s ease;
-      cursor: pointer;
-    }
-    &__button:hover {
-      background-color: $color-button-background-gray;
-      border-color: $color-gray;
-      // transform: scale(1.05);
-    }
-
-    &__picture {
-    }
   }
 }
 
@@ -325,9 +311,6 @@ td {
 }
 ._width-140px {
   width: 140px;
-}
-._margin {
-  margin: 0 5px 0 5px;
 }
 
 ._height-36px {

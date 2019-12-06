@@ -1,32 +1,23 @@
 <template>
   <div class="container">
-    <ul class="buttons-list">
-      <li class="buttons-item">
-        <button type="button" class="buttons-item__button">
-          <img src="../../public/images/resume.jpeg" alt="Резюме" class="buttons-item__picture" />
-        </button>
-      </li>
-      <li class="buttons-item">
-        <button type="button" class="buttons-item__button _margin">
-          <img src="../../public/images/archive.jpeg" alt="Архив" class="buttons-item__picture" />
-        </button>
-      </li>
-      <li class="buttons-item">
-        <button type="button" class="buttons-item__button">
-          <img
-            src="../../public/images/favorites.jpeg"
-            alt="Избранное"
-            class="buttons-item__picture"
-          />
-        </button>
-      </li>
-    </ul>
+    <li class="buttons-item">
+      <button type="button" class="buttons-item__button">
+        <img :src="button.buttonImg" :alt="button.buttonInfo" class="buttons-item__picture" />
+      </button>
+    </li>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ButtonsResumeArchiveFavorites"
+  name: "ButtonsResumeArchiveFavorites",
+
+  props: {
+    button: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 
@@ -34,16 +25,7 @@ export default {
 @import "../stylesheets/variables.scss";
 @import "../stylesheets/resets.scss";
 
-.container {
-  width: 120px;
-}
-
 .buttons {
-  &-list {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &-item {
     display: block;
 
@@ -59,14 +41,7 @@ export default {
     &__button:hover {
       background-color: $color-button-background-gray;
       border-color: $color-gray;
-      // transform: scale(1.05);
-    }
-
-    &__picture {
     }
   }
-}
-._margin {
-  margin: 0 5px 0 5px;
 }
 </style>
