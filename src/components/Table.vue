@@ -26,10 +26,10 @@
         v-for="row in rows"
         :key="row.id"
         :row="row"
-        :isHiddenPhone="row.isHiddenPhone"
-        :isHiddenMail="row.isHiddenMail"
-        :isLightGrayPhone="row.isLightGrayPhone"
-        :isLightGrayMail="row.isLightGrayMail"
+        :is-hidden-phone="row.isHiddenPhone"
+        :is-hidden-mail="row.isHiddenMail"
+        :is-light-gray-phone="row.isLightGrayPhone"
+        :is-light-gray-mail="row.isLightGrayMail"
       />
     </tbody>
   </table>
@@ -52,9 +52,7 @@ export default {
         avatar: "/images/binman.png",
         name: "Бинман Иван Натанович",
         vacancy: "Вакансия: Full-stack разработчик",
-        phoneImg: "/images/phone.png",
         phone: "+7 (900) 800-70-60",
-        mailImg: "/images/mail.png",
         mail: "ioan@binman.ru",
         isHiddenPhone: false,
         isHiddenMail: false,
@@ -68,9 +66,7 @@ export default {
         avatar: "/images/durkoff.png",
         name: "Дурков Павел Валерьевич",
         vacancy: "Вакансия: Full-stack разработчик",
-        phoneImg: "/images/no-phone.png",
         phone: "Телефон не указан",
-        mailImg: "/images/mail.png",
         mail: "durkov@vkontakte.ru",
         isHiddenPhone: true,
         isHiddenMail: true,
@@ -84,9 +80,7 @@ export default {
         avatar: "/images/lebedin.png",
         name: "Лебедин Артеймий Андреевич",
         vacancy: "Вакансия: Web-дизайнер",
-        phoneImg: "/images/phone.png",
         phone: "+7 (800) 555-35-35",
-        mailImg: "/images/mail.png",
         mail: "design@lebedin.ru",
         isHiddenPhone: true,
         isHiddenMail: true,
@@ -100,9 +94,7 @@ export default {
         avatar: "/images/noname.png",
         name: "Чулков Олег",
         vacancy: "Вакансия: Web-дизайнер",
-        phoneImg: "/images/no-phone.png",
         phone: "Телефон не указан",
-        mailImg: "/images/no-mail.png",
         mail: "E-mail не указан",
         isHiddenPhone: true,
         isHiddenMail: true,
@@ -116,9 +108,7 @@ export default {
         avatar: "/images/fedora.png",
         name: "Федора Линукс Линусович",
         vacancy: "Вакансия: Front-end разработчик",
-        phoneImg: "/images/phone.png",
         phone: "+7 (800) 200-06-60",
-        mailImg: "/images/mail.png",
         mail: "ioan@binman.ru",
         isHiddenPhone: false,
         isHiddenMail: false,

@@ -12,7 +12,8 @@
     <td>
       <div class="container-phone">
         <div class="phone-border">
-          <img :src="row.phoneImg" alt="Телефон" class="phone-border__img" />
+          <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" 
+          :class="{ '_light-gray-img': isLightGrayPhone }"/>
         </div>
         <div class="phone-text">
           <p
@@ -30,7 +31,8 @@
     <td>
       <div class="container-mail">
         <div class="mail-border">
-          <img :src="row.mailImg" alt="E-mail" class="mail-border__img" />
+          <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" 
+          :class="{ '_light-gray-img': isLightGrayMail }"/>
         </div>
         <div class="mail-text">
           <p
@@ -47,12 +49,12 @@
     </td>
     <td class="_width-140px"></td>
     <td>
-      <Raiting :ratingColor="row.ratingColor" :ratingValue="row.ratingValue" />
+      <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingValue" />
     </td>
     <td>
       <div class="container-buttons">
         <ul class="buttons-list">
-          <ButtonsResumeArchiveFavorites
+          <ResumeButton
             v-for="button in buttons"
             :key="button.id"
             :button="button"
@@ -65,14 +67,14 @@
 
 <script>
 import Raiting from "./Rating.vue";
-import ButtonsResumeArchiveFavorites from "./ButtonsResumeArchiveFavorites.vue";
+import ResumeButton from "./ResumeButton.vue";
 
 export default {
   name: "TableRow",
 
   components: {
     Raiting,
-    ButtonsResumeArchiveFavorites
+    ResumeButton
   },
 
   props: {
@@ -315,5 +317,9 @@ td {
 
 ._height-36px {
   height: 36px;
+}
+
+._light-gray-img {
+  opacity: 0.5;
 }
 </style>

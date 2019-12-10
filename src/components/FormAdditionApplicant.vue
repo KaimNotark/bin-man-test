@@ -21,11 +21,7 @@
       <label class="form__label _margin-top-21px">
         <span class="form__span">Вакансия</span>
         <select class="form__select _light _margin-top-5px" required>
-          <option value="0" class="form__option">Выберите вакансию</option>
-          <option value="JFD" class="form__option">Junior Frontend Developer</option>
-          <option value="MFD" class="form__option">Middle Frontend Developer</option>
-          <option value="SFD" class="form__option">Senior Frontend Developer</option>
-          <option value="TFD" class="form__option">TeamLead Frontend Developer</option>
+          <OptionInSelect v-for="option in options" :key="option.id" :option="option" />
         </select>
       </label>
 
@@ -108,6 +104,7 @@ import InputLoad from "./InputLoad.vue";
 import RatingSummary from "./RatingSummary.vue";
 import RatingTest from "./RatingTest.vue";
 import RatingInterview from "./RatingInterview.vue";
+import OptionInSelect from "./OptionInSelect.vue";
 
 export default {
   name: "FormAdditionApplicant",
@@ -116,7 +113,8 @@ export default {
     InputLoad,
     RatingSummary,
     RatingTest,
-    RatingInterview
+    RatingInterview,
+    OptionInSelect
   },
 
   directives: {
@@ -134,7 +132,35 @@ export default {
 
     loadHeaderTest: "Архив с результатами тестового задания",
     loadRemTest:
-      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar"
+      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
+
+    options: [
+      {
+        id: "0",
+        value: "0",
+        content: "Выберите вакансию"
+      },
+      {
+        id: "1",
+        value: "JFD",
+        content: "Junior Frontend Developer"
+      },
+      {
+        id: "2",
+        value: "MFD",
+        content: "Middle Frontend Developer"
+      },
+      {
+        id: "3",
+        value: "SFD",
+        content: "Senior Frontend Developer"
+      },
+      {
+        id: "4",
+        value: "TFD",
+        content: "TeamLead Frontend Developer"
+      }
+    ]
   })
 };
 </script>

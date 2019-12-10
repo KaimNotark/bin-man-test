@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "ButtonsResumeArchiveFavorites",
+  name: "ResumeButton",
 
   props: {
     button: {
