@@ -20,7 +20,7 @@
       -->
     </label>
     <span
-      :class="['form__span-file-name', isFileInInput ? '_color-text' : '_color-text-light']"
+      :class="['form__file-name', isFileInInput ? '_color-text' : '_color-text-light']"
     >{{ filePhotoName }}</span>
   </div>
 </template>
@@ -128,7 +128,7 @@ export default {
     @extend %text-span;
   }
 
-  &__span-file-name {
+  &__file-name {
     display: block;
     width: 600px;
     font-size: 12px;
