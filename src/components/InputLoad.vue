@@ -20,8 +20,7 @@
       -->
     </label>
     <span
-      :class="['form__span-file-name', 
-      filePhotoName >= 'Файл не выбран' ? '_color-text-light' : '_color-text']"
+      :class="['form__span-file-name', isFileInInput ? '_color-text' : '_color-text-light']"
     >{{ filePhotoName }}</span>
   </div>
 </template>
@@ -31,12 +30,39 @@ export default {
   name: "InputLoad",
 
   data: () => ({
-    filePhotoName: "Файл не выбран"
+    filePhotoName: "Файл не выбран",
+    isFileInInput: false,
+    fileSize: 0
   }),
 
   methods: {
     addFilePhoto(files) {
       this.filePhotoName = files[0].name;
+
+      if (files.length > 0) {
+        this.isFileInInput = true;
+      } else {
+        this.isFileInInput = false;
+      }
+
+      this.fileSize = files[0].size;
+      if (this.fileSize > this.sizeOfFile) {
+        alert(
+          "Файл '" +
+            this.filePhotoName +
+            "' слишком большой. Выбирите файл не более 5 Мб."
+        );
+        this.filePhotoName = "Файл не выбран";
+        this.isFileInInput = false;
+      }
+
+      console.log("Имя - " + files[0].name);
+      console.log("Размер - " + files[0].size + " байт");
+      console.log("Тип - " + files[0].type);
+      console.log("Длина - " + files.length);
+      console.log("isFileInInput - " + this.isFileInInput);
+      console.log("fileSize - " + this.fileSize);
+      console.log("sizeOfFile - " + this.sizeOfFile);
     }
   },
 
@@ -49,6 +75,11 @@ export default {
     loadRem: {
       type: String,
       required: true
+    },
+
+    sizeOfFile: {
+      type: Number,
+      required:true
     }
   }
 };
