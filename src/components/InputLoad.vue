@@ -14,6 +14,10 @@
         autocomplete="off"
         accept="image/jpeg, image/png"
       />
+      <!--       
+        accept="application/pdf, application/msword"
+        accept="application/zip, application/rar" 
+      -->
     </label>
     <span
       :class="['form__span-file-name', 
@@ -37,7 +41,6 @@ export default {
   },
 
   props: {
-
     loadHeader: {
       type: String,
       required: true
@@ -47,7 +50,6 @@ export default {
       type: String,
       required: true
     }
-
   }
 };
 </script>
