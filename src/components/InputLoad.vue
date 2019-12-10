@@ -2,12 +2,12 @@
   <div class="container">
     <span class="form__load-header">{{ loadHeader }}</span>
     <p class="form__load-rem">{{ loadRem }}</p>
-    <label class="form__label" for="filePhoto">
+    <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
 
       <input
         @change="addFilePhoto($event.target.files)"
-        id="filePhoto"
+        :id="loadId"
         class="form__input-file"
         type="file"
         name="filePhoto"

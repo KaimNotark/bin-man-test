@@ -26,8 +26,9 @@
       </label>
 
       <InputLoad
-        :loadHeader="loadHeaderPhoto"
-        :loadRem="loadRemPhoto"
+        :load-id="0"
+        :load-header="loadHeaderPhoto"
+        :load-rem="loadRemPhoto"
         class="form__input-load-file"
       />
 
@@ -68,14 +69,16 @@
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
       <InputLoad
-        :loadHeader="loadHeaderSummary"
-        :loadRem="loadRemSummary"
+        :load-id="1"
+        :load-header="loadHeaderSummary"
+        :load-rem="loadRemSummary"
         class="form__input-load-summary _margin-top-12px"
       />
 
       <InputLoad
-        :loadHeader="loadHeaderTest"
-        :loadRem="loadRemTest"
+        :load-id="2"
+        :load-header="loadHeaderTest"
+        :load-rem="loadRemTest"
         class="form__input-load-test _margin-top-17px"
       />
 
@@ -359,15 +362,10 @@ select:focus {
     width: 550px;
     margin-top: 25px;
   }
-  // &__rating-summary {
-  //   display: block;
-  // }
+
   &__rating-test {
     margin-left: 73px;
   }
-  // &__rating-interview {
-  //   display: block;
-  // }
 
   &__btn-reset {
     width: 49%;
