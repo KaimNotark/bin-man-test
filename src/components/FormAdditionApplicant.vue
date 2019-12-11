@@ -30,6 +30,7 @@
         :load-header="loadHeaderPhoto"
         :load-rem="loadRemPhoto"
         :size-of-file="sizeOfFilePhoto"
+        :type-of-files="typeOfFilesPhoto"
         class="form__input-load-file"
       />
 
@@ -74,6 +75,7 @@
         :load-header="loadHeaderSummary"
         :load-rem="loadRemSummary"
         :size-of-file="sizeOfFileSummary"
+        :type-of-files="typeOfFilesSummary"
         class="form__input-load-summary _margin-top-12px"
       />
 
@@ -82,6 +84,7 @@
         :load-header="loadHeaderTest"
         :load-rem="loadRemTest"
         :size-of-file="sizeOfFileTest"
+        :type-of-files="typeOfFilesTest"
         class="form__input-load-test _margin-top-17px"
       />
 
@@ -132,16 +135,19 @@ export default {
     loadRemPhoto:
       "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
     sizeOfFilePhoto: 5242881,
+    typeOfFilesPhoto: "image/jpeg, image/png",
 
     loadHeaderSummary: "резюме",
     loadRemSummary:
       "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
     sizeOfFileSummary: 52428801,
+    typeOfFilesSummary: "application/pdf, application/msword",
 
     loadHeaderTest: "Архив с результатами тестового задания",
     loadRemTest:
       "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
     sizeOfFileTest: 52428801,
+    typeOfFilesTest: "application/zip, application/rar",
 
     options: [
       {

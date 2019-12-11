@@ -12,12 +12,9 @@
         type="file"
         name="filePhoto"
         autocomplete="off"
-        accept="image/jpeg, image/png"
+        :accept="typeOfFiles"
       />
-      <!--       
-        accept="application/pdf, application/msword"
-        accept="application/zip, application/rar" 
-      -->
+
     </label>
     <span
       :class="['form__file-name', isFileInInput ? '_color-text' : '_color-text-light']"
@@ -39,19 +36,13 @@ export default {
     addFilePhoto(files) {
       this.filePhotoName = files[0].name;
 
-      if (files.length > 0) {
-        this.isFileInInput = true;
-      } else {
-        this.isFileInInput = false;
-      }
+      files.length > 0
+        ? (this.isFileInInput = true)
+        : (this.isFileInInput = false);
 
       this.fileSize = files[0].size;
       if (this.fileSize > this.sizeOfFile) {
-        alert(
-          "Файл '" +
-            this.filePhotoName +
-            "' слишком большой. Выбирите файл не более 5 Мб."
-        );
+        alert("Файл '" + this.filePhotoName + "' слишком большой.");
         this.filePhotoName = "Файл не выбран";
         this.isFileInInput = false;
       }
@@ -77,9 +68,14 @@ export default {
       required: true
     },
 
+    typeOfFiles: {
+      type: String,
+      required: true
+    },
+
     sizeOfFile: {
       type: Number,
-      required:true
+      required: true
     }
   }
 };
