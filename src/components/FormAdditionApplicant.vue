@@ -36,7 +36,7 @@
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
-
+      <!-- 
       <label class="form__label _margin-top-17px">
         <span class="form__span">Номер телефона</span>
         <input
@@ -51,8 +51,19 @@
           spellcheck="true"
           required
         />
-        <button type="button" class="form__btn-add-phone">Добавить еще один номер телефона</button>
       </label>
+      -->
+      <InputInForm />
+      <InputInForm v-for="formInput in formInputs" :key="formInput.id" />
+      <!-- @dell="inputs.splice(i, 1)" 
+       :input-content="formInput.inputContent"
+      -->
+      <div id="input0"></div>
+      <button
+        type="button"
+        class="form__btn-add-phone"
+        @click="addInput"
+      >Добавить еще один номер телефона</button>
 
       <label class="form__label _margin-top-20px">
         <span class="form__span">e-mail</span>
@@ -114,6 +125,7 @@ import RatingSummary from "./RatingSummary.vue";
 import RatingTest from "./RatingTest.vue";
 import RatingInterview from "./RatingInterview.vue";
 import OptionInSelect from "./OptionInSelect.vue";
+import InputInForm from "./InputInForm.vue";
 
 export default {
   name: "FormAdditionApplicant",
@@ -123,7 +135,8 @@ export default {
     RatingSummary,
     RatingTest,
     RatingInterview,
-    OptionInSelect
+    OptionInSelect,
+    InputInForm
   },
 
   directives: {
@@ -175,8 +188,23 @@ export default {
         value: "TFD",
         content: "TeamLead Frontend Developer"
       }
-    ]
-  })
+    ],
+
+    inputId: 0,
+    formInputs: []
+  }),
+
+  methods: {
+    addInput: function() {
+      if (this.inputId < 2) {
+        this.formInputs.push({
+          id: this.inputId++
+        });
+      } else {
+        alert("Больше трех номеров указать нельзя.");
+      }
+    }
+  }
 };
 </script>
 

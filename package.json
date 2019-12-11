@@ -10,6 +10,7 @@
   "dependencies": {
     "awesome-mask": "^1.1.1",
     "core-js": "^3.3.2",
+    "normalize.css": "^8.0.1",
     "vue": "^2.6.10",
     "vue-star-rating": "^1.6.1"
   },
@@ -21,7 +22,6 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.13.0",
-    "normalize.css": "^8.0.1",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },
