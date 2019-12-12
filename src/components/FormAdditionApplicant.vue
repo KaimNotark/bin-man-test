@@ -41,50 +41,36 @@
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
-      <!-- 
-      <label class="form__label _margin-top-17px">
-        <span class="form__span">Номер телефона</span>
-        <input
-          class="form__input _margin-top-7px"
-          type="tel"
-          v-mask="'9 (999) 999-99-99'"
-          name="phone"
-          maxlength="11"
-          pattern="2[0-9]{3}-[0-9]{3}"
-          autocomplete="off"
-          placeholder="Введите номер телефона"
-          spellcheck="true"
-          required
-        />
-      </label>
-      -->
+    
       <InputInForm
-        v-for="formInput in formInputs"
-        :key="formInput.formInputId"
-        v-model="formInput.formInputContent"
+        :input-title="inputTitlePhone"
+        :input-button-text="inputButtonTextPhone"
+        :input-button-style="inputButtonStylePhone"
+        :input-text="inputTextPhone"
+        :input-type="inputTypePhone"
+        :input-name="inputNamePhone"
+        :input-autocomplete="inputAutocompletePhone"
+        :input-maxlength="inputMaxlengthPhone"
+        :input-pattern="inputPatternPhone"
+        :input-spellcheck="inputSpellcheckPhone"
+        :input-mask="inputMaskPhone"
+        class="_margin-top-17px"
       />
 
-      <div id="input0"></div>
-      <button
-        type="button"
-        class="form__btn-add-phone"
-        :class="{  '_button-hidden' : isButtonVisible }"
-        @click="addInput"
-      >Добавить еще один номер телефона</button>
-
-      <label class="form__label _margin-top-20px">
-        <span class="form__span">e-mail</span>
-        <input
-          class="form__input _margin-top-7px"
-          type="email"
-          name="email"
-          autocomplete="on"
-          placeholder="Введите E-mail"
-          required
-        />
-        <button type="button" class="form__btn-add-mail">Добавить еще один e-mail</button>
-      </label>
-
+      <InputInForm
+        :input-title="inputTitleMail"
+        :input-button-text="inputButtonTextMail"
+        :input-button-style="inputButtonStyleMail"
+        :input-text="inputTextMail"
+        :input-type="inputTypeMail"
+        :input-name="inputNameMail"
+        :input-autocomplete="inputAutocompleteMail"
+        :input-maxlength="inputMaxlengthMail"
+        :input-pattern="inputPatternMail"
+        :input-spellcheck="inputSpellcheckMail"
+        :input-mask="inputMaskMail"
+        class="_margin-top-20px"
+      />
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
@@ -197,32 +183,39 @@ export default {
       }
     ],
 
-    inputId: 0,
-    inputContent: "",
-    formInputs: [],
+    inputButtonTextPhone: "Добавить еще один номер телефона",
+    inputButtonTextMail: "Добавить еще один e-mail",
 
-    isButtonVisible: false
-  }),
+    inputTitlePhone: "Номер телефона",
+    inputTitleMail: "e-mail",
 
-  methods: {
-    addInput: function() {
-      if (this.inputId < 3) {
-        this.formInputs.push({
-          formInputId: this.inputId++,
-          formInputContent: this.inputContent
-        });
-        if (this.inputId <= 2) {
-          this.isButtonVisible = false;
-        } else {
-          this.isButtonVisible = true;
-        }
-      }
-    }
-  },
+    inputTextPhone: "Введите номер телефона",
+    inputTextMail: "Введите E-mail",
 
-  created() {
-    this.addInput();
-  }
+    inputTypePhone: "tel",
+    inputTypeMail: "email",
+
+    inputNamePhone: "phone",
+    inputNameMail: "email",
+
+    inputAutocompletePhone: "off",
+    inputAutocompleteMail: "on",
+
+    inputMaxlengthPhone: "11",
+    inputMaxlengthMail: "200",
+
+    inputButtonStylePhone: "form__btn-add-phone",
+    inputButtonStyleMail: "form__btn-add-mail",
+
+    inputPatternPhone: "2[0-9]{3}-[0-9]{3}",
+    inputPatternMail: "",
+
+    inputSpellcheckPhone: true,
+    inputSpellcheckMail: false,
+
+    inputMaskPhone: "9 (999) 999-99-99",
+    inputMaskMail: ""
+  })
 };
 </script>
 
@@ -475,6 +468,9 @@ select:focus {
 }
 ._margin-top-7px {
   margin-top: 7px;
+}
+._margin-top-10px {
+  margin-top: 10px;
 }
 ._margin-top-12px {
   margin-top: 12px;
