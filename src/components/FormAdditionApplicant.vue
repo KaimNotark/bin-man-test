@@ -21,7 +21,12 @@
       <label class="form__label _margin-top-21px">
         <span class="form__span">Вакансия</span>
         <select class="form__select _light _margin-top-5px" required>
-          <OptionInSelect v-for="option in options" :key="option.id" :option="option" />
+          <OptionInSelect
+            v-for="option in options"
+            :key="option.id"
+            :option="option"
+            @del="alert('deleted')"
+          />
         </select>
       </label>
 
@@ -53,15 +58,17 @@
         />
       </label>
       -->
-      <InputInForm />
-      <InputInForm v-for="formInput in formInputs" :key="formInput.id" />
-      <!-- @dell="inputs.splice(i, 1)" 
-       :input-content="formInput.inputContent"
-      -->
+      <InputInForm
+        v-for="formInput in formInputs"
+        :key="formInput.formInputId"
+        v-model="formInput.formInputContent"
+      />
+
       <div id="input0"></div>
       <button
         type="button"
         class="form__btn-add-phone"
+        :class="{  '_button-hidden' : isButtonVisible }"
         @click="addInput"
       >Добавить еще один номер телефона</button>
 
@@ -191,19 +198,30 @@ export default {
     ],
 
     inputId: 0,
-    formInputs: []
+    inputContent: "",
+    formInputs: [],
+
+    isButtonVisible: false
   }),
 
   methods: {
     addInput: function() {
-      if (this.inputId < 2) {
+      if (this.inputId < 3) {
         this.formInputs.push({
-          id: this.inputId++
+          formInputId: this.inputId++,
+          formInputContent: this.inputContent
         });
-      } else {
-        alert("Больше трех номеров указать нельзя.");
+        if (this.inputId <= 2) {
+          this.isButtonVisible = false;
+        } else {
+          this.isButtonVisible = true;
+        }
       }
     }
+  },
+
+  created() {
+    this.addInput();
   }
 };
 </script>
@@ -446,6 +464,10 @@ select:focus {
     border-color: #1a56fa;
     background-color: #4d7bf7;
   }
+}
+
+._button-hidden {
+  visibility: hidden;
 }
 
 ._margin-top-5px {
