@@ -89,7 +89,7 @@ export default {
     inputPattern: {
       type: String,
       required: true
-    },
+    }
   },
 
   data: () => ({
@@ -107,11 +107,14 @@ export default {
           formInputId: this.inputId++,
           formInputContent: this.inputContent
         });
-        if (this.inputId <= 2) {
-          this.isButtonVisible = false;
-        } else {
-          this.isButtonVisible = true;
-        }
+
+        this.isButtonVisible = !(this.inputId <= 2);
+
+        // if (this.inputId <= 2) {
+        //   this.isButtonVisible = false;
+        // } else {
+        //   this.isButtonVisible = true;
+        // }
       }
     }
   },
@@ -190,7 +193,7 @@ export default {
     color: $color-text-main;
     border-color: $color-text-main;
   }
-    &__btn-add-mail {
+  &__btn-add-mail {
     @extend %btn-add;
     width: 124px;
     margin-top: 5px;

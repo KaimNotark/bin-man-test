@@ -14,7 +14,6 @@
         autocomplete="off"
         :accept="typeOfFiles"
       />
-
     </label>
     <span
       :class="['form__file-name', isFileInInput ? '_color-text' : '_color-text-light']"
@@ -36,9 +35,17 @@ export default {
     addFilePhoto(files) {
       this.filePhotoName = files[0].name;
 
-      files.length > 0
-        ? (this.isFileInInput = true)
-        : (this.isFileInInput = false);
+      this.isFileInInput = files.length > 0;
+
+      // files.length > 0
+      //   ? (this.isFileInInput = true)
+      //   : (this.isFileInInput = false);
+
+      // if (files.length > 0) {
+      //   this.isFileInInput = true;
+      // } else {
+      //   this.isFileInInput = false;
+      // }
 
       this.fileSize = files[0].size;
       if (this.fileSize > this.sizeOfFile) {
