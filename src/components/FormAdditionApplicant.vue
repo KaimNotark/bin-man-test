@@ -207,7 +207,7 @@ export default {
     inputButtonStylePhone: "form__btn-add-phone",
     inputButtonStyleMail: "form__btn-add-mail",
 
-    inputPatternPhone: "2[0-9]{3}-[0-9]{3}",
+    inputPatternPhone: "", //2[0-9]{3}-[0-9]{3}
     inputPatternMail: "",
 
     inputSpellcheckPhone: true,
@@ -326,7 +326,6 @@ select:focus {
 
 .form {
   width: 650px;
-  height: 1000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
   padding: 23px;

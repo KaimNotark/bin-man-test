@@ -163,7 +163,7 @@ body {
 
 .container-nav-main {
   display: flex;
-  height: 990px;
+  min-height: 1250px;
 }
 
 .header {
@@ -335,7 +335,7 @@ body {
   z-index: 900;
   position: absolute;
   width: 1360px;
-  height: 1000px;
+  height: 1260px;
   margin-top: -21px;
   margin-left: -30px;
   background: rgba(0, 0, 0, 0.5);
