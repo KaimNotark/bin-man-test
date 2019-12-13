@@ -108,7 +108,7 @@ export default {
           formInputContent: this.inputContent
         });
 
-        this.isButtonVisible = !(this.inputId <= 2);
+        this.isButtonVisible = this.inputId > 2;
 
         // if (this.inputId <= 2) {
         //   this.isButtonVisible = false;

@@ -202,7 +202,7 @@ export default {
     inputAutocompleteMail: "on",
 
     inputMaxlengthPhone: "11",
-    inputMaxlengthMail: "200",
+    inputMaxlengthMail: "80",
 
     inputButtonStylePhone: "form__btn-add-phone",
     inputButtonStyleMail: "form__btn-add-mail",
