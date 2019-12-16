@@ -236,6 +236,17 @@ body {
       border-color: $color-nav__button-blue;
       background-color: $color-nav__button-dark-gray;
     }
+    &__hover:focus {
+      outline: none;
+      color: $color-nav__button-blue;
+      border-color: $color-nav__button-dark-blue;
+      background-color: $color-nav__button-dark-gray;
+    }
+    &__hover:active {
+      color: $color-nav__button-dark-blue;
+      border-color: $color-nav__button-dark-blue;
+      background-color: $color-nav__button-dark-gray;
+    }
   }
 }
 ._active {
@@ -284,13 +295,20 @@ body {
       transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
-    &__selected:focus,
     &__selected:hover {
       background-color: $color-button-background-gray;
       border-color: $color-gray;
     }
-    &__img {
+    &__selected:focus {
+      outline: none;
+      background-color: $color-button-background-gray;
+      border-color: $color-text-black;
     }
+    &__selected:active {
+      background-color: $color-gray;
+      border-color: $color-header__dark-gray;
+    }
+
     &__text {
       color: $color-text-main;
       font-size: 11px;
@@ -316,10 +334,20 @@ body {
       transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
-    &__add:focus,
+
     &__add:hover {
       border-color: #1a56fa;
       background-color: #4d7bf7;
+    }
+    &__add:focus {
+      outline: none;
+      border-color: #1a56fa;
+      background-color: #4d7bf7;
+    }
+    &__add:active {
+      border-color: #1a56fa;
+      background-color: #1a56fa;
+      color: $color-nav__button-blue;
     }
   }
 }
@@ -380,5 +408,4 @@ body {
   border-color: $color-input-focus;
   color: $color-input-focus;
 }
-
 </style>

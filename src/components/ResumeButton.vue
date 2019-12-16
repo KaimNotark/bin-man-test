@@ -42,6 +42,15 @@ export default {
       background-color: $color-button-background-gray;
       border-color: $color-gray;
     }
+    &__button:focus {
+      outline: none;
+      background-color: $color-button-background-gray;
+      border-color: $color-text-black;
+    }
+    &__button:active {
+      background-color: $color-gray;
+      border-color: $color-header__dark-gray;
+    }
   }
 }
 </style>

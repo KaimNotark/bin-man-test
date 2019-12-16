@@ -12,8 +12,12 @@
     <td>
       <div class="container-phone">
         <div class="phone-border">
-          <img src="../../public/images/phone.png" alt="Телефон" class="phone-border__img" 
-          :class="{ '_light-gray-img': isLightGrayPhone }"/>
+          <img
+            src="../../public/images/phone.png"
+            alt="Телефон"
+            class="phone-border__img"
+            :class="{ '_light-gray-img': isLightGrayPhone }"
+          />
         </div>
         <div class="phone-text">
           <p
@@ -31,8 +35,12 @@
     <td>
       <div class="container-mail">
         <div class="mail-border">
-          <img src="../../public/images/mail.png" alt="E-mail" class="mail-border__img" 
-          :class="{ '_light-gray-img': isLightGrayMail }"/>
+          <img
+            src="../../public/images/mail.png"
+            alt="E-mail"
+            class="mail-border__img"
+            :class="{ '_light-gray-img': isLightGrayMail }"
+          />
         </div>
         <div class="mail-text">
           <p
@@ -54,11 +62,7 @@
     <td>
       <div class="container-buttons">
         <ul class="buttons-list">
-          <ResumeButton
-            v-for="button in buttons"
-            :key="button.id"
-            :button="button"
-          />
+          <ResumeButton v-for="button in buttons" :key="button.id" :button="button" />
         </ul>
       </div>
     </td>
@@ -223,6 +227,15 @@ td {
       color: $color-text-main;
       border-bottom: solid 1px $color-text-main;
     }
+    &__button:focus {
+      outline: none;
+      color: $color-text-main;
+      border-bottom: solid 1px $color-text-main;
+    }
+    &__button:active {
+      color: $color-text-black;
+      border-bottom: solid 2px $color-text-black;
+    }
   }
 }
 
@@ -275,6 +288,15 @@ td {
     &__button:hover {
       color: $color-text-main;
       border-bottom: solid 1px $color-text-main;
+    }
+    &__button:focus {
+      outline: none;
+      color: $color-text-main;
+      border-bottom: solid 1px $color-text-main;
+    }
+    &__button:active {
+      color: $color-text-black;
+      border-bottom: solid 2px $color-text-black;
     }
   }
 }
