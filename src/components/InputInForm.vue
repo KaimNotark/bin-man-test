@@ -110,11 +110,6 @@ export default {
 
         this.isButtonVisible = this.inputId > 2;
 
-        // if (this.inputId <= 2) {
-        //   this.isButtonVisible = false;
-        // } else {
-        //   this.isButtonVisible = true;
-        // }
       }
     }
   },
@@ -167,6 +162,19 @@ export default {
   transition: background-color 0.1s ease, color 0.3s ease;
   cursor: pointer;
 }
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid $color-input-focus;
+}
+
+button:focus {
+  outline: none;
+  color: $color-text-main;
+  border-bottom: 1px solid $color-text-main;
+}
+
 
 .form {
   &__label {

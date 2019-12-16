@@ -370,4 +370,15 @@ body {
   background-color: $color-button-background-gray;
   border-color: $color-text-black;
 }
+.modal-button-close:focus {
+  outline: none;
+  background-color: $color-button-background-gray;
+  border-color: $color-text-black;
+}
+.modal-button-close:active {
+  background-color: $color-header__dark-gray;
+  border-color: $color-input-focus;
+  color: $color-input-focus;
+}
+
 </style>

@@ -6,18 +6,18 @@
       <p class="form__lable-text">Выберите файл</p>
 
       <input
-        @change="addFilePhoto($event.target.files)"
+        @change="addFile($event.target.files)"
         :id="loadId"
         class="form__input-file"
         type="file"
-        name="filePhoto"
+        name="fileName"
         autocomplete="off"
         :accept="typeOfFiles"
       />
     </label>
     <span
       :class="['form__file-name', isFileInInput ? '_color-text' : '_color-text-light']"
-    >{{ filePhotoName }}</span>
+    >{{ fileName }}</span>
   </div>
 </template>
 
@@ -26,14 +26,14 @@ export default {
   name: "InputLoad",
 
   data: () => ({
-    filePhotoName: "Файл не выбран",
+    fileName: "Файл не выбран",
     isFileInInput: false,
     fileSize: 0
   }),
 
   methods: {
-    addFilePhoto(files) {
-      this.filePhotoName = files[0].name;
+    addFile(files) {
+      this.fileName = files[0].name;
 
       this.isFileInInput = files.length > 0;
 
@@ -125,6 +125,11 @@ export default {
   &__label:hover {
     border-color: #1a56fa;
     background-color: #4d7bf7;
+  }
+  &__label:active {
+    border-color: #1a56fa;
+    background-color: #1a56fa;
+    color: $color-nav__button-blue;
   }
 
   &__load-header {

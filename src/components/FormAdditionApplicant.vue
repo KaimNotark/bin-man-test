@@ -406,6 +406,15 @@ select:focus {
     border-color: $color-input-focus;
     background-color: #e4f0f5;
   }
+  &__btn-reset:focus {
+    outline: none;
+    border: solid 1px $color-text-black;
+  }
+  &__btn-reset:active {
+    border: solid 2px $color-text-black;
+    background-color: $color-text-main;
+    color: $color-text-light;
+  }
 
   &__btn-submit {
     width: 49%;
@@ -425,6 +434,15 @@ select:focus {
   &__btn-submit:hover {
     border-color: #1a56fa;
     background-color: #4d7bf7;
+  }
+  &__btn-submit:focus {
+    outline: none;
+    border: 1px solid #022891;
+  }
+  &__btn-submit:active {
+    border: 2px solid #022891;
+    background-color: #1a56fa;
+    color: $color-nav__button-blue;
   }
 }
 
