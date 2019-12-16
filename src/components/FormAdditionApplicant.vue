@@ -41,36 +41,11 @@
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
-    
-      <InputInForm
-        :input-title="inputTitlePhone"
-        :input-button-text="inputButtonTextPhone"
-        :input-button-style="inputButtonStylePhone"
-        :input-text="inputTextPhone"
-        :input-type="inputTypePhone"
-        :input-name="inputNamePhone"
-        :input-autocomplete="inputAutocompletePhone"
-        :input-maxlength="inputMaxlengthPhone"
-        :input-pattern="inputPatternPhone"
-        :input-spellcheck="inputSpellcheckPhone"
-        :input-mask="inputMaskPhone"
-        class="_margin-top-17px"
-      />
 
-      <InputInForm
-        :input-title="inputTitleMail"
-        :input-button-text="inputButtonTextMail"
-        :input-button-style="inputButtonStyleMail"
-        :input-text="inputTextMail"
-        :input-type="inputTypeMail"
-        :input-name="inputNameMail"
-        :input-autocomplete="inputAutocompleteMail"
-        :input-maxlength="inputMaxlengthMail"
-        :input-pattern="inputPatternMail"
-        :input-spellcheck="inputSpellcheckMail"
-        :input-mask="inputMaskMail"
-        class="_margin-top-20px"
-      />
+      <InputInForm v-bind="phone" class="_margin-top-17px" />
+
+      <InputInForm v-bind="mail" class="_margin-top-20px" />
+
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
@@ -183,38 +158,33 @@ export default {
       }
     ],
 
-    inputButtonTextPhone: "Добавить еще один номер телефона",
-    inputButtonTextMail: "Добавить еще один e-mail",
+    phone: {
+      inputButtonText: "Добавить еще один номер телефона",
+      inputTitle: "Номер телефона",
+      inputText: "Введите номер телефона",
+      inputType: "tel",
+      inputName: "phone",
+      inputAutocomplete: "off",
+      inputSpellcheck: true,
+      inputMaxlength: "11",
+      inputButtonStyle: "form__btn-add-phone",
+      inputPattern: "", //2[0-9]{3}-[0-9]{3}
+      inputMask: "9 (999) 999-99-99"
+    },
 
-    inputTitlePhone: "Номер телефона",
-    inputTitleMail: "e-mail",
-
-    inputTextPhone: "Введите номер телефона",
-    inputTextMail: "Введите E-mail",
-
-    inputTypePhone: "tel",
-    inputTypeMail: "email",
-
-    inputNamePhone: "phone",
-    inputNameMail: "email",
-
-    inputAutocompletePhone: "off",
-    inputAutocompleteMail: "on",
-
-    inputMaxlengthPhone: "11",
-    inputMaxlengthMail: "80",
-
-    inputButtonStylePhone: "form__btn-add-phone",
-    inputButtonStyleMail: "form__btn-add-mail",
-
-    inputPatternPhone: "", //2[0-9]{3}-[0-9]{3}
-    inputPatternMail: "",
-
-    inputSpellcheckPhone: true,
-    inputSpellcheckMail: false,
-
-    inputMaskPhone: "9 (999) 999-99-99",
-    inputMaskMail: ""
+    mail: {
+      inputTitle: "e-mail",
+      inputButtonText: "Добавить еще один e-mail",
+      inputButtonStyle: "form__btn-add-mail",
+      inputText: "Введите E-mail",
+      inputType: "email",
+      inputName: "email",
+      inputAutocomplete: "on",
+      inputMaxlength: "80",
+      inputPattern: "",
+      inputSpellcheck: false,
+      inputMask: ""
+    }
   })
 };
 </script>
