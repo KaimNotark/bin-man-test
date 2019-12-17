@@ -71,9 +71,12 @@
       <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
 
       <div class="form__rating-container _margin-top-5px">
-        <RatingSummary class="form__rating-summary"></RatingSummary>
-        <RatingTest class="form__rating-test"></RatingTest>
-        <RatingInterview class="form__rating-interview"></RatingInterview>
+        <!-- class="form__rating-in-form"  -->
+        <RatingInForm 
+        v-for="rating in ratings"
+        :key="rating.id"
+        :rating="rating"
+        />
       </div>
 
       <hr class="form-devider" />
@@ -89,9 +92,7 @@
 <script>
 import AwesomeMask from "awesome-mask";
 import InputLoad from "./InputLoad.vue";
-import RatingSummary from "./RatingSummary.vue";
-import RatingTest from "./RatingTest.vue";
-import RatingInterview from "./RatingInterview.vue";
+import RatingInForm from "./RatingInForm.vue";
 import OptionInSelect from "./OptionInSelect.vue";
 import InputInForm from "./InputInForm.vue";
 
@@ -100,10 +101,8 @@ export default {
 
   components: {
     InputLoad,
-    RatingSummary,
-    RatingTest,
-    RatingInterview,
     OptionInSelect,
+    RatingInForm,
     InputInForm
   },
 
@@ -184,7 +183,22 @@ export default {
       inputPattern: "",
       inputSpellcheck: false,
       inputMask: ""
+    },
+
+    ratings: [
+    {
+      id: "0",
+      title: "Оценка резюме"
+    },
+    {
+      id: "1",
+      title: "Оценка тестового задания"
+    },
+    {
+      id: "2",
+      title: "Оценка собеседования"
     }
+    ]
   })
 };
 </script>
@@ -383,9 +397,9 @@ select:focus {
     margin-top: 25px;
   }
 
-  &__rating-test {
-    margin-left: 73px;
-  }
+  // &__rating-in-form {
+  //   margin-left: 73px;
+  // }
 
   &__btn-reset {
     width: 49%;
