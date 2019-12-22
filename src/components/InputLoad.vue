@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <span class="form__load-header">{{ loadHeader }}</span>
+    <span class="form__load-header">{{ variants[acceptType].header }}</span>
     <p class="form__load-rem">{{ loadRem }}</p>
     <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
@@ -16,26 +16,67 @@
       />
     </label>
     <span
-      :class="['form__file-name', isFileInInput ? '_color-text' : '_color-text-light']"
+      :class="['form__file-name', '_color-text-light', { file: '_color-text' }]"
     >{{ fileName }}</span>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "InputLoad",
+
+  props: {
+    loadId: {
+      type: String,
+      required: true
+    },
+
+    acceptType: {
+      type: String,
+      required: true
+    },
+  },
 
   data: () => ({
     fileName: "Файл не выбран",
     isFileInInput: false,
-    fileSize: 0
+    fileSize: 0,
+    file: null,
   }),
 
-  methods: {
-    addFile(files) {
-      this.fileName = files[0].name;
+  computed: {
+    variants () {
+      return {
+        photo: {
+          header: "Фотография",
+          comment: "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
+          size: 5242881,
+          accept: "image/jpeg, image/png",
+        },
+        resume: {
+          loadHeaderPhoto: "Фотография",
+          loadRemPhoto: "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
+          sizeOfFilePhoto: 5242881,
+          typeOfFilesPhoto: "image/jpeg, image/png",
 
-      this.isFileInInput = files.length > 0;
+          loadHeaderSummary: "резюме",
+          loadRemSummary: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
+          sizeOfFileSummary: 52428801,
+          typeOfFilesSummary: "application/pdf, application/msword",
+
+          loadHeaderTest: "Архив с результатами тестового задания",
+          loadRemTest: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
+          sizeOfFileTest: 52428801,
+          typeOfFilesTest: "application/zip, application/rar",
+        }
+      }
+    }
+  },
+
+  methods: {
+    addFile (files) {
+      this.file = files[0];
 
       // files.length > 0
       //   ? (this.isFileInInput = true)
@@ -63,29 +104,8 @@ export default {
       console.log("sizeOfFile - " + this.sizeOfFile);
     }
   },
-
-  props: {
-    loadHeader: {
-      type: String,
-      required: true
-    },
-
-    loadRem: {
-      type: String,
-      required: true
-    },
-
-    typeOfFiles: {
-      type: String,
-      required: true
-    },
-
-    sizeOfFile: {
-      type: Number,
-      required: true
-    }
-  }
 };
+
 </script>
 
 <style lang="scss" scoped>

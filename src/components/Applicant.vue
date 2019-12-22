@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="../../public/images/binman.png" alt="Аватар" class="applicant-img" />
+    <img src="/images/binman.png" alt="Аватар" class="applicant-img" />
     <div class="applicant-text">
       <p class="applicant-text__name">Бинман Иван Натанович</p>
       <p class="applicant-text__vacancy">Вакансия: Full-stack разработчик</p>
