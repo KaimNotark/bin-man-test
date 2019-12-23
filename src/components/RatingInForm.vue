@@ -9,7 +9,7 @@ npm install vue-star-rating
   <div class="container">
     <p class="form__rating-title">{{ rating.title }}</p>
     <star-rating
-      star-size="13"
+      :star-size="13"
       :show-rating="false"
       inactive-color="#ffffff"
       :active-color="colorStar"
@@ -38,7 +38,7 @@ export default {
     }
   },
 
-  data: function() {
+  data () {
     return {
       selected: 0,
       isFiveStars: true,
@@ -47,7 +47,7 @@ export default {
   },
 
   methods: {
-    setRating: function(selected) {
+    setRating (selected) {
       if (selected == 1) this.colorStar = "#ff5d00";
       if (selected == 2) this.colorStar = "#ffa800";
       if (selected == 3) this.colorStar = "#dae700";

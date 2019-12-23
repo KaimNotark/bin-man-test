@@ -12,7 +12,6 @@
         :placeholder="inputText"
         required
         v-mask="inputMask"
-        :pattern="inputPattern"
         :spellcheck="inputSpellcheck"
       />
     </label>
@@ -101,7 +100,7 @@ export default {
   }),
 
   methods: {
-    addInput: function() {
+    addInput () {
       if (this.inputId < 3) {
         this.formInputs.push({
           formInputId: this.inputId++,

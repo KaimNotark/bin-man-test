@@ -13,7 +13,7 @@
       <div class="container-phone">
         <div class="phone-border">
           <img
-            src="../../public/images/phone.png"
+            src="/images/phone.png"
             alt="Телефон"
             class="phone-border__img"
             :class="{ '_light-gray-img': isLightGrayPhone }"
@@ -32,11 +32,12 @@
         </div>
       </div>
     </td>
+
     <td>
       <div class="container-mail">
         <div class="mail-border">
           <img
-            src="../../public/images/mail.png"
+            src="/public/images/mail.png"
             alt="E-mail"
             class="mail-border__img"
             :class="{ '_light-gray-img': isLightGrayMail }"
@@ -55,10 +56,13 @@
         </div>
       </div>
     </td>
-    <td class="_width-140px"></td>
+
+    <td width="140"></td>
+
     <td>
       <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingValue" />
     </td>
+
     <td>
       <div class="container-buttons">
         <ul class="buttons-list">
@@ -70,6 +74,7 @@
 </template>
 
 <script>
+
 import Raiting from "./Rating.vue";
 import ResumeButton from "./ResumeButton.vue";
 
@@ -126,8 +131,15 @@ export default {
         buttonInfo: "Избранное"
       }
     ]
-  })
+  }),
+
+  computed: {
+    isNonePhone () {
+      return this.phone && this.phone.length
+    }
+  }
 };
+
 </script>
 
 <style lang="scss" scoped>
