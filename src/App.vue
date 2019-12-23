@@ -67,7 +67,7 @@
           >
             <div modal-overlay-close="modal-overlay" class="modal__overlay">
               <button class="modal-button-close" type="button" @click="modalClose">×</button>
-              <FormAdditionApplicant class="form-addition-applicant" />
+              <FormAdditionApplicant />
             </div>
           </div>
           <!-- / modal window form -->
@@ -91,9 +91,7 @@
             </div>
           </div>
 
-          <div class="main-table">
-            <Table class="table" />
-          </div>
+          <Table />
         </main>
       </div>
     </div>
@@ -165,7 +163,7 @@ body {
 
 .container-nav-main {
   display: flex;
-  height: 990px;
+  min-height: 1250px;
 }
 
 .header {
@@ -238,6 +236,17 @@ body {
       border-color: $color-nav__button-blue;
       background-color: $color-nav__button-dark-gray;
     }
+    &__hover:focus {
+      outline: none;
+      color: $color-nav__button-blue;
+      border-color: $color-nav__button-dark-blue;
+      background-color: $color-nav__button-dark-gray;
+    }
+    &__hover:active {
+      color: $color-nav__button-dark-blue;
+      border-color: $color-nav__button-dark-blue;
+      background-color: $color-nav__button-dark-gray;
+    }
   }
 }
 ._active {
@@ -286,13 +295,20 @@ body {
       transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
-    &__selected:focus,
     &__selected:hover {
       background-color: $color-button-background-gray;
       border-color: $color-gray;
     }
-    &__img {
+    &__selected:focus {
+      outline: none;
+      background-color: $color-button-background-gray;
+      border-color: $color-text-black;
     }
+    &__selected:active {
+      background-color: $color-gray;
+      border-color: $color-header__dark-gray;
+    }
+
     &__text {
       color: $color-text-main;
       font-size: 11px;
@@ -318,19 +334,25 @@ body {
       transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
-    &__add:focus,
+
     &__add:hover {
       border-color: #1a56fa;
       background-color: #4d7bf7;
+    }
+    &__add:focus {
+      outline: none;
+      border-color: #1a56fa;
+      background-color: #4d7bf7;
+    }
+    &__add:active {
+      border-color: #1a56fa;
+      background-color: #1a56fa;
+      color: $color-nav__button-blue;
     }
   }
 }
 ._increase {
   font-size: 22px;
-}
-
-.table {
-  width: 100%;
 }
 
 // modal overlay form:
@@ -341,7 +363,7 @@ body {
   z-index: 900;
   position: absolute;
   width: 1360px;
-  height: 1000px;
+  height: 1260px;
   margin-top: -21px;
   margin-left: -30px;
   background: rgba(0, 0, 0, 0.5);
@@ -376,8 +398,14 @@ body {
   background-color: $color-button-background-gray;
   border-color: $color-text-black;
 }
-
-.form-addition-applicant {
-  display: block;
+.modal-button-close:focus {
+  outline: none;
+  background-color: $color-button-background-gray;
+  border-color: $color-text-black;
+}
+.modal-button-close:active {
+  background-color: $color-header__dark-gray;
+  border-color: $color-input-focus;
+  color: $color-input-focus;
 }
 </style>

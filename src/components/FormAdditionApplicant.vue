@@ -21,63 +21,62 @@
       <label class="form__label _margin-top-21px">
         <span class="form__span">Вакансия</span>
         <select class="form__select _light _margin-top-5px" required>
-          <option value="0" class="form__option">Выберите вакансию</option>
-          <option value="JFD" class="form__option">Junior Frontend Developer</option>
-          <option value="MFD" class="form__option">Middle Frontend Developer</option>
-          <option value="SFD" class="form__option">Senior Frontend Developer</option>
-          <option value="TFD" class="form__option">TeamLead Frontend Developer</option>
+          <OptionInSelect
+            v-for="option in options"
+            :key="option.id"
+            :option="option"
+            @del="alert('deleted')"
+          />
         </select>
       </label>
 
-      <InputLoadPhoto class="form__input-load-file" />
+      <InputLoad
+        :load-id="0"
+        :load-header="loadHeaderPhoto"
+        :load-rem="loadRemPhoto"
+        :size-of-file="sizeOfFilePhoto"
+        :type-of-files="typeOfFilesPhoto"
+        class="form__input-load-file"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
 
-      <label class="form__label _margin-top-17px">
-        <span class="form__span">Номер телефона</span>
-        <input
-          class="form__input _margin-top-7px"
-          type="tel"
-          v-mask="'9 (999) 999-99-99'"
-          name="phone"
-          maxlength="11"
-          pattern="2[0-9]{3}-[0-9]{3}"
-          autocomplete="off"
-          placeholder="Введите номер телефона"
-          spellcheck="true"
-          required
-        />
-        <button type="button" class="form__btn-add-phone">Добавить еще один номер телефона</button>
-      </label>
+      <InputInForm v-bind="phone" class="_margin-top-17px" />
 
-      <label class="form__label _margin-top-20px">
-        <span class="form__span">e-mail</span>
-        <input
-          class="form__input _margin-top-7px"
-          type="email"
-          name="email"
-          autocomplete="on"
-          placeholder="Введите E-mail"
-          required
-        />
-        <button type="button" class="form__btn-add-mail">Добавить еще один e-mail</button>
-      </label>
+      <InputInForm v-bind="mail" class="_margin-top-20px" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
-      <InputLoadSummary class="form__input-load-summary _margin-top-12px" />
+      <InputLoad
+        :load-id="1"
+        :load-header="loadHeaderSummary"
+        :load-rem="loadRemSummary"
+        :size-of-file="sizeOfFileSummary"
+        :type-of-files="typeOfFilesSummary"
+        class="form__input-load-summary _margin-top-12px"
+      />
 
-      <InputLoadTest class="form__input-load-test _margin-top-17px" />
+      <InputLoad
+        :load-id="2"
+        :load-header="loadHeaderTest"
+        :load-rem="loadRemTest"
+        :size-of-file="sizeOfFileTest"
+        :type-of-files="typeOfFilesTest"
+        class="form__input-load-test _margin-top-17px"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
 
       <div class="form__rating-container _margin-top-5px">
-        <RatingSummary class="form__rating-summary"></RatingSummary>
-        <RatingTest class="form__rating-test"></RatingTest>
-        <RatingInterview class="form__rating-interview"></RatingInterview>
+        <!-- class="form__rating-in-form"  -->
+        <RatingInForm 
+        v-for="rating in ratings"
+        :key="rating.id"
+        :rating="rating"
+        />
       </div>
 
       <hr class="form-devider" />
@@ -91,29 +90,116 @@
 </template>
 
 <script>
-import AwesomeMask from 'awesome-mask';
-import InputLoadPhoto from "./InputLoadPhoto.vue";
-import InputLoadSummary from "./InputLoadSummary.vue";
-import InputLoadTest from "./InputLoadTest.vue";
-import RatingSummary from "./RatingSummary.vue";
-import RatingTest from "./RatingTest.vue";
-import RatingInterview from "./RatingInterview.vue";
+import AwesomeMask from "awesome-mask";
+import InputLoad from "./InputLoad.vue";
+import RatingInForm from "./RatingInForm.vue";
+import OptionInSelect from "./OptionInSelect.vue";
+import InputInForm from "./InputInForm.vue";
 
 export default {
   name: "FormAdditionApplicant",
 
   components: {
-    InputLoadPhoto,
-    InputLoadSummary,
-    InputLoadTest,
-    RatingSummary,
-    RatingTest,
-    RatingInterview
+    InputLoad,
+    OptionInSelect,
+    RatingInForm,
+    InputInForm
   },
 
   directives: {
-    'mask': AwesomeMask
-  }
+    mask: AwesomeMask
+  },
+
+  data: () => ({
+    loadHeaderPhoto: "Фотография",
+    loadRemPhoto:
+      "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
+    sizeOfFilePhoto: 5242881,
+    typeOfFilesPhoto: "image/jpeg, image/png",
+
+    loadHeaderSummary: "резюме",
+    loadRemSummary:
+      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
+    sizeOfFileSummary: 52428801,
+    typeOfFilesSummary: "application/pdf, application/msword",
+
+    loadHeaderTest: "Архив с результатами тестового задания",
+    loadRemTest:
+      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
+    sizeOfFileTest: 52428801,
+    typeOfFilesTest: "application/zip, application/rar",
+
+    options: [
+      {
+        id: "0",
+        value: "0",
+        content: "Выберите вакансию"
+      },
+      {
+        id: "1",
+        value: "JFD",
+        content: "Junior Frontend Developer"
+      },
+      {
+        id: "2",
+        value: "MFD",
+        content: "Middle Frontend Developer"
+      },
+      {
+        id: "3",
+        value: "SFD",
+        content: "Senior Frontend Developer"
+      },
+      {
+        id: "4",
+        value: "TFD",
+        content: "TeamLead Frontend Developer"
+      }
+    ],
+
+    phone: {
+      inputButtonText: "Добавить еще один номер телефона",
+      inputTitle: "Номер телефона",
+      inputText: "Введите номер телефона",
+      inputType: "tel",
+      inputName: "phone",
+      inputAutocomplete: "off",
+      inputSpellcheck: true,
+      inputMaxlength: "11",
+      inputButtonStyle: "form__btn-add-phone",
+      inputPattern: "", //2[0-9]{3}-[0-9]{3}
+      inputMask: "9 (999) 999-99-99"
+    },
+
+    mail: {
+      inputTitle: "e-mail",
+      inputButtonText: "Добавить еще один e-mail",
+      inputButtonStyle: "form__btn-add-mail",
+      inputText: "Введите E-mail",
+      inputType: "email",
+      inputName: "email",
+      inputAutocomplete: "on",
+      inputMaxlength: "80",
+      inputPattern: "",
+      inputSpellcheck: false,
+      inputMask: ""
+    },
+
+    ratings: [
+    {
+      id: "0",
+      title: "Оценка резюме"
+    },
+    {
+      id: "1",
+      title: "Оценка тестового задания"
+    },
+    {
+      id: "2",
+      title: "Оценка собеседования"
+    }
+    ]
+  })
 };
 </script>
 
@@ -199,6 +285,7 @@ export default {
 }
 
 .container {
+  display: block;
 }
 
 input:-webkit-autofill,
@@ -223,7 +310,6 @@ select:focus {
 
 .form {
   width: 650px;
-  height: 1000px;
   border: 1px solid $color-gray;
   background-color: $color-white;
   padding: 23px;
@@ -310,14 +396,9 @@ select:focus {
     width: 550px;
     margin-top: 25px;
   }
-  // &__rating-summary {
-  //   display: block;
-  // }
-  &__rating-test {
-    margin-left: 73px;
-  }
-  // &__rating-interview {
-  //   display: block;
+
+  // &__rating-in-form {
+  //   margin-left: 73px;
   // }
 
   &__btn-reset {
@@ -339,6 +420,15 @@ select:focus {
     border-color: $color-input-focus;
     background-color: #e4f0f5;
   }
+  &__btn-reset:focus {
+    outline: none;
+    border: solid 1px $color-text-black;
+  }
+  &__btn-reset:active {
+    border: solid 2px $color-text-black;
+    background-color: $color-text-main;
+    color: $color-text-light;
+  }
 
   &__btn-submit {
     width: 49%;
@@ -359,6 +449,19 @@ select:focus {
     border-color: #1a56fa;
     background-color: #4d7bf7;
   }
+  &__btn-submit:focus {
+    outline: none;
+    border: 1px solid #022891;
+  }
+  &__btn-submit:active {
+    border: 2px solid #022891;
+    background-color: #1a56fa;
+    color: $color-nav__button-blue;
+  }
+}
+
+._button-hidden {
+  visibility: hidden;
 }
 
 ._margin-top-5px {
@@ -366,6 +469,9 @@ select:focus {
 }
 ._margin-top-7px {
   margin-top: 7px;
+}
+._margin-top-10px {
+  margin-top: 10px;
 }
 ._margin-top-12px {
   margin-top: 12px;

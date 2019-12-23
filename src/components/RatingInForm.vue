@@ -7,7 +7,7 @@ https://github.com/craigh411/vue-star-rating
 npm install vue-star-rating
   -->
   <div class="container">
-    <p class="form__rating-title">Оценка резюме</p>
+    <p class="form__rating-title">{{ rating.title }}</p>
     <star-rating
       star-size="13"
       :show-rating="false"
@@ -25,28 +25,34 @@ npm install vue-star-rating
 import StarRating from "vue-star-rating";
 
 export default {
-  name: "RatingSummary",
+  name: "RatingInForm",
 
   components: {
     StarRating
   },
 
+  props: {
+    rating: {
+      type: Object,
+      required: true
+    }
+  },
+
   data: function() {
     return {
-      rating: 0,
+      selected: 0,
       isFiveStars: true,
       colorStar: "#ff5d00"
     };
   },
 
   methods: {
-
-    setRating: function(rating) {
-      if (rating == 1) this.colorStar = "#ff5d00";
-      if (rating == 2) this.colorStar = "#ffa800";
-      if (rating == 3) this.colorStar = "#dae700";
-      if (rating == 4) this.colorStar = "#abd02d";
-      if (rating == 5) this.colorStar = "#67c600";
+    setRating: function(selected) {
+      if (selected == 1) this.colorStar = "#ff5d00";
+      if (selected == 2) this.colorStar = "#ffa800";
+      if (selected == 3) this.colorStar = "#dae700";
+      if (selected == 4) this.colorStar = "#abd02d";
+      if (selected == 5) this.colorStar = "#67c600";
     }
   }
 };

@@ -12,7 +12,12 @@
     <td>
       <div class="container-phone">
         <div class="phone-border">
-          <img :src="row.phoneImg" alt="Телефон" class="phone-border__img" />
+          <img
+            src="../../public/images/phone.png"
+            alt="Телефон"
+            class="phone-border__img"
+            :class="{ '_light-gray-img': isLightGrayPhone }"
+          />
         </div>
         <div class="phone-text">
           <p
@@ -30,7 +35,12 @@
     <td>
       <div class="container-mail">
         <div class="mail-border">
-          <img :src="row.mailImg" alt="E-mail" class="mail-border__img" />
+          <img
+            src="../../public/images/mail.png"
+            alt="E-mail"
+            class="mail-border__img"
+            :class="{ '_light-gray-img': isLightGrayMail }"
+          />
         </div>
         <div class="mail-text">
           <p
@@ -47,30 +57,12 @@
     </td>
     <td class="_width-140px"></td>
     <td>
-      <Raiting :ratingColor="row.ratingColor" :ratingValue="row.ratingValue" />
+      <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingValue" />
     </td>
     <td>
       <div class="container-buttons">
         <ul class="buttons-list">
-          <li class="buttons-item">
-            <button type="button" class="buttons-item__button">
-              <img src="../../public/images/resume.png" alt="Резюме" class="buttons-item__picture" />
-            </button>
-          </li>
-          <li class="buttons-item">
-            <button type="button" class="buttons-item__button _margin">
-              <img src="../../public/images/archive.png" alt="Архив" class="buttons-item__picture" />
-            </button>
-          </li>
-          <li class="buttons-item">
-            <button type="button" class="buttons-item__button">
-              <img
-                src="../../public/images/favorites.png"
-                alt="Избранное"
-                class="buttons-item__picture"
-              />
-            </button>
-          </li>
+          <ResumeButton v-for="button in buttons" :key="button.id" :button="button" />
         </ul>
       </div>
     </td>
@@ -79,12 +71,14 @@
 
 <script>
 import Raiting from "./Rating.vue";
+import ResumeButton from "./ResumeButton.vue";
 
 export default {
   name: "TableRow",
 
   components: {
-    Raiting
+    Raiting,
+    ResumeButton
   },
 
   props: {
@@ -112,7 +106,27 @@ export default {
       type: Boolean,
       required: true
     }
-  }
+  },
+
+  data: () => ({
+    buttons: [
+      {
+        id: "0",
+        buttonImg: "/images/resume.png",
+        buttonInfo: "Резюме"
+      },
+      {
+        id: "1",
+        buttonImg: "/images/archive.png",
+        buttonInfo: "Архив"
+      },
+      {
+        id: "2",
+        buttonImg: "/images/favorites.png",
+        buttonInfo: "Избранное"
+      }
+    ]
+  })
 };
 </script>
 
@@ -213,6 +227,15 @@ td {
       color: $color-text-main;
       border-bottom: solid 1px $color-text-main;
     }
+    &__button:focus {
+      outline: none;
+      color: $color-text-main;
+      border-bottom: solid 1px $color-text-main;
+    }
+    &__button:active {
+      color: $color-text-black;
+      border-bottom: solid 2px $color-text-black;
+    }
   }
 }
 
@@ -266,39 +289,26 @@ td {
       color: $color-text-main;
       border-bottom: solid 1px $color-text-main;
     }
+    &__button:focus {
+      outline: none;
+      color: $color-text-main;
+      border-bottom: solid 1px $color-text-main;
+    }
+    &__button:active {
+      color: $color-text-black;
+      border-bottom: solid 2px $color-text-black;
+    }
   }
 }
 
 .container-buttons {
-  width: 91px;
+  width: 120px;
 }
 
 .buttons {
   &-list {
     display: flex;
     justify-content: space-between;
-  }
-
-  &-item {
-    display: block;
-
-    &__button {
-      width: 36px;
-      height: 36px;
-      border: solid 1px $color-button-border;
-      border-radius: 3px;
-      background: $color-white;
-      transition: background-color 0.1s ease, border-color 0.3s ease;
-      cursor: pointer;
-    }
-    &__button:hover {
-      background-color: $color-button-background-gray;
-      border-color: $color-gray;
-      // transform: scale(1.05);
-    }
-
-    &__picture {
-    }
   }
 }
 
@@ -326,11 +336,12 @@ td {
 ._width-140px {
   width: 140px;
 }
-._margin {
-  margin: 0 5px 0 5px;
-}
 
 ._height-36px {
   height: 36px;
+}
+
+._light-gray-img {
+  opacity: 0.5;
 }
 </style>
