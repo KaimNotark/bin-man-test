@@ -32,10 +32,7 @@
 
       <InputLoad
         :load-id="0"
-        :load-header="loadHeaderPhoto"
-        :load-rem="loadRemPhoto"
-        :size-of-file="sizeOfFilePhoto"
-        :type-of-files="typeOfFilesPhoto"
+        accept-type="photo"
         class="form__input-load-file"
       />
 
@@ -111,28 +108,10 @@ export default {
   },
 
   data: () => ({
-    loadHeaderPhoto: "Фотография",
-    loadRemPhoto:
-      "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
-    sizeOfFilePhoto: 5242881,
-    typeOfFilesPhoto: "image/jpeg, image/png",
-
-    loadHeaderSummary: "резюме",
-    loadRemSummary:
-      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
-    sizeOfFileSummary: 52428801,
-    typeOfFilesSummary: "application/pdf, application/msword",
-
-    loadHeaderTest: "Архив с результатами тестового задания",
-    loadRemTest:
-      "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
-    sizeOfFileTest: 52428801,
-    typeOfFilesTest: "application/zip, application/rar",
-
     options: [
       {
         id: "0",
-        value: "0",
+        value: 550,
         content: "Выберите вакансию"
       },
       {
@@ -186,21 +165,22 @@ export default {
     },
 
     ratings: [
-    {
-      id: "0",
-      title: "Оценка резюме"
-    },
-    {
-      id: "1",
-      title: "Оценка тестового задания"
-    },
-    {
-      id: "2",
-      title: "Оценка собеседования"
-    }
+      {
+        id: "0",
+        title: "Оценка резюме"
+      },
+      {
+        id: "1",
+        title: "Оценка тестового задания"
+      },
+      {
+        id: "2",
+        title: "Оценка собеседования"
+      }
     ]
   })
 };
+
 </script>
 
 <style lang="scss" scoped>

@@ -1,23 +1,16 @@
 <template>
-  <!-- 
-Site:
-https://www.vuescript.com/star-rating-component-vue-2/
-https://github.com/craigh411/vue-star-rating
-
-npm install vue-star-rating
-  -->
   <div class="container">
     <star-rating
-      star-size="13"
-      :show-rating="false"
-      :read-only="true"
+      :star-size="13"
+      :border-width="2"
+      :padding="0"
       :rating="ratingValue"
       inactive-color="#ffffff"
       :active-color="ratingColor"
       :border-color="ratingColor"
-      border-width="2"
-      padding="0"
-    ></star-rating>
+      show-rating
+      read-only
+    />
     <p class="table__rating-title">
       Средний балл:
       <span class="_black">{{ ratingValue }}</span>
@@ -45,8 +38,9 @@ export default {
       type: Number,
       required: true
     }
-  }
+  },
 };
+
 </script>
 
 <style lang="scss" scoped>
