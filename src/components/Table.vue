@@ -66,7 +66,6 @@ export default {
 .main-table {
   border-collapse: collapse;
   background-color: $color-white;
-  margin-top: 18px;
   width: 100%;
 }
 

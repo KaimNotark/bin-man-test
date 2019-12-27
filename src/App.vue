@@ -90,8 +90,13 @@
               </button>
             </div>
           </div>
-
-          <Table />
+          <div class="tables-container">
+            <Table />
+            <Table />
+            <Table />
+            <Table />
+            <Table />
+          </div>
         </main>
       </div>
     </div>
@@ -153,8 +158,8 @@ body {
 }
 
 .wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
+  position: fixed;
+  width: 100vw;
 }
 
 #app {
@@ -163,10 +168,12 @@ body {
 
 .container-nav-main {
   display: flex;
-  min-height: 1250px;
+  height: 100vh;
 }
 
 .header {
+  // position: sticky;
+  // top: 0;
   height: 76px;
   background-color: $color-input-background;
 
@@ -255,12 +262,18 @@ body {
 
 .main {
   width: 100%;
-  padding: 11px 30px 20px 26px;
+  padding: 0px 30px 20px 26px;
   background-color: $color-input-background;
 
   &-header {
     display: flex;
     justify-content: space-between;
+    height: 68px;
+    padding-top: 11px;
+    background-color: $color-input-background;
+    position: sticky;
+    top: 77px;
+    z-index: 10;
   }
 
   &-title {
