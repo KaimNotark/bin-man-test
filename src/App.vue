@@ -152,14 +152,14 @@ html {
 }
 
 body {
-  min-height: 100vh;
   font-family: $font-family-primary;
   box-sizing: border-box;
 }
 
 .wrapper {
-  position: fixed;
-  width: 100vw;
+  // position: fixed;
+  // min-height: 100vh;
+  // width: 100vw;
 }
 
 #app {
@@ -167,15 +167,17 @@ body {
 }
 
 .container-nav-main {
-  display: flex;
-  height: 100vh;
+  // display: flex;
 }
 
 .header {
   // position: sticky;
   // top: 0;
+  position: fixed;
+  width: 100vw;
   height: 76px;
   background-color: $color-input-background;
+  z-index: 5;
 
   &-container {
     height: 66px;
@@ -193,8 +195,15 @@ body {
   width: 90px;
   background-color: $color-input-background;
   margin-top: -10px;
+  position: fixed;
+  top: 76px;
+  z-index: 6;
+
+  // position: sticky;
+  // top: 0;
 
   &-container {
+    min-height: 100vh;
     width: 80px;
     height: 100%;
     padding: 15px;
@@ -264,6 +273,9 @@ body {
   width: 100%;
   padding: 0px 30px 20px 26px;
   background-color: $color-input-background;
+  position: absolute;
+  top: 76px;
+  left: 83px;
 
   &-header {
     display: flex;
@@ -366,6 +378,11 @@ body {
 }
 ._increase {
   font-size: 22px;
+}
+
+.tables-container {
+  // display: block;
+  // position: static;
 }
 
 // modal overlay form:
