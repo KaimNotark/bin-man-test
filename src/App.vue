@@ -143,6 +143,7 @@ $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
 html {
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 .wrapper *,
@@ -152,14 +153,14 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  // min-height: 100vh;
   font-family: $font-family-primary;
   box-sizing: border-box;
 }
 
 .wrapper {
-  position: fixed;
-  width: 100vw;
+  // position: fixed;
+  // width: 100vw;
 }
 
 #app {
@@ -168,7 +169,7 @@ body {
 
 .container-nav-main {
   display: flex;
-  height: 100vh;
+  // height: 100vh;
 }
 
 .header {
@@ -196,7 +197,7 @@ body {
 
   &-container {
     width: 80px;
-    height: 100%;
+    height: 100vh;
     padding: 15px;
     border-top: 1px solid $color-text-light;
     background-color: $color-nav__gray;
@@ -271,9 +272,9 @@ body {
     height: 68px;
     padding-top: 11px;
     background-color: $color-input-background;
-    position: sticky;
-    top: 77px;
-    z-index: 10;
+    // position: sticky;
+    // top: 77px;
+    // z-index: 10;
   }
 
   &-title {
@@ -366,6 +367,12 @@ body {
 }
 ._increase {
   font-size: 22px;
+}
+
+.tables-container {
+  // height: calc(100% - 50px);
+  height: calc(100vh - (68px + 76px + 20px));
+  overflow: auto;
 }
 
 // modal overlay form:
