@@ -175,8 +175,11 @@ body {
 .header {
   // position: sticky;
   // top: 0;
+  position: fixed;
+  width: 100vw;
   height: 76px;
   background-color: $color-input-background;
+  z-index: 5;
 
   &-container {
     height: 66px;
@@ -194,8 +197,15 @@ body {
   width: 90px;
   background-color: $color-input-background;
   margin-top: -10px;
+  position: fixed;
+  top: 76px;
+  z-index: 6;
+
+  // position: sticky;
+  // top: 0;
 
   &-container {
+    min-height: 100vh;
     width: 80px;
     height: 100vh;
     padding: 15px;
@@ -265,6 +275,9 @@ body {
   width: 100%;
   padding: 0px 30px 20px 26px;
   background-color: $color-input-background;
+  position: absolute;
+  top: 76px;
+  left: 83px;
 
   &-header {
     display: flex;
