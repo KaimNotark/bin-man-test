@@ -158,7 +158,6 @@ body {
 }
 
 .wrapper {
-
 }
 
 #app {
@@ -373,11 +372,14 @@ body {
   visibility: hidden;
   opacity: 0;
   z-index: 900;
+  // display: block;
+  // overflow: hidden;
   position: absolute;
-  width: 1360px;
-  height: 1260px;
-  margin-top: -21px;
+  min-width: calc(100% - 80px);
+  min-height: 100vh;
+  margin-top: -10px;
   margin-left: -30px;
+  padding: 30px;
   background: rgba(0, 0, 0, 0.5);
   transition: visibility 200ms ease-in, opacity 200ms ease-in;
 }
@@ -391,6 +393,7 @@ body {
 .modal__overlay {
   display: flex;
   justify-content: flex-end;
+  // overflow: auto;
 }
 
 .modal-button-close {

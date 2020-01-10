@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="form__load-container">
     <span class="form__load-header">{{ variants[acceptType].header }}</span>
     <p class="form__load-rem">{{ loadRem }}</p>
     <label class="form__label" :for="loadId">

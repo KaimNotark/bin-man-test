@@ -266,6 +266,9 @@ export default {
 
 .container {
   display: block;
+  overflow: auto;
+  // width: 650px;
+  height: 804px;
 }
 
 input:-webkit-autofill,

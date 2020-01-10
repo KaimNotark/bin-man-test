@@ -6,7 +6,7 @@ https://github.com/craigh411/vue-star-rating
 
 npm install vue-star-rating
   -->
-  <div class="container">
+  <div class="form__rating-container">
     <p class="form__rating-title">{{ rating.title }}</p>
     <star-rating
       :star-size="13"
@@ -60,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../stylesheets/variables.scss";
+
 
 .form__rating-title {
   color: $color-text-main;
