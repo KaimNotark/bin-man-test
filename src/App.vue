@@ -183,6 +183,8 @@ body {
   position: relative;
 
   &-container {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     padding: 15px;
     border-top: 1px solid $color-text-light;
