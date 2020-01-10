@@ -153,14 +153,12 @@ html {
 }
 
 body {
-  // min-height: 100vh;
   font-family: $font-family-primary;
   box-sizing: border-box;
 }
 
 .wrapper {
-  // position: fixed;
-  // width: 100vw;
+
 }
 
 #app {
@@ -169,17 +167,12 @@ body {
 
 .container-nav-main {
   display: flex;
-  // height: 100vh;
 }
 
 .header {
-  // position: sticky;
-  // top: 0;
-  position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 76px;
   background-color: $color-input-background;
-  z-index: 5;
 
   &-container {
     height: 66px;
@@ -197,17 +190,10 @@ body {
   width: 90px;
   background-color: $color-input-background;
   margin-top: -10px;
-  position: fixed;
-  top: 76px;
-  z-index: 6;
-
-  // position: sticky;
-  // top: 0;
 
   &-container {
     min-height: 100vh;
     width: 80px;
-    height: 100vh;
     padding: 15px;
     border-top: 1px solid $color-text-light;
     background-color: $color-nav__gray;
@@ -275,9 +261,6 @@ body {
   width: 100%;
   padding: 0px 30px 20px 26px;
   background-color: $color-input-background;
-  position: absolute;
-  top: 76px;
-  left: 83px;
 
   &-header {
     display: flex;
@@ -285,9 +268,6 @@ body {
     height: 68px;
     padding-top: 11px;
     background-color: $color-input-background;
-    // position: sticky;
-    // top: 77px;
-    // z-index: 10;
   }
 
   &-title {
@@ -383,7 +363,6 @@ body {
 }
 
 .tables-container {
-  // height: calc(100% - 50px);
   height: calc(100vh - (68px + 76px + 20px));
   overflow: auto;
 }
