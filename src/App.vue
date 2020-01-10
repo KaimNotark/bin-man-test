@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div id="wrapper" class="wrapper">
-
       <!-- modal window form -->
       <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
         <div modal-overlay-close="modal-overlay" class="modal__overlay">
@@ -167,11 +166,9 @@ body {
 
 .header {
   width: 100%;
-  height: 76px;
-  background-color: $color-input-background;
+  position: relative;
 
   &-container {
-    height: 66px;
     padding: 15px 27px;
     background-color: $color-header__dark-gray;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
@@ -183,17 +180,14 @@ body {
 }
 
 .nav {
-  width: 90px;
-  background-color: $color-input-background;
-  margin-top: -10px;
+  position: relative;
 
   &-container {
     min-height: 100vh;
-    width: 80px;
     padding: 15px;
     border-top: 1px solid $color-text-light;
     background-color: $color-nav__gray;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   }
 
   &-button {
