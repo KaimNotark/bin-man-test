@@ -1,6 +1,16 @@
 <template>
   <div id="app">
     <div id="wrapper" class="wrapper">
+
+      <!-- modal window form -->
+      <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
+        <div modal-overlay-close="modal-overlay" class="modal__overlay">
+          <button class="modal-button-close" type="button" @click="modalClose">×</button>
+          <FormAdditionApplicant />
+        </div>
+      </div>
+      <!-- / modal window form -->
+
       <header class="header">
         <div class="header-container">
           <img src="../public/images/logo.png" alt class="header-img" />
@@ -59,19 +69,6 @@
         </nav>
 
         <main class="main">
-          <!-- modal window form -->
-          <div
-            id="modal-overlay-form"
-            class="modal-overlay-form"
-            :class="{ _opened: modalIsOpened }"
-          >
-            <div modal-overlay-close="modal-overlay" class="modal__overlay">
-              <button class="modal-button-close" type="button" @click="modalClose">×</button>
-              <FormAdditionApplicant />
-            </div>
-          </div>
-          <!-- / modal window form -->
-
           <div class="main-header">
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
@@ -372,14 +369,10 @@ body {
   visibility: hidden;
   opacity: 0;
   z-index: 900;
-  // display: block;
-  // overflow: hidden;
   position: absolute;
-  min-width: calc(100% - 80px);
-  min-height: 100vh;
-  margin-top: -10px;
-  margin-left: -30px;
-  padding: 30px;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 67px;
   background: rgba(0, 0, 0, 0.5);
   transition: visibility 200ms ease-in, opacity 200ms ease-in;
 }
@@ -393,14 +386,13 @@ body {
 .modal__overlay {
   display: flex;
   justify-content: flex-end;
-  // overflow: auto;
 }
 
 .modal-button-close {
   display: block;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 24px;
   margin-top: 12px;
   margin-right: 10px;
   background: $color-white;

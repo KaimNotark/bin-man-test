@@ -61,6 +61,10 @@ export default {
 <style lang="scss" scoped>
 @import "../stylesheets/variables.scss";
 
+.form__rating-container {
+  display: flex;
+  flex-direction: column;
+}
 
 .form__rating-title {
   color: $color-text-main;

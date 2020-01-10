@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="form-container">
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
@@ -264,11 +264,11 @@ export default {
   cursor: pointer;
 }
 
-.container {
-  display: block;
-  overflow: auto;
+.form-container {
+  // display: block;
+  // overflow: auto;
   // width: 650px;
-  height: 804px;
+  // height: 804px;
 }
 
 input:-webkit-autofill,
