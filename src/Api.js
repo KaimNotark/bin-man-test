@@ -13,7 +13,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#abd02d",
-        ratingValue: "4.0"
+        ratingValue: 4
       },
       {
         id: "1",
@@ -27,7 +27,7 @@ class MockApiClass {
         isLightGrayPhone: true,
         isLightGrayMail: false,
         ratingColor: "#ff5d00",
-        ratingValue: "1.0"
+        ratingValue: 1
       },
       {
         id: "2",
@@ -41,7 +41,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#dae700",
-        ratingValue: "3.0"
+        ratingValue: 3
       },
       {
         id: "3",
@@ -55,7 +55,7 @@ class MockApiClass {
         isLightGrayPhone: true,
         isLightGrayMail: true,
         ratingColor: "#ffa800",
-        ratingValue: "2.0"
+        ratingValue: 2
       },
       {
         id: "4",
@@ -69,7 +69,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#67c600",
-        ratingValue: "5.0"
+        ratingValue: 5
       },
       {
         id: "5",
@@ -83,7 +83,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#abd02d",
-        ratingValue: "4.0"
+        ratingValue: 4
       },
       {
         id: "6",
@@ -97,7 +97,7 @@ class MockApiClass {
         isLightGrayPhone: true,
         isLightGrayMail: false,
         ratingColor: "#ff5d00",
-        ratingValue: "1.0"
+        ratingValue: 1
       },
       {
         id: "7",
@@ -111,7 +111,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#dae700",
-        ratingValue: "3.0"
+        ratingValue: 3
       },
       {
         id: "8",
@@ -125,7 +125,7 @@ class MockApiClass {
         isLightGrayPhone: true,
         isLightGrayMail: true,
         ratingColor: "#ffa800",
-        ratingValue: "2.0"
+        ratingValue: 2
       },
       {
         id: "9",
@@ -139,7 +139,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#67c600",
-        ratingValue: "5.0"
+        ratingValue: 5
       },
       {
         id: "10",
@@ -153,7 +153,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#abd02d",
-        ratingValue: "4.0"
+        ratingValue: 4
       },
       {
         id: "11",
@@ -167,7 +167,7 @@ class MockApiClass {
         isLightGrayPhone: true,
         isLightGrayMail: false,
         ratingColor: "#ff5d00",
-        ratingValue: "1.0"
+        ratingValue: 1
       },
       {
         id: "12",
@@ -181,7 +181,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#dae700",
-        ratingValue: "3.0"
+        ratingValue: 3
       },
       {
         id: "13",
@@ -195,7 +195,7 @@ class MockApiClass {
         isLightGrayPhone: true,
         isLightGrayMail: true,
         ratingColor: "#ffa800",
-        ratingValue: "2.0"
+        ratingValue: 2
       },
       {
         id: "14",
@@ -209,7 +209,7 @@ class MockApiClass {
         isLightGrayPhone: false,
         isLightGrayMail: false,
         ratingColor: "#67c600",
-        ratingValue: "5.0"
+        ratingValue: 5
       }
     ]
   }

@@ -47,7 +47,7 @@
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
       <InputLoad
-        :load-id="1"
+        load-id="1"
         :load-header="loadHeaderSummary"
         :load-rem="loadRemSummary"
         :size-of-file="sizeOfFileSummary"
@@ -56,7 +56,7 @@
       />
 
       <InputLoad
-        :load-id="2"
+        load-id="2"
         :load-header="loadHeaderTest"
         :load-rem="loadRemTest"
         :size-of-file="sizeOfFileTest"
