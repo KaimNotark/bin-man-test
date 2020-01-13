@@ -87,11 +87,34 @@
             </div>
           </div>
           <div class="tables-container">
-            <Table />
-            <Table />
-            <Table />
-            <Table />
-            <Table />
+            <table class="main-table__header">
+              <thead>
+                <tr class="_height-40px">
+                  <th>
+                    <span class="_margin-left-19px">Соискатель</span>
+                  </th>
+                  <th>Телефон</th>
+                  <th>E-mail</th>
+                  <th class="_width-140px"></th>
+                  <th>Оценка соискателя</th>
+                  <th></th>
+                </tr>
+              </thead>
+            </table>
+
+            <div class="main-table__body">
+              <Table />
+            </div>
+
+            <table class="main-table__footer">
+              <tfoot>
+                <tr class="_height-40px">
+                  <td colspan="6" >
+                    <button type="button" class="main-table__button">Показать еще</button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </main>
       </div>
@@ -354,9 +377,60 @@ body {
   font-size: 22px;
 }
 
+th {
+  color: $color-text-main;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 12px;
+  text-transform: uppercase;
+  text-align: left;
+  // height: 41px;
+}
+
 .tables-container {
-  height: calc(100vh - (68px + 76px + 20px));
+  // height: calc(100vh - (168px + 20px));
+  // overflow: auto;
+}
+
+.main-table__header {
+  border-collapse: collapse;
+  background-color: $color-white;
+  width: 100%;
+}
+
+._height-40px {
+  height: 40px;
+}
+
+.main-table__body {
+  height: calc(100vh - (168px + 80px));
   overflow: auto;
+}
+
+.main-table__footer {
+  border-collapse: collapse;
+  background-color: $color-white;
+  width: 100%;
+}
+
+.main-table__button {
+  width: 100%;
+  height: 34px;
+  border: solid 1px $color-white;
+  border-radius: 3px;
+  background: $color-white;
+  transition: background-color 0.1s ease, color 0.3s ease;
+  cursor: pointer;
+
+  color: $color-text-main;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 11px;
+  text-transform: uppercase;
+}
+.main-table__button:hover {
+  background-color: $color-button-background-gray;
+  color: $color-nav__button-dark-gray;
 }
 
 // modal overlay form:

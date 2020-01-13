@@ -1,6 +1,6 @@
 <template>
   <table class="main-table">
-    <thead>
+    <!-- <thead>
       <tr>
         <th>
           <span class="_margin-left-19px">Соискатель</span>
@@ -11,35 +11,36 @@
         <th>Оценка соискателя</th>
         <th></th>
       </tr>
-    </thead>
+    </thead> 
 
-    <tfoot>
-      <tr>
-        <td colspan="6" class="_height-36px">
-          <button type="button" class="main-table__button">Показать еще</button>
-        </td>
-      </tr>
-    </tfoot>
-
-    <tbody>
-      <TableRow
-        v-for="row in rows"
-        :key="row.id"
-        :row="row"
-        :is-hidden-phone="row.isHiddenPhone"
-        :is-hidden-mail="row.isHiddenMail"
-        :is-light-gray-phone="row.isLightGrayPhone"
-        :is-light-gray-mail="row.isLightGrayMail"
-      />
-    </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6" class="_height-36px">
+            <button type="button" class="main-table__button">Показать еще</button>
+          </td>
+        </tr>
+      </tfoot>
+    <div class="main-table__rows">
+-->
+      <tbody>
+        <TableRow
+          v-for="row in rows"
+          :key="row.id"
+          :row="row"
+          :is-hidden-phone="row.isHiddenPhone"
+          :is-hidden-mail="row.isHiddenMail"
+          :is-light-gray-phone="row.isLightGrayPhone"
+          :is-light-gray-mail="row.isLightGrayMail"
+        />
+      </tbody>
+    <!-- </div> -->
   </table>
 </template>
 
 <script>
-
 import TableRow from "./TableRow.vue";
 
-import { MockApi } from '../Api';
+import { MockApi } from "../Api";
 
 export default {
   name: "Table",
@@ -52,11 +53,10 @@ export default {
     rows: []
   }),
 
-  async created () {
-    this.rows = await MockApi.getApplicants()
+  async created() {
+    this.rows = await MockApi.getApplicants();
   }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -69,25 +69,25 @@ export default {
   width: 100%;
 }
 
-.main-table__button {
-  width: 100%;
-  height: 34px;
-  border: solid 1px $color-white;
-  border-radius: 3px;
-  background: $color-white;
-  transition: background-color 0.1s ease, color 0.3s ease;
-  cursor: pointer;
+// .main-table__button {
+//   width: 100%;
+//   height: 34px;
+//   border: solid 1px $color-white;
+//   border-radius: 3px;
+//   background: $color-white;
+//   transition: background-color 0.1s ease, color 0.3s ease;
+//   cursor: pointer;
 
-  color: $color-text-main;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 11px;
-  text-transform: uppercase;
-}
-.main-table__button:hover {
-  background-color: $color-button-background-gray;
-  color: $color-nav__button-dark-gray;
-}
+//   color: $color-text-main;
+//   font-size: 11px;
+//   font-weight: 700;
+//   line-height: 11px;
+//   text-transform: uppercase;
+// }
+// .main-table__button:hover {
+//   background-color: $color-button-background-gray;
+//   color: $color-nav__button-dark-gray;
+// }
 
 th {
   color: $color-text-main;
@@ -98,6 +98,11 @@ th {
   text-align: left;
   height: 41px;
 }
+
+// .main-table__rows {
+//   height: calc(100vh - (168px + 20px));
+//   overflow: auto;
+// }
 
 ._margin-left-19px {
   margin-left: 19px;
