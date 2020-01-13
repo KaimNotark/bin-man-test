@@ -192,9 +192,9 @@ width: 8px;
 .scroller {
   // width: 300px;
   // height: 100px;
-  overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
+  // overflow-y: scroll;
+  scrollbar-color: #8ea4b5 #ffffff;
+  scrollbar-width: 8px;
 }
 // moz - scroll bar
 html {
