@@ -160,6 +160,27 @@ export default {
 
 $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
+// begin -- styling the scroll bar --
+::-webkit-scrollbar-track {
+background-color: #ffffff;
+border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 4px;
+border-radius: 4px;
+background-color: #8ea4b5;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color: #475364;
+}
+
+::-webkit-scrollbar{
+width: 8px;
+}
+// end -- styling the scroll bar --
+
 html {
   scroll-behavior: smooth;
   overflow: hidden;

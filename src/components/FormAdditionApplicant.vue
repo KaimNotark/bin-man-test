@@ -276,7 +276,7 @@ export default {
   // display: block;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 680px;
+  width: 658px;
   height: 804px;
 }
 
@@ -455,6 +455,7 @@ select:focus {
 ._button-hidden {
   visibility: hidden;
 }
+
 
 ._margin-top-5px {
   margin-top: 5px;
