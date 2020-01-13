@@ -90,13 +90,13 @@
             <table class="main-table__header">
               <thead>
                 <tr class="_height-40px">
-                  <th>
+                  <th class="_width-25">
                     <span class="_margin-left-19px">Соискатель</span>
                   </th>
-                  <th>Телефон</th>
+                  <th class="_width-20">Телефон</th>
                   <th>E-mail</th>
                   <th class="_width-140px"></th>
-                  <th>Оценка соискателя</th>
+                  <th class="_width-25">Оценка соискателя</th>
                   <th></th>
                 </tr>
               </thead>
@@ -109,7 +109,7 @@
             <table class="main-table__footer">
               <tfoot>
                 <tr class="_height-40px">
-                  <td colspan="6" >
+                  <td colspan="6">
                     <button type="button" class="main-table__button">Показать еще</button>
                   </td>
                 </tr>
@@ -433,6 +433,18 @@ th {
   color: $color-nav__button-dark-gray;
 }
 
+._width-140px {
+  width: 140px;
+}
+._margin-left-19px {
+  margin-left: 19px;
+}
+._width-25 {
+  width: 25%;
+}
+._width-20 {
+  width: 20%
+}
 // modal overlay form:
 
 .modal-overlay-form {

@@ -37,7 +37,7 @@
       <div class="container-mail">
         <div class="mail-border">
           <img
-            src="/public/images/mail.png"
+            src="/images/mail.png"
             alt="E-mail"
             class="mail-border__img"
             :class="{ '_light-gray-img': isLightGrayMail }"
