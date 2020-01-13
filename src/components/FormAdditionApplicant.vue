@@ -266,9 +266,10 @@ export default {
 
 .form-container {
   // display: block;
-  // overflow: auto;
-  // width: 650px;
-  // height: 804px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 650px;
+  height: 804px;
 }
 
 input:-webkit-autofill,
