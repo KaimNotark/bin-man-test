@@ -30,10 +30,10 @@
         </select>
       </label>
 
-      <InputLoad
-        :load-id="0"
-        accept-type="photo"
-        class="form__input-load-file"
+      <InputLoad 
+      load-id="0" 
+      accept-type="photo" 
+      class="form__input-load-file" 
       />
 
       <hr class="form-devider" />
@@ -46,6 +46,19 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
+      <InputLoad 
+      load-id="1" 
+      accept-type="summary" 
+      class="form__input-load-summary _margin-top-12px" 
+      />
+
+      <InputLoad 
+      load-id="2" 
+      accept-type="test" 
+      class="form__input-load-test _margin-top-17px" 
+      />
+
+      <!-- 
       <InputLoad
         load-id="1"
         :load-header="loadHeaderSummary"
@@ -62,18 +75,14 @@
         :size-of-file="sizeOfFileTest"
         :type-of-files="typeOfFilesTest"
         class="form__input-load-test _margin-top-17px"
-      />
-
+      /> 
+      -->
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
 
       <div class="form__rating-container _margin-top-5px">
         <!-- class="form__rating-in-form"  -->
-        <RatingInForm 
-        v-for="rating in ratings"
-        :key="rating.id"
-        :rating="rating"
-        />
+        <RatingInForm v-for="rating in ratings" :key="rating.id" :rating="rating" />
       </div>
 
       <hr class="form-devider" />
@@ -144,7 +153,7 @@ export default {
       inputName: "phone",
       inputAutocomplete: "off",
       inputSpellcheck: true,
-      inputMaxlength: "11",
+      inputMaxlength: 11,
       inputButtonStyle: "form__btn-add-phone",
       inputPattern: "", //2[0-9]{3}-[0-9]{3}
       inputMask: "9 (999) 999-99-99"
@@ -158,7 +167,7 @@ export default {
       inputType: "email",
       inputName: "email",
       inputAutocomplete: "on",
-      inputMaxlength: "80",
+      inputMaxlength: 80,
       inputPattern: "",
       inputSpellcheck: false,
       inputMask: ""
@@ -180,7 +189,6 @@ export default {
     ]
   })
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -268,7 +276,7 @@ export default {
   // display: block;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 650px;
+  width: 680px;
   height: 804px;
 }
 
