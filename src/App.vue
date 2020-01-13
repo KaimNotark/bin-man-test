@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="wrapper" class="wrapper">
+    <div id="wrapper" class="wrapper scroller">
       <!-- modal window form -->
       <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
         <div modal-overlay-close="modal-overlay" class="modal__overlay">
@@ -161,26 +161,42 @@ export default {
 $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
 // begin -- styling the scroll bar --
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track
+// ::-moz-webkit-scrollbar-track 
+{
 background-color: #ffffff;
 border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb
+// ::-moz-webkit-scrollbar-thumb 
+{
 -webkit-border-radius: 4px;
 border-radius: 4px;
 background-color: #8ea4b5;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover
+// ::-moz-webkit-scrollbar-thumb:hover 
+{
 background-color: #475364;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar
+// ::-moz-webkit-scrollbar 
+{
 width: 8px;
 }
 // end -- styling the scroll bar --
-
+// moz - scroll bar
+.scroller {
+  // width: 300px;
+  // height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+// moz - scroll bar
 html {
   scroll-behavior: smooth;
   overflow: hidden;
