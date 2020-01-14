@@ -194,7 +194,9 @@ width: 8px;
   // height: 100px;
   // overflow-y: scroll;
   scrollbar-color: #8ea4b5 #ffffff;
-  scrollbar-width: 8px;
+  scrollbar-width: thin;
+
+
 }
 // moz - scroll bar
 html {
