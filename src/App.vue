@@ -166,41 +166,17 @@ export default {
 $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
 // begin -- styling the scroll bar --
-// ::-webkit-scrollbar-track
-// {
-// background-color: #ffffff;
-// border-radius: 4px;
-// }
-
-// ::-webkit-scrollbar-thumb
-// {
-// -webkit-border-radius: 4px;
-// border-radius: 4px;
-// background-color: #8ea4b5;
-// }
-
-// ::-webkit-scrollbar-thumb:hover
-// {
-// background-color: #475364;
-// }
-
-// ::-webkit-scrollbar
-// {
-// width: 8px;
-// }
-// end -- styling the scroll bar --
-// moz - scroll bar
 .simplebar-scrollbar:before {
   background-color: #8ea4b5;
 }
-// .scroller {
-// width: 300px;
-// height: 100px;
-// overflow-y: scroll;
-// scrollbar-color: #8ea4b5 #ffffff;
-// scrollbar-width: thin;
+// .simplebar-scrollbar:hover {
+//    background-color: green;
 // }
-// moz - scroll bar
+.simplebar-scrollbar.simplebar-visible:hover::before {
+  opacity: 1;
+}
+// end -- styling the scroll bar --
+
 html {
   scroll-behavior: smooth;
   overflow: hidden;
@@ -504,7 +480,7 @@ th {
 .modal-overlay-form._opened {
   visibility: visible;
   opacity: 1;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 }
 
 .modal__overlay {

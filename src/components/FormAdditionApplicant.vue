@@ -1,6 +1,6 @@
 <template>
-  <!-- <simplebar data-simplebar-auto-hide="true" class="form-container"> -->
-    <div class="form-container">
+  <simplebar data-simplebar-auto-hide="true" class="form-container">
+    <!-- <div class="form-container"> -->
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
@@ -85,13 +85,13 @@
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
-    </div>
-  <!-- </simplebar> -->
+    <!-- </div> -->
+  </simplebar>
 </template>
 
 <script>
-// import simplebar from "simplebar-vue";
-// import "simplebar/dist/simplebar.min.css";
+import simplebar from "simplebar-vue";
+import "simplebar/dist/simplebar.min.css";
 import AwesomeMask from "awesome-mask";
 import InputLoad from "./InputLoad.vue";
 import RatingInForm from "./RatingInForm.vue";
@@ -102,7 +102,7 @@ export default {
   name: "FormAdditionApplicant",
 
   components: {
-    // simplebar,
+    simplebar,
     InputLoad,
     OptionInSelect,
     RatingInForm,
@@ -296,6 +296,10 @@ select:focus {
   justify-content: space-between;
   margin-top: 20px;
 }
+
+// .simplebar-content-wrapper
+// .simplebar-content
+// .form
 
 .form {
   width: 650px;
