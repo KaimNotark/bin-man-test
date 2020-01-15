@@ -1,5 +1,6 @@
 <template>
-  <div class="form-container">
+  <!-- <simplebar data-simplebar-auto-hide="true" class="form-container"> -->
+    <div class="form-container">
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
@@ -30,11 +31,7 @@
         </select>
       </label>
 
-      <InputLoad 
-      load-id="0" 
-      accept-type="photo" 
-      class="form__input-load-file" 
-      />
+      <InputLoad load-id="0" accept-type="photo" class="form__input-load-file" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
@@ -46,17 +43,13 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
 
-      <InputLoad 
-      load-id="1" 
-      accept-type="summary" 
-      class="form__input-load-summary _margin-top-12px" 
+      <InputLoad
+        load-id="1"
+        accept-type="summary"
+        class="form__input-load-summary _margin-top-12px"
       />
 
-      <InputLoad 
-      load-id="2" 
-      accept-type="test" 
-      class="form__input-load-test _margin-top-17px" 
-      />
+      <InputLoad load-id="2" accept-type="test" class="form__input-load-test _margin-top-17px" />
 
       <!-- 
       <InputLoad
@@ -92,10 +85,13 @@
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
-  </div>
+    </div>
+  <!-- </simplebar> -->
 </template>
 
 <script>
+// import simplebar from "simplebar-vue";
+// import "simplebar/dist/simplebar.min.css";
 import AwesomeMask from "awesome-mask";
 import InputLoad from "./InputLoad.vue";
 import RatingInForm from "./RatingInForm.vue";
@@ -106,6 +102,7 @@ export default {
   name: "FormAdditionApplicant",
 
   components: {
+    // simplebar,
     InputLoad,
     OptionInSelect,
     RatingInForm,
@@ -275,7 +272,7 @@ export default {
 .form-container {
   // display: block;
   overflow-x: hidden;
-  overflow-y: auto;
+  // overflow-y: auto;
   width: 658px;
   height: 804px;
 }
@@ -455,7 +452,6 @@ select:focus {
 ._button-hidden {
   visibility: hidden;
 }
-
 
 ._margin-top-5px {
   margin-top: 5px;

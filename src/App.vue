@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="wrapper" class="wrapper scroller">
+    <div id="wrapper" class="wrapper">
       <!-- modal window form -->
       <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
         <div modal-overlay-close="modal-overlay" class="modal__overlay">
@@ -102,9 +102,11 @@
               </thead>
             </table>
 
-            <div class="main-table__body">
+            <!-- <div class="main-table__body"> -->
+            <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table />
-            </div>
+            </simplebar>
+            <!-- </div> -->
 
             <table class="main-table__footer">
               <tfoot>
@@ -123,6 +125,8 @@
 </template>
 
 <script>
+import simplebar from "simplebar-vue";
+import "simplebar/dist/simplebar.min.css";
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 
@@ -130,6 +134,7 @@ export default {
   name: "app",
 
   components: {
+    simplebar,
     Table,
     FormAdditionApplicant
   },
@@ -161,43 +166,40 @@ export default {
 $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
 // begin -- styling the scroll bar --
-::-webkit-scrollbar-track
-// ::-moz-webkit-scrollbar-track 
-{
-background-color: #ffffff;
-border-radius: 4px;
-}
+// ::-webkit-scrollbar-track
+// {
+// background-color: #ffffff;
+// border-radius: 4px;
+// }
 
-::-webkit-scrollbar-thumb
-// ::-moz-webkit-scrollbar-thumb 
-{
--webkit-border-radius: 4px;
-border-radius: 4px;
-background-color: #8ea4b5;
-}
+// ::-webkit-scrollbar-thumb
+// {
+// -webkit-border-radius: 4px;
+// border-radius: 4px;
+// background-color: #8ea4b5;
+// }
 
-::-webkit-scrollbar-thumb:hover
-// ::-moz-webkit-scrollbar-thumb:hover 
-{
-background-color: #475364;
-}
+// ::-webkit-scrollbar-thumb:hover
+// {
+// background-color: #475364;
+// }
 
-::-webkit-scrollbar
-// ::-moz-webkit-scrollbar 
-{
-width: 8px;
-}
+// ::-webkit-scrollbar
+// {
+// width: 8px;
+// }
 // end -- styling the scroll bar --
 // moz - scroll bar
-.scroller {
-  // width: 300px;
-  // height: 100px;
-  // overflow-y: scroll;
-  scrollbar-color: #8ea4b5 #ffffff;
-  scrollbar-width: thin;
-
-
+.simplebar-scrollbar:before {
+  background-color: #8ea4b5;
 }
+// .scroller {
+// width: 300px;
+// height: 100px;
+// overflow-y: scroll;
+// scrollbar-color: #8ea4b5 #ffffff;
+// scrollbar-width: thin;
+// }
 // moz - scroll bar
 html {
   scroll-behavior: smooth;
@@ -443,7 +445,8 @@ th {
 
 .main-table__body {
   height: calc(100vh - (168px + 80px));
-  overflow: auto;
+  overflow-x: hidden;
+  // overflow: auto;
 }
 
 .main-table__footer {
@@ -482,7 +485,7 @@ th {
   width: 25%;
 }
 ._width-20 {
-  width: 20%
+  width: 20%;
 }
 // modal overlay form:
 
