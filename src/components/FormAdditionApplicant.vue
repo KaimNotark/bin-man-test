@@ -269,7 +269,19 @@ export default {
   cursor: pointer;
 }
 
+// .simplebar-content {
+//   display: none;
+// }
+// .simplebar-content-wrapper {
+//   display: none;
+// }
+// .form {
+//   display: none;
+// }
+
 .form-container {
+  display: none;
+  // visibility: hidden;
   // display: block;
   overflow-x: hidden;
   // overflow-y: auto;
@@ -296,10 +308,6 @@ select:focus {
   justify-content: space-between;
   margin-top: 20px;
 }
-
-// .simplebar-content-wrapper
-// .simplebar-content
-// .form
 
 .form {
   width: 650px;
