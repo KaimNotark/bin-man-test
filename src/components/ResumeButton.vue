@@ -32,6 +32,7 @@ export default {
     &__button {
       width: 36px;
       height: 36px;
+      padding-top: 4px;
       border: solid 1px $color-button-border;
       border-radius: 3px;
       background: $color-white;

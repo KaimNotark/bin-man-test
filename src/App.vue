@@ -106,11 +106,9 @@
               </thead>
             </table>
 
-            <!-- <div class="main-table__body"> -->
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table />
             </simplebar>
-            <!-- </div> -->
 
             <table class="main-table__footer">
               <tfoot>
@@ -173,9 +171,7 @@ $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 .simplebar-scrollbar:before {
   background-color: #8ea4b5;
 }
-// .simplebar-scrollbar:hover {
-//    background-color: green;
-// }
+
 .simplebar-scrollbar.simplebar-visible:hover::before {
   opacity: 1;
 }
@@ -410,12 +406,6 @@ th {
   line-height: 12px;
   text-transform: uppercase;
   text-align: left;
-  // height: 41px;
-}
-
-.tables-container {
-  // height: calc(100vh - (168px + 20px));
-  // overflow: auto;
 }
 
 .main-table__header {
@@ -431,7 +421,6 @@ th {
 .main-table__body {
   height: calc(100vh - (168px + 80px));
   overflow-x: hidden;
-  // overflow: auto;
 }
 
 .main-table__footer {
@@ -472,11 +461,10 @@ th {
 ._width-20 {
   width: 20%;
 }
-// modal overlay form:
+// -- modal overlay form:
 
 .modal-overlay-form {
   display: none;
-  // visibility: hidden;
   opacity: 0;
   z-index: 900;
   position: absolute;
@@ -489,9 +477,7 @@ th {
 
 .modal-overlay-form._opened {
   display: inline;
-  // visibility: visible;
   opacity: 1;
-  // overflow-y: hidden;
 }
 
 .modal__overlay {
