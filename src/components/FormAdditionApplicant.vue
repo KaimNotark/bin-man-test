@@ -1,6 +1,5 @@
 <template>
-  <simplebar data-simplebar-auto-hide="true" class="form-container">
-    <!-- <div class="form-container"> -->
+    <div class="form-container">
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
@@ -85,13 +84,13 @@
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
-    <!-- </div> -->
-  </simplebar>
+    </div>
+  
 </template>
 
 <script>
-import simplebar from "simplebar-vue";
-import "simplebar/dist/simplebar.min.css";
+// import simplebar from "simplebar-vue";
+// import "simplebar/dist/simplebar.min.css";
 import AwesomeMask from "awesome-mask";
 import InputLoad from "./InputLoad.vue";
 import RatingInForm from "./RatingInForm.vue";
@@ -102,7 +101,7 @@ export default {
   name: "FormAdditionApplicant",
 
   components: {
-    simplebar,
+    // simplebar,
     InputLoad,
     OptionInSelect,
     RatingInForm,
@@ -280,13 +279,14 @@ export default {
 // }
 
 .form-container {
-  display: none;
+  // display: none;
   // visibility: hidden;
   // display: block;
-  overflow-x: hidden;
-  // overflow-y: auto;
+  // overflow: visible;
+  // overflow-x: hidden;
+  // overflow-y: hidden;
   width: 658px;
-  height: 804px;
+  height: 504px;
 }
 
 input:-webkit-autofill,
@@ -311,7 +311,7 @@ select:focus {
 
 .form {
   width: 650px;
-  border: 1px solid $color-gray;
+  // border: 1px solid $color-gray;
   background-color: $color-white;
   padding: 23px;
 

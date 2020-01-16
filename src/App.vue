@@ -5,7 +5,11 @@
       <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
         <div modal-overlay-close="modal-overlay" class="modal__overlay">
           <button class="modal-button-close" type="button" @click="modalClose">×</button>
-          <FormAdditionApplicant />
+          <div class="modal-backing">
+            <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
+              <FormAdditionApplicant />
+            </simplebar>
+          </div>
         </div>
       </div>
       <!-- / modal window form -->
@@ -175,6 +179,11 @@ $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 .simplebar-scrollbar.simplebar-visible:hover::before {
   opacity: 1;
 }
+
+.simplebar-track.simplebar-vertical {
+  background-color: $color-white;
+}
+
 // end -- styling the scroll bar --
 
 html {
@@ -466,7 +475,8 @@ th {
 // modal overlay form:
 
 .modal-overlay-form {
-  visibility: hidden;
+  display: none;
+  // visibility: hidden;
   opacity: 0;
   z-index: 900;
   position: absolute;
@@ -478,7 +488,8 @@ th {
 }
 
 .modal-overlay-form._opened {
-  visibility: visible;
+  display: inline;
+  // visibility: visible;
   opacity: 1;
   // overflow-y: hidden;
 }
@@ -514,5 +525,16 @@ th {
   background-color: $color-header__dark-gray;
   border-color: $color-input-focus;
   color: $color-input-focus;
+}
+.modal-backing {
+  width: 658px;
+  height: 544px;
+  padding-top: 20px;
+  background-color: $color-white;
+}
+.modal-form__simplebar {
+  width: 658px;
+  height: 504px;
+
 }
 </style>
