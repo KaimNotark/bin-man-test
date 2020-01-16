@@ -1,18 +1,18 @@
 <template>
-  <div class="container">
+  <div class="form__load-container">
     <span class="form__load-header">{{ variants[acceptType].header }}</span>
-    <p class="form__load-rem">{{ loadRem }}</p>
+    <p class="form__load-rem">{{ variants[acceptType].comment }}</p>
     <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
 
       <input
         @change="addFile($event.target.files)"
         :id="loadId"
-        class="form__input-file"
         type="file"
         name="fileName"
         autocomplete="off"
-        :accept="typeOfFiles"
+        :accept="variants[acceptType].accept"
+        class="form__input-file"
       />
     </label>
     <span
@@ -54,6 +54,19 @@ export default {
           size: 5242881,
           accept: "image/jpeg, image/png",
         },
+        summary: {
+          header: "резюме",
+          comment: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
+          size: 5242881,
+          accept: "image/jpeg, image/png",
+        },
+        test: {
+          header: "Архив с результатами тестового задания",
+          comment: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
+          size: 5242881,
+          accept: "image/jpeg, image/png",
+        },
+
         resume: {
           loadHeaderPhoto: "Фотография",
           loadRemPhoto: "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
@@ -121,16 +134,18 @@ export default {
 
 .form {
   &__label {
-    display: flex;
-    position: absolute;
+    // display: flex;
+    display: block;
+    position: relative;
     justify-content: center;
 
     width: 104px;
     height: 26px;
     border: solid 1px #d4e2e7;
 
-    margin-top: 1px;
+    // margin-top: 1px;
     margin-left: 4px;
+    // top: 27px;
     cursor: pointer;
 
     background: #386bf2;
@@ -167,7 +182,7 @@ export default {
     background: $color-input-background;
     border-radius: 3px;
     padding: 12px 10px 8px 120px;
-    margin-top: -4px;
+    margin-top: -31px;
   }
   ._color-text {
     color: $color-text-main;
@@ -194,6 +209,6 @@ export default {
   }
 }
 .form__lable-text {
-  margin: 7px auto;
+  margin: 7px 7px 7px 10px;
 }
 </style>

@@ -1,6 +1,19 @@
 <template>
   <div id="app">
     <div id="wrapper" class="wrapper">
+      <!-- modal window form -->
+      <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
+        <div modal-overlay-close="modal-overlay" class="modal__overlay">
+          <button class="modal-button-close" type="button" @click="modalClose">×</button>
+          <div class="modal-backing">
+            <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
+              <FormAdditionApplicant />
+            </simplebar>
+          </div>
+        </div>
+      </div>
+      <!-- / modal window form -->
+
       <header class="header">
         <div class="header-container">
           <img src="../public/images/logo.png" alt class="header-img" />
@@ -59,19 +72,6 @@
         </nav>
 
         <main class="main">
-          <!-- modal window form -->
-          <div
-            id="modal-overlay-form"
-            class="modal-overlay-form"
-            :class="{ _opened: modalIsOpened }"
-          >
-            <div modal-overlay-close="modal-overlay" class="modal__overlay">
-              <button class="modal-button-close" type="button" @click="modalClose">×</button>
-              <FormAdditionApplicant />
-            </div>
-          </div>
-          <!-- / modal window form -->
-
           <div class="main-header">
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
@@ -90,8 +90,36 @@
               </button>
             </div>
           </div>
+          <div class="tables-container">
+            <table class="main-table__header">
+              <thead>
+                <tr class="_height-40px">
+                  <th class="_width-25">
+                    <span class="_margin-left-19px">Соискатель</span>
+                  </th>
+                  <th class="_width-20">Телефон</th>
+                  <th>E-mail</th>
+                  <th class="_width-140px"></th>
+                  <th class="_width-25">Оценка соискателя</th>
+                  <th></th>
+                </tr>
+              </thead>
+            </table>
 
-          <Table />
+            <simplebar data-simplebar-auto-hide="false" class="main-table__body">
+              <Table />
+            </simplebar>
+
+            <table class="main-table__footer">
+              <tfoot>
+                <tr class="_height-40px">
+                  <td colspan="6">
+                    <button type="button" class="main-table__button">Показать еще</button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </main>
       </div>
     </div>
@@ -99,6 +127,8 @@
 </template>
 
 <script>
+import simplebar from "simplebar-vue";
+import "simplebar/dist/simplebar.min.css";
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 
@@ -106,6 +136,7 @@ export default {
   name: "app",
 
   components: {
+    simplebar,
     Table,
     FormAdditionApplicant
   },
@@ -136,8 +167,24 @@ export default {
 
 $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 
+// begin -- styling the scroll bar --
+.simplebar-scrollbar:before {
+  background-color: #8ea4b5;
+}
+
+.simplebar-scrollbar.simplebar-visible:hover::before {
+  opacity: 1;
+}
+
+.simplebar-track.simplebar-vertical {
+  background-color: $color-white;
+}
+
+// end -- styling the scroll bar --
+
 html {
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 .wrapper *,
@@ -147,14 +194,11 @@ html {
 }
 
 body {
-  min-height: 100vh;
   font-family: $font-family-primary;
   box-sizing: border-box;
 }
 
 .wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 #app {
@@ -163,15 +207,13 @@ body {
 
 .container-nav-main {
   display: flex;
-  min-height: 1250px;
 }
 
 .header {
-  height: 76px;
-  background-color: $color-input-background;
+  width: 100%;
+  position: relative;
 
   &-container {
-    height: 66px;
     padding: 15px 27px;
     background-color: $color-header__dark-gray;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
@@ -183,17 +225,16 @@ body {
 }
 
 .nav {
-  width: 90px;
-  background-color: $color-input-background;
-  margin-top: -10px;
+  position: relative;
 
   &-container {
-    width: 80px;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     padding: 15px;
     border-top: 1px solid $color-text-light;
     background-color: $color-nav__gray;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   }
 
   &-button {
@@ -255,12 +296,15 @@ body {
 
 .main {
   width: 100%;
-  padding: 11px 30px 20px 26px;
+  padding: 0px 30px 20px 26px;
   background-color: $color-input-background;
 
   &-header {
     display: flex;
     justify-content: space-between;
+    height: 68px;
+    padding-top: 11px;
+    background-color: $color-input-background;
   }
 
   &-title {
@@ -355,25 +399,85 @@ body {
   font-size: 22px;
 }
 
-// modal overlay form:
+th {
+  color: $color-text-main;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 12px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.main-table__header {
+  border-collapse: collapse;
+  background-color: $color-white;
+  width: 100%;
+}
+
+._height-40px {
+  height: 40px;
+}
+
+.main-table__body {
+  height: calc(100vh - (168px + 80px));
+  overflow-x: hidden;
+}
+
+.main-table__footer {
+  border-collapse: collapse;
+  background-color: $color-white;
+  width: 100%;
+}
+
+.main-table__button {
+  width: 100%;
+  height: 34px;
+  border: solid 1px $color-white;
+  border-radius: 3px;
+  background: $color-white;
+  transition: background-color 0.1s ease, color 0.3s ease;
+  cursor: pointer;
+
+  color: $color-text-main;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 11px;
+  text-transform: uppercase;
+}
+.main-table__button:hover {
+  background-color: $color-button-background-gray;
+  color: $color-nav__button-dark-gray;
+}
+
+._width-140px {
+  width: 140px;
+}
+._margin-left-19px {
+  margin-left: 19px;
+}
+._width-25 {
+  width: 25%;
+}
+._width-20 {
+  width: 20%;
+}
+// -- modal overlay form:
 
 .modal-overlay-form {
-  visibility: hidden;
+  display: none;
   opacity: 0;
   z-index: 900;
   position: absolute;
-  width: 1360px;
-  height: 1260px;
-  margin-top: -21px;
-  margin-left: -30px;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 67px;
   background: rgba(0, 0, 0, 0.5);
   transition: visibility 200ms ease-in, opacity 200ms ease-in;
 }
 
 .modal-overlay-form._opened {
-  visibility: visible;
+  display: inline;
   opacity: 1;
-  overflow-y: hidden;
 }
 
 .modal__overlay {
@@ -385,7 +489,7 @@ body {
   display: block;
   width: 30px;
   height: 30px;
-  font-size: 25px;
+  font-size: 24px;
   margin-top: 12px;
   margin-right: 10px;
   background: $color-white;
@@ -407,5 +511,16 @@ body {
   background-color: $color-header__dark-gray;
   border-color: $color-input-focus;
   color: $color-input-focus;
+}
+.modal-backing {
+  width: 658px;
+  height: 544px;
+  padding-top: 20px;
+  background-color: $color-white;
+}
+.modal-form__simplebar {
+  width: 658px;
+  height: 504px;
+
 }
 </style>
