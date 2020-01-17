@@ -2,6 +2,7 @@
   <div class="container-form-input">
     <label v-for="formInput in formInputs" :key="formInput.formInputId" class="form__label">
       <span class="form__span">{{ inputTitle }}</span>
+
       <input
         v-model="formInput.formInputContent"
         class="form__input _margin-top-7px"
@@ -100,7 +101,7 @@ export default {
   }),
 
   methods: {
-    addInput () {
+    addInput() {
       if (this.inputId < 3) {
         this.formInputs.push({
           formInputId: this.inputId++,
@@ -108,7 +109,6 @@ export default {
         });
 
         this.isButtonVisible = this.inputId > 2;
-
       }
     }
   },
@@ -174,7 +174,6 @@ button:focus {
   border-bottom: 1px solid $color-text-main;
 }
 
-
 .form {
   &__label {
     display: flex;
@@ -214,6 +213,37 @@ button:focus {
 ._button-hidden {
   visibility: hidden;
 }
+// change text color by placeholder
+::-webkit-input-placeholder {
+  /* Chrome */
+  color: $color-text-light;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: $color-text-light;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: $color-text-light;
+  opacity: 1;
+}
+:-moz-placeholder {
+  /* Firefox 4 - 18 */
+  color: $color-text-light;
+  opacity: 1;
+}
+
+// change background color by autofill
+@-webkit-keyframes autofill {
+  to {
+    color: $color-text-main;
+    background-color: $color-input-background;
+  }
+}
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+} 
 
 ._margin-top-7px {
   margin-top: 7px;

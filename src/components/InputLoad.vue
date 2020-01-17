@@ -16,7 +16,7 @@
       />
     </label>
     <span
-      :class="['form__file-name', '_color-text-light', { file: '_color-text' }]"
+      :class="['form__file-name', {'_color-text-light' : !isFileInInput}, { '_color-text' : isFileInInput } ]"
     >{{ fileName }}</span>
   </div>
 </template>
@@ -73,7 +73,7 @@ export default {
 
   methods: {
     addFile (files) {
-      // this.file = files[0];
+      this.file = files[0];
 
       this.fileName = files[0].name;
       this.sizeOfFile = this.variants[this.acceptType].size;

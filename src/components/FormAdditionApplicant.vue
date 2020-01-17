@@ -1,5 +1,5 @@
 <template>
-    <div class="form-container">
+  <div class="form-container">
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
@@ -20,7 +20,13 @@
 
       <label class="form__label _margin-top-21px">
         <span class="form__span">Вакансия</span>
-        <select class="form__select _light _margin-top-5px" required>
+        <!-- :class="[{'_button-hidden' : isButtonVisible }, inputButtonStyle]" {'_light' : option.id=='0'},-->
+
+        <select
+          @change="lighted"
+          :class="[ 'form__select',  '_margin-top-5px', { '_light' : isLight }]"
+          required
+        >
           <OptionInSelect
             v-for="option in options"
             :key="option.id"
@@ -64,12 +70,10 @@
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
-    </div>
-  
+  </div>
 </template>
 
 <script>
-
 import AwesomeMask from "awesome-mask";
 import InputLoad from "./InputLoad.vue";
 import RatingInForm from "./RatingInForm.vue";
@@ -91,6 +95,8 @@ export default {
   },
 
   data: () => ({
+    isLight: true,
+
     options: [
       {
         id: "0",
@@ -161,7 +167,15 @@ export default {
         title: "Оценка собеседования"
       }
     ]
-  })
+  }),
+
+  methods: {
+    lighted() {
+      this.isLight = false;
+      console.log("isLight = " + this.isLight);
+      console.log("options.id = " + this.options[2].id);
+    }
+  }
 };
 </script>
 
@@ -203,7 +217,7 @@ export default {
 %input {
   height: 35px;
   border: 1px solid $color-input-border;
-  background: $color-input-background;
+  background-color: $color-input-background;
   border-radius: 3px;
   padding: 10px;
 }
@@ -251,18 +265,53 @@ export default {
   height: 504px;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 10em white inset !important;
-}
-
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
   border: 1px solid $color-input-focus;
+}
+
+// change text color by placeholder
+::-webkit-input-placeholder {
+  /* Chrome */
+  color: $color-text-light;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: $color-text-light;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: $color-text-light;
+  opacity: 1;
+}
+:-moz-placeholder {
+  /* Firefox 4 - 18 */
+  color: $color-text-light;
+  opacity: 1;
+}
+
+// change background color by autofill
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//   -webkit-box-shadow: 0 0 0px 10em $color-input-background inset !important;
+// }
+
+@-webkit-keyframes autofill {
+  to {
+    color: $color-text-main;
+    background-color: $color-input-background;
+  }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }
 
 .container-row {
