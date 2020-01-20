@@ -461,8 +461,8 @@ th {
 ._width-20 {
   width: 20%;
 }
-// -- modal overlay form:
 
+// begin -- modal overlay form
 .modal-overlay-form {
   display: none;
   opacity: 0;
@@ -514,14 +514,14 @@ th {
 }
 .modal-backing {
   width: 658px;
-  // height: 544px;
   height: calc(100vh - 110px);
   padding-top: 20px;
   background-color: $color-white;
 }
 .modal-form__simplebar {
   width: 658px;
-  // height: 504px;
   height: calc(100vh - 150px);
 }
+// end -- modal overlay form
+
 </style>

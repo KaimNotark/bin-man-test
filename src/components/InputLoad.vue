@@ -123,20 +123,14 @@ export default {
 
 .form {
   &__label {
-    // display: flex;
     display: block;
     position: relative;
     justify-content: center;
-
     width: 104px;
     height: 26px;
     border: solid 1px #d4e2e7;
-
-    // margin-top: 1px;
     margin-left: 4px;
-    // top: 27px;
     cursor: pointer;
-
     background: #386bf2;
     border-radius: 3px;
     color: #ffffff;

@@ -1,8 +1,6 @@
 <template>
   <div class="container-form-input">
     <label v-for="formInput in formInputs" :key="formInput.formInputId" class="form__label">
-      <!-- <span class="form__span">{{ inputTitle }}</span> -->
-
       <input
         v-model="formInput.formInputContent"
         class="form__input _margin-top-7px"
@@ -123,14 +121,6 @@ export default {
 @import "../stylesheets/variables.scss";
 @import "../stylesheets/resets.scss";
 
-// %text-span {
-//   color: $color-text-main;
-//   font-size: 11px;
-//   font-weight: 700;
-//   line-height: 12px;
-//   text-transform: uppercase;
-// }
-
 %text-input {
   color: $color-text-main;
   font-size: 12px;
@@ -179,10 +169,6 @@ button:focus {
     display: flex;
     flex-direction: column;
   }
-
-  // &__span {
-  //   @extend %text-span;
-  // }
 
   &__input {
     @extend %text-input;

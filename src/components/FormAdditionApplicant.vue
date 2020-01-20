@@ -20,7 +20,6 @@
 
       <label class="form__label _margin-top-21px">
         <span class="form__span">Вакансия</span>
-        <!-- :class="[{'_button-hidden' : isButtonVisible }, inputButtonStyle]" {'_light' : option.id=='0'},-->
 
         <select
           @change="lighted"
@@ -264,7 +263,6 @@ export default {
 
 .form-container {
   width: 658px;
-  // height: 504px;
   height: calc(100vh - 150px);
 }
 

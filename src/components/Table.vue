@@ -1,27 +1,5 @@
 <template>
   <table class="main-table">
-    <!-- <thead>
-      <tr>
-        <th>
-          <span class="_margin-left-19px">Соискатель</span>
-        </th>
-        <th>Телефон</th>
-        <th>E-mail</th>
-        <th class="_width-140px"></th>
-        <th>Оценка соискателя</th>
-        <th></th>
-      </tr>
-    </thead> 
-
-      <tfoot>
-        <tr>
-          <td colspan="6" class="_height-36px">
-            <button type="button" class="main-table__button">Показать еще</button>
-          </td>
-        </tr>
-      </tfoot>
-    <div class="main-table__rows">
--->
       <tbody>
         <TableRow
           v-for="row in rows"
@@ -33,7 +11,6 @@
           :is-light-gray-mail="row.isLightGrayMail"
         />
       </tbody>
-    <!-- </div> -->
   </table>
 </template>
 
@@ -69,26 +46,6 @@ export default {
   width: 100%;
 }
 
-// .main-table__button {
-//   width: 100%;
-//   height: 34px;
-//   border: solid 1px $color-white;
-//   border-radius: 3px;
-//   background: $color-white;
-//   transition: background-color 0.1s ease, color 0.3s ease;
-//   cursor: pointer;
-
-//   color: $color-text-main;
-//   font-size: 11px;
-//   font-weight: 700;
-//   line-height: 11px;
-//   text-transform: uppercase;
-// }
-// .main-table__button:hover {
-//   background-color: $color-button-background-gray;
-//   color: $color-nav__button-dark-gray;
-// }
-
 th {
   color: $color-text-main;
   font-size: 11px;
@@ -98,11 +55,6 @@ th {
   text-align: left;
   height: 41px;
 }
-
-// .main-table__rows {
-//   height: calc(100vh - (168px + 20px));
-//   overflow: auto;
-// }
 
 ._margin-left-19px {
   margin-left: 19px;
