@@ -3,7 +3,7 @@
     <label v-for="formInput in formInputs" :key="formInput.formInputId" class="form__label">
       <input
         v-model="formInput.formInputContent"
-        class="form__input _margin-top-7px"
+        class="form__input"
         :type="inputType"
         :name="inputName"
         :maxlength="inputMaxlength"
@@ -164,6 +164,10 @@ button:focus {
   border-bottom: 1px solid $color-text-main;
 }
 
+.container-form-input {
+  margin-top: 10px;
+}
+
 .form {
   &__label {
     display: flex;
@@ -228,9 +232,5 @@ button:focus {
 input:-webkit-autofill {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
-} 
-
-._margin-top-7px {
-  margin-top: 7px;
 }
 </style>

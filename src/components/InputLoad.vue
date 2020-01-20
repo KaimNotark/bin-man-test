@@ -22,7 +22,6 @@
 </template>
 
 <script>
-
 export default {
   name: "InputLoad",
 
@@ -35,7 +34,7 @@ export default {
     acceptType: {
       type: String,
       required: true
-    },
+    }
   },
 
   data: () => ({
@@ -47,32 +46,35 @@ export default {
   }),
 
   computed: {
-    variants () {
+    variants() {
       return {
         photo: {
           header: "Фотография",
-          comment: "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
+          comment:
+            "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
           size: 5242881, // byte
-          accept: "image/jpeg, image/png",
+          accept: "image/jpeg, image/png"
         },
         summary: {
           header: "резюме",
-          comment: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
+          comment:
+            "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
           size: 52428801, // byte
-          accept: "image/jpeg, image/png",
+          accept: "image/jpeg, image/png"
         },
         test: {
           header: "Архив с результатами тестового задания",
-          comment: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
+          comment:
+            "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
           size: 52428801, // byte
-          accept: "image/jpeg, image/png",
+          accept: "image/jpeg, image/png"
         }
-      }
+      };
     }
   },
 
   methods: {
-    addFile (files) {
+    addFile(files) {
       this.file = files[0];
 
       this.fileName = files[0].name;
@@ -105,9 +107,8 @@ export default {
       console.log("fileSize - " + this.fileSize);
       console.log("sizeOfFile - " + this.sizeOfFile);
     }
-  },
+  }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -122,6 +123,10 @@ export default {
 }
 
 .form {
+  &__load-container {
+    margin-top: 16px;
+  }
+
   &__label {
     display: block;
     position: relative;

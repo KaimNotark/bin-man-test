@@ -328,29 +328,12 @@ td {
   display: none;
 }
 
-._light-gray {
-  color: $color-table__light-gray;
-}
-
-._letter-spacing-03 {
-  letter-spacing: -1px;
-}
-
 ._margin-top-10px {
   margin-top: 10px;
 }
-._margin-left-10px {
-  margin-left: 10px;
-}
-._margin-left-19px {
-  margin-left: 19px;
-}
-._width-140px {
-  width: 140px;
-}
 
-._height-36px {
-  height: 36px;
+._light-gray {
+  color: $color-table__light-gray;
 }
 
 ._light-gray-img {

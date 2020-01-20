@@ -45,24 +45,4 @@ export default {
   background-color: $color-white;
   width: 100%;
 }
-
-th {
-  color: $color-text-main;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 12px;
-  text-transform: uppercase;
-  text-align: left;
-  height: 41px;
-}
-
-._margin-left-19px {
-  margin-left: 19px;
-}
-._width-140px {
-  width: 140px;
-}
-._height-36px {
-  height: 36px;
-}
 </style>

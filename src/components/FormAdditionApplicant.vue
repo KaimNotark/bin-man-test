@@ -3,12 +3,12 @@
     <form class="form" id="formId" autocomplete="on">
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
-      <h2 class="form-subtitle _margin-top-22px">Основные данные</h2>
+      <h2 class="form-subtitle">Основные данные</h2>
 
-      <label class="form__label _margin-top-17px">
+      <label class="form__label">
         <span class="form__span">ФИО</span>
         <input
-          class="form__input _margin-top-7px"
+          class="form__input"
           type="text"
           name="name"
           autocomplete="on"
@@ -18,14 +18,10 @@
         />
       </label>
 
-      <label class="form__label _margin-top-21px">
+      <label class="form__label">
         <span class="form__span">Вакансия</span>
 
-        <select
-          @change="lighted"
-          :class="[ 'form__select',  '_margin-top-5px', { '_light' : isLight }]"
-          required
-        >
+        <select @change="lighted" :class="[ 'form__select', { '_light' : isLight }]" required>
           <OptionInSelect
             v-for="option in options"
             :key="option.id"
@@ -38,7 +34,7 @@
       <InputLoad load-id="0" accept-type="photo" class="form__input-load-file" />
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
+      <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
       <InputInForm v-bind="phone" />
@@ -47,20 +43,16 @@
       <InputInForm v-bind="mail" />
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
+      <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <InputLoad
-        load-id="1"
-        accept-type="summary"
-        class="form__input-load-summary _margin-top-12px"
-      />
+      <InputLoad load-id="1" accept-type="summary" />
 
-      <InputLoad load-id="2" accept-type="test" class="form__input-load-test _margin-top-17px" />
+      <InputLoad load-id="2" accept-type="test" />
 
       <hr class="form-devider" />
-      <h2 class="form-subtitle _margin-top-22px">Оценка соискателя</h2>
+      <h2 class="form-subtitle">Оценка соискателя</h2>
 
-      <div class="form__rating-container _margin-top-5px">
+      <div class="form__rating-container">
         <RatingInForm v-for="rating in ratings" :key="rating.id" :rating="rating" />
       </div>
 
@@ -261,11 +253,6 @@ export default {
   cursor: pointer;
 }
 
-.form-container {
-  width: 658px;
-  height: calc(100vh - 150px);
-}
-
 input:focus,
 textarea:focus,
 select:focus {
@@ -326,6 +313,11 @@ input:-webkit-autofill:active {
   background-color: $color-white;
   padding: 23px;
 
+  &-container {
+    width: 658px;
+    height: calc(100vh - 150px);
+  }
+
   &-devider {
     margin-top: 17px;
     width: 648px;
@@ -343,6 +335,7 @@ input:-webkit-autofill:active {
 
   &-subtitle {
     @extend %subtitle;
+    margin-top: 10px;
   }
 
   &__label {
@@ -352,11 +345,13 @@ input:-webkit-autofill:active {
 
   &__span {
     @extend %text-span;
+    margin-top: 16px;
   }
 
   &__input {
     @extend %text-input;
     @extend %input;
+    margin-top: 10px;
   }
 
   &__input::-webkit-input-placeholder {
@@ -366,6 +361,7 @@ input:-webkit-autofill:active {
   &__select {
     @extend %select;
     @extend %option;
+    margin-top: 10px;
   }
 
   &__option {
@@ -386,7 +382,7 @@ input:-webkit-autofill:active {
 
   &__input-header {
     display: block;
-    margin-top: 22px;
+    margin-top: 16px;
   }
 
   &__btn-add-phone {
@@ -411,8 +407,6 @@ input:-webkit-autofill:active {
   &__rating-container {
     display: flex;
     justify-content: space-between;
-    width: 550px;
-    margin-top: 25px;
   }
 
   &__btn-reset {
@@ -476,39 +470,5 @@ input:-webkit-autofill:active {
 
 ._button-hidden {
   visibility: hidden;
-}
-
-._margin-top-5px {
-  margin-top: 5px;
-}
-._margin-top-7px {
-  margin-top: 7px;
-}
-._margin-top-10px {
-  margin-top: 10px;
-}
-._margin-top-12px {
-  margin-top: 12px;
-}
-._margin-top-13px {
-  margin-top: 13px;
-}
-._margin-top-14px {
-  margin-top: 14px;
-}
-._margin-top-17px {
-  margin-top: 17px;
-}
-._margin-top-20px {
-  margin-top: 20px;
-}
-._margin-top-21px {
-  margin-top: 21px;
-}
-._margin-top-22px {
-  margin-top: 22px;
-}
-._margin-top-27px {
-  margin-top: 27px;
 }
 </style>
