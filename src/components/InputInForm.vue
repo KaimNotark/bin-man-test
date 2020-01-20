@@ -1,7 +1,7 @@
 <template>
   <div class="container-form-input">
     <label v-for="formInput in formInputs" :key="formInput.formInputId" class="form__label">
-      <span class="form__span">{{ inputTitle }}</span>
+      <!-- <span class="form__span">{{ inputTitle }}</span> -->
 
       <input
         v-model="formInput.formInputContent"
@@ -123,13 +123,13 @@ export default {
 @import "../stylesheets/variables.scss";
 @import "../stylesheets/resets.scss";
 
-%text-span {
-  color: $color-text-main;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 12px;
-  text-transform: uppercase;
-}
+// %text-span {
+//   color: $color-text-main;
+//   font-size: 11px;
+//   font-weight: 700;
+//   line-height: 12px;
+//   text-transform: uppercase;
+// }
 
 %text-input {
   color: $color-text-main;
@@ -178,12 +178,11 @@ button:focus {
   &__label {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
   }
 
-  &__span {
-    @extend %text-span;
-  }
+  // &__span {
+  //   @extend %text-span;
+  // }
 
   &__input {
     @extend %text-input;

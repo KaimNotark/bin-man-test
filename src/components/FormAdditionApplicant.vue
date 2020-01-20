@@ -41,9 +41,11 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Контактные данные</h2>
 
-      <InputInForm v-bind="phone" class="_margin-top-17px" />
+      <span class="form__span form__input-header">Номер телефона</span>
+      <InputInForm v-bind="phone" />
 
-      <InputInForm v-bind="mail" class="_margin-top-20px" />
+      <span class="form__span form__input-header">Введите E-mail</span>
+      <InputInForm v-bind="mail" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle _margin-top-22px">Резюме и результаты тестового задания</h2>
@@ -262,7 +264,8 @@ export default {
 
 .form-container {
   width: 658px;
-  height: 504px;
+  // height: 504px;
+  height: calc(100vh - 150px);
 }
 
 input:focus,
@@ -382,6 +385,12 @@ input:-webkit-autofill:active {
   &__input-load-file {
     margin-top: 16px;
   }
+
+  &__input-header {
+    display: block;
+    margin-top: 22px;
+  }
+
   &__btn-add-phone {
     @extend %btn-add;
     width: 173px;
