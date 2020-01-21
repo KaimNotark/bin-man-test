@@ -1,7 +1,7 @@
 <template>
   <div class="form__load-container">
     <span class="form__load-header">{{ variants[acceptType].header }}</span>
-    <p class="form__load-rem">{{ variants[acceptType].comment }}</p>
+    <p class="form__load-comment">{{ variants[acceptType].comment }}</p>
     <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
 
@@ -16,13 +16,12 @@
       />
     </label>
     <span
-      :class="['form__file-name', '_color-text-light', { file: '_color-text' }]"
+      :class="['form__file-name', {'_color-text-light' : !isFileInInput}, { '_color-text' : isFileInInput } ]"
     >{{ fileName }}</span>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "InputLoad",
 
@@ -35,7 +34,7 @@ export default {
     acceptType: {
       type: String,
       required: true
-    },
+    }
   },
 
   data: () => ({
@@ -43,53 +42,45 @@ export default {
     isFileInInput: false,
     fileSize: 0,
     file: null,
+    sizeOfFile: 0
   }),
 
   computed: {
-    variants () {
+    variants() {
       return {
         photo: {
           header: "Фотография",
-          comment: "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
-          size: 5242881,
-          accept: "image/jpeg, image/png",
+          comment:
+            "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
+          size: 5242881, // byte
+          accept: "image/jpeg, image/png"
         },
         summary: {
           header: "резюме",
-          comment: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
-          size: 5242881,
-          accept: "image/jpeg, image/png",
+          comment:
+            "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
+          size: 52428801, // byte
+          accept: "image/jpeg, image/png"
         },
         test: {
           header: "Архив с результатами тестового задания",
-          comment: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
-          size: 5242881,
-          accept: "image/jpeg, image/png",
-        },
-
-        resume: {
-          loadHeaderPhoto: "Фотография",
-          loadRemPhoto: "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
-          sizeOfFilePhoto: 5242881,
-          typeOfFilesPhoto: "image/jpeg, image/png",
-
-          loadHeaderSummary: "резюме",
-          loadRemSummary: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
-          sizeOfFileSummary: 52428801,
-          typeOfFilesSummary: "application/pdf, application/msword",
-
-          loadHeaderTest: "Архив с результатами тестового задания",
-          loadRemTest: "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
-          sizeOfFileTest: 52428801,
-          typeOfFilesTest: "application/zip, application/rar",
+          comment:
+            "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
+          size: 52428801, // byte
+          accept: "image/jpeg, image/png"
         }
-      }
+      };
     }
   },
 
   methods: {
-    addFile (files) {
+    addFile(files) {
       this.file = files[0];
+
+      this.fileName = files[0].name;
+      this.sizeOfFile = this.variants[this.acceptType].size;
+
+      this.isFileInInput = files.length > 0;
 
       // files.length > 0
       //   ? (this.isFileInInput = true)
@@ -103,8 +94,8 @@ export default {
 
       this.fileSize = files[0].size;
       if (this.fileSize > this.sizeOfFile) {
-        alert("Файл '" + this.filePhotoName + "' слишком большой.");
-        this.filePhotoName = "Файл не выбран";
+        alert("Файл '" + this.fileName + "' слишком большой.");
+        this.fileName = "Файл не выбран";
         this.isFileInInput = false;
       }
 
@@ -116,9 +107,8 @@ export default {
       console.log("fileSize - " + this.fileSize);
       console.log("sizeOfFile - " + this.sizeOfFile);
     }
-  },
+  }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -133,21 +123,19 @@ export default {
 }
 
 .form {
+  &__load-container {
+    margin-top: 16px;
+  }
+
   &__label {
-    // display: flex;
     display: block;
     position: relative;
     justify-content: center;
-
     width: 104px;
     height: 26px;
     border: solid 1px #d4e2e7;
-
-    // margin-top: 1px;
     margin-left: 4px;
-    // top: 27px;
     cursor: pointer;
-
     background: #386bf2;
     border-radius: 3px;
     color: #ffffff;
@@ -191,7 +179,7 @@ export default {
     color: $color-text-light;
   }
 
-  &__load-rem {
+  &__load-comment {
     color: $color-text-light;
     font-size: 10px;
     font-weight: 400;
