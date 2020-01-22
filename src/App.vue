@@ -108,6 +108,7 @@
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <!-- <Table /> -->
+              <div class="all-applicants">{{ allApplicants }}</div>
             </simplebar>
 
             <table class="main-table__footer">
@@ -145,7 +146,10 @@ export default {
   data: function() {
     return {
       counterApplicants: 67,
-      modalIsOpened: false
+      modalIsOpened: false,
+      allApplicants: [],
+      url: "http://localhost:1337/applicants"
+
     };
   },
 
@@ -158,17 +162,20 @@ export default {
       this.modalIsOpened = false;
     },
 
-    async showAllShips() {
-      while (this.url != null) {
-        await axios
-          .get(this.url)
-          .then(response => {
-            this.url = response.data.next;
-            this.starships = this.starships.concat(response.data.results);
-          })
-          .catch(error => console.log(error));
-      }
+    async showApplicants() {
+      console.log("Button SHOW ALL APPLICANTS pressed.");
+
+      // while (this.url != null) {
+      await axios
+        .get(this.url)
+        .then(response => {
+          // this.url = response.data.next;
+          this.allApplicants = response.data[0].name;
+          console.log("allApplicants -- " + this.allApplicants);
+        })
+        .catch(error => console.log(error));
     }
+    // }
   }
 };
 </script>
