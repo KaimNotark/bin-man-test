@@ -145,10 +145,11 @@ export default {
 
   data: function() {
     return {
-      counterApplicants: 67,
+      counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
-      url: "http://localhost:1337/applicants"
+      url: "http://localhost:1337/applicants",
+      urlCount: "http://localhost:1337/applicants/count"
 
     };
   },
@@ -172,6 +173,15 @@ export default {
           // this.url = response.data.next;
           this.allApplicants = response.data[0].name;
           console.log("allApplicants -- " + this.allApplicants);
+        })
+        .catch(error => console.log(error));
+
+        axios
+        .get(this.urlCount)
+        .then(response => {
+          // this.url = response.data.next;
+          this.counterApplicants = response.data;
+          console.log("counterApplicants -- " + this.counterApplicants);
         })
         .catch(error => console.log(error));
     }
