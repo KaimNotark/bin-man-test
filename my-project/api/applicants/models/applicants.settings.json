@@ -1,0 +1,22 @@
+{
+  "info": {
+    "name": "Applicants"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "mail": {
+      "type": "email"
+    }
+  },
+  "connection": "default",
+  "collectionName": "applicants"
+}

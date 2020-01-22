@@ -79,7 +79,7 @@
             </div>
 
             <div class="main-button">
-              <button class="main-button__selected" type="button">
+              <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">Избранные</span>
               </button>
@@ -107,7 +107,7 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table />
+              <!-- <Table /> -->
             </simplebar>
 
             <table class="main-table__footer">
@@ -129,7 +129,8 @@
 <script>
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
-import Table from "./components/Table.vue";
+import axios from "axios";
+// import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 
 export default {
@@ -137,7 +138,7 @@ export default {
 
   components: {
     simplebar,
-    Table,
+    // Table,
     FormAdditionApplicant
   },
 
@@ -155,6 +156,18 @@ export default {
 
     modalClose: function() {
       this.modalIsOpened = false;
+    },
+
+    async showAllShips() {
+      while (this.url != null) {
+        await axios
+          .get(this.url)
+          .then(response => {
+            this.url = response.data.next;
+            this.starships = this.starships.concat(response.data.results);
+          })
+          .catch(error => console.log(error));
+      }
     }
   }
 };
@@ -523,5 +536,4 @@ th {
   height: calc(100vh - 150px);
 }
 // end -- modal overlay form
-
 </style>
