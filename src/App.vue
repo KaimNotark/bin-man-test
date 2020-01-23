@@ -79,9 +79,27 @@
             </div>
 
             <div class="main-button">
+              <input 
+              type="text" 
+              placeholder="enter id" 
+              v-model="idDell" 
+              style="height: 30px; width: 100px;"/>
+
+              <p>ID fo dell: {{ idDell }}</p>
+
+              <button @click="dellApplicants" class="main-button__selected" type="button">
+                <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">Удалить</span>
+              </button>
+
+              <button @click="addApplicants" class="main-button__selected" type="button">
+                <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">Добавить</span>
+              </button>
+
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">Избранные</span>
+                <span class="main-button__text">Показать</span>
               </button>
 
               <button class="main-button__add" type="button" @click="modalOpen">
@@ -148,9 +166,22 @@ export default {
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
+      dellOneApplicant: {
+        name: "Добавленцев Иван Натанович",
+        phone: 88008008888,
+        mail: "dobavlenceff@binman.ru"
+      },
+      addOneApplicant: {
+        name: "Добавленцев Иван Натанович",
+        phone: 88008008888,
+        mail: "dobavlenceff@binman.ru"
+      },
+      urlDell: "http://localhost:1337/applicants/",
+      urlAdd: "http://localhost:1337/applicants",
       url: "http://localhost:1337/applicants",
-      urlCount: "http://localhost:1337/applicants/count"
+      urlCount: "http://localhost:1337/applicants/count",
 
+      idDell: null
     };
   },
 
@@ -163,20 +194,40 @@ export default {
       this.modalIsOpened = false;
     },
 
+    async dellApplicants() {
+      console.log("Button DELL APPLICANT pressed.");
+
+      await axios
+        .delete(this.urlDell + this.idDell)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => console.log(error));
+    },
+
+    async addApplicants() {
+      console.log("Button ADD APPLICANT pressed.");
+
+      await axios
+        .post(this.urlAdd, this.addOneApplicant)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => console.log(error));
+    },
+
     async showApplicants() {
       console.log("Button SHOW ALL APPLICANTS pressed.");
 
-      // while (this.url != null) {
       await axios
         .get(this.url)
         .then(response => {
-          // this.url = response.data.next;
-          this.allApplicants = response.data[0].name;
+          this.allApplicants = response.data;
           console.log("allApplicants -- " + this.allApplicants);
         })
         .catch(error => console.log(error));
 
-        axios
+      axios
         .get(this.urlCount)
         .then(response => {
           // this.url = response.data.next;
@@ -356,7 +407,7 @@ body {
   &-button {
     display: flex;
     justify-content: space-between;
-    width: 306px;
+    // width: 306px;
 
     &__selected {
       display: flex;
