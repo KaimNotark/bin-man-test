@@ -127,8 +127,10 @@
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <!-- <Table /> -->
               <div class="all-applicants">{{ allApplicants }}</div>
+<!-- begin ax2 -->
+<ax2 />
+<!-- end ax2 -->
             </simplebar>
-
             <table class="main-table__footer">
               <tfoot>
                 <tr class="_height-40px">
@@ -151,6 +153,7 @@ import "simplebar/dist/simplebar.min.css";
 import axios from "axios";
 // import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
+import ax2 from "./components/ax2.vue"
 
 export default {
   name: "app",
@@ -158,7 +161,8 @@ export default {
   components: {
     simplebar,
     // Table,
-    FormAdditionApplicant
+    FormAdditionApplicant,
+    ax2
   },
 
   data: function() {
