@@ -16,7 +16,7 @@
 
       <header class="header">
         <div class="header-container">
-          <img src="../public/images/logo.png" alt class="header-img" />
+          <img src="/images/logo.png" alt class="header-img" />
         </div>
       </header>
 
@@ -45,7 +45,7 @@
             </svg>
 
             <button class="nav-button _active" type="button">
-              <img src="../public/images/clients.png" alt="Клиенты" class="nav-button__img" />
+              <img src="/images/clients.png" alt="Клиенты" class="nav-button__img" />
             </button>
 
             <svg
@@ -75,7 +75,7 @@
           <div class="main-header">
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
-              <p class="main-title__counter">Всего соискателей: {{ counterApplicants }}</p>
+              <p class="main-title__counter">Всего соискателей: {{ allApplicants.length }}</p>
             </div>
 
             <div class="main-button">
@@ -87,18 +87,18 @@
 
               <p>ID fo dell: {{ idDell }}</p>
 
-              <button @click="dellApplicants" class="main-button__selected" type="button">
-                <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
+              <button @click="removeById" class="main-button__selected" type="button">
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">Удалить</span>
               </button>
 
               <button @click="addApplicants" class="main-button__selected" type="button">
-                <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">Добавить</span>
               </button>
 
               <button @click="showApplicants" class="main-button__selected" type="button">
-                <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">Показать</span>
               </button>
 
@@ -108,6 +108,7 @@
               </button>
             </div>
           </div>
+          
           <div class="tables-container">
             <table class="main-table__header">
               <thead>
@@ -125,21 +126,15 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <!-- <Table /> -->
+              <Table />
               <div class="all-applicants">{{ allApplicants }}</div>
 <!-- begin ax2 -->
 <!-- <ax2 /> -->
 <!-- end ax2 -->
             </simplebar>
-            <table class="main-table__footer">
-              <tfoot>
-                <tr class="_height-40px">
-                  <td colspan="6">
-                    <button type="button" class="main-table__button">Показать еще</button>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+            <div class="main-table__footer">
+              <button type="button" class="main-table__button">Показать еще</button>
+            </div>
           </div>
         </main>
       </div>
@@ -148,9 +143,12 @@
 </template>
 
 <script>
+
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
-import axios from "axios";
+
+import { Applicants } from './Api';
+
 // import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 // import ax2 from "./components/ax2.vue"
@@ -172,21 +170,21 @@ export default {
       allApplicants: [],
       dellOneApplicant: {
         name: "Добавленцев Иван Натанович",
-        phone: 88008008888,
+        phone: '88008008888',
         mail: "dobavlenceff@binman.ru"
       },
       addOneApplicant: {
         name: "Добавленцев Иван Натанович",
-        phone: 88008008888,
+        phone: '88008008888',
         mail: "dobavlenceff@binman.ru"
       },
-      urlDell: "http://localhost:1337/applicants/",
-      urlAdd: "http://localhost:1337/applicants",
-      url: "http://localhost:1337/applicants",
-      urlCount: "http://localhost:1337/applicants/count",
-
+      
       idDell: null
     };
+  },
+
+  created () {
+    this.showApplicants()
   },
 
   methods: {
@@ -198,55 +196,36 @@ export default {
       this.modalIsOpened = false;
     },
 
-    async dellApplicants() {
+    async removeById (id) {
       console.log("Button DELL APPLICANT pressed.");
-
-      await axios
-        .delete(this.urlDell + this.idDell)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => console.log(error));
+      try {
+        this.allApplicants = await Applicants.removeById(id);
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     async addApplicants() {
       console.log("Button ADD APPLICANT pressed.");
-
-      await axios
-        .post(this.urlAdd, this.addOneApplicant)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => console.log(error));
     },
 
     async showApplicants() {
       console.log("Button SHOW ALL APPLICANTS pressed.");
-
-      await axios
-        .get(this.url)
-        .then(response => {
-          this.allApplicants = response.data;
-          console.log("allApplicants -- " + this.allApplicants);
-        })
-        .catch(error => console.log(error));
-
-      axios
-        .get(this.urlCount)
-        .then(response => {
-          // this.url = response.data.next;
-          this.counterApplicants = response.data;
-          console.log("counterApplicants -- " + this.counterApplicants);
-        })
-        .catch(error => console.log(error));
+      try {
+        this.allApplicants = await Applicants.showApplicants();
+      } catch (error) {
+        console.error(error);
+      }
     }
-    // }
   }
 };
+
 </script>
 
 <style lang="scss">
+
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
 @import "./stylesheets/variables.scss";
 @import "./stylesheets/resets.scss";
 

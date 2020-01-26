@@ -134,7 +134,7 @@ export default {
   }),
 
   computed: {
-    isNonePhone () {
+    isEmptyPhone () {
       return this.phone && this.phone.length
     }
   }
