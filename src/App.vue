@@ -163,7 +163,7 @@ export default {
     // ax2
   },
 
-  data: function() {
+  data () {
     return {
       counterApplicants: 0,
       modalIsOpened: false,
@@ -188,11 +188,11 @@ export default {
   },
 
   methods: {
-    modalOpen: function() {
+    modalOpen () {
       this.modalIsOpened = true;
     },
 
-    modalClose: function() {
+    modalClose () {
       this.modalIsOpened = false;
     },
 
