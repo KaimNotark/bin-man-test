@@ -55,11 +55,11 @@ class ApplicantsApi {
   }
 
   async showApplicants() {
-    console.log("Button SHOW ALL APPLICANTS pressed.");
+    console.log("CLASS Function SHOW ALL APPLICANTS run.");
 
     try {
       const { data } = await axios.get(this.baseUrl)
-      console.log("allApplicants --", data);
+      console.log("CLASS allApplicants -- ", data);
       return data;
     } catch (error) {
       console.log(error);

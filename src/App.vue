@@ -191,9 +191,10 @@ export default {
     },
 
     async showApplicants() {
-      console.log("Button SHOW ALL APPLICANTS pressed.");
+      console.log("APP Function SHOW ALL APPLICANTS run.");
       try {
         this.allApplicants = await Applicants.showApplicants();
+        console.log("APP allApplicants -- " + this.allApplicants);
       } catch (error) {
         console.error(error);
       }
