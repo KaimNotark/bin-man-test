@@ -57,7 +57,13 @@
       </div>
     </td>
 
-    <td width="140"></td>
+    <td>
+      <div class="container-buttons">
+        <ul class="buttons-list">
+          <ResumeButton v-for="button in buttons" :key="button.id" :button="button" />
+        </ul>
+      </div>
+    </td>
 
     <td>
       <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingValue" />

@@ -79,27 +79,9 @@
             </div>
 
             <div class="main-button">
-              <input 
-              type="text" 
-              placeholder="enter id" 
-              v-model="idDell" 
-              style="height: 30px; width: 100px;"/>
-
-              <p>ID fo dell: {{ idDell }}</p>
-
-              <button @click="removeById" class="main-button__selected" type="button">
-                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">Удалить</span>
-              </button>
-
-              <button @click="addApplicants" class="main-button__selected" type="button">
-                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">Добавить</span>
-              </button>
-
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">Показать</span>
+                <span class="main-button__text">избранные</span>
               </button>
 
               <button class="main-button__add" type="button" @click="modalOpen">
@@ -108,7 +90,7 @@
               </button>
             </div>
           </div>
-          
+
           <div class="tables-container">
             <table class="main-table__header">
               <thead>
@@ -128,9 +110,9 @@
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table />
               <div class="all-applicants">{{ allApplicants }}</div>
-<!-- begin ax2 -->
-<!-- <ax2 /> -->
-<!-- end ax2 -->
+              <!-- begin ax2 -->
+              <!-- <ax2 /> -->
+              <!-- end ax2 -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -143,11 +125,10 @@
 </template>
 
 <script>
-
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 
-import { Applicants } from './Api';
+import { Applicants } from "./Api";
 
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
@@ -163,40 +144,40 @@ export default {
     // ax2
   },
 
-  data () {
+  data() {
     return {
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
       dellOneApplicant: {
         name: "Добавленцев Иван Натанович",
-        phone: '88008008888',
+        phone: "88008008888",
         mail: "dobavlenceff@binman.ru"
       },
       addOneApplicant: {
         name: "Добавленцев Иван Натанович",
-        phone: '88008008888',
+        phone: "88008008888",
         mail: "dobavlenceff@binman.ru"
       },
-      
+
       idDell: null
     };
   },
 
-  created () {
-    this.showApplicants()
+  created() {
+    this.showApplicants();
   },
 
   methods: {
-    modalOpen () {
+    modalOpen() {
       this.modalIsOpened = true;
     },
 
-    modalClose () {
+    modalClose() {
       this.modalIsOpened = false;
     },
 
-    async removeById (id) {
+    async removeById(id) {
       console.log("Button DELL APPLICANT pressed.");
       try {
         this.allApplicants = await Applicants.removeById(id);
@@ -219,11 +200,9 @@ export default {
     }
   }
 };
-
 </script>
 
 <style lang="scss">
-
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 @import "./stylesheets/variables.scss";
@@ -397,6 +376,7 @@ body {
       justify-content: space-around;
       width: 116px;
       height: 36px;
+      margin-right: 10px;
       border: solid 1px $color-button-border;
       border-radius: 3px;
       background: $color-white;
