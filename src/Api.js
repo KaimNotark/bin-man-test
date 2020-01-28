@@ -5,218 +5,31 @@ class ApplicantsApi {
   constructor () {
     this.baseUrl = 'http://localhost:1337/applicants'
     
-    this.applicants = [
-      {
-        id: "0",
-        avatar: "/images/binman.png",
-        name: "Бинман Иван Натанович",
-        vacancy: "Вакансия: Full-stack разработчик",
-        phone: "+7 (900) 800-70-60",
-        mail: "ioan@binman.ru",
-        isHiddenPhone: false,
-        isHiddenMail: false,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#abd02d",
-        ratingValue: 4
-      },
-      {
-        id: "1",
-        avatar: "/images/durkoff.png",
-        name: "Дурков Павел Валерьевич",
-        vacancy: "Вакансия: Full-stack разработчик",
-        phone: "Телефон не указан",
-        mail: "durkov@vkontakte.ru",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: true,
-        isLightGrayMail: false,
-        ratingColor: "#ff5d00",
-        ratingValue: 1
-      },
-      {
-        id: "2",
-        avatar: "/images/lebedin.png",
-        name: "Лебедин Артеймий Андреевич",
-        vacancy: "Вакансия: Web-дизайнер",
-        phone: "+7 (800) 555-35-35",
-        mail: "design@lebedin.ru",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#dae700",
-        ratingValue: 3
-      },
-      {
-        id: "3",
-        avatar: "/images/noname.png",
-        name: "Чулков Олег",
-        vacancy: "Вакансия: Web-дизайнер",
-        phone: "Телефон не указан",
-        mail: "E-mail не указан",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: true,
-        isLightGrayMail: true,
-        ratingColor: "#ffa800",
-        ratingValue: 2
-      },
-      {
-        id: "4",
-        avatar: "/images/fedora.png",
-        name: "Федора Линукс Линусович",
-        vacancy: "Вакансия: Front-end разработчик",
-        phone: "+7 (800) 200-06-60",
-        mail: "ioan@binman.ru",
-        isHiddenPhone: false,
-        isHiddenMail: false,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#67c600",
-        ratingValue: 5
-      },
-      {
-        id: "5",
-        avatar: "/images/binman.png",
-        name: "Бинман Иван Натанович",
-        vacancy: "Вакансия: Full-stack разработчик",
-        phone: "+7 (900) 800-70-60",
-        mail: "ioan@binman.ru",
-        isHiddenPhone: false,
-        isHiddenMail: false,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#abd02d",
-        ratingValue: 4
-      },
-      {
-        id: "6",
-        avatar: "/images/durkoff.png",
-        name: "Дурков Павел Валерьевич",
-        vacancy: "Вакансия: Full-stack разработчик",
-        phone: "Телефон не указан",
-        mail: "durkov@vkontakte.ru",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: true,
-        isLightGrayMail: false,
-        ratingColor: "#ff5d00",
-        ratingValue: 1
-      },
-      {
-        id: "7",
-        avatar: "/images/lebedin.png",
-        name: "Лебедин Артеймий Андреевич",
-        vacancy: "Вакансия: Web-дизайнер",
-        phone: "+7 (800) 555-35-35",
-        mail: "design@lebedin.ru",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#dae700",
-        ratingValue: 3
-      },
-      {
-        id: "8",
-        avatar: "/images/noname.png",
-        name: "Чулков Олег",
-        vacancy: "Вакансия: Web-дизайнер",
-        phone: "Телефон не указан",
-        mail: "E-mail не указан",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: true,
-        isLightGrayMail: true,
-        ratingColor: "#ffa800",
-        ratingValue: 2
-      },
-      {
-        id: "9",
-        avatar: "/images/fedora.png",
-        name: "Федора Линукс Линусович",
-        vacancy: "Вакансия: Front-end разработчик",
-        phone: "+7 (800) 200-06-60",
-        mail: "ioan@binman.ru",
-        isHiddenPhone: false,
-        isHiddenMail: false,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#67c600",
-        ratingValue: 5
-      },
-      {
-        id: "10",
-        avatar: "/images/binman.png",
-        name: "Бинман Иван Натанович",
-        vacancy: "Вакансия: Full-stack разработчик",
-        phone: "+7 (900) 800-70-60",
-        mail: "ioan@binman.ru",
-        isHiddenPhone: false,
-        isHiddenMail: false,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#abd02d",
-        ratingValue: 4
-      },
-      {
-        id: "11",
-        avatar: "/images/durkoff.png",
-        name: "Дурков Павел Валерьевич",
-        vacancy: "Вакансия: Full-stack разработчик",
-        phone: "Телефон не указан",
-        mail: "durkov@vkontakte.ru",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: true,
-        isLightGrayMail: false,
-        ratingColor: "#ff5d00",
-        ratingValue: 1
-      },
-      {
-        id: "12",
-        avatar: "/images/lebedin.png",
-        name: "Лебедин Артеймий Андреевич",
-        vacancy: "Вакансия: Web-дизайнер",
-        phone: "+7 (800) 555-35-35",
-        mail: "design@lebedin.ru",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#dae700",
-        ratingValue: 3
-      },
-      {
-        id: "13",
-        avatar: "/images/noname.png",
-        name: "Чулков Олег",
-        vacancy: "Вакансия: Web-дизайнер",
-        phone: "Телефон не указан",
-        mail: "E-mail не указан",
-        isHiddenPhone: true,
-        isHiddenMail: true,
-        isLightGrayPhone: true,
-        isLightGrayMail: true,
-        ratingColor: "#ffa800",
-        ratingValue: 2
-      },
-      {
-        id: "14",
-        avatar: "/images/fedora.png",
-        name: "Федора Линукс Линусович",
-        vacancy: "Вакансия: Front-end разработчик",
-        phone: "+7 (800) 200-06-60",
-        mail: "ioan@binman.ru",
-        isHiddenPhone: false,
-        isHiddenMail: false,
-        isLightGrayPhone: false,
-        isLightGrayMail: false,
-        ratingColor: "#67c600",
-        ratingValue: 5
-      }
-    ]
+    // this.applicants = [
+    //   {
+    //     id: "0",
+    //     name: "Бинман Иван Натанович", // text
+    //     vacancy: "Вакансия: Full-stack разработчик", // text
+    //     photo: "/images/binman.png", // file
+    //     phone1: "+7 (900) 800-70-60", // text
+    //     phone2: "+7 (900) 800-70-60", // text
+    //     phone3: "+7 (900) 800-70-60", // text
+    //     mail1: "ioan@binman.ru", // text
+    //     mail2: "ioan@binman.ru", // text
+    //     mail3: "ioan@binman.ru", // text
+    //     summary: "",  // file
+    //     test: "", // file
+    //     ratingSummary: 4, // number integer
+    //     ratingTest: 4, // number integer
+    //     ratingInterview: 4 // number integer
+
+    //     // isHiddenPhone: false,
+    //     // isHiddenMail: false,
+    //     // isLightGrayPhone: false,
+    //     // isLightGrayMail: false,
+    //     // ratingColor: "#abd02d",
+    //   }
+    // ]
   }
 
   async removeById (id) {

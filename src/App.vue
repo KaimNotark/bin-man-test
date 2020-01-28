@@ -149,7 +149,7 @@ import "simplebar/dist/simplebar.min.css";
 
 import { Applicants } from './Api';
 
-// import Table from "./components/Table.vue";
+import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 // import ax2 from "./components/ax2.vue"
 
@@ -158,7 +158,7 @@ export default {
 
   components: {
     simplebar,
-    // Table,
+    Table,
     FormAdditionApplicant
     // ax2
   },

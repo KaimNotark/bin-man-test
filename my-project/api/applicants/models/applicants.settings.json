@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "applicants",
   "info": {
     "name": "Applicants"
   },
@@ -10,13 +12,41 @@
     "name": {
       "type": "string"
     },
-    "phone": {
-      "type": "biginteger"
+    "vacancy": {
+      "type": "string"
     },
-    "mail": {
-      "type": "email"
+    "photo": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "phone1": {
+      "type": "string"
+    },
+    "mail1": {
+      "type": "string"
+    },
+    "summary": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "test": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "ratingSummary": {
+      "type": "integer"
+    },
+    "ratingTest": {
+      "type": "integer"
+    },
+    "ratingInterview": {
+      "type": "integer"
     }
-  },
-  "connection": "default",
-  "collectionName": "applicants"
+  }
 }
