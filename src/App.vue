@@ -109,7 +109,7 @@
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table />
-              <!-- <div class="all-applicants">{{ allApplicants }}</div> -->
+              <div class="all-applicants">{{ allApplicants }}</div>
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->

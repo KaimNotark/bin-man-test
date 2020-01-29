@@ -5,31 +5,6 @@ class ApplicantsApi {
   constructor () {
     this.baseUrl = 'http://localhost:1337/applicants'
     
-    // this.applicants = [
-    //   {
-    //     id: "0",
-    //     name: "Бинман Иван Натанович", // text
-    //     vacancy: "Вакансия: Full-stack разработчик", // text
-    //     photo: "/images/binman.png", // file
-    //     phone1: "+7 (900) 800-70-60", // text
-    //     phone2: "+7 (900) 800-70-60", // text
-    //     phone3: "+7 (900) 800-70-60", // text
-    //     mail1: "ioan@binman.ru", // text
-    //     mail2: "ioan@binman.ru", // text
-    //     mail3: "ioan@binman.ru", // text
-    //     summary: "",  // file
-    //     test: "", // file
-    //     ratingSummary: 4, // number integer
-    //     ratingTest: 4, // number integer
-    //     ratingInterview: 4 // number integer
-
-    //     // isHiddenPhone: false,
-    //     // isHiddenMail: false,
-    //     // isLightGrayPhone: false,
-    //     // isLightGrayMail: false,
-    //     // ratingColor: "#abd02d",
-    //   }
-    // ]
   }
 
   async removeById (id) {
