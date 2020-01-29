@@ -1,16 +1,16 @@
 <template>
   <table class="main-table">
     <tbody>
-      <!-- <div class="__red">{{ allApplicants }}</div> -->
+      <!-- <div class="__red">counterApplicants -- {{ rows }}</div> -->
 
+        <!-- :is-hidden-phone="row.isHiddenPhone"
+        :is-hidden-mail="row.isHiddenMail"
+        :is-light-gray-phone="row.isLightGrayPhone"
+        :is-light-gray-mail="row.isLightGrayMail" -->
       <TableRow
         v-for="row in rows"
         :key="row.id"
         :row="row"
-        :is-hidden-phone="row.isHiddenPhone"
-        :is-hidden-mail="row.isHiddenMail"
-        :is-light-gray-phone="row.isLightGrayPhone"
-        :is-light-gray-mail="row.isLightGrayMail"
       />
     </tbody>
   </table>
@@ -19,7 +19,7 @@
 <script>
 import TableRow from "./TableRow.vue";
 
-// import { Applicants } from "./Api";
+import { Applicants } from "../Api";
 
 export default {
   name: "Table",
@@ -29,19 +29,31 @@ export default {
   },
 
   data: () => ({
-    // rows: []
+    rows: []
   }),
 
-  // props: {
+  props: {
     // allApplicants: {
-      // type: Object,
-      // required: true
+    //   type: Array,
+    //   required: true
     // }
-  
-  // async created() {
-  // this.rows = await MockApi.getApplicants();
-  // this.showApplicants();
-  // }
+  },
+
+  created() {
+    this.showApplicants();
+  },
+
+  methods: {
+    async showApplicants() {
+      console.log("TABLE Function SHOW ALL APPLICANTS run.");
+      try {
+        this.rows = await Applicants.showApplicants();
+        console.log("TABLE allApplicants -- " + this.rows);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
 };
 </script>
 

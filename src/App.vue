@@ -109,7 +109,7 @@
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table />
-              <div class="all-applicants">{{ allApplicants }}</div>
+              <!-- <div class="all-applicants">{{ allApplicants }}</div> -->
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
@@ -149,17 +149,6 @@ export default {
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
-      dellOneApplicant: {
-        name: "Добавленцев Иван Натанович",
-        phone: "88008008888",
-        mail: "dobavlenceff@binman.ru"
-      },
-      addOneApplicant: {
-        name: "Добавленцев Иван Натанович",
-        phone: "88008008888",
-        mail: "dobavlenceff@binman.ru"
-      },
-
       idDell: null
     };
   },
@@ -200,6 +189,7 @@ export default {
       }
     }
   }
+
 };
 </script>
 

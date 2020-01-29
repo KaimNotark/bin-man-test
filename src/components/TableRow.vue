@@ -2,7 +2,7 @@
   <tr>
     <td>
       <div class="container-applicant">
-        <img :src="row.avatar" alt="Аватар" class="applicant-img" />
+        <img :src="row.photo" alt="Аватар" class="applicant-img" />
         <div class="applicant-text">
           <p class="applicant-text__name">{{ row.name }}</p>
           <p class="applicant-text__vacancy">{{ row.vacancy }}</p>
@@ -16,19 +16,19 @@
             src="/images/phone.png"
             alt="Телефон"
             class="phone-border__img"
-            :class="{ '_light-gray-img': isLightGrayPhone }"
           />
+            <!-- :class="{ '_light-gray-img': isLightGrayPhone }" -->
         </div>
         <div class="phone-text">
           <p
             class="phone-text__number"
-            :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }"
-          >{{ row.phone }}</p>
+          >{{ row.phone1 }}</p>
+            <!-- :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }" -->
           <button
             type="button"
             class="phone-text__button"
-            :class="{ '_hidden': isHiddenPhone }"
           >Показать еще 1 номер</button>
+            <!-- :class="{ '_hidden': isHiddenPhone }" -->
         </div>
       </div>
     </td>
@@ -40,19 +40,19 @@
             src="/images/mail.png"
             alt="E-mail"
             class="mail-border__img"
-            :class="{ '_light-gray-img': isLightGrayMail }"
           />
+            <!-- :class="{ '_light-gray-img': isLightGrayMail }" -->
         </div>
         <div class="mail-text">
           <p
             class="mail-text__e-mail"
-            :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }"
-          >{{ row.mail }}</p>
+          >{{ row.mail1 }}</p>
+            <!-- :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }" -->
           <button
             type="button"
             class="mail-text__button"
-            :class="{ '_hidden': isHiddenMail }"
           >Показать еще 1 e-mail</button>
+            <!-- :class="{ '_hidden': isHiddenMail }" -->
         </div>
       </div>
     </td>
@@ -66,7 +66,7 @@
     </td>
 
     <td>
-      <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingValue" />
+      <Raiting :rating-color="'#ff5d00'" :rating-value="5" />
     </td>
 
     <td>
@@ -79,14 +79,17 @@
           xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <defs>
-            <symbol id="icon-edit-3" viewBox="0 0 24 24">
-              <title>edit-3</title>
+            <symbol id="icon-edit-3" viewBox="-13 -13 58 58">
+              <title>Изменить</title>
               <path
-                d="M12 21h9c0.552 0 1-0.448 1-1s-0.448-1-1-1h-9c-0.552 0-1 0.448-1 1s0.448 1 1 1zM15.793 2.793l-12.5 12.5c-0.122 0.121-0.217 0.28-0.263 0.465l-1 4c-0.039 0.15-0.042 0.318 0 0.485 0.134 0.536 0.677 0.862 1.213 0.728l4-1c0.167-0.041 0.33-0.129 0.465-0.263l12.5-12.5c0.609-0.609 0.914-1.41 0.914-2.207s-0.305-1.598-0.914-2.207-1.411-0.915-2.208-0.915-1.598 0.305-2.207 0.914zM17.207 4.207c0.219-0.219 0.504-0.328 0.793-0.328s0.574 0.109 0.793 0.328 0.328 0.504 0.328 0.793-0.109 0.574-0.328 0.793l-12.304 12.304-2.115 0.529 0.529-2.115z"
+                d="M31.818 9.122l-8.939-8.939c-0.292-0.292-0.676-0.226-0.855 0.146l-1.199 2.497 8.35 8.35 2.497-1.199c0.372-0.178 0.438-0.563 0.146-0.855z"
+              />
+              <path
+                d="M19.231 4.231l-8.231 0.686c-0.547 0.068-1.002 0.184-1.159 0.899-0 0.001-0 0.001-0.001 0.002-2.232 10.721-9.84 21.183-9.84 21.183l1.793 1.793 8.5-8.5c-0.187-0.392-0.293-0.83-0.293-1.293 0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3c-0.463 0-0.902-0.105-1.293-0.293l-8.5 8.5 1.793 1.793c0 0 10.462-7.608 21.183-9.84 0.001-0 0.001-0 0.002-0.001 0.714-0.157 0.831-0.612 0.898-1.159l0.686-8.231-8.538-8.539z"
               />
             </symbol>
           </defs>
-        </svg>
+        </svg>       
         <svg class="row-icon row-icon__hover">
           <use xlink:href="#icon-edit-3" />
         </svg>
@@ -99,11 +102,9 @@
           xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <defs>
-            <symbol id="icon-trash-2" viewBox="0 0 24 24">
+            <symbol id="icon-trash-2" viewBox="-13 -13 58 58">
               <title>Удалить</title>
-              <path
-                d="M18 7v13c0 0.276-0.111 0.525-0.293 0.707s-0.431 0.293-0.707 0.293h-10c-0.276 0-0.525-0.111-0.707-0.293s-0.293-0.431-0.293-0.707v-13zM17 5v-1c0-0.828-0.337-1.58-0.879-2.121s-1.293-0.879-2.121-0.879h-4c-0.828 0-1.58 0.337-2.121 0.879s-0.879 1.293-0.879 2.121v1h-4c-0.552 0-1 0.448-1 1s0.448 1 1 1h1v13c0 0.828 0.337 1.58 0.879 2.121s1.293 0.879 2.121 0.879h10c0.828 0 1.58-0.337 2.121-0.879s0.879-1.293 0.879-2.121v-13h1c0.552 0 1-0.448 1-1s-0.448-1-1-1zM9 5v-1c0-0.276 0.111-0.525 0.293-0.707s0.431-0.293 0.707-0.293h4c0.276 0 0.525 0.111 0.707 0.293s0.293 0.431 0.293 0.707v1zM9 11v6c0 0.552 0.448 1 1 1s1-0.448 1-1v-6c0-0.552-0.448-1-1-1s-1 0.448-1 1zM13 11v6c0 0.552 0.448 1 1 1s1-0.448 1-1v-6c0-0.552-0.448-1-1-1s-1 0.448-1 1z"
-              />
+              <path d="M6 32h20l2-22h-24zM20 4v-4h-8v4h-10v6l2-2h24l2 2v-6h-10zM18 4h-4v-2h4v2z" />
             </symbol>
           </defs>
         </svg>
@@ -133,25 +134,25 @@ export default {
       required: true
     },
 
-    isHiddenPhone: {
-      type: Boolean,
-      required: true
-    },
+    // isHiddenPhone: {
+    //   type: Boolean,
+    //   required: true
+    // },
 
-    isHiddenMail: {
-      type: Boolean,
-      required: true
-    },
+    // isHiddenMail: {
+    //   type: Boolean,
+    //   required: true
+    // },
 
-    isLightGrayPhone: {
-      type: Boolean,
-      required: true
-    },
+    // isLightGrayPhone: {
+    //   type: Boolean,
+    //   required: true
+    // },
 
-    isLightGrayMail: {
-      type: Boolean,
-      required: true
-    }
+    // isLightGrayMail: {
+    //   type: Boolean,
+    //   required: true
+    // }
   },
 
   data: () => ({
@@ -197,9 +198,9 @@ td {
 .container-applicant {
   display: flex;
   justify-content: flex-start;
-  width: 230px;
+  width: 270px;
   margin-left: 19px;
-  margin-right: -22px;
+  margin-right: -50px;
 }
 
 .applicant {
@@ -370,34 +371,32 @@ td {
     width: 50px;
     height: 40px;
     stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
+    stroke: $color-text-main;
+    fill: $color-text-main;
 
     &__hover {
-      font-size: 18px;
-      color: $color-white;
-      transition: color 0.3s ease, border-color 0.3s ease,
-        background-color 0.2s ease;
-      border: 1px solid $color-nav__gray;
+      width: 36px;
+      height: 36px;
+      margin-left: 6px;
+      border: solid 1px $color-button-border;
       border-radius: 3px;
+      background: $color-white;
+      transition: background-color 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
     }
 
     &__hover:hover {
-      color: $color-nav__button-blue;
-      border-color: $color-nav__button-blue;
-      background-color: $color-nav__button-dark-gray;
+      background-color: $color-button-background-gray;
+      border-color: $color-gray;
     }
     &__hover:focus {
       outline: none;
-      color: $color-nav__button-blue;
-      border-color: $color-nav__button-dark-blue;
-      background-color: $color-nav__button-dark-gray;
+      background-color: $color-button-background-gray;
+      border-color: $color-text-black;
     }
     &__hover:active {
-      color: $color-nav__button-dark-blue;
-      border-color: $color-nav__button-dark-blue;
-      background-color: $color-nav__button-dark-gray;
+      background-color: $color-gray;
+      border-color: $color-header__dark-gray;
     }
   }
 }
