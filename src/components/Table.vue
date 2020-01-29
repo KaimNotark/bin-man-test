@@ -1,21 +1,13 @@
 <template>
   <table class="main-table">
     <tbody>
-      <div class="__red">counterApplicants -- {{ allApplicants }}</div>
-
-      <!-- :is-hidden-phone="row.isHiddenPhone"
-        :is-hidden-mail="row.isHiddenMail"
-        :is-light-gray-phone="row.isLightGrayPhone"
-      :is-light-gray-mail="row.isLightGrayMail"-->
-      <TableRow v-for="row in rows" :key="row.id" :row="row" />
+      <TableRow v-for="row in allApplicants" :key="row.id" :row="row" />
     </tbody>
   </table>
 </template>
 
 <script>
 import TableRow from "./TableRow.vue";
-
-// import { Applicants } from "../Api";
 
 export default {
   name: "Table",
@@ -24,9 +16,8 @@ export default {
     TableRow
   },
 
-  data: () => ({
-    rows: []
-  }),
+  // data: () => ({
+  // }),
 
   props: {
     allApplicants: {
@@ -35,20 +26,8 @@ export default {
     }
   }
 
-  // created() {
-  //   this.showApplicants();
-  // },
-
   // methods: {
-  //   async showApplicants() {
-  //     console.log("TABLE Function SHOW ALL APPLICANTS run.");
-  //     try {
-  //       this.rows = await Applicants.showApplicants();
-  //       console.log("TABLE allApplicants -- " + this.rows);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
+  //   
   // }
 };
 </script>
