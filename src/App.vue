@@ -79,7 +79,10 @@
             </div>
 
             <div class="main-button">
-              <button @click="showApplicants" class="main-button__selected" type="button">
+              <button 
+              @click="addApplicants ( addOneApplicant )" 
+              class="main-button__selected" 
+              type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">избранные</span>
               </button>
@@ -108,10 +111,7 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table 
-                :all-applicants="allApplicants" 
-                @removeById="removeById"
-              />
+              <Table :all-applicants="allApplicants" @removeById="removeById" />
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
@@ -151,7 +151,12 @@ export default {
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
-      idDell: null
+      idDell: null,
+      addOneApplicant: {
+        name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
+        vacancy: "dddddddddddddddddddd",
+        phone1: "89642255230"
+      }
     };
   },
 
@@ -160,7 +165,6 @@ export default {
   },
 
   methods: {
-
     modalOpen() {
       this.modalIsOpened = true;
     },
@@ -178,8 +182,13 @@ export default {
       }
     },
 
-    async addApplicants() {
-      console.log("Button ADD APPLICANT pressed.");
+    async addApplicants ( addOneApplicant ) {
+      console.log("APP Button ADD APPLICANT pressed.");
+      try {
+        await Applicants.addApplicants( addOneApplicant );
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     async showApplicants() {

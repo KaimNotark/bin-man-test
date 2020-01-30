@@ -20,22 +20,28 @@ class ApplicantsApi {
     }
   }
 
-  async addApplicants() {
-    console.log("Button ADD APPLICANT pressed.");
+  async addApplicants ( addOneApplicant ) {
+    console.log("APIjs method ADD APPLICANT run.");
 
-    await axios
-      .post(this.urlAdd, this.addOneApplicant)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => console.log(error));
+    try {
+      await axios.post(this.baseUrl, addOneApplicant);
+      console.log("APIjs axios.post -- " + addOneApplicant);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+
+    // .then(response => {
+    //   console.log(response);
+    // })
+    // .catch(error => console.log(error));
   }
 
   async showApplicants() {
     console.log("CLASS Function SHOW ALL APPLICANTS run.");
 
     try {
-      const { data } = await axios.get(this.baseUrl)
+      const { data } = await axios.get(this.baseUrl);
       console.log("CLASS allApplicants -- ", data);
       return data;
     } catch (error) {
