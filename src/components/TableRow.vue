@@ -163,7 +163,7 @@ export default {
     removeById(row) {
       this.rowId = row.id;
       console.log("button remove was pressed ID = " + this.rowId);
-      this.$emit("testTable", this.rowId);
+      this.$emit("removeById", this.rowId);
     }
   },
 

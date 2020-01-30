@@ -110,7 +110,7 @@
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table 
                 :all-applicants="allApplicants" 
-                @testApp="removeById"
+                @removeById="removeById"
               />
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
@@ -160,9 +160,6 @@ export default {
   },
 
   methods: {
-    // testApp( rowId ) {
-    //   console.log("APP it's work ID = " + rowId);
-    // },
 
     modalOpen() {
       this.modalIsOpened = true;

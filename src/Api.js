@@ -2,19 +2,21 @@ import axios from "axios";
 
 
 class ApplicantsApi {
-  constructor () {
+  constructor() {
     this.baseUrl = 'http://localhost:1337/applicants'
-    
+
   }
 
-  async removeById (id) {
+  async removeById(id) {
     console.log("APIjs method 'removeById' is run. ID = " + id);
-
-    try {
-      const response = await axios.delete(`${ this.baseUrl }/${ id }`);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+    if (confirm("Вы действительно хотите удалить соискателя?")) {
+      try {
+        const response = await axios.delete(`${this.baseUrl}/${id}`);
+        console.log(response);
+        // this.showApplicants();
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -42,7 +44,7 @@ class ApplicantsApi {
     }
   }
 
-  async getApplicants () {
+  async getApplicants() {
     return Promise.resolve(this.applicants);
   }
 }

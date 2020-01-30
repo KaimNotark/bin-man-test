@@ -2,7 +2,7 @@
   <table class="main-table">
     <tbody>
       <TableRow v-for="row in allApplicants" 
-      :key="row.id" :row="row" @testTable="testTable"/>
+      :key="row.id" :row="row" @removeById="removeById"/>
     </tbody>
   </table>
 </template>
@@ -29,9 +29,9 @@ export default {
   },
 
   methods: {
-    testTable( rowId ) {
+    removeById( rowId ) {
       console.log("TABLE it's work ID = " + rowId);
-      this.$emit('testApp', rowId);
+      this.$emit('removeById', rowId);
     }
   }
 };
