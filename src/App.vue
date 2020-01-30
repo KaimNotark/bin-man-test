@@ -7,7 +7,7 @@
           <button class="modal-button-close" type="button" @click="modalClose">×</button>
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
-              <FormAdditionApplicant />
+              <FormAdditionApplicant @addApplicants="addApplicants" />
             </simplebar>
           </div>
         </div>
@@ -79,10 +79,11 @@
             </div>
 
             <div class="main-button">
-              <button 
-              @click="addApplicants ( addOneApplicant )" 
-              class="main-button__selected" 
-              type="button">
+              <button
+                @click="showApplicants"
+                class="main-button__selected"
+                type="button"
+              >
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">избранные</span>
               </button>
@@ -182,10 +183,12 @@ export default {
       }
     },
 
-    async addApplicants ( addOneApplicant ) {
+    async addApplicants(payload) {
       console.log("APP Button ADD APPLICANT pressed.");
+      console.log("APP payload = " + payload);
+
       try {
-        await Applicants.addApplicants( addOneApplicant );
+        await Applicants.addApplicants(payload);
       } catch (error) {
         console.error(error);
       }

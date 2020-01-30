@@ -1,6 +1,7 @@
 <template>
   <div class="form-container">
-    <form class="form" id="formId" autocomplete="on">
+    <form class="form" id="formId" autocomplete="on" @submit="onSubmit" >
+      <!-- @reset="onReset" -->
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
@@ -15,13 +16,19 @@
           placeholder="Введите ФИО"
           spellcheck="true"
           required
+          v-model="addApplicantForm.name"
         />
       </label>
 
       <label class="form__label">
         <span class="form__span">Вакансия</span>
 
-        <select @change="lighted" :class="[ 'form__select', { '_light' : isLight }]" required>
+        <select
+          @change="lighted"
+          :class="[ 'form__select', { '_light' : isLight }]"
+          required
+          v-model="addApplicantForm.vacancy"
+        >
           <OptionInSelect
             v-for="option in options"
             :key="option.id"
@@ -37,10 +44,10 @@
       <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
-      <InputInForm v-bind="phone" />
+      <InputInForm v-bind="phone" v-model="addApplicantForm.phone1" />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" />
+      <InputInForm v-bind="mail" v-model="addApplicantForm.mail1" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
@@ -90,6 +97,13 @@ export default {
   data: () => ({
     isLight: true,
 
+    addApplicantForm: {
+      name: "",
+      vacancy: "",
+      phone1: "",
+      mail1: ""
+    },
+
     options: [
       {
         id: "0",
@@ -98,22 +112,22 @@ export default {
       },
       {
         id: "1",
-        value: "JFD",
+        value: "Junior Frontend Developer",
         content: "Junior Frontend Developer"
       },
       {
         id: "2",
-        value: "MFD",
+        value: "Middle Frontend Developer",
         content: "Middle Frontend Developer"
       },
       {
         id: "3",
-        value: "SFD",
+        value: "Senior Frontend Developer",
         content: "Senior Frontend Developer"
       },
       {
         id: "4",
-        value: "TFD",
+        value: "TeamLead Frontend Developer",
         content: "TeamLead Frontend Developer"
       }
     ],
@@ -167,6 +181,24 @@ export default {
       this.isLight = false;
       console.log("isLight = " + this.isLight);
       console.log("options.id = " + this.options[2].id);
+    },
+
+    onSubmit(event) {
+      console.log("FORM onSubmit method run.");
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const payload = {
+        name: this.addApplicantForm.name,
+        vacancy: this.addApplicantForm.vacancy,
+        phone1: this.addApplicantForm.phone1,
+        mail1: this.addApplicantForm.mail1
+      };
+
+      this.$emit("addApplicants", payload);
+
+      console.log("FORM payload = " + payload);
     }
   }
 };
