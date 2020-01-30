@@ -8,7 +8,7 @@ class ApplicantsApi {
   }
 
   async removeById (id) {
-    console.log("Button DELL APPLICANT pressed.");
+    console.log("APIjs method 'removeById' is run. ID = " + id);
 
     try {
       const response = await axios.delete(`${ this.baseUrl }/${ id }`);

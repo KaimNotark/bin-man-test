@@ -12,23 +12,14 @@
     <td>
       <div class="container-phone">
         <div class="phone-border">
-          <img
-            src="/images/phone.png"
-            alt="Телефон"
-            class="phone-border__img"
-          />
-            <!-- :class="{ '_light-gray-img': isLightGrayPhone }" -->
+          <img src="/images/phone.png" alt="Телефон" class="phone-border__img" />
+          <!-- :class="{ '_light-gray-img': isLightGrayPhone }" -->
         </div>
         <div class="phone-text">
-          <p
-            class="phone-text__number"
-          >{{ row.phone1 }}</p>
-            <!-- :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }" -->
-          <button
-            type="button"
-            class="phone-text__button"
-          >Показать еще 1 номер</button>
-            <!-- :class="{ '_hidden': isHiddenPhone }" -->
+          <p class="phone-text__number">{{ row.phone1 }}</p>
+          <!-- :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }" -->
+          <button type="button" class="phone-text__button">Показать еще 1 номер</button>
+          <!-- :class="{ '_hidden': isHiddenPhone }" -->
         </div>
       </div>
     </td>
@@ -36,23 +27,14 @@
     <td>
       <div class="container-mail">
         <div class="mail-border">
-          <img
-            src="/images/mail.png"
-            alt="E-mail"
-            class="mail-border__img"
-          />
-            <!-- :class="{ '_light-gray-img': isLightGrayMail }" -->
+          <img src="/images/mail.png" alt="E-mail" class="mail-border__img" />
+          <!-- :class="{ '_light-gray-img': isLightGrayMail }" -->
         </div>
         <div class="mail-text">
-          <p
-            class="mail-text__e-mail"
-          >{{ row.mail1 }}</p>
-            <!-- :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }" -->
-          <button
-            type="button"
-            class="mail-text__button"
-          >Показать еще 1 e-mail</button>
-            <!-- :class="{ '_hidden': isHiddenMail }" -->
+          <p class="mail-text__e-mail">{{ row.mail1 }}</p>
+          <!-- :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }" -->
+          <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
+          <!-- :class="{ '_hidden': isHiddenMail }" -->
         </div>
       </div>
     </td>
@@ -89,7 +71,7 @@
               />
             </symbol>
           </defs>
-        </svg>       
+        </svg>
         <svg class="row-icon row-icon__hover">
           <use xlink:href="#icon-edit-3" />
         </svg>
@@ -108,7 +90,7 @@
             </symbol>
           </defs>
         </svg>
-        <svg class="row-icon row-icon__hover">
+        <svg @click="removeById( row )" class="row-icon row-icon__hover">
           <use xlink:href="#icon-trash-2" />
         </svg>
       </div>
@@ -132,7 +114,7 @@ export default {
     row: {
       type: Object,
       required: true
-    },
+    }
 
     // isHiddenPhone: {
     //   type: Boolean,
@@ -156,6 +138,8 @@ export default {
   },
 
   data: () => ({
+    rowId: null,
+
     buttons: [
       {
         id: "0",
@@ -174,6 +158,14 @@ export default {
       }
     ]
   }),
+
+  methods: {
+    removeById(row) {
+      this.rowId = row.id;
+      console.log("button remove was pressed ID = " + this.rowId);
+      this.$emit("testTable", this.rowId);
+    }
+  },
 
   computed: {
     isEmptyPhone() {

@@ -109,7 +109,8 @@
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
               <Table 
-              :all-applicants="allApplicants"
+                :all-applicants="allApplicants" 
+                @testApp="removeById"
               />
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
@@ -159,6 +160,10 @@ export default {
   },
 
   methods: {
+    // testApp( rowId ) {
+    //   console.log("APP it's work ID = " + rowId);
+    // },
+
     modalOpen() {
       this.modalIsOpened = true;
     },
@@ -168,7 +173,7 @@ export default {
     },
 
     async removeById(id) {
-      console.log("Button DELL APPLICANT pressed.");
+      console.log("APP method 'removeById' is run. ID = " + id);
       try {
         this.allApplicants = await Applicants.removeById(id);
       } catch (error) {
@@ -190,7 +195,6 @@ export default {
       }
     }
   }
-
 };
 </script>
 

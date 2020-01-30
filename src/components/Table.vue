@@ -1,7 +1,8 @@
 <template>
   <table class="main-table">
     <tbody>
-      <TableRow v-for="row in allApplicants" :key="row.id" :row="row" />
+      <TableRow v-for="row in allApplicants" 
+      :key="row.id" :row="row" @testTable="testTable"/>
     </tbody>
   </table>
 </template>
@@ -17,6 +18,7 @@ export default {
   },
 
   // data: () => ({
+  //   rowId: null
   // }),
 
   props: {
@@ -24,11 +26,14 @@ export default {
       type: Array,
       required: true
     }
-  }
+  },
 
-  // methods: {
-  //   
-  // }
+  methods: {
+    testTable( rowId ) {
+      console.log("TABLE it's work ID = " + rowId);
+      this.$emit('testApp', rowId);
+    }
+  }
 };
 </script>
 
