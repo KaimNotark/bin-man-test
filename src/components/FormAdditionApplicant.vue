@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <form class="form" id="formId" autocomplete="on" @submit="onSubmit" >
+    <form class="form" id="formId" autocomplete="on" @submit="onSubmit" @reset="onReset">
       <!-- @reset="onReset" -->
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
@@ -16,7 +16,7 @@
           placeholder="Введите ФИО"
           spellcheck="true"
           required
-          v-model="addApplicantForm.name"
+          v-model="formFields.name"
         />
       </label>
 
@@ -27,7 +27,7 @@
           @change="lighted"
           :class="[ 'form__select', { '_light' : isLight }]"
           required
-          v-model="addApplicantForm.vacancy"
+          v-model="formFields.vacancy"
         >
           <OptionInSelect
             v-for="option in options"
@@ -44,10 +44,10 @@
       <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
-      <InputInForm v-bind="phone" v-model="addApplicantForm.phone1" />
+      <InputInForm v-bind="phone" v-model="formFields.phone1" />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" v-model="addApplicantForm.mail1" />
+      <InputInForm v-bind="mail" v-model="formFields.mail1" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
@@ -97,7 +97,7 @@ export default {
   data: () => ({
     isLight: true,
 
-    addApplicantForm: {
+    formFields: {
       name: "",
       vacancy: "",
       phone1: "",
@@ -183,6 +183,13 @@ export default {
       console.log("options.id = " + this.options[2].id);
     },
 
+    clearFormFields() {
+      this.formFields.name = "";
+      this.formFields.vacancy = "";
+      this.formFields.phone1 = "";
+      this.formFields.mail1 = "";
+    },
+
     onSubmit(event) {
       console.log("FORM onSubmit method run.");
 
@@ -190,16 +197,26 @@ export default {
       event.stopPropagation();
 
       const payload = {
-        name: this.addApplicantForm.name,
-        vacancy: this.addApplicantForm.vacancy,
-        phone1: this.addApplicantForm.phone1,
-        mail1: this.addApplicantForm.mail1
+        name: this.formFields.name,
+        vacancy: this.formFields.vacancy,
+        phone1: this.formFields.phone1,
+        mail1: this.formFields.mail1
       };
 
       this.$emit("addApplicants", payload);
 
+      this.clearFormFields();
+
       console.log("FORM payload = " + payload);
-    }
+    },
+
+    onReset() {
+      console.log("FORM -- onReset method is run.");
+      // event.preventDefault();
+      // event.stopPropagation();
+    },
+
+    created() {}
   }
 };
 </script>

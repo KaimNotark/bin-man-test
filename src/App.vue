@@ -175,27 +175,33 @@ export default {
     },
 
     async removeById(id) {
-      console.log("APP method 'removeById' is run. ID = " + id);
+      // console.log("APP method 'removeById' is run. ID = " + id);
       try {
         this.allApplicants = await Applicants.removeById(id);
+        await this.showApplicants();
+        // alert("Соискатель удалён.");
       } catch (error) {
         console.error(error);
+        alert("Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз.");
       }
     },
 
     async addApplicants(payload) {
-      console.log("APP Button ADD APPLICANT pressed.");
-      console.log("APP payload = " + payload);
+      // console.log("APP Button ADD APPLICANT pressed.");
+      // console.log("APP payload = " + payload);
 
       try {
         await Applicants.addApplicants(payload);
+        await this.showApplicants();
+        alert("Соискатель добавлен.");
       } catch (error) {
         console.error(error);
+        alert("Что-то пошло не так. Соискатель не был добавлен. Попробуйте ещё раз.");
       }
     },
 
     async showApplicants() {
-      console.log("APP Function SHOW ALL APPLICANTS run.");
+      // console.log("APP Function SHOW ALL APPLICANTS run.");
       try {
         this.allApplicants = await Applicants.showApplicants();
         console.log("APP allApplicants -- " + this.allApplicants);

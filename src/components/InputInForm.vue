@@ -12,6 +12,7 @@
         required
         v-mask="inputMask"
         :spellcheck="inputSpellcheck"
+        @change="changeInput"
       />
     </label>
 
@@ -108,6 +109,11 @@ export default {
 
         this.isButtonVisible = this.inputId > 2;
       }
+    },
+
+    changeInput() {
+      this.inputContent = this.formInput.formInputContent;
+      console.log("Input = " + this.formInputs.formInputContent );
     }
   },
 
@@ -134,6 +140,7 @@ export default {
   background: $color-input-background;
   border-radius: 3px;
   padding: 10px;
+  margin-bottom: 5px;
 }
 
 %btn-add {

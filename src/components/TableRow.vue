@@ -2,7 +2,7 @@
   <tr>
     <td>
       <div class="container-applicant">
-        <img :src="row.photo" alt="Аватар" class="applicant-img" />
+        <img :src="row.photo" alt="Аватар" class="applicant-img applicant-img__text" />
         <div class="applicant-text">
           <p class="applicant-text__name">{{ row.name }}</p>
           <p class="applicant-text__vacancy">{{ row.vacancy }}</p>
@@ -199,6 +199,13 @@ td {
   &-img {
     width: 40px;
     height: 40px;
+
+    &__text {
+      color: $color-text-light;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 12px;
+    }
   }
   &-text {
     margin-left: 10px;
