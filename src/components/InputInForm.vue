@@ -1,8 +1,8 @@
 <template>
   <div class="container-form-input">
-    <label v-for="formInput in formInputs" :key="formInput.formInputId" class="form__label">
+    <label v-for="(formInput, index) in formInputs" :key="formInput.formInputId" class="form__label">
       <input
-        v-model="formInput.formInputContent"
+        v-model="formInputs[index]"
         class="form__input"
         :type="inputType"
         :name="inputName"
@@ -101,19 +101,19 @@ export default {
 
   methods: {
     addInput() {
-      if (this.inputId < 3) {
-        this.formInputs.push({
-          formInputId: this.inputId++,
-          formInputContent: this.inputContent
-        });
+      if (this.formInputs.length < 3) {
+        this.formInputs.push(
+          this.inputContent
+        );
 
-        this.isButtonVisible = this.inputId > 2;
+        this.isButtonVisible = this.formInputs.length > 2;
       }
     },
 
     changeInput() {
-      this.inputContent = this.formInput.formInputContent;
-      console.log("Input = " + this.formInputs.formInputContent );
+      console.log("Input = " + this.formInputs[0] );
+      console.log("Input = " + this.formInputs[1] );
+      console.log("Input = " + this.formInputs[2] );
     }
   },
 
