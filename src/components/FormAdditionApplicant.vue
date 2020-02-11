@@ -44,10 +44,10 @@
       <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
-      <InputInForm v-bind="phone" v-model="formFields.phone1" />
+      <InputInForm v-bind="phone" @formInputsPhone="formInputsPhone" />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" v-model="formFields.mail1" />
+      <InputInForm v-bind="mail" @formInputsMail="formInputsMail" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
@@ -208,6 +208,18 @@ export default {
       this.clearFormFields();
 
       console.log("FORM payload = " + payload);
+    },
+
+    formInputsPhone( phone1 ) {
+      // console.log("FORM -- formInputsPhone - phone1 = " + phone1 );
+      this.formFields.phone1 = phone1;
+      console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
+    },
+
+    formInputsMail( mail1 ) {
+      // console.log("FORM -- formInputsPhone - phone1 = " + mail1 );
+      this.formFields.mail1 = mail1;
+      console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
     },
 
     onReset() {

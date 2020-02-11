@@ -294,7 +294,7 @@ td {
 .container-mail {
   display: flex;
   justify-content: flex-start;
-  width: 174px;
+  width: 215px;
 }
 
 .mail {

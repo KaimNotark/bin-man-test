@@ -1,6 +1,10 @@
 <template>
   <div class="container-form-input">
-    <label v-for="(formInput, index) in formInputs" :key="formInput.formInputId" class="form__label">
+    <label
+      v-for="(formInput, index) in formInputs"
+      :key="formInput.formInputId"
+      class="form__label"
+    >
       <input
         v-model="formInputs[index]"
         class="form__input"
@@ -102,18 +106,25 @@ export default {
   methods: {
     addInput() {
       if (this.formInputs.length < 3) {
-        this.formInputs.push(
-          this.inputContent
-        );
+        this.formInputs.push(this.inputContent);
 
         this.isButtonVisible = this.formInputs.length > 2;
       }
     },
 
     changeInput() {
-      console.log("Input = " + this.formInputs[0] );
-      console.log("Input = " + this.formInputs[1] );
-      console.log("Input = " + this.formInputs[2] );
+      if (this.inputName === "phone") {
+        console.log("INPUT -- inputName = " + this.inputName);
+        // console.log("Input = " + this.formInputs[0]);
+        // console.log("Input = " + this.formInputs[1] );
+        // console.log("Input = " + this.formInputs[2] );
+        this.$emit("formInputsPhone", this.formInputs[0]);
+      }
+      if (this.inputName === "email") {
+        console.log("INPUT -- inputName = " + this.inputName);
+        // console.log("Input = " + this.formInputs[0]);
+        this.$emit("formInputsMail", this.formInputs[0]);
+      }
     }
   },
 
