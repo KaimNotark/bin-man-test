@@ -183,13 +183,6 @@ export default {
       console.log("options.id = " + this.options[2].id);
     },
 
-    clearFormFields() {
-      this.formFields.name = "";
-      this.formFields.vacancy = "";
-      this.formFields.phone1 = "";
-      this.formFields.mail1 = "";
-    },
-
     onSubmit(event) {
       console.log("FORM onSubmit method run.");
 
@@ -205,19 +198,17 @@ export default {
 
       this.$emit("addApplicants", payload);
 
-      this.clearFormFields();
+      event.target.reset();
 
       console.log("FORM payload = " + payload);
     },
 
     formInputsPhone( phone1 ) {
-      // console.log("FORM -- formInputsPhone - phone1 = " + phone1 );
       this.formFields.phone1 = phone1;
       console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
     },
 
     formInputsMail( mail1 ) {
-      // console.log("FORM -- formInputsPhone - phone1 = " + mail1 );
       this.formFields.mail1 = mail1;
       console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
     },

@@ -39,6 +39,7 @@ export default {
   },
 
   props: {
+    
     inputButtonText: {
       type: String,
       required: true
@@ -114,15 +115,9 @@ export default {
 
     changeInput() {
       if (this.inputName === "phone") {
-        console.log("INPUT -- inputName = " + this.inputName);
-        // console.log("Input = " + this.formInputs[0]);
-        // console.log("Input = " + this.formInputs[1] );
-        // console.log("Input = " + this.formInputs[2] );
         this.$emit("formInputsPhone", this.formInputs[0]);
       }
       if (this.inputName === "email") {
-        console.log("INPUT -- inputName = " + this.inputName);
-        // console.log("Input = " + this.formInputs[0]);
         this.$emit("formInputsMail", this.formInputs[0]);
       }
     }
