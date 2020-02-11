@@ -79,11 +79,7 @@
             </div>
 
             <div class="main-button">
-              <button
-                @click="showApplicants"
-                class="main-button__selected"
-                type="button"
-              >
+              <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">избранные</span>
               </button>
@@ -182,7 +178,9 @@ export default {
         // alert("Соискатель удалён.");
       } catch (error) {
         console.error(error);
-        alert("Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз.");
+        alert(
+          "Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз."
+        );
       }
     },
 
@@ -196,7 +194,9 @@ export default {
         alert("Соискатель добавлен.");
       } catch (error) {
         console.error(error);
-        alert("Что-то пошло не так. Соискатель не был добавлен. Попробуйте ещё раз.");
+        alert(
+          "Что-то пошло не так. Соискатель не был добавлен. Попробуйте ещё раз."
+        );
       }
     },
 
@@ -204,8 +204,22 @@ export default {
       // console.log("APP Function SHOW ALL APPLICANTS run.");
       try {
         this.allApplicants = await Applicants.showApplicants();
-        console.log( "APP -- allApplicants - " + this.allApplicants );
-        console.log( "APP -- allApplicants.photo - " + this.allApplicants[1].photo[0].url );
+        console.log("APP -- allApplicants - " + this.allApplicants);
+        console.log(
+          "APP -- allApplicants.length - " + this.allApplicants.length
+        );
+        console.log(
+          "APP -- allApplicants.photo - " + this.allApplicants[1].photo.url
+        );
+
+        let arr = this.allApplicants;
+        arr.forEach(function(v, i, arr) {
+          if (arr[i].photo === null) {
+            console.log("APP -- showApplicants.photo null - i = " + i);
+            this.allApplicants[i].photo.url ="https://via.placeholder.com/40x40/a3a9b1/282e37?text=avatar";
+            console.log("APP -- showApplicants.photo.url = " + this.allApplicants[i].photo.url);
+          }
+        });
       } catch (error) {
         console.error(error);
       }
