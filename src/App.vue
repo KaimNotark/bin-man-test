@@ -204,7 +204,8 @@ export default {
       // console.log("APP Function SHOW ALL APPLICANTS run.");
       try {
         this.allApplicants = await Applicants.showApplicants();
-        console.log("APP allApplicants -- " + this.allApplicants);
+        console.log( "APP -- allApplicants - " + this.allApplicants );
+        console.log( "APP -- allApplicants.photo - " + this.allApplicants[1].photo[0].url );
       } catch (error) {
         console.error(error);
       }

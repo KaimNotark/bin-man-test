@@ -179,12 +179,12 @@ export default {
   methods: {
     lighted() {
       this.isLight = false;
-      console.log("isLight = " + this.isLight);
-      console.log("options.id = " + this.options[2].id);
+      // console.log("isLight = " + this.isLight);
+      // console.log("options.id = " + this.options[2].id);
     },
 
     onSubmit(event) {
-      console.log("FORM onSubmit method run.");
+      // console.log("FORM onSubmit method run.");
 
       event.preventDefault();
       event.stopPropagation();
@@ -200,21 +200,21 @@ export default {
 
       event.target.reset();
 
-      console.log("FORM payload = " + payload);
+      // console.log("FORM payload = " + payload);
     },
 
     formInputsPhone( phone1 ) {
       this.formFields.phone1 = phone1;
-      console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
+      // console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
     },
 
     formInputsMail( mail1 ) {
       this.formFields.mail1 = mail1;
-      console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
+      // console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
     },
 
     onReset() {
-      console.log("FORM -- onReset method is run.");
+      // console.log("FORM -- onReset method is run.");
       // event.preventDefault();
       // event.stopPropagation();
     },

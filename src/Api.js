@@ -8,7 +8,7 @@ class ApplicantsApi {
   }
 
   async removeById(id) {
-    console.log("APIjs method 'removeById' is run. ID = " + id);
+    // console.log("APIjs method 'removeById' is run. ID = " + id);
     if (confirm("Вы действительно хотите удалить соискателя?")) {
       try {
         const response = await axios.delete(`${this.baseUrl}/${id}`);
@@ -21,11 +21,11 @@ class ApplicantsApi {
   }
 
   async addApplicants ( addOneApplicant ) {
-    console.log("APIjs method ADD APPLICANT run.");
+    // console.log("APIjs method ADD APPLICANT run.");
 
     try {
       await axios.post(this.baseUrl, addOneApplicant);
-      console.log("APIjs axios.post -- " + addOneApplicant);
+      // console.log("APIjs axios.post -- " + addOneApplicant);
     } catch (error) {
       console.log(error);
       throw error;
@@ -42,7 +42,7 @@ class ApplicantsApi {
 
     try {
       const { data } = await axios.get(this.baseUrl);
-      console.log("CLASS allApplicants -- ", data);
+      // console.log("CLASS allApplicants -- ", data);
       return data;
     } catch (error) {
       console.log(error);

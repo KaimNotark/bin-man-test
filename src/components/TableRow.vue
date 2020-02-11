@@ -2,7 +2,7 @@
   <tr>
     <td>
       <div class="container-applicant">
-        <img :src="row.photo" alt="Аватар" class="applicant-img applicant-img__text" />
+        <img :src="'http://localhost:1337' + row.photo[0].url" alt="Аватар" class="applicant-img applicant-img__text" />
         <div class="applicant-text">
           <p class="applicant-text__name">{{ row.name }}</p>
           <p class="applicant-text__vacancy">{{ row.vacancy }}</p>
