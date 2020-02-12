@@ -53,6 +53,9 @@ export default {
       if (selected == 3) this.colorStar = "#dae700";
       if (selected == 4) this.colorStar = "#abd02d";
       if (selected == 5) this.colorStar = "#67c600";
+
+      this.$emit("raitingNumber", selected);
+      this.$emit("raitingIndex");
     }
   }
 };

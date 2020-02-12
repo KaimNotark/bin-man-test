@@ -60,7 +60,14 @@
       <h2 class="form-subtitle">Оценка соискателя</h2>
 
       <div class="form__rating-container">
-        <RatingInForm v-for="rating in ratings" :key="rating.id" :rating="rating" />
+        <RatingInForm
+          v-for="(rating, index) in ratings"
+          v-model="ratings[index]"
+          :key="rating.id"
+          :rating="rating"
+          @raitingNumber="raitingNumber"
+          @raitingIndex="raitingIndex(index)"
+        />
       </div>
 
       <hr class="form-devider" />
@@ -203,12 +210,12 @@ export default {
       // console.log("FORM payload = " + payload);
     },
 
-    formInputsPhone( phone1 ) {
+    formInputsPhone(phone1) {
       this.formFields.phone1 = phone1;
       // console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
     },
 
-    formInputsMail( mail1 ) {
+    formInputsMail(mail1) {
       this.formFields.mail1 = mail1;
       // console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
     },
@@ -217,6 +224,14 @@ export default {
       // console.log("FORM -- onReset method is run.");
       // event.preventDefault();
       // event.stopPropagation();
+    },
+
+    raitingNumber(selected) {
+      console.log("FORM -- raitingNumber - № = " + selected);
+    },
+
+    raitingIndex(index) {
+      console.log("FORM -- raitingNumber - index = " + index);
     },
 
     created() {}
