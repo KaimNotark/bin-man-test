@@ -79,9 +79,16 @@
             </div>
 
             <div class="main-button">
+              <!--               
+              <button @click="forEachApplicants" class="main-button__selected" type="button">
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">forEach</span>
+              </button> 
+              -->
+
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">избранные</span>
+                <span class="main-button__text">обновить</span>
               </button>
 
               <button class="main-button__add" type="button" @click="modalOpen">
@@ -171,7 +178,6 @@ export default {
     },
 
     async removeById(id) {
-      // console.log("APP method 'removeById' is run. ID = " + id);
       try {
         this.allApplicants = await Applicants.removeById(id);
         await this.showApplicants();
@@ -185,9 +191,6 @@ export default {
     },
 
     async addApplicants(payload) {
-      // console.log("APP Button ADD APPLICANT pressed.");
-      // console.log("APP payload = " + payload);
-
       try {
         await Applicants.addApplicants(payload);
         await this.showApplicants();
@@ -201,23 +204,18 @@ export default {
     },
 
     async showApplicants() {
-      // console.log("APP Function SHOW ALL APPLICANTS run.");
       try {
         this.allApplicants = await Applicants.showApplicants();
-        console.log("APP -- allApplicants - " + this.allApplicants);
-        console.log(
-          "APP -- allApplicants.length - " + this.allApplicants.length
-        );
-        console.log(
-          "APP -- allApplicants.photo - " + this.allApplicants[1].photo.url
-        );
 
-        let arr = this.allApplicants;
-        arr.forEach(function(v, i, arr) {
-          if (arr[i].photo === null) {
-            console.log("APP -- showApplicants.photo null - i = " + i);
-            this.allApplicants[i].photo.url ="https://via.placeholder.com/40x40/a3a9b1/282e37?text=avatar";
-            console.log("APP -- showApplicants.photo.url = " + this.allApplicants[i].photo.url);
+        let allApplicants = this.allApplicants;
+        allApplicants.forEach(function(v, i, allApplicants) {
+          if (allApplicants[i].photo === null) {
+            allApplicants[i].photo = {
+              url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+            };
+          } else {
+            allApplicants[i].photo.url =
+              "http://localhost:1337" + allApplicants[i].photo.url;
           }
         });
       } catch (error) {
