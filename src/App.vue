@@ -161,6 +161,8 @@ export default {
         vacancy: "dddddddddddddddddddd",
         phone1: "89642255230"
       }
+
+      // ratingAverage: 0
     };
   },
 
@@ -217,6 +219,17 @@ export default {
             allApplicants[i].photo.url =
               "http://localhost:1337" + allApplicants[i].photo.url;
           }
+
+        let ratingAverage = 0;
+          ratingAverage = Math.floor(
+            (allApplicants[i].ratingSummary +
+              allApplicants[i].ratingTest +
+              allApplicants[i].ratingInterview) /
+              3
+          );
+
+          allApplicants[i].ratingAverage = ratingAverage;
+
         });
       } catch (error) {
         console.error(error);
