@@ -104,6 +104,11 @@ export default {
   data: () => ({
     isLight: true,
 
+    raitingBuffer: 0,
+    ratingSummary: 0,
+    ratingTest: 0,
+    ratingInterview: 0,
+
     formFields: {
       name: "",
       vacancy: "",
@@ -200,10 +205,14 @@ export default {
         name: this.formFields.name,
         vacancy: this.formFields.vacancy,
         phone1: this.formFields.phone1,
-        mail1: this.formFields.mail1
+        mail1: this.formFields.mail1,
+        ratingSummary: this.ratingSummary,
+        ratingTest: this.ratingTest,
+        ratingInterview: this.ratingInterview
       };
 
       this.$emit("addApplicants", payload);
+      // console.log("raitingSummary = " + this.ratingSummary);
 
       event.target.reset();
 
@@ -227,11 +236,19 @@ export default {
     },
 
     raitingNumber(selected) {
-      console.log("FORM -- raitingNumber - № = " + selected);
+      // console.log("FORM -- raitingNumber - № = " + selected);
+      this.raitingBuffer = selected;
     },
 
     raitingIndex(index) {
-      console.log("FORM -- raitingNumber - index = " + index);
+      // console.log("FORM -- raitingNumber - index = " + index);
+      if (index === 0) this.ratingSummary = this.raitingBuffer;
+      if (index === 1) this.ratingTest = this.raitingBuffer;
+      if (index === 2) this.ratingInterview = this.raitingBuffer;
+
+      // console.log("FORM -- ratingSummary = " + this.ratingSummary);
+      // console.log("FORM -- ratingTest = " + this.ratingTest);
+      // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
 
     created() {}
