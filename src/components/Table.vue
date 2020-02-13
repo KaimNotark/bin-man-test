@@ -1,8 +1,7 @@
 <template>
   <table class="main-table">
     <tbody>
-      <TableRow v-for="row in allApplicants" 
-      :key="row.id" :row="row" @removeById="removeById"/>
+      <TableRow v-for="row in allApplicants" :key="row.id" :row="row" @removeById="removeById" />
     </tbody>
   </table>
 </template>
@@ -17,9 +16,10 @@ export default {
     TableRow
   },
 
-  // data: () => ({
-  //   rowId: null
-  // }),
+  data: () => ({
+    // rowId: null
+
+  }),
 
   props: {
     allApplicants: {
@@ -29,9 +29,9 @@ export default {
   },
 
   methods: {
-    removeById( rowId ) {
+    removeById(rowId) {
       console.log("TABLE it's work ID = " + rowId);
-      this.$emit('removeById', rowId);
+      this.$emit("removeById", rowId);
     }
   }
 };

@@ -209,6 +209,8 @@ export default {
       try {
         this.allApplicants = await Applicants.showApplicants();
 
+        // Creating a url for the avatar. If the user has not uploaded the photo,
+        // then placeholder is placed.
         let allApplicants = this.allApplicants;
         allApplicants.forEach(function(v, i, allApplicants) {
           if (allApplicants[i].photo === null) {
@@ -219,16 +221,25 @@ export default {
             allApplicants[i].photo.url =
               "http://localhost:1337" + allApplicants[i].photo.url;
           }
-
-        let ratingAverage = 0;
+          
+          // Calculating the average rating value.
+          let ratingAverage = 0;
           ratingAverage = Math.floor(
             (allApplicants[i].ratingSummary +
               allApplicants[i].ratingTest +
               allApplicants[i].ratingInterview) /
               3
           );
-
           allApplicants[i].ratingAverage = ratingAverage;
+
+          // Forming the starRating color on the table depending on the average rating.
+          let ratingColor = "";
+          if (ratingAverage == 1) ratingColor = "#ff5d00";
+          if (ratingAverage == 2) ratingColor = "#ffa800";
+          if (ratingAverage == 3) ratingColor = "#dae700";
+          if (ratingAverage == 4) ratingColor = "#abd02d";
+          if (ratingAverage == 5) ratingColor = "#67c600";
+          allApplicants[i].ratingColor = ratingColor;
 
         });
       } catch (error) {

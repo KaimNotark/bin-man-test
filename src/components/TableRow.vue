@@ -48,7 +48,7 @@
     </td>
 
     <td>
-      <Raiting :rating-color="'#ff5d00'" :rating-value="row.ratingAverage" />
+      <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingAverage" />
     </td>
 
     <td>
