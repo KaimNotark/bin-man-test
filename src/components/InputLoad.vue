@@ -87,9 +87,9 @@ export default {
       //   : (this.isFileInInput = false);
 
       // if (files.length > 0) {
-      //   this.isFileInInput = true;
+        //   this.isFileInInput = true;
       // } else {
-      //   this.isFileInInput = false;
+        //   this.isFileInInput = false;
       // }
 
       this.fileSize = files[0].size;
@@ -99,13 +99,18 @@ export default {
         this.isFileInInput = false;
       }
 
-      console.log("Имя - " + files[0].name);
-      console.log("Размер - " + files[0].size + " байт");
-      console.log("Тип - " + files[0].type);
-      console.log("Длина - " + files.length);
-      console.log("isFileInInput - " + this.isFileInInput);
-      console.log("fileSize - " + this.fileSize);
-      console.log("sizeOfFile - " + this.sizeOfFile);
+      // console.log("Имя - " + files[0].name);
+      // console.log("Размер - " + files[0].size + " байт");
+      // console.log("Тип - " + files[0].type);
+      // console.log("Длина - " + files.length);
+      // console.log("isFileInInput - " + this.isFileInInput);
+      // console.log("fileSize - " + this.fileSize);
+      // console.log("sizeOfFile - " + this.sizeOfFile);
+
+      if (this.acceptType === "photo") {
+        this.$emit("addFilePhoto", this.file);
+        console.log("acceptType = " + this.acceptType);
+      }
     }
   }
 };

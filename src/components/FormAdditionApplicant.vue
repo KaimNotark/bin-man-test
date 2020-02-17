@@ -38,7 +38,12 @@
         </select>
       </label>
 
-      <InputLoad load-id="0" accept-type="photo" class="form__input-load-file" />
+      <InputLoad
+        load-id="0"
+        accept-type="photo"
+        class="form__input-load-file"
+        @addFilePhoto="addFilePhoto"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -108,6 +113,8 @@ export default {
     ratingSummary: 0,
     ratingTest: 0,
     ratingInterview: 0,
+
+    FilePhoto: null,
 
     formFields: {
       name: "",
@@ -195,6 +202,11 @@ export default {
       // console.log("options.id = " + this.options[2].id);
     },
 
+    addFilePhoto(file) {
+      this.FilePhoto = file;
+      console.log("FilePhoto = " + this.FilePhoto);
+    },
+
     onSubmit(event) {
       // console.log("FORM onSubmit method run.");
 
@@ -208,8 +220,10 @@ export default {
         mail1: this.formFields.mail1,
         ratingSummary: this.ratingSummary,
         ratingTest: this.ratingTest,
-        ratingInterview: this.ratingInterview
+        ratingInterview: this.ratingInterview,
+        photo: this.FilePhoto
       };
+      // payload.append('photo', this.FilePhoto);
 
       this.$emit("addApplicants", payload);
       // console.log("raitingSummary = " + this.ratingSummary);

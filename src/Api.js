@@ -20,12 +20,18 @@ class ApplicantsApi {
     }
   }
 
-  async addApplicants ( addOneApplicant ) {
+  async addApplicants(addOneApplicant) {
     // console.log("APIjs method ADD APPLICANT run.");
 
     try {
-      await axios.post(this.baseUrl, addOneApplicant);
-      // console.log("APIjs axios.post -- " + addOneApplicant);
+      await axios.post(this.baseUrl, addOneApplicant 
+      //   {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // }
+      );
+      console.log("APIjs axios.post -- " + addOneApplicant);
     } catch (error) {
       console.log(error);
       throw error;
@@ -41,7 +47,9 @@ class ApplicantsApi {
     console.log("CLASS Function SHOW ALL APPLICANTS run.");
 
     try {
-      const { data } = await axios.get(this.baseUrl);
+      const {
+        data
+      } = await axios.get(this.baseUrl);
       // console.log("CLASS allApplicants -- ", data);
       return data;
     } catch (error) {
