@@ -119,6 +119,15 @@
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
+              <!--begin form for test -->
+              <form id="uploadForm" name="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="file" name="photo" />
+                <br />
+                <input type="text" id="name" name="name" />
+                <br />
+                <input type="button" value="Upload" @click="uploadFiles" />
+              </form>
+              <!-- end form for test -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -131,6 +140,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 
@@ -152,6 +163,8 @@ export default {
 
   data() {
     return {
+      file: "",
+
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
@@ -171,6 +184,40 @@ export default {
   },
 
   methods: {
+    // test form -----------------------------------------
+    async uploadFiles() {
+      console.log("uploadFiles RUN");
+
+      let s = this;
+      let data = new FormData(document.getElementById("uploadForm"));
+      let imagefile = document.querySelector("#file");
+      // let one = {name: 'Dasha'};
+
+      console.log("data -- " + data);
+      console.log("data.name -- " + data.name);
+      console.log("imagefile -- " + imagefile);
+      console.log("imagefile.files[0] -- " + imagefile.files[0]);
+      console.log("s -- " + s);
+      console.log("s.name -- " + s.name);
+
+      data.append("photo", imagefile.files[0]);
+      data.append("name", s.name);
+
+      await axios
+        .post("http://localhost:1337/applicants", data, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    // end test form --------------------------------
+
     modalOpen() {
       this.modalIsOpened = true;
     },
@@ -221,7 +268,7 @@ export default {
             allApplicants[i].photo.url =
               "http://localhost:1337" + allApplicants[i].photo.url;
           }
-          
+
           // Calculating the average rating value.
           let ratingAverage = 0;
           ratingAverage = Math.floor(
@@ -240,7 +287,6 @@ export default {
           if (ratingAverage == 4) ratingColor = "#abd02d";
           if (ratingAverage == 5) ratingColor = "#67c600";
           allApplicants[i].ratingColor = ratingColor;
-
         });
       } catch (error) {
         console.error(error);
