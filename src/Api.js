@@ -4,7 +4,6 @@ import axios from "axios";
 class ApplicantsApi {
   constructor() {
     this.baseUrl = 'http://localhost:1337/applicants'
-
   }
 
   async removeById(id) {
@@ -20,27 +19,27 @@ class ApplicantsApi {
     }
   }
 
-  async addApplicants(addOneApplicant) {
-    // console.log("APIjs method ADD APPLICANT run.");
-
-    try {
-      await axios.post(this.baseUrl, addOneApplicant 
-      //   {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // }
-      );
-      console.log("APIjs axios.post -- " + addOneApplicant);
-    } catch (error) {
-      console.log(error);
-      throw error;
+  async create(payload) {
+    const options = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     }
 
-    // .then(response => {
-    //   console.log(response);
-    // })
-    // .catch(error => console.log(error));
+    try {
+      const { data } = await axios.post(
+        this.baseUrl,
+        payload,
+        options,
+      );
+
+      console.log("addApplicants:", data);
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 
   async showApplicants() {
