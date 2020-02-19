@@ -127,6 +127,25 @@
                 <br />
                 <input type="button" value="Upload" @click="uploadFiles" />
               </form>
+
+              <form id="uploadForm2" name="uploadForm" enctype="multipart/form-data">
+                <input
+                  type="file"
+                  id="file2"
+                  name="photo"
+                  @change="createAvatar($event.target.files)"
+                />
+                <br />
+                <input type="text" id="name2" name="name" />
+                <br />
+                <input type="button" value="Upload" />
+              </form>
+
+              <!-- <form @submit="qqqq">
+                <input type="file" name="photo" />
+                <input type="submit" value="Submit" />
+              </form> -->
+              
               <!-- end form for test -->
             </simplebar>
             <div class="main-table__footer">
@@ -185,6 +204,21 @@ export default {
 
   methods: {
     // test form -----------------------------------------
+    // qqqq() {
+
+    //   const formElement = document.querySelector('form');
+      
+    //     formElement.addEventListener('submit', e => {
+    //       e.preventDefault();
+      
+    //       const request = new XMLHttpRequest();
+      
+    //       request.open('POST', '/applicants/upload');
+      
+    //       request.send(new FormData(formElement));
+    //     });
+    // },
+
     async uploadFiles() {
       console.log("uploadFiles RUN");
 
@@ -215,6 +249,38 @@ export default {
         .catch(error => {
           console.log(error.response);
         });
+    },
+
+    async createAvatar(files) {
+      console.log("method createAvatar run");
+      const formData = new FormData();
+      formData.append("photo", files[0]);
+
+      // const json = JSON.stringify(files[0]);
+      // const blob = new Blob([json], {
+      //   type: "application/json"
+      // });
+      // const data = new FormData();
+      // data.append("photo", blob);
+
+      await axios
+        .post("http://localhost:1337/applicants", formData, {
+          headers: {
+            // Accept: "application/json",
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(response => {
+          console.log("Avatar is loaded ! --" + response);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+      // this.$http
+      //   .post("upload", formData)
+
+      //   .then(({ body }) => (this.registrationData.avatar = body[0]._id))
+      //   .catch(err => console.error(err));
     },
     // end test form --------------------------------
 
