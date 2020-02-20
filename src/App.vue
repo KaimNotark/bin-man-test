@@ -120,6 +120,7 @@
               <!-- <ax2 /> -->
               <!-- end ax2 -->
               <!--begin form for test -->
+
               <form
                 @submit.prevent="uploadFiles"
                 id="uploadForm"
@@ -132,11 +133,8 @@
                   accept="image/*"
                 />
                 <br />
-
                 <input v-model="name" type="text" />
-
                 <br />
-
                 <button type="submit">uploadFiles</button>
               </form>
 
@@ -146,6 +144,7 @@
                 <input type="file" name="photo" />
                 <input type="submit" value="Submit" />
               </form> -->
+
 
               <!-- end form for test -->
             </simplebar>
@@ -204,11 +203,10 @@ export default {
   },
 
   methods: {
+
     async uploadFiles({ target }) {
       const { name } = this;
-
       const payload = new FormData();
-
       const image = target.querySelector('input[type=file]').files[0];
 
       payload.append('files.photo', image)
