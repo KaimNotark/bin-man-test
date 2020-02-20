@@ -127,7 +127,9 @@
                 <br />
                 <input type="button" value="Upload" @click="uploadFiles" />
               </form>
-
+              <br />
+              <br />
+              <br />
               <form id="uploadForm2" name="uploadForm" enctype="multipart/form-data">
                 <input
                   type="file"
@@ -144,8 +146,8 @@
               <!-- <form @submit="qqqq">
                 <input type="file" name="photo" />
                 <input type="submit" value="Submit" />
-              </form> -->
-              
+              </form>-->
+
               <!-- end form for test -->
             </simplebar>
             <div class="main-table__footer">
@@ -207,14 +209,14 @@ export default {
     // qqqq() {
 
     //   const formElement = document.querySelector('form');
-      
+
     //     formElement.addEventListener('submit', e => {
     //       e.preventDefault();
-      
+
     //       const request = new XMLHttpRequest();
-      
+
     //       request.open('POST', '/applicants/upload');
-      
+
     //       request.send(new FormData(formElement));
     //     });
     // },
