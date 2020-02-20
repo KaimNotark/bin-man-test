@@ -79,11 +79,11 @@
             </div>
 
             <div class="main-button">
-              <!--               
+              <!--
               <button @click="forEachApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">forEach</span>
-              </button> 
+              </button>
               -->
 
               <button @click="showApplicants" class="main-button__selected" type="button">
@@ -120,33 +120,31 @@
               <!-- <ax2 /> -->
               <!-- end ax2 -->
               <!--begin form for test -->
-              <form id="uploadForm" name="uploadForm" enctype="multipart/form-data">
-                <input type="file" id="file" name="photo" />
-                <br />
-                <input type="text" id="name" name="name" />
-                <br />
-                <input type="button" value="Upload" @click="uploadFiles" />
-              </form>
-              <br />
-              <br />
-              <br />
-              <form id="uploadForm2" name="uploadForm" enctype="multipart/form-data">
+
+              <form
+                @submit.prevent="uploadFiles"
+                id="uploadForm"
+                name="uploadForm"
+              >
                 <input
                   type="file"
-                  id="file2"
-                  name="photo"
-                  @change="createAvatar($event.target.files)"
+                  id="file"
+                  required
+                  accept="image/*"
                 />
                 <br />
-                <input type="text" id="name2" name="name" />
+                <input v-model="name" type="text" />
                 <br />
-                <input type="button" value="Upload" />
+                <button type="submit">uploadFiles</button>
               </form>
+
+              {{ errors }}
 
               <!-- <form @submit="qqqq">
                 <input type="file" name="photo" />
                 <input type="submit" value="Submit" />
-              </form>-->
+              </form> -->
+
 
               <!-- end form for test -->
             </simplebar>
@@ -161,7 +159,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
@@ -185,6 +182,9 @@ export default {
   data() {
     return {
       file: "",
+      name: '',
+
+      errors: null,
 
       counterApplicants: 0,
       modalIsOpened: false,
@@ -195,8 +195,6 @@ export default {
         vacancy: "dddddddddddddddddddd",
         phone1: "89642255230"
       }
-
-      // ratingAverage: 0
     };
   },
 
@@ -205,86 +203,22 @@ export default {
   },
 
   methods: {
-    // test form -----------------------------------------
-    // qqqq() {
 
-    //   const formElement = document.querySelector('form');
+    async uploadFiles({ target }) {
+      const { name } = this;
+      const payload = new FormData();
+      const image = target.querySelector('input[type=file]').files[0];
 
-    //     formElement.addEventListener('submit', e => {
-    //       e.preventDefault();
+      payload.append('files.photo', image)
+      payload.append('data', JSON.stringify({ name }))
 
-    //       const request = new XMLHttpRequest();
-
-    //       request.open('POST', '/applicants/upload');
-
-    //       request.send(new FormData(formElement));
-    //     });
-    // },
-
-    async uploadFiles() {
-      console.log("uploadFiles RUN");
-
-      let s = this;
-      let data = new FormData(document.getElementById("uploadForm"));
-      let imagefile = document.querySelector("#file");
-      // let one = {name: 'Dasha'};
-
-      console.log("data -- " + data);
-      console.log("data.name -- " + data.name);
-      console.log("imagefile -- " + imagefile);
-      console.log("imagefile.files[0] -- " + imagefile.files[0]);
-      console.log("s -- " + s);
-      console.log("s.name -- " + s.name);
-
-      data.append("photo", imagefile.files[0]);
-      data.append("name", s.name);
-
-      await axios
-        .post("http://localhost:1337/applicants", data, {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      try {
+        const result = await Applicants.create(payload);
+        console.log(result);
+      } catch (error) {
+        this.errors = error
+      }
     },
-
-    async createAvatar(files) {
-      console.log("method createAvatar run");
-      const formData = new FormData();
-      formData.append("photo", files[0]);
-
-      // const json = JSON.stringify(files[0]);
-      // const blob = new Blob([json], {
-      //   type: "application/json"
-      // });
-      // const data = new FormData();
-      // data.append("photo", blob);
-
-      await axios
-        .post("http://localhost:1337/applicants", formData, {
-          headers: {
-            // Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then(response => {
-          console.log("Avatar is loaded ! --" + response);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
-      // this.$http
-      //   .post("upload", formData)
-
-      //   .then(({ body }) => (this.registrationData.avatar = body[0]._id))
-      //   .catch(err => console.error(err));
-    },
-    // end test form --------------------------------
 
     modalOpen() {
       this.modalIsOpened = true;
