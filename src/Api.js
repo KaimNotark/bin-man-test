@@ -19,7 +19,7 @@ class ApplicantsApi {
     }
   }
 
-  async create(payload) {
+  async addApplicants(payload) {
     const options = {
       headers: {
         'Content-Type': 'multipart/form-data'

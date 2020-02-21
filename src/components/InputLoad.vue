@@ -109,7 +109,12 @@ export default {
 
       if (this.acceptType === "photo") {
         this.$emit("addFilePhoto", this.file);
-        console.log("acceptType = " + this.acceptType);
+      }
+      if (this.acceptType === "summary") {
+        this.$emit("addFileSummary", this.file);
+      }
+      if (this.acceptType === "test") {
+        this.$emit("addFileTest", this.file);
       }
     }
   }

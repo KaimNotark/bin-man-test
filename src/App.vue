@@ -7,7 +7,12 @@
           <button class="modal-button-close" type="button" @click="modalClose">×</button>
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
-              <FormAdditionApplicant @addApplicants="addApplicants" />
+              <FormAdditionApplicant
+                @addApplicants="addApplicants"
+                @addFilePhoto="addFilePhoto"
+                @addFileSummary="addFileSummary"
+                @addFileTest="addFileTest"
+              />
             </simplebar>
           </div>
         </div>
@@ -119,34 +124,6 @@
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
-              <!--begin form for test -->
-
-              <form
-                @submit.prevent="uploadFiles"
-                id="uploadForm"
-                name="uploadForm"
-              >
-                <input
-                  type="file"
-                  id="file"
-                  required
-                  accept="image/*"
-                />
-                <br />
-                <input v-model="name" type="text" />
-                <br />
-                <button type="submit">uploadFiles</button>
-              </form>
-
-              {{ errors }}
-
-              <!-- <form @submit="qqqq">
-                <input type="file" name="photo" />
-                <input type="submit" value="Submit" />
-              </form> -->
-
-
-              <!-- end form for test -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -159,7 +136,6 @@
 </template>
 
 <script>
-
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 
@@ -182,9 +158,12 @@ export default {
   data() {
     return {
       file: "",
-      name: '',
+      name: "",
 
       errors: null,
+      filePhoto: null,
+      fileSummary: null,
+      fileTest: null,
 
       counterApplicants: 0,
       modalIsOpened: false,
@@ -203,22 +182,31 @@ export default {
   },
 
   methods: {
-
-    async uploadFiles({ target }) {
-      const { name } = this;
-      const payload = new FormData();
-      const image = target.querySelector('input[type=file]').files[0];
-
-      payload.append('files.photo', image)
-      payload.append('data', JSON.stringify({ name }))
-
-      try {
-        const result = await Applicants.create(payload);
-        console.log(result);
-      } catch (error) {
-        this.errors = error
-      }
+    addFilePhoto(file) {
+      this.filePhoto = file;
     },
+    addFileSummary(file) {
+      this.fileSummary = file;
+    },
+    addFileTest(file) {
+      this.fileTest = file;
+    },
+
+    // async uploadFiles({ target }) {
+    //   const { name } = this;
+    //   const payload = new FormData();
+    //   const image = target.querySelector("input[type=file]").files[0];
+
+    //   payload.append("files.photo", image);
+    //   payload.append("data", JSON.stringify({ name }));
+
+    //   try {
+    //     const result = await Applicants.create(payload);
+    //     console.log(result);
+    //   } catch (error) {
+    //     this.errors = error;
+    //   }
+    // },
 
     modalOpen() {
       this.modalIsOpened = true;
@@ -242,8 +230,15 @@ export default {
     },
 
     async addApplicants(payload) {
+      const data = new FormData();
+
+      data.append("files.photo", this.filePhoto);
+      data.append("files.summary", this.fileSummary);
+      data.append("files.test", this.fileTest);
+      data.append("data", JSON.stringify(payload));
+
       try {
-        await Applicants.addApplicants(payload);
+        await Applicants.addApplicants(data);
         await this.showApplicants();
         alert("Соискатель добавлен.");
       } catch (error) {

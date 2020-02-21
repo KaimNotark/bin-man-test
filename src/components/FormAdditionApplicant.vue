@@ -1,7 +1,13 @@
 <template>
   <div class="form-container">
-    <form class="form" id="formId" autocomplete="on" @submit="onSubmit" @reset="onReset">
-      <!-- @reset="onReset" -->
+    <form
+      class="form"
+      id="formId"
+      name="form"
+      autocomplete="on"
+      @submit="onSubmit"
+      @reset="onReset"
+    >
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
@@ -57,9 +63,9 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <InputLoad load-id="1" accept-type="summary" />
+      <InputLoad load-id="1" accept-type="summary" @addFileSummary="addFileSummary" />
 
-      <InputLoad load-id="2" accept-type="test" />
+      <InputLoad load-id="2" accept-type="test" @addFileTest="addFileTest" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
@@ -108,13 +114,14 @@ export default {
 
   data: () => ({
     isLight: true,
+    errors: null,
 
     raitingBuffer: 0,
     ratingSummary: 0,
     ratingTest: 0,
     ratingInterview: 0,
 
-    FilePhoto: null,
+    // filePhoto: null,
 
     formFields: {
       name: "",
@@ -203,8 +210,15 @@ export default {
     },
 
     addFilePhoto(file) {
-      this.FilePhoto = file;
-      console.log("FilePhoto = " + this.FilePhoto);
+      // this.filePhoto = file;
+      // console.log("filePhoto = " + this.filePhoto);
+      this.$emit("addFilePhoto", file);
+    },
+    addFileSummary(file) {
+      this.$emit("addFileSummary", file);
+    },
+    addFileTest(file) {
+      this.$emit("addFileTest", file);
     },
 
     onSubmit(event) {
@@ -220,8 +234,8 @@ export default {
         mail1: this.formFields.mail1,
         ratingSummary: this.ratingSummary,
         ratingTest: this.ratingTest,
-        ratingInterview: this.ratingInterview,
-        photo: this.FilePhoto
+        ratingInterview: this.ratingInterview
+        // photo: this.FilePhoto
       };
       // payload.append('photo', this.FilePhoto);
 
