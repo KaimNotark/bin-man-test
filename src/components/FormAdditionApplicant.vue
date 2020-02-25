@@ -47,6 +47,7 @@
       <InputLoad
         load-id="0"
         accept-type="photo"
+        ref="photoInput"
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
       />
@@ -63,9 +64,17 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <InputLoad load-id="1" accept-type="summary" @addFileSummary="addFileSummary" />
+      <InputLoad 
+      load-id="1" 
+      ref="summaryInput"
+      accept-type="summary" 
+      @addFileSummary="addFileSummary" />
 
-      <InputLoad load-id="2" accept-type="test" @addFileTest="addFileTest" />
+      <InputLoad 
+      load-id="2" 
+      ref="testInput"
+      accept-type="test" 
+      @addFileTest="addFileTest" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
@@ -84,7 +93,13 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <button type="reset" class="form__btn-reset">Отменить</button>
+        <!-- @click="$refs.photo.onReset()" -->
+        <!-- @click="$refs.photoInput.onReset(), $refs.summaryInput.onReset(), $refs.testInput.onReset()" -->
+        <button 
+        type="reset" 
+        class="form__btn-reset"
+        @click="onReset"
+        >Отменить</button>
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
@@ -242,6 +257,7 @@ export default {
       this.$emit("addApplicants", payload);
       // console.log("raitingSummary = " + this.ratingSummary);
 
+      this.onReset();
       event.target.reset();
 
       // console.log("FORM payload = " + payload);
@@ -258,7 +274,11 @@ export default {
     },
 
     onReset() {
-      // console.log("FORM -- onReset method is run.");
+      console.log("FORM -- onReset method is run.");
+      this.$refs.photoInput.onReset();
+      this.$refs.summaryInput.onReset();
+      this.$refs.testInput.onReset();
+      // this.$refs.photo.onReset();
       // event.preventDefault();
       // event.stopPropagation();
     },
