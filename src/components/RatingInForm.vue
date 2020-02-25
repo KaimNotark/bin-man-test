@@ -38,7 +38,7 @@ export default {
     }
   },
 
-  data () {
+  data() {
     return {
       selected: 0,
       isFiveStars: true,
@@ -47,7 +47,11 @@ export default {
   },
 
   methods: {
-    setRating (selected) {
+    onReset() {
+      console.log("RATING -- onReset - RUN");
+    },
+
+    setRating(selected) {
       if (selected == 1) this.colorStar = "#ff5d00";
       if (selected == 2) this.colorStar = "#ffa800";
       if (selected == 3) this.colorStar = "#dae700";

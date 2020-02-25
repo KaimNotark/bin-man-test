@@ -75,7 +75,7 @@ export default {
 
   methods: {
     onReset() {
-      console.log("INPUT-LOAD -- onReset is RUN");
+      // console.log("INPUT-LOAD -- onReset is RUN");
       this.fileName = "Файл не выбран";
       this.isFileInInput = false;
       this.file = null;
