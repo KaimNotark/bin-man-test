@@ -49,6 +49,8 @@ export default {
   methods: {
     onReset() {
       console.log("RATING -- onReset - RUN");
+      this.selected = 0;
+      console.log("RATING -- onReset - this.selected = " + this.selected);
     },
 
     setRating(selected) {

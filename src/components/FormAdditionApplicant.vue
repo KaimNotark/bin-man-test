@@ -85,7 +85,7 @@
           v-model="ratings[index]"
           :key="rating.id"
           :rating="rating"
-          ref="ratingReset[index]"
+          ref="ratings"
           @raitingNumber="raitingNumber"
           @raitingIndex="raitingIndex(index)"
         />
@@ -279,7 +279,9 @@ export default {
       this.$refs.photoInput.onReset();
       this.$refs.summaryInput.onReset();
       this.$refs.testInput.onReset();
-      this.$refs.ratingReset[this.index].onReset();
+      this.$refs.ratings[0].onReset();
+      this.$refs.ratings[1].onReset();
+      this.$refs.ratings[2].onReset();
       // this.$refs.photo.onReset();
       // event.preventDefault();
       // event.stopPropagation();
