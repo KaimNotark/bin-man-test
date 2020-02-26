@@ -1,7 +1,12 @@
 <template>
   <table class="main-table">
     <tbody>
-      <TableRow v-for="row in allApplicants" :key="row.id" :row="row" @removeById="removeById" />
+      <TableRow 
+      v-for="row in allApplicants" 
+      :key="row.id" 
+      :row="row" 
+      @editById="editById"
+      @removeById="removeById" />
     </tbody>
   </table>
 </template>
@@ -30,8 +35,12 @@ export default {
 
   methods: {
     removeById(rowId) {
-      console.log("TABLE it's work ID = " + rowId);
+      // console.log("TABLE it's work ID = " + rowId);
       this.$emit("removeById", rowId);
+    },
+    editById(rowId) {
+      // console.log("TABLE editById it's work ID = " + rowId);
+      this.$emit("editById", rowId);
     }
   }
 };

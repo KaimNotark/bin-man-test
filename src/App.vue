@@ -8,6 +8,8 @@
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
               <FormAdditionApplicant
+                ref="editRowForm"
+                :row-by-id="rowById"
                 @addApplicants="addApplicants"
                 @addFilePhoto="addFilePhoto"
                 @addFileSummary="addFileSummary"
@@ -120,7 +122,7 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table :all-applicants="allApplicants" @removeById="removeById" />
+              <Table :all-applicants="allApplicants" @editById="editById" @removeById="removeById" />
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
@@ -168,6 +170,7 @@ export default {
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [],
+      rowById: {},
       idDell: null,
       addOneApplicant: {
         name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -192,28 +195,26 @@ export default {
       this.fileTest = file;
     },
 
-    // async uploadFiles({ target }) {
-    //   const { name } = this;
-    //   const payload = new FormData();
-    //   const image = target.querySelector("input[type=file]").files[0];
-
-    //   payload.append("files.photo", image);
-    //   payload.append("data", JSON.stringify({ name }));
-
-    //   try {
-    //     const result = await Applicants.create(payload);
-    //     console.log(result);
-    //   } catch (error) {
-    //     this.errors = error;
-    //   }
-    // },
-
     modalOpen() {
       this.modalIsOpened = true;
     },
 
     modalClose() {
       this.modalIsOpened = false;
+    },
+
+    async editById(id) {
+      try {
+        console.log("APP -- editById - ID = " + id);
+        this.modalIsOpened = true;
+
+        this.rowById = await Applicants.getById(id);
+        console.log("APP -- editById - this.rowById = ", this.rowById);
+
+        this.$refs.editRowForm.editRow();
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     async removeById(id) {

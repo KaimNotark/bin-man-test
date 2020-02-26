@@ -19,6 +19,19 @@ class ApplicantsApi {
     }
   }
 
+  async getById(id) {
+    // console.log("APIjs -- getById - run.");
+
+    try {
+      const { data } = await axios.get(`${this.baseUrl}/${id}`);
+      // console.log("APIjs -- getById - data = ", data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
   async addApplicants(payload) {
     const options = {
       headers: {
