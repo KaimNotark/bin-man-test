@@ -74,6 +74,15 @@ export default {
   },
 
   methods: {
+    onReset() {
+      // console.log("INPUT-LOAD -- onReset is RUN");
+      this.fileName = "Файл не выбран";
+      this.isFileInInput = false;
+      this.file = null;
+      this.fileSize = 0;
+      this.sizeOfFile = 0;
+    },
+
     addFile(files) {
       this.file = files[0];
 
@@ -99,13 +108,15 @@ export default {
         this.isFileInInput = false;
       }
 
-      console.log("Имя - " + files[0].name);
-      console.log("Размер - " + files[0].size + " байт");
-      console.log("Тип - " + files[0].type);
-      console.log("Длина - " + files.length);
-      console.log("isFileInInput - " + this.isFileInInput);
-      console.log("fileSize - " + this.fileSize);
-      console.log("sizeOfFile - " + this.sizeOfFile);
+      if (this.acceptType === "photo") {
+        this.$emit("addFilePhoto", this.file);
+      }
+      if (this.acceptType === "summary") {
+        this.$emit("addFileSummary", this.file);
+      }
+      if (this.acceptType === "test") {
+        this.$emit("addFileTest", this.file);
+      }
     }
   }
 };

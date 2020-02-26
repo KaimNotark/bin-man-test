@@ -8,7 +8,7 @@
       inactive-color="#ffffff"
       :active-color="ratingColor"
       :border-color="ratingColor"
-      show-rating
+      :show-rating="false"
       read-only
     />
     <p class="table__rating-title">
@@ -38,9 +38,8 @@ export default {
       type: Number,
       required: true
     }
-  },
+  }
 };
-
 </script>
 
 <style lang="scss" scoped>

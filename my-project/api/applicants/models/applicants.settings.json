@@ -1,0 +1,52 @@
+{
+  "connection": "default",
+  "collectionName": "applicants",
+  "info": {
+    "name": "Applicants"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "vacancy": {
+      "type": "string"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "phone1": {
+      "type": "string"
+    },
+    "mail1": {
+      "type": "string"
+    },
+    "summary": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "test": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "ratingSummary": {
+      "type": "integer"
+    },
+    "ratingTest": {
+      "type": "integer"
+    },
+    "ratingInterview": {
+      "type": "integer"
+    }
+  }
+}

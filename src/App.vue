@@ -7,7 +7,12 @@
           <button class="modal-button-close" type="button" @click="modalClose">×</button>
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
-              <FormAdditionApplicant />
+              <FormAdditionApplicant
+                @addApplicants="addApplicants"
+                @addFilePhoto="addFilePhoto"
+                @addFileSummary="addFileSummary"
+                @addFileTest="addFileTest"
+              />
             </simplebar>
           </div>
         </div>
@@ -16,7 +21,7 @@
 
       <header class="header">
         <div class="header-container">
-          <img src="../public/images/logo.png" alt class="header-img" />
+          <img src="/images/logo.png" alt class="header-img" />
         </div>
       </header>
 
@@ -45,7 +50,7 @@
             </svg>
 
             <button class="nav-button _active" type="button">
-              <img src="../public/images/clients.png" alt="Клиенты" class="nav-button__img" />
+              <img src="/images/clients.png" alt="Клиенты" class="nav-button__img" />
             </button>
 
             <svg
@@ -75,13 +80,20 @@
           <div class="main-header">
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
-              <p class="main-title__counter">Всего соискателей: {{ counterApplicants }}</p>
+              <p class="main-title__counter">Всего соискателей: {{ allApplicants.length }}</p>
             </div>
 
             <div class="main-button">
-              <button class="main-button__selected" type="button">
-                <img src="../public/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">Избранные</span>
+              <!--
+              <button @click="forEachApplicants" class="main-button__selected" type="button">
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">forEach</span>
+              </button>
+              -->
+
+              <button @click="showApplicants" class="main-button__selected" type="button">
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">обновить</span>
               </button>
 
               <button class="main-button__add" type="button" @click="modalOpen">
@@ -90,6 +102,7 @@
               </button>
             </div>
           </div>
+
           <div class="tables-container">
             <table class="main-table__header">
               <thead>
@@ -107,18 +120,14 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table />
+              <Table :all-applicants="allApplicants" @removeById="removeById" />
+              <!-- begin ax2 -->
+              <!-- <ax2 /> -->
+              <!-- end ax2 -->
             </simplebar>
-
-            <table class="main-table__footer">
-              <tfoot>
-                <tr class="_height-40px">
-                  <td colspan="6">
-                    <button type="button" class="main-table__button">Показать еще</button>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+            <div class="main-table__footer">
+              <button type="button" class="main-table__button">Показать еще</button>
+            </div>
           </div>
         </main>
       </div>
@@ -129,8 +138,12 @@
 <script>
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
+
+import { Applicants } from "./Api";
+
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
+// import ax2 from "./components/ax2.vue"
 
 export default {
   name: "app",
@@ -139,22 +152,142 @@ export default {
     simplebar,
     Table,
     FormAdditionApplicant
+    // ax2
   },
 
-  data: function() {
+  data() {
     return {
-      counterApplicants: 67,
-      modalIsOpened: false
+      file: "",
+      name: "",
+
+      errors: null,
+      filePhoto: null,
+      fileSummary: null,
+      fileTest: null,
+
+      counterApplicants: 0,
+      modalIsOpened: false,
+      allApplicants: [],
+      idDell: null,
+      addOneApplicant: {
+        name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
+        vacancy: "dddddddddddddddddddd",
+        phone1: "89642255230"
+      }
     };
   },
 
+  created() {
+    this.showApplicants();
+  },
+
   methods: {
-    modalOpen: function() {
+    addFilePhoto(file) {
+      this.filePhoto = file;
+    },
+    addFileSummary(file) {
+      this.fileSummary = file;
+    },
+    addFileTest(file) {
+      this.fileTest = file;
+    },
+
+    // async uploadFiles({ target }) {
+    //   const { name } = this;
+    //   const payload = new FormData();
+    //   const image = target.querySelector("input[type=file]").files[0];
+
+    //   payload.append("files.photo", image);
+    //   payload.append("data", JSON.stringify({ name }));
+
+    //   try {
+    //     const result = await Applicants.create(payload);
+    //     console.log(result);
+    //   } catch (error) {
+    //     this.errors = error;
+    //   }
+    // },
+
+    modalOpen() {
       this.modalIsOpened = true;
     },
 
-    modalClose: function() {
+    modalClose() {
       this.modalIsOpened = false;
+    },
+
+    async removeById(id) {
+      try {
+        this.allApplicants = await Applicants.removeById(id);
+        await this.showApplicants();
+        // alert("Соискатель удалён.");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз."
+        );
+      }
+    },
+
+    async addApplicants(payload) {
+      const data = new FormData();
+
+      data.append("files.photo", this.filePhoto);
+      data.append("files.summary", this.fileSummary);
+      data.append("files.test", this.fileTest);
+      data.append("data", JSON.stringify(payload));
+
+      try {
+        await Applicants.addApplicants(data);
+        await this.showApplicants();
+        alert("Соискатель добавлен.");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "Что-то пошло не так. Соискатель не был добавлен. Попробуйте ещё раз."
+        );
+      }
+    },
+
+    async showApplicants() {
+      try {
+        this.allApplicants = await Applicants.showApplicants();
+
+        // Creating a url for the avatar. If the user has not uploaded the photo,
+        // then placeholder is placed.
+        let allApplicants = this.allApplicants;
+        allApplicants.forEach(function(v, i, allApplicants) {
+          if (allApplicants[i].photo === null) {
+            allApplicants[i].photo = {
+              url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+            };
+          } else {
+            allApplicants[i].photo.url =
+              "http://localhost:1337" + allApplicants[i].photo.url;
+          }
+
+          // Calculating the average rating value.
+          let ratingAverage = 0;
+          ratingAverage = Math.floor(
+            (allApplicants[i].ratingSummary +
+              allApplicants[i].ratingTest +
+              allApplicants[i].ratingInterview) /
+              3
+          );
+          allApplicants[i].ratingAverage = ratingAverage;
+
+          // Forming the starRating color on the table depending on the average rating.
+          let ratingColor = "";
+          if (ratingAverage == 1) ratingColor = "#ff5d00";
+          if (ratingAverage == 2) ratingColor = "#ffa800";
+          if (ratingAverage == 3) ratingColor = "#dae700";
+          if (ratingAverage == 4) ratingColor = "#abd02d";
+          if (ratingAverage == 5) ratingColor = "#67c600";
+          allApplicants[i].ratingColor = ratingColor;
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 };
@@ -162,6 +295,7 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
 @import "./stylesheets/variables.scss";
 @import "./stylesheets/resets.scss";
 
@@ -326,13 +460,14 @@ body {
   &-button {
     display: flex;
     justify-content: space-between;
-    width: 306px;
+    // width: 306px;
 
     &__selected {
       display: flex;
       justify-content: space-around;
       width: 116px;
       height: 36px;
+      margin-right: 10px;
       border: solid 1px $color-button-border;
       border-radius: 3px;
       background: $color-white;
@@ -523,5 +658,4 @@ th {
   height: calc(100vh - 150px);
 }
 // end -- modal overlay form
-
 </style>

@@ -1,6 +1,13 @@
 <template>
   <div class="form-container">
-    <form class="form" id="formId" autocomplete="on">
+    <form
+      class="form"
+      id="formId"
+      name="form"
+      autocomplete="on"
+      @submit="onSubmit"
+      @reset="onReset"
+    >
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
@@ -15,13 +22,19 @@
           placeholder="Введите ФИО"
           spellcheck="true"
           required
+          v-model="formFields.name"
         />
       </label>
 
       <label class="form__label">
         <span class="form__span">Вакансия</span>
 
-        <select @change="lighted" :class="[ 'form__select', { '_light' : isLight }]" required>
+        <select
+          @change="lighted"
+          :class="[ 'form__select', { '_light' : isLight }]"
+          required
+          v-model="formFields.vacancy"
+        >
           <OptionInSelect
             v-for="option in options"
             :key="option.id"
@@ -31,35 +44,63 @@
         </select>
       </label>
 
-      <InputLoad load-id="0" accept-type="photo" class="form__input-load-file" />
+      <InputLoad
+        load-id="0"
+        accept-type="photo"
+        ref="photoInput"
+        class="form__input-load-file"
+        @addFilePhoto="addFilePhoto"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
-      <InputInForm v-bind="phone" />
+      <InputInForm v-bind="phone" @formInputsPhone="formInputsPhone" />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" />
+      <InputInForm v-bind="mail" @formInputsMail="formInputsMail" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <InputLoad load-id="1" accept-type="summary" />
+      <InputLoad 
+      load-id="1" 
+      ref="summaryInput"
+      accept-type="summary" 
+      @addFileSummary="addFileSummary" />
 
-      <InputLoad load-id="2" accept-type="test" />
+      <InputLoad 
+      load-id="2" 
+      ref="testInput"
+      accept-type="test" 
+      @addFileTest="addFileTest" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
 
       <div class="form__rating-container">
-        <RatingInForm v-for="rating in ratings" :key="rating.id" :rating="rating" />
+        <RatingInForm
+          v-for="(rating, index) in ratings"
+          v-model="ratings[index]"
+          :key="rating.id"
+          :rating="rating"
+          ref="ratings"
+          @raitingNumber="raitingNumber"
+          @raitingIndex="raitingIndex(index)"
+        />
       </div>
 
       <hr class="form-devider" />
 
       <div class="container-row">
-        <button type="reset" class="form__btn-reset">Отменить</button>
+        <!-- @click="$refs.photo.onReset()" -->
+        <!-- @click="$refs.photoInput.onReset(), $refs.summaryInput.onReset(), $refs.testInput.onReset()" -->
+        <button 
+        type="reset" 
+        class="form__btn-reset"
+        @click="onReset"
+        >Отменить</button>
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
@@ -89,6 +130,21 @@ export default {
 
   data: () => ({
     isLight: true,
+    errors: null,
+
+    raitingBuffer: 0,
+    ratingSummary: 0,
+    ratingTest: 0,
+    ratingInterview: 0,
+
+    // filePhoto: null,
+
+    formFields: {
+      name: "",
+      vacancy: "",
+      phone1: "",
+      mail1: ""
+    },
 
     options: [
       {
@@ -98,22 +154,22 @@ export default {
       },
       {
         id: "1",
-        value: "JFD",
+        value: "Junior Frontend Developer",
         content: "Junior Frontend Developer"
       },
       {
         id: "2",
-        value: "MFD",
+        value: "Middle Frontend Developer",
         content: "Middle Frontend Developer"
       },
       {
         id: "3",
-        value: "SFD",
+        value: "Senior Frontend Developer",
         content: "Senior Frontend Developer"
       },
       {
         id: "4",
-        value: "TFD",
+        value: "TeamLead Frontend Developer",
         content: "TeamLead Frontend Developer"
       }
     ],
@@ -165,9 +221,89 @@ export default {
   methods: {
     lighted() {
       this.isLight = false;
-      console.log("isLight = " + this.isLight);
-      console.log("options.id = " + this.options[2].id);
-    }
+      // console.log("isLight = " + this.isLight);
+      // console.log("options.id = " + this.options[2].id);
+    },
+
+    addFilePhoto(file) {
+      // this.filePhoto = file;
+      // console.log("filePhoto = " + this.filePhoto);
+      this.$emit("addFilePhoto", file);
+    },
+    addFileSummary(file) {
+      this.$emit("addFileSummary", file);
+    },
+    addFileTest(file) {
+      this.$emit("addFileTest", file);
+    },
+
+    onSubmit(event) {
+      // console.log("FORM onSubmit method run.");
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const payload = {
+        name: this.formFields.name,
+        vacancy: this.formFields.vacancy,
+        phone1: this.formFields.phone1,
+        mail1: this.formFields.mail1,
+        ratingSummary: this.ratingSummary,
+        ratingTest: this.ratingTest,
+        ratingInterview: this.ratingInterview
+        // photo: this.FilePhoto
+      };
+      // payload.append('photo', this.FilePhoto);
+
+      this.$emit("addApplicants", payload);
+      // console.log("raitingSummary = " + this.ratingSummary);
+
+      this.onReset();
+      event.target.reset();
+
+      // console.log("FORM payload = " + payload);
+    },
+
+    formInputsPhone(phone1) {
+      this.formFields.phone1 = phone1;
+      // console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
+    },
+
+    formInputsMail(mail1) {
+      this.formFields.mail1 = mail1;
+      // console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
+    },
+
+    onReset() {
+      console.log("FORM -- onReset method is run.");
+      this.$refs.photoInput.onReset();
+      this.$refs.summaryInput.onReset();
+      this.$refs.testInput.onReset();
+      this.$refs.ratings[0].onReset();
+      this.$refs.ratings[1].onReset();
+      this.$refs.ratings[2].onReset();
+      // this.$refs.photo.onReset();
+      // event.preventDefault();
+      // event.stopPropagation();
+    },
+
+    raitingNumber(selected) {
+      // console.log("FORM -- raitingNumber - № = " + selected);
+      this.raitingBuffer = selected;
+    },
+
+    raitingIndex(index) {
+      // console.log("FORM -- raitingNumber - index = " + index);
+      if (index === 0) this.ratingSummary = this.raitingBuffer;
+      if (index === 1) this.ratingTest = this.raitingBuffer;
+      if (index === 2) this.ratingInterview = this.raitingBuffer;
+
+      // console.log("FORM -- ratingSummary = " + this.ratingSummary);
+      // console.log("FORM -- ratingTest = " + this.ratingTest);
+      // console.log("FORM -- ratingInterview = " + this.ratingInterview);
+    },
+
+    created() {}
   }
 };
 </script>

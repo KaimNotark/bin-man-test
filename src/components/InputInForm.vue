@@ -1,8 +1,12 @@
 <template>
   <div class="container-form-input">
-    <label v-for="formInput in formInputs" :key="formInput.formInputId" class="form__label">
+    <label
+      v-for="(formInput, index) in formInputs"
+      :key="formInput.formInputId"
+      class="form__label"
+    >
       <input
-        v-model="formInput.formInputContent"
+        v-model="formInputs[index]"
         class="form__input"
         :type="inputType"
         :name="inputName"
@@ -12,6 +16,7 @@
         required
         v-mask="inputMask"
         :spellcheck="inputSpellcheck"
+        @change="changeInput"
       />
     </label>
 
@@ -34,6 +39,7 @@ export default {
   },
 
   props: {
+    
     inputButtonText: {
       type: String,
       required: true
@@ -100,13 +106,19 @@ export default {
 
   methods: {
     addInput() {
-      if (this.inputId < 3) {
-        this.formInputs.push({
-          formInputId: this.inputId++,
-          formInputContent: this.inputContent
-        });
+      if (this.formInputs.length < 3) {
+        this.formInputs.push(this.inputContent);
 
-        this.isButtonVisible = this.inputId > 2;
+        this.isButtonVisible = this.formInputs.length > 2;
+      }
+    },
+
+    changeInput() {
+      if (this.inputName === "phone") {
+        this.$emit("formInputsPhone", this.formInputs[0]);
+      }
+      if (this.inputName === "email") {
+        this.$emit("formInputsMail", this.formInputs[0]);
       }
     }
   },
@@ -134,6 +146,7 @@ export default {
   background: $color-input-background;
   border-radius: 3px;
   padding: 10px;
+  margin-bottom: 5px;
 }
 
 %btn-add {
