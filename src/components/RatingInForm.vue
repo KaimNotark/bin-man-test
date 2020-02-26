@@ -16,6 +16,7 @@ npm install vue-star-rating
       :border-color="colorStar"
       :border-width="2"
       :padding="0"
+      :rating="ratingValue"
       @rating-selected="setRating"
     ></star-rating>
   </div>
@@ -42,23 +43,25 @@ export default {
     return {
       selected: 0,
       isFiveStars: true,
-      colorStar: "#ff5d00"
+      colorStar: "#ff5d00",
+      ratingValue: 0
     };
   },
 
   methods: {
     onReset() {
-      console.log("RATING -- onReset - RUN");
-      this.selected = 0;
-      console.log("RATING -- onReset - this.selected = " + this.selected);
+      // console.log("RATING -- onReset - RUN");
+      this.ratingValue = 0;
+      this.colorStar = "#ff5d00";
+      // console.log("RATING -- onReset - this.ratingValue = " + this.ratingValue);
     },
 
     setRating(selected) {
-      if (selected == 1) this.colorStar = "#ff5d00";
-      if (selected == 2) this.colorStar = "#ffa800";
-      if (selected == 3) this.colorStar = "#dae700";
-      if (selected == 4) this.colorStar = "#abd02d";
-      if (selected == 5) this.colorStar = "#67c600";
+      if (selected == 1) { this.colorStar = "#ff5d00"; this.ratingValue = 1 }
+      if (selected == 2) { this.colorStar = "#ffa800"; this.ratingValue = 2 }
+      if (selected == 3) { this.colorStar = "#dae700"; this.ratingValue = 3 }
+      if (selected == 4) { this.colorStar = "#abd02d"; this.ratingValue = 4 }
+      if (selected == 5) { this.colorStar = "#67c600"; this.ratingValue = 5 }
 
       this.$emit("raitingNumber", selected);
       this.$emit("raitingIndex");
