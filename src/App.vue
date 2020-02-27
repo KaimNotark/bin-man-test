@@ -206,12 +206,15 @@ export default {
     async editById(id) {
       try {
         console.log("APP -- editById - ID = " + id);
-        this.modalIsOpened = true;
 
         this.rowById = await Applicants.getById(id);
         console.log("APP -- editById - this.rowById = ", this.rowById);
 
-        this.$refs.editRowForm.editRow();
+        // this.$refs.editRowForm.editRow();
+        // this.modalIsOpened = true;
+
+        setTimeout(() => this.$refs.editRowForm.editRow(), 1000 );
+        setTimeout(() => this.modalIsOpened = true, 1000 );
       } catch (error) {
         console.error(error);
       }
