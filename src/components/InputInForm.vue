@@ -39,15 +39,15 @@ export default {
   },
 
   props: {
-    phone1: {
+    phoneFirst: {
       type: String,
       required: true
     },
 
-    mail1: {
-      type: String,
-      required: true
-    },
+    // mail: {
+    //   type: String,
+    //   required: true
+    // },
 
     inputButtonText: {
       type: String,
@@ -116,11 +116,12 @@ export default {
   methods: {
     editInput() {
       console.log("INPUT -- editInput - RUN");
-      console.log("INPUT -- editInput - phone1" + this.phone1);
+      console.log("INPUT -- editInput - phoneFirst = " + this.phoneFirst);
+      // console.log("INPUT -- editInput - mail1" + this.mail1);
 
       if (this.inputName === "phone") {
-        this.formInputs[0] = this.phone1;
-        console.log("INPUT -- editInput - formInputs[0]" + this.formInputs[0]);
+        this.formInputs[0] = this.phoneFirst;
+        console.log("INPUT -- editInput - formInputs[0] = " + this.formInputs[0]);
       }
       // if (this.inputName === "email") {
       //   this.formInputs[0] = this.mail1 ;

@@ -59,12 +59,12 @@
       <InputInForm
         v-bind="phone"
         @formInputsPhone="formInputsPhone"
-        :phone1="phone1"
         ref="editPhone"
+        :phone-first="phoneFirst"
       />
-
+      <!-- :mail1="mail1" -->
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" @formInputsMail="formInputsMail" :mail1="mail1" />
+      <InputInForm v-bind="mail" @formInputsMail="formInputsMail" :phone-first="phoneFirst" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
@@ -87,6 +87,7 @@
           v-model="ratings[index]"
           :key="rating.id"
           :rating="rating"
+          :edit-summary="editSummary"
           ref="ratings"
           @raitingNumber="raitingNumber"
           @raitingIndex="raitingIndex(index)"
@@ -137,13 +138,17 @@ export default {
     isLight: true,
     errors: null,
 
-    phone1: "",
-    mail1: "",
+    phoneFirst: "0 (000) 000-00-00",
+    mail1: "mail1",
 
     raitingBuffer: 0,
     ratingSummary: 0,
     ratingTest: 0,
     ratingInterview: 0,
+
+    editSummary: 0,
+    editTest: 0,
+    editInterview: 0,
 
     // filePhoto: null,
 
@@ -232,10 +237,21 @@ export default {
 
       this.formFields.name = this.rowById.name;
       this.formFields.vacancy = this.rowById.vacancy;
-      this.phone1 = this.rowById.phone1;
-      this.mail1 = this.rowById.mail1;
 
+      this.phoneFirst = this.rowById.phone1;
+      console.log("FORM -- editRow - this.phoneFirst = ", this.phoneFirst);
+      // this.mail = this.rowById.mail1;
       this.$refs.editPhone.editInput();
+
+      
+
+      this.editSummary = this.rowById.ratingSummary;
+      this.editTest = this.rowById.ratingTest;
+      this.editInterview = this.rowById.ratingInterview;
+      console.log("FORM -- editRow - this.editSummary = ", this.editSummary);
+      this.$refs.ratings[0].onEdit();
+      this.$refs.ratings[1].onEdit();
+      this.$refs.ratings[2].onEdit();
     },
 
     lighted() {

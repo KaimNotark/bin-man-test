@@ -36,6 +36,18 @@ export default {
     rating: {
       type: Object,
       required: true
+    },
+    editSummary: {
+      type: Number,
+      required: true
+    },
+    editTest: {
+      type: Number,
+      required: true
+    },
+    editInterview: {
+      type: Number,
+      required: true
     }
   },
 
@@ -49,6 +61,18 @@ export default {
   },
 
   methods: {
+    onEdit() {
+      console.log("RATING -- onEdit - RUN");
+      console.log("RATING -- onEdit - this.editSummary = " + this.editSummary);
+      this.ratingValue = this.editSummary;
+      console.log("RATING -- onEdit - this.ratingValue = " + this.ratingValue);
+      if (this.ratingValue == 1) this.colorStar = "#ff5d00"
+      if (this.ratingValue == 2) this.colorStar = "#ffa800"
+      if (this.ratingValue == 3) this.colorStar = "#dae700"
+      if (this.ratingValue == 4) this.colorStar = "#abd02d"
+      if (this.ratingValue == 5) this.colorStar = "#67c600"
+    },
+
     onReset() {
       // console.log("RATING -- onReset - RUN");
       this.ratingValue = 0;
@@ -57,11 +81,26 @@ export default {
     },
 
     setRating(selected) {
-      if (selected == 1) { this.colorStar = "#ff5d00"; this.ratingValue = 1 }
-      if (selected == 2) { this.colorStar = "#ffa800"; this.ratingValue = 2 }
-      if (selected == 3) { this.colorStar = "#dae700"; this.ratingValue = 3 }
-      if (selected == 4) { this.colorStar = "#abd02d"; this.ratingValue = 4 }
-      if (selected == 5) { this.colorStar = "#67c600"; this.ratingValue = 5 }
+      if (selected == 1) {
+        this.colorStar = "#ff5d00";
+        this.ratingValue = 1;
+      }
+      if (selected == 2) {
+        this.colorStar = "#ffa800";
+        this.ratingValue = 2;
+      }
+      if (selected == 3) {
+        this.colorStar = "#dae700";
+        this.ratingValue = 3;
+      }
+      if (selected == 4) {
+        this.colorStar = "#abd02d";
+        this.ratingValue = 4;
+      }
+      if (selected == 5) {
+        this.colorStar = "#67c600";
+        this.ratingValue = 5;
+      }
 
       this.$emit("raitingNumber", selected);
       this.$emit("raitingIndex");
