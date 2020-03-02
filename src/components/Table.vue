@@ -1,7 +1,13 @@
 <template>
   <table class="main-table">
     <tbody>
-      <TableRow v-for="row in allApplicants" :key="row.id" :row="row" @removeById="removeById" />
+      <TableRow
+        v-for="row in allApplicants"
+        :key="row.id"
+        :row="row"
+        @removeById="removeById"
+        @editById="editById"
+      />
     </tbody>
   </table>
 </template>
@@ -18,7 +24,6 @@ export default {
 
   data: () => ({
     // rowId: null
-
   }),
 
   props: {
@@ -29,6 +34,11 @@ export default {
   },
 
   methods: {
+    editById() {
+      console.log("TABLE -- button edit was pressed");
+      this.$emit("editById");
+    },
+
     removeById(rowId) {
       console.log("TABLE it's work ID = " + rowId);
       this.$emit("removeById", rowId);

@@ -120,7 +120,7 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table :all-applicants="allApplicants" @removeById="removeById" />
+              <Table :all-applicants="allApplicants" @removeById="removeById" @editById="editById" />
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
@@ -214,6 +214,12 @@ export default {
 
     modalClose() {
       this.modalIsOpened = false;
+    },
+
+    editById() {
+      console.log("APP -- button edit was pressed");
+
+      this.modalOpen();
     },
 
     async removeById(id) {

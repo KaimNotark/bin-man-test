@@ -72,7 +72,7 @@
             </symbol>
           </defs>
         </svg>
-        <svg class="row-icon row-icon__hover">
+        <svg @click="editById( row )" class="row-icon row-icon__hover">
           <use xlink:href="#icon-edit-3" />
         </svg>
 
@@ -160,6 +160,12 @@ export default {
   }),
 
   methods: {
+    editById(row) {
+      this.rowId = row.id;
+      console.log("TABLE-ROW -- button edit was pressed ID = " + this.rowId);
+      this.$emit("editById");
+    },
+
     removeById(row) {
       this.rowId = row.id;
       console.log("button remove was pressed ID = " + this.rowId);
