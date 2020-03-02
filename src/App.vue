@@ -216,8 +216,8 @@ export default {
       this.modalIsOpened = false;
     },
 
-    editById() {
-      console.log("APP -- button edit was pressed");
+    editById(id) {
+      console.log("APP -- button edit was pressed - id= " + id);
 
       this.modalOpen();
     },

@@ -34,13 +34,13 @@ export default {
   },
 
   methods: {
-    editById() {
-      console.log("TABLE -- button edit was pressed");
-      this.$emit("editById");
+    editById(rowId) {
+      // console.log("TABLE -- button edit was pressed - rowId= " + rowId);
+      this.$emit("editById", rowId);
     },
 
     removeById(rowId) {
-      console.log("TABLE it's work ID = " + rowId);
+      // console.log("TABLE it's work ID = " + rowId);
       this.$emit("removeById", rowId);
     }
   }

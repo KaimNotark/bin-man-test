@@ -162,13 +162,13 @@ export default {
   methods: {
     editById(row) {
       this.rowId = row.id;
-      console.log("TABLE-ROW -- button edit was pressed ID = " + this.rowId);
-      this.$emit("editById");
+      // console.log("TABLE-ROW -- button edit was pressed ID = " + this.rowId);
+      this.$emit("editById", this.rowId);
     },
 
     removeById(row) {
       this.rowId = row.id;
-      console.log("button remove was pressed ID = " + this.rowId);
+      // console.log("button remove was pressed ID = " + this.rowId);
       this.$emit("removeById", this.rowId);
     }
   },
