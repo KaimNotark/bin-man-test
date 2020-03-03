@@ -225,6 +225,9 @@ export default {
 
     editRowByIndex(index) {
       console.log("FORM -- editRowByIndex method run - index= ", index);
+
+      this.formFields.name = this.allApplicants[index].name;
+      this.formFields.vacancy = this.allApplicants[index].vacancy;
     },
 
     lighted() {
