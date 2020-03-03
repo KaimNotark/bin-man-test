@@ -12,6 +12,8 @@
                 @addFilePhoto="addFilePhoto"
                 @addFileSummary="addFileSummary"
                 @addFileTest="addFileTest"
+                :all-applicants="allApplicants"
+                ref="formAdditionApplicant"
               />
             </simplebar>
           </div>
@@ -120,10 +122,16 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table :all-applicants="allApplicants" @removeById="removeById" @editById="editById" />
+              <Table
+                :all-applicants="allApplicants"
+                @removeById="removeById"
+                @editById="editById"
+                @rowIndex="rowIndex"
+              />
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
+              {{ allApplicants[0] }}
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -217,8 +225,16 @@ export default {
     },
 
     editById(id) {
-      console.log("APP -- button edit was pressed - id= " + id);
+      // console.log("APP -- button edit was pressed - id= " + id);
 
+      this.$refs.formAdditionApplicant.editRow(id);
+      // this.modalOpen();
+    },
+
+    rowIndex(index) {
+      // console.log("APP -- button edit was pressed - index= " + index);
+
+      this.$refs.formAdditionApplicant.editRowByIndex(index);
       this.modalOpen();
     },
 

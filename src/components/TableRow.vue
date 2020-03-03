@@ -164,6 +164,7 @@ export default {
       this.rowId = row.id;
       // console.log("TABLE-ROW -- button edit was pressed ID = " + this.rowId);
       this.$emit("editById", this.rowId);
+      this.$emit("rowIndex");
     },
 
     removeById(row) {

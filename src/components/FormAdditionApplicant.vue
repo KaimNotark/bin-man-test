@@ -64,17 +64,14 @@
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <InputLoad 
-      load-id="1" 
-      ref="summaryInput"
-      accept-type="summary" 
-      @addFileSummary="addFileSummary" />
+      <InputLoad
+        load-id="1"
+        ref="summaryInput"
+        accept-type="summary"
+        @addFileSummary="addFileSummary"
+      />
 
-      <InputLoad 
-      load-id="2" 
-      ref="testInput"
-      accept-type="test" 
-      @addFileTest="addFileTest" />
+      <InputLoad load-id="2" ref="testInput" accept-type="test" @addFileTest="addFileTest" />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
@@ -96,11 +93,7 @@
       <div class="container-row">
         <!-- @click="$refs.photo.onReset()" -->
         <!-- @click="$refs.photoInput.onReset(), $refs.summaryInput.onReset(), $refs.testInput.onReset()" -->
-        <button 
-        type="reset" 
-        class="form__btn-reset"
-        @click="onReset"
-        >Отменить</button>
+        <button type="reset" class="form__btn-reset" @click="onReset">Отменить</button>
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
       </div>
     </form>
@@ -126,6 +119,13 @@ export default {
 
   directives: {
     mask: AwesomeMask
+  },
+
+  props: {
+    allApplicants: {
+      type: Array,
+      required: true
+    }
   },
 
   data: () => ({
@@ -219,6 +219,14 @@ export default {
   }),
 
   methods: {
+    editRow(id) {
+      console.log("FORM -- editRow method run - ID =", id);
+    },
+
+    editRowByIndex(index) {
+      console.log("FORM -- editRowByIndex method run - index= ", index);
+    },
+
     lighted() {
       this.isLight = false;
       // console.log("isLight = " + this.isLight);
