@@ -121,29 +121,13 @@ export default {
 
   methods: {
     editPhone1(index) {
-      if (this.inputName === "phone") {
-        console.log(
-          "INPUT -- editPhone1 method run - phone1= " +
-            this.allApplicants[index].phone1
-        );
         this.formInputs[0] = this.allApplicants[index].phone1;
         this.inputValue = this.allApplicants[index].phone1;
-      }
     },
 
     editMail1(index) {
-      console.log(
-        "INPUT -- editMail1 method run - editMail= " +
-          this.allApplicants[index].mail1
-      );
-      if (this.inputName === "email") {
-        console.log(
-          "INPUT -- editPhone1 method run - mail1= " +
-            this.allApplicants[index].mail1
-        );
         this.formInputs[0] = this.allApplicants[index].mail1;
         this.inputValue = this.allApplicants[index].mail1;
-      }
     },
 
     addInput() {
