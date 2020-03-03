@@ -56,10 +56,22 @@
       <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
-      <InputInForm v-bind="phone" @formInputsPhone="formInputsPhone" />
+      <InputInForm
+        ref="inputPhone"
+        v-bind="phone"
+        @formInputsPhone="formInputsPhone"
+        :edit-phone="editPhone"
+        :edit-mail="editMail"
+      />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" @formInputsMail="formInputsMail" />
+      <InputInForm
+        ref="inputMail"
+        v-bind="mail"
+        @formInputsMail="formInputsMail"
+        :edit-mail="editMail"
+        :edit-phone="editPhone"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
@@ -131,6 +143,9 @@ export default {
   data: () => ({
     isLight: true,
     errors: null,
+
+    editMail: "edit-mail@edit.ru",
+    editPhone: "89642611303",
 
     raitingBuffer: 0,
     ratingSummary: 0,
@@ -228,6 +243,11 @@ export default {
 
       this.formFields.name = this.allApplicants[index].name;
       this.formFields.vacancy = this.allApplicants[index].vacancy;
+      this.editMail = this.allApplicants[index].mail1;
+      this.editPhone = this.allApplicants[index].phone1;
+
+      this.$refs.inputPhone.editPhone1();
+      this.$refs.inputMail.editMail1();
     },
 
     lighted() {

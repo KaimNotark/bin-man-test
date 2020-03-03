@@ -39,7 +39,16 @@ export default {
   },
 
   props: {
-    
+    editMail: {
+      type: String,
+      required: true
+    },
+
+    editPhone: {
+      type: String,
+      required: true
+    },
+
     inputButtonText: {
       type: String,
       required: true
@@ -105,6 +114,12 @@ export default {
   }),
 
   methods: {
+    editPhone1() {
+      console.log("INPUT -- method run - editPhone= " + this.editPhone);
+    },
+    editMail1() {
+      console.log("INPUT -- method run - editMail= " + this.editMail);
+    },
     addInput() {
       if (this.formInputs.length < 3) {
         this.formInputs.push(this.inputContent);
