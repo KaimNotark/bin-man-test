@@ -92,6 +92,7 @@
           v-model="ratings[index]"
           :key="rating.id"
           :rating="rating"
+          :all-applicants="allApplicants"
           ref="ratings"
           @raitingNumber="raitingNumber"
           @raitingIndex="raitingIndex(index)"
@@ -239,6 +240,10 @@ export default {
 
       this.$refs.inputPhone.editPhone1(index);
       this.$refs.inputMail.editMail1(index);
+
+      this.$refs.ratings[0].editSummary(index);
+      this.$refs.ratings[1].editTest(index);
+      this.$refs.ratings[2].editInterview(index);
     },
 
     lighted() {
