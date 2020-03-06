@@ -62,7 +62,7 @@
         @formInputsPhone="formInputsPhone"
         :all-applicants="allApplicants"
       />
-       
+
       <span class="form__span form__input-header">Введите E-mail</span>
       <InputInForm
         ref="inputMail"
@@ -70,7 +70,7 @@
         @formInputsMail="formInputsMail"
         :all-applicants="allApplicants"
       />
-        
+
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
@@ -106,6 +106,7 @@
         <!-- @click="$refs.photoInput.onReset(), $refs.summaryInput.onReset(), $refs.testInput.onReset()" -->
         <button type="reset" class="form__btn-reset" @click="onReset">Отменить</button>
         <button type="submit" class="form__btn-submit">Добавить соискателя</button>
+        <button type="button" class="form__btn-submit" @click="onEdit">Изменить данные</button>
       </div>
     </form>
   </div>
@@ -147,6 +148,8 @@ export default {
     ratingSummary: 0,
     ratingTest: 0,
     ratingInterview: 0,
+
+    editRowId: null,
 
     formFields: {
       name: "",
@@ -228,8 +231,14 @@ export default {
   }),
 
   methods: {
+    onEdit() {
+      this.$emit("onEdit", this.editRowId);
+    },
+
     editRow(id) {
-      console.log("FORM -- editRow method run - ID =", id);
+      // console.log("FORM -- editRow method run - ID =", id);
+      this.editRowId = id;
+      // console.log("FORM -- editRow method run - editRowId= ", this.editRowId);
     },
 
     editRowByIndex(index) {

@@ -12,6 +12,7 @@
                 @addFilePhoto="addFilePhoto"
                 @addFileSummary="addFileSummary"
                 @addFileTest="addFileTest"
+                @onEdit="onEditFromForm"
                 :all-applicants="allApplicants"
                 ref="formAdditionApplicant"
               />
@@ -222,6 +223,11 @@ export default {
 
     modalClose() {
       this.modalIsOpened = false;
+    },
+
+    onEditFromForm(id) {
+      console.log("APP -- onEditFromForm - RUN");
+      console.log("APP -- onEditFromForm - id= " + id);
     },
 
     editById(id) {
