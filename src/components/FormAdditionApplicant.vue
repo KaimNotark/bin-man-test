@@ -231,8 +231,21 @@ export default {
   }),
 
   methods: {
-    onEdit() {
-      this.$emit("onEdit", this.editRowId);
+    onEdit(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const payload = {
+        name: this.formFields.name,
+        vacancy: this.formFields.vacancy,
+        phone1: this.formFields.phone1,
+        mail1: this.formFields.mail1,
+        ratingSummary: this.ratingSummary,
+        ratingTest: this.ratingTest,
+        ratingInterview: this.ratingInterview
+      };
+
+      this.$emit("onEdit", payload, this.editRowId);
     },
 
     editRow(id) {

@@ -42,6 +42,30 @@ class ApplicantsApi {
     }
   }
 
+  async editApplicants(payload, id) {
+    const options = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+    try {
+      const { data } = await axios.put(
+        `${this.baseUrl}/${id}`,
+        payload,
+        options,
+      );
+
+      console.log("APIjs -- editApplicants - data= ", data);
+      console.log("APIjs -- editApplicants - id= " + id);
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   async showApplicants() {
     console.log("CLASS Function SHOW ALL APPLICANTS run.");
 

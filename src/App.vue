@@ -225,9 +225,28 @@ export default {
       this.modalIsOpened = false;
     },
 
-    onEditFromForm(id) {
+    async onEditFromForm(payload, id) {
       console.log("APP -- onEditFromForm - RUN");
       console.log("APP -- onEditFromForm - id= " + id);
+      console.log("APP -- onEditFromForm - payload= ", payload);
+
+      const data = new FormData();
+
+      data.append("files.photo", this.filePhoto);
+      data.append("files.summary", this.fileSummary);
+      data.append("files.test", this.fileTest);
+      data.append("data", JSON.stringify(payload));
+
+      try {
+        await Applicants.editApplicants(data, id);
+        await this.showApplicants();
+        alert("Данные успешно изменены.");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "Что-то пошло не так. Данные не были изменены. Попробуйте ещё раз."
+        );
+      }
     },
 
     editById(id) {
