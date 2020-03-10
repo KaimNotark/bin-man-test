@@ -28,13 +28,13 @@
       "type": "string"
     },
     "summary": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "plugin": "upload",
       "required": false
     },
     "test": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "plugin": "upload",
       "required": false

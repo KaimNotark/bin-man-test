@@ -16,7 +16,10 @@
       />
     </label>
     <span
-      :class="['form__file-name', {'_color-text-light' : !isFileInInput}, { '_color-text' : isFileInInput } ]"
+      :class="['form__file-name', 
+      {'_color-text-light' : !isFileInInput}, 
+      { '_color-text' : isFileInInput } 
+      ]"
     >{{ fileName }}</span>
   </div>
 </template>
@@ -26,6 +29,11 @@ export default {
   name: "InputLoad",
 
   props: {
+    allApplicants: {
+      type: Array,
+      required: true
+    },
+
     loadId: {
       type: String,
       required: true
@@ -74,8 +82,25 @@ export default {
   },
 
   methods: {
+    onEditPhoto(index) {
+      // console.log("INPUT-LOAD -- onEditPhoto - RUN, index= " + index);
+      this.isFileInInput = true;
+      this.fileName = this.allApplicants[index].photo.name;
+    },
+    onEditSummary(index) {
+      // console.log("INPUT-LOAD -- onEditSummary - RUN, index= " + index);
+      this.isFileInInput = true;
+      this.fileName = this.allApplicants[index].summary.name;
+      // console.log("INPUT-LOAD -- onEditSummary - fileName= " + this.allApplicants[index].summary.name);
+    },
+    onEditTest(index) {
+      // console.log("INPUT-LOAD -- onEditTest - RUN, index= " + index);
+      this.isFileInInput = true;
+      this.fileName = this.allApplicants[index].test.name;
+      // console.log("INPUT-LOAD -- onEditTest - fileName= " + this.allApplicants[index].test.name);
+    },
+
     onReset() {
-      // console.log("INPUT-LOAD -- onReset is RUN");
       this.fileName = "Файл не выбран";
       this.isFileInInput = false;
       this.file = null;

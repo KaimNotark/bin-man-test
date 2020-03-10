@@ -50,6 +50,7 @@
         ref="photoInput"
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
+        :all-applicants="allApplicants"
       />
 
       <hr class="form-devider" />
@@ -79,9 +80,16 @@
         ref="summaryInput"
         accept-type="summary"
         @addFileSummary="addFileSummary"
+        :all-applicants="allApplicants"
       />
 
-      <InputLoad load-id="2" ref="testInput" accept-type="test" @addFileTest="addFileTest" />
+      <InputLoad
+        load-id="2"
+        ref="testInput"
+        accept-type="test"
+        @addFileTest="addFileTest"
+        :all-applicants="allApplicants"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
@@ -153,11 +161,9 @@ export default {
       type: Boolean,
       required: true
     }
-
   },
 
   data: () => ({
-    
     isLight: true,
     errors: null,
 
@@ -274,6 +280,8 @@ export default {
     editRowByIndex(index) {
       console.log("FORM -- editRowByIndex method run - index= ", index);
 
+      this.lighted();
+
       this.formFields.name = this.allApplicants[index].name;
       this.formFields.vacancy = this.allApplicants[index].vacancy;
 
@@ -283,6 +291,10 @@ export default {
       this.$refs.ratings[0].editSummary(index);
       this.$refs.ratings[1].editTest(index);
       this.$refs.ratings[2].editInterview(index);
+
+      this.$refs.photoInput.onEditPhoto(index);
+      this.$refs.summaryInput.onEditSummary(index);
+      this.$refs.testInput.onEditTest(index);
     },
 
     lighted() {
