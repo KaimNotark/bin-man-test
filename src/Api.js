@@ -56,8 +56,8 @@ class ApplicantsApi {
         options,
       );
 
-      console.log("APIjs -- editApplicants - data= ", data);
-      console.log("APIjs -- editApplicants - id= " + id);
+      // console.log("APIjs -- editApplicants - data= ", data);
+      // console.log("APIjs -- editApplicants - id= " + id);
 
       return data;
     } catch (error) {

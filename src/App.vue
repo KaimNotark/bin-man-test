@@ -14,6 +14,8 @@
                 @addFileTest="addFileTest"
                 @onEdit="onEditFromForm"
                 :all-applicants="allApplicants"
+                :is-button-submit-hide="isButtonSubmitHide"
+                :is-button-edit-hide="isButtonEditHide"
                 ref="formAdditionApplicant"
               />
             </simplebar>
@@ -99,7 +101,7 @@
                 <span class="main-button__text">обновить</span>
               </button>
 
-              <button class="main-button__add" type="button" @click="modalOpen">
+              <button class="main-button__add" type="button" @click="showAddForm">
                 <span class="_increase">+</span>
                 <span>Добавить соискателя</span>
               </button>
@@ -169,6 +171,9 @@ export default {
       file: "",
       name: "",
 
+      isButtonSubmitHide: true,
+      isButtonEditHide: true,
+
       errors: null,
       filePhoto: null,
       fileSummary: null,
@@ -201,24 +206,18 @@ export default {
       this.fileTest = file;
     },
 
-    // async uploadFiles({ target }) {
-    //   const { name } = this;
-    //   const payload = new FormData();
-    //   const image = target.querySelector("input[type=file]").files[0];
-
-    //   payload.append("files.photo", image);
-    //   payload.append("data", JSON.stringify({ name }));
-
-    //   try {
-    //     const result = await Applicants.create(payload);
-    //     console.log(result);
-    //   } catch (error) {
-    //     this.errors = error;
-    //   }
-    // },
+    showAddForm() {
+      this.modalOpen();
+      this.hideButtons();
+    },
 
     modalOpen() {
       this.modalIsOpened = true;
+    },
+
+    hideButtons() {
+      this.isButtonSubmitHide = false;
+      this.isButtonEditHide = true;
     },
 
     modalClose() {
@@ -226,9 +225,9 @@ export default {
     },
 
     async onEditFromForm(payload, id) {
-      console.log("APP -- onEditFromForm - RUN");
-      console.log("APP -- onEditFromForm - id= " + id);
-      console.log("APP -- onEditFromForm - payload= ", payload);
+      // console.log("APP -- onEditFromForm - RUN");
+      // console.log("APP -- onEditFromForm - id= " + id);
+      // console.log("APP -- onEditFromForm - payload= ", payload);
 
       const data = new FormData();
 
@@ -260,6 +259,8 @@ export default {
       // console.log("APP -- button edit was pressed - index= " + index);
 
       this.$refs.formAdditionApplicant.editRowByIndex(index);
+      this.isButtonSubmitHide = true;
+      this.isButtonEditHide = false;
       this.modalOpen();
     },
 

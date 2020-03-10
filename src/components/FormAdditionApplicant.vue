@@ -102,11 +102,18 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <!-- @click="$refs.photo.onReset()" -->
-        <!-- @click="$refs.photoInput.onReset(), $refs.summaryInput.onReset(), $refs.testInput.onReset()" -->
         <button type="reset" class="form__btn-reset" @click="onReset">Отменить</button>
-        <button type="submit" class="form__btn-submit">Добавить соискателя</button>
-        <button type="button" class="form__btn-submit" @click="onEdit">Изменить данные</button>
+
+        <button
+          type="submit"
+          :class="[ 'form__btn-submit', { '_hide' : isButtonSubmitHide }]"
+        >Добавить соискателя</button>
+
+        <button
+          type="button"
+          :class="[ 'form__btn-submit', { '_hide' : isButtonEditHide }]"
+          @click="onEdit"
+        >Изменить данные</button>
       </div>
     </form>
   </div>
@@ -137,10 +144,20 @@ export default {
     allApplicants: {
       type: Array,
       required: true
+    },
+    isButtonSubmitHide: {
+      type: Boolean,
+      required: true
+    },
+    isButtonEditHide: {
+      type: Boolean,
+      required: true
     }
+
   },
 
   data: () => ({
+    
     isLight: true,
     errors: null,
 
@@ -655,5 +672,9 @@ input:-webkit-autofill:active {
 
 ._button-hidden {
   visibility: hidden;
+}
+
+._hide {
+  display: none;
 }
 </style>
