@@ -110,7 +110,7 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <button type="reset" class="form__btn-reset" @click="onReset">Отменить</button>
+        <button type="reset" class="form__btn-reset" @click="onReset">Очистить</button>
 
         <button
           type="submit"
@@ -269,6 +269,9 @@ export default {
       };
 
       this.$emit("onEdit", payload, this.editRowId);
+
+      this.onReset();
+      event.target.reset();
     },
 
     editRow(id) {
@@ -353,16 +356,21 @@ export default {
     },
 
     onReset() {
-      console.log("FORM -- onReset method is run.");
+      // console.log("FORM -- onReset method is run.");
       this.$refs.photoInput.onReset();
       this.$refs.summaryInput.onReset();
       this.$refs.testInput.onReset();
+
       this.$refs.ratings[0].onReset();
       this.$refs.ratings[1].onReset();
       this.$refs.ratings[2].onReset();
-      // this.$refs.photo.onReset();
-      // event.preventDefault();
-      // event.stopPropagation();
+
+      // this.$refs.inputPhone[0].onReset();
+      // this.$refs.inputMail[0].onReset();
+
+      this.formFields.name = null;
+      this.formFields.vacancy = null;
+      this.isLight = true;
     },
 
     raitingNumber(selected) {

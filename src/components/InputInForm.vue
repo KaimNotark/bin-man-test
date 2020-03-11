@@ -19,6 +19,7 @@
         @change="changeInput"
         :value="inputValue"
       />
+      <!-- :content="inputContent" -->
     </label>
 
     <button
@@ -44,15 +45,6 @@ export default {
       type: Array,
       required: true
     },
-    // editMail: {
-    //   type: String,
-    //   required: true
-    // },
-
-    // editPhone: {
-    //   type: String,
-    //   required: true
-    // },
 
     inputButtonText: {
       type: String,
@@ -121,14 +113,23 @@ export default {
 
   methods: {
     editPhone1(index) {
-        this.formInputs[0] = this.allApplicants[index].phone1;
-        this.inputValue = this.allApplicants[index].phone1;
+      this.formInputs[0] = this.allApplicants[index].phone1;
+      this.inputValue = this.allApplicants[index].phone1;
+      this.inputText = this.allApplicants[index].phone1;
+      // this.inputContent = this.allApplicants[index].phone1;
     },
 
     editMail1(index) {
-        this.formInputs[0] = this.allApplicants[index].mail1;
-        this.inputValue = this.allApplicants[index].mail1;
+      this.formInputs[0] = this.allApplicants[index].mail1;
+      this.inputValue = this.allApplicants[index].mail1;
+      this.inputText = this.allApplicants[index].mail1;
+      // this.inputContent = this.allApplicants[index].mail1;
     },
+
+    // onReset() {
+    //   this.formInputs[0] = null;
+    //   this.inputValue = null;
+    // },
 
     addInput() {
       if (this.formInputs.length < 3) {
