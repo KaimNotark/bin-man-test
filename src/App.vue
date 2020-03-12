@@ -134,7 +134,7 @@
               <!-- begin ax2 -->
               <!-- <ax2 /> -->
               <!-- end ax2 -->
-              {{ allApplicants[0] }}
+              <!-- {{ allApplicants[0] }} -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
