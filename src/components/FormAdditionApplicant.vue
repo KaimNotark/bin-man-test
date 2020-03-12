@@ -6,8 +6,8 @@
       name="form"
       autocomplete="on"
       @submit="onSubmit"
+      @reset="onReset"
     >
-      <!-- @reset="onReset" -->
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
@@ -110,7 +110,7 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <button type="button" class="form__btn-reset" @click="onReset">Очистить</button>
+        <button type="reset" class="form__btn-reset" @click="onReset">Очистить</button>
 
         <button
           type="submit"
@@ -271,7 +271,7 @@ export default {
       this.$emit("onEdit", payload, this.editRowId);
 
       this.onReset();
-      event.target.reset();
+      // event.target.reset();
     },
 
     editRow(id) {
