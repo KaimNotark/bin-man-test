@@ -115,22 +115,18 @@ export default {
     editPhone1(index) {
       this.formInputs[0] = this.allApplicants[index].phone1;
       this.inputValue = this.allApplicants[index].phone1;
-      this.inputText = this.allApplicants[index].phone1;
-      // this.inputContent = this.allApplicants[index].phone1;
     },
 
     editMail1(index) {
       this.formInputs[0] = this.allApplicants[index].mail1;
       this.inputValue = this.allApplicants[index].mail1;
-      this.inputText = this.allApplicants[index].mail1;
-      // this.inputContent = this.allApplicants[index].mail1;
     },
 
-    // onReset() {
-    //   this.formInputs[0] = null;
-    //   this.inputValue = null;
-    // },
-
+    onReset() {
+      this.formInputs[0] = "";
+      this.inputValue = "";
+    },
+   
     addInput() {
       if (this.formInputs.length < 3) {
         this.formInputs.push(this.inputContent);

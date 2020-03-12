@@ -222,6 +222,7 @@ export default {
 
     modalClose() {
       this.modalIsOpened = false;
+      this.$refs.formAdditionApplicant.onReset();
     },
 
     async onEditFromForm(payload, id) {

@@ -6,8 +6,8 @@
       name="form"
       autocomplete="on"
       @submit="onSubmit"
-      @reset="onReset"
     >
+      <!-- @reset="onReset" -->
       <h1 class="form-title">Добавление соискателя</h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
@@ -110,7 +110,7 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <button type="reset" class="form__btn-reset" @click="onReset">Очистить</button>
+        <button type="button" class="form__btn-reset" @click="onReset">Очистить</button>
 
         <button
           type="submit"
@@ -365,8 +365,8 @@ export default {
       this.$refs.ratings[1].onReset();
       this.$refs.ratings[2].onReset();
 
-      // this.$refs.inputPhone[0].onReset();
-      // this.$refs.inputMail[0].onReset();
+      this.$refs.inputPhone.onReset();
+      this.$refs.inputMail.onReset();
 
       this.formFields.name = null;
       this.formFields.vacancy = null;
