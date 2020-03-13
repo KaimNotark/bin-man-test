@@ -135,6 +135,7 @@
               <!-- <ax2 /> -->
               <!-- end ax2 -->
               <!-- {{ allApplicants[0] }} -->
+              <jm1 />
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -155,6 +156,7 @@ import { Applicants } from "./Api";
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
 // import ax2 from "./components/ax2.vue"
+import jm1 from "./components/jm1.vue";
 
 export default {
   name: "app",
@@ -162,8 +164,9 @@ export default {
   components: {
     simplebar,
     Table,
-    FormAdditionApplicant
+    FormAdditionApplicant,
     // ax2
+    jm1
   },
 
   data() {
