@@ -29,12 +29,12 @@ export default {
 
   methods: {
     onAnalysis() {
+      let usersDay = 0;
       for (let i = 0; i <= 11; i++) {
         let usersDate = new Date(this.usersYear, i, 13);
-        // console.log("usersDate= " + usersDate);
-        this.first13th = usersDate.getDay();
-        // friday = 5
-        console.log("i=" + i + " first13th= " + this.first13th);
+        usersDay = usersDate.getDay();
+        this.first13th = usersDate;
+        if ( usersDay == 5 ) break;
       }
     }
   }
