@@ -12,12 +12,13 @@
       <span class="_green">Final string:</span>
       " {{ finalString }} "
     </p>
+    <hr>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Jm1",
+  name: "jm1",
 
   data() {
     return {
