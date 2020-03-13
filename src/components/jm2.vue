@@ -13,8 +13,8 @@
       " {{ finalString }} "
     </p>
     {{ allWordsInString }}
-    <br>
-    {{ numberOfRepeatedWord }}
+    <br />
+    {{ repeatedWord }}
     <hr />
   </div>
 </template>
@@ -30,37 +30,34 @@ export default {
       lengthOfString: 0,
 
       allWordsInString: [],
-      numberOfRepeatedWord: []
+      repeatedWord: []
     };
   },
 
   methods: {
     onAnalysis() {
-      // str.toLowerCase().indexOf("...")
       this.allWordsInString = this.originalString.split(" ");
 
+      let isDuble = false;
+
       for (let i = 0; i < this.allWordsInString.length; i++) {
+        isDuble = false;
         let currentWord = this.allWordsInString[i];
 
-        for (let n = i+1; n < this.allWordsInString.length-i; n++) {
-          let nextWord = this.allWordsInString[n];
+        if (!(currentWord == "")) {
+          for (let n = i + 1; n < this.allWordsInString.length; n++) {
+            let nextWord = this.allWordsInString[n];
 
-          if (currentWord == nextWord) {
-            this.numberOfRepeatedWord.push(i);
-            this.allWordsInString[n] = "+";
+            if (currentWord == nextWord) {
+              if (!isDuble) this.repeatedWord.push(nextWord);
+              isDuble = true;
+              this.allWordsInString[n] = "";
+            }
           }
         }
       }
-      console.log(
-        "JM2--onAnalysis - allWordsInString= " + this.allWordsInString
-      );
-      // console.log(
-      //   "JM2--onAnalysis - allWordsInString.length= " + this.allWordsInString.length
-      // );
 
-      // if (str.match(regexp)) {
-      //   console.log("JM2--onAnalysis - originalString= " + this.originalString);
-      // }
+      this.finalString = this.repeatedWord.join(" ");
     }
   }
 };
