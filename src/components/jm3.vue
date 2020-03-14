@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <br />
+    <h1 class="title">Test 3</h1>
+
     <input type="text" class="users-string" v-model="usersYear" />
     <p class="string">
       <span class="_green">Users year:</span>
@@ -34,7 +36,7 @@ export default {
         let usersDate = new Date(this.usersYear, i, 13);
         usersDay = usersDate.getDay();
         this.first13th = usersDate;
-        if ( usersDay == 5 ) break;
+        if (usersDay == 5) break;
       }
     }
   }
