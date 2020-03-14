@@ -54,12 +54,12 @@ export default {
 
       // searching for identical elements in arrays
       for (let i = 0; i < this.filteredArr1.length; i++) {
-        let arr1Elem = this.filteredArr1[i];
+        let elemArr1 = this.filteredArr1[i];
 
         for (let n = 0; n < this.filteredArr2.length; n++) {
-          let arr2Elem = this.filteredArr2[n];
+          let elemArr2 = this.filteredArr2[n];
 
-          if (arr1Elem == arr2Elem) this.numberOfMatches++;
+          if (elemArr1 == elemArr2) this.numberOfMatches++;
         }
       }
     },
