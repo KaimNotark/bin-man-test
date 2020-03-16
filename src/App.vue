@@ -131,15 +131,9 @@
                 @editById="editById"
                 @rowIndex="rowIndex"
               />
-              <!-- begin ax2 -->
-              <!-- <ax2 /> -->
-              <!-- end ax2 -->
+              
               <!-- {{ allApplicants[0] }} -->
-              <jm1 />
-              <jm2 />
-              <jm3 />
-              <jm4 />
-              <jm5 />
+              
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -159,12 +153,6 @@ import { Applicants } from "./Api";
 
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
-// import ax2 from "./components/ax2.vue"
-import jm1 from "./components/jm1.vue";
-import jm2 from "./components/jm2.vue";
-import jm3 from "./components/jm3.vue";
-import jm4 from "./components/jm4.vue";
-import jm5 from "./components/jm5.vue";
 
 export default {
   name: "app",
@@ -173,13 +161,7 @@ export default {
     simplebar,
     Table,
     FormAdditionApplicant,
-    // ax2
-    jm1,
-    jm2,
-    jm3,
-    jm4,
-    jm5
-  },
+        },
 
   data() {
     return {
