@@ -357,9 +357,12 @@ export default {
 
     onReset() {
       // console.log("FORM -- onReset method is run.");
+
       this.$refs.photoInput.onReset();
       this.$refs.summaryInput.onReset();
       this.$refs.testInput.onReset();
+
+      // this.$refs.photoInput.$refs.fileUpload.value = null;
 
       this.$refs.ratings[0].onReset();
       this.$refs.ratings[1].onReset();

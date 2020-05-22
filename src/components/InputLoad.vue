@@ -8,7 +8,9 @@
       <input
         @change="addFile($event.target.files)"
         :id="loadId"
+        ref="fileUpload"
         type="file"
+        v-if="uploadReady"
         name="fileName"
         autocomplete="off"
         :accept="variants[acceptType].accept"
@@ -50,7 +52,8 @@ export default {
     isFileInInput: false,
     fileSize: 0,
     file: null,
-    sizeOfFile: 0
+    sizeOfFile: 0,
+    uploadReady: true
   }),
 
   computed: {
@@ -106,6 +109,24 @@ export default {
       this.file = null;
       this.fileSize = 0;
       this.sizeOfFile = 0;
+
+      this.uploadReady = false;
+      this.$nextTick(() => {
+        this.uploadReady = true;
+      });
+
+      // this.$refs.fileUpload.value = null;
+      // const input = this.$refs.fileUpload;
+      // input.type = "text";
+      // input.type = "file";
+
+      console.log("type = " + this.$refs.fileUpload.type);
+      console.log("fils = " + this.$refs.fileUpload.files);
+      // console.log("file.name = " + this.$refs.fileUpload.files[0].name);
+      console.log("name = " + this.$refs.fileUpload.name);
+
+      // this.$refs.fileUpload.files = null;
+      // console.log("files (null) = " + this.$refs.fileUpload.files);
     },
 
     addFile(files) {
