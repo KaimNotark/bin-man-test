@@ -5,17 +5,24 @@
     <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
 
-      <input
-        @change="addFile($event.target.files)"
-        :id="loadId"
-        ref="fileUpload"
-        type="file"
-        v-if="uploadReady"
-        name="fileName"
-        autocomplete="off"
-        :accept="variants[acceptType].accept"
-        class="form__input-file"
-      />
+      <!-- <form
+        class="form-for-input"
+        id="formForInputId"
+        name="formforInput"
+        @reset="onResetFormForInput"
+      > -->
+        <!-- v-if="uploadReady" -->
+        <input
+          @change="addFile($event.target.files)"
+          :id="loadId"
+          ref="fileUpload"
+          type="file"
+          name="fileName"
+          autocomplete="off"
+          :accept="variants[acceptType].accept"
+          class="form__input-file"
+        />
+      <!-- </form> -->
     </label>
     <span
       :class="['form__file-name', 
@@ -52,8 +59,8 @@ export default {
     isFileInInput: false,
     fileSize: 0,
     file: null,
-    sizeOfFile: 0,
-    uploadReady: true
+    sizeOfFile: 0
+    // uploadReady: true
   }),
 
   computed: {
@@ -103,6 +110,12 @@ export default {
       // console.log("INPUT-LOAD -- onEditTest - fileName= " + this.allApplicants[index].test.name);
     },
 
+    // onResetFormForInput(event) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    //   event.target.reset();
+    // },
+
     onReset() {
       this.fileName = "Файл не выбран";
       this.isFileInInput = false;
@@ -110,23 +123,28 @@ export default {
       this.fileSize = 0;
       this.sizeOfFile = 0;
 
-      this.uploadReady = false;
-      this.$nextTick(() => {
-        this.uploadReady = true;
-      });
-
+      // --- 1 ---
+      // this.uploadReady = false;
+      // this.$nextTick(() => {
+      //   this.uploadReady = true;
+      // });
+      // --- 2 ----
       // this.$refs.fileUpload.value = null;
+      // --- 3 ----
       // const input = this.$refs.fileUpload;
       // input.type = "text";
       // input.type = "file";
+      // --- 4 ---
+      // this.$refs.fileUpload.files = null;
+      // console.log("files (null) = " + this.$refs.fileUpload.files);
+      // --- 5 ---
+      // this.onResetFormForInput();
 
       console.log("type = " + this.$refs.fileUpload.type);
+      console.log("value = " + this.$refs.fileUpload.value);
       console.log("fils = " + this.$refs.fileUpload.files);
       // console.log("file.name = " + this.$refs.fileUpload.files[0].name);
       console.log("name = " + this.$refs.fileUpload.name);
-
-      // this.$refs.fileUpload.files = null;
-      // console.log("files (null) = " + this.$refs.fileUpload.files);
     },
 
     addFile(files) {
