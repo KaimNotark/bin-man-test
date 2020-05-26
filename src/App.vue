@@ -8,6 +8,7 @@
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
               <FormAdditionApplicant
+                @resetFilePhoto="resetFilePhoto"
                 @addApplicants="addApplicants"
                 @addFilePhoto="addFilePhoto"
                 @addFileSummary="addFileSummary"
@@ -131,9 +132,8 @@
                 @editById="editById"
                 @rowIndex="rowIndex"
               />
-              
+
               <!-- {{ allApplicants[0] }} -->
-              
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -160,8 +160,8 @@ export default {
   components: {
     simplebar,
     Table,
-    FormAdditionApplicant,
-        },
+    FormAdditionApplicant
+  },
 
   data() {
     return {
@@ -193,6 +193,10 @@ export default {
   },
 
   methods: {
+    resetFilePhoto(file) {
+      this.filePhoto = file;
+      console.log("App-- resetFilePhoto- this.filePhoto= " + this.filePhoto);
+    },
     addFilePhoto(file) {
       this.filePhoto = file;
     },
@@ -230,6 +234,8 @@ export default {
       const data = new FormData();
 
       data.append("files.photo", this.filePhoto);
+      console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
+
       data.append("files.summary", this.fileSummary);
       data.append("files.test", this.fileTest);
       data.append("data", JSON.stringify(payload));

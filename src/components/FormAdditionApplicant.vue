@@ -8,7 +8,11 @@
       @submit="onSubmit"
       @reset="onReset"
     >
-      <h1 class="form-title">Добавление соискателя</h1>
+      <h1 class="form-title">
+        <span :class="{'_hide' : isButtonSubmitHide}">Добавление</span>
+        <span :class="{'_hide' : isButtonEditHide}">Изменить данные</span>
+        соискателя
+      </h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
 
@@ -50,6 +54,7 @@
         ref="photoInput"
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
+        @resetFilePhoto="resetFilePhoto"
         :all-applicants="allApplicants"
       />
 
@@ -270,7 +275,7 @@ export default {
 
       this.$emit("onEdit", payload, this.editRowId);
 
-      this.onReset();
+      // this.onReset();
       // event.target.reset();
     },
 
@@ -304,6 +309,11 @@ export default {
       this.isLight = false;
       // console.log("isLight = " + this.isLight);
       // console.log("options.id = " + this.options[2].id);
+    },
+
+    resetFilePhoto(file) {
+      this.$emit("resetFilePhoto", file);
+      console.log("FAA-- resetFilePhoto- file = " + file);
     },
 
     addFilePhoto(file) {

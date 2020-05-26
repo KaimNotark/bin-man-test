@@ -140,11 +140,22 @@ export default {
       // --- 5 ---
       // this.onResetFormForInput();
 
-      console.log("type = " + this.$refs.fileUpload.type);
-      console.log("value = " + this.$refs.fileUpload.value);
-      console.log("fils = " + this.$refs.fileUpload.files);
+      // console.log("type = " + this.$refs.fileUpload.type);
+      // console.log("value = " + this.$refs.fileUpload.value);
+      // console.log("fils = " + this.$refs.fileUpload.files);
       // console.log("file.name = " + this.$refs.fileUpload.files[0].name);
-      console.log("name = " + this.$refs.fileUpload.name);
+      // console.log("name = " + this.$refs.fileUpload.name);
+
+      if (this.acceptType === "photo") {
+        console.log("InputLoad-- reset file photo- this.file= " + this.file);
+        this.$emit("resetFilePhoto", this.file);
+      }
+      if (this.acceptType === "summary") {
+        this.$emit("addFileSummary", this.file);
+      }
+      if (this.acceptType === "test") {
+        this.$emit("addFileTest", this.file);
+      }
     },
 
     addFile(files) {
@@ -173,6 +184,7 @@ export default {
       }
 
       if (this.acceptType === "photo") {
+        console.log("change file photo -- this.file.name - " + this.file.name);
         this.$emit("addFilePhoto", this.file);
       }
       if (this.acceptType === "summary") {
