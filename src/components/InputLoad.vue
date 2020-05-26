@@ -10,18 +10,18 @@
         id="formForInputId"
         name="formforInput"
         @reset="onResetFormForInput"
-      > -->
-        <!-- v-if="uploadReady" -->
-        <input
-          @change="addFile($event.target.files)"
-          :id="loadId"
-          ref="fileUpload"
-          type="file"
-          name="fileName"
-          autocomplete="off"
-          :accept="variants[acceptType].accept"
-          class="form__input-file"
-        />
+      >-->
+      <!-- v-if="uploadReady" -->
+      <input
+        @change="addFile($event.target.files)"
+        :id="loadId"
+        ref="fileUpload"
+        type="file"
+        name="fileName"
+        autocomplete="off"
+        :accept="variants[acceptType].accept"
+        class="form__input-file"
+      />
       <!-- </form> -->
     </label>
     <span
@@ -123,6 +123,16 @@ export default {
       this.fileSize = 0;
       this.sizeOfFile = 0;
 
+      if (this.acceptType === "photo") {
+        console.log("InputLoad-- reset file photo- this.file= " + this.file);
+        this.$emit("resetFilePhoto", this.file);
+      }
+      if (this.acceptType === "summary") {
+        this.$emit("addFileSummary", this.file);
+      }
+      if (this.acceptType === "test") {
+        this.$emit("addFileTest", this.file);
+      }
       // --- 1 ---
       // this.uploadReady = false;
       // this.$nextTick(() => {
@@ -145,17 +155,6 @@ export default {
       // console.log("fils = " + this.$refs.fileUpload.files);
       // console.log("file.name = " + this.$refs.fileUpload.files[0].name);
       // console.log("name = " + this.$refs.fileUpload.name);
-
-      if (this.acceptType === "photo") {
-        console.log("InputLoad-- reset file photo- this.file= " + this.file);
-        this.$emit("resetFilePhoto", this.file);
-      }
-      if (this.acceptType === "summary") {
-        this.$emit("addFileSummary", this.file);
-      }
-      if (this.acceptType === "test") {
-        this.$emit("addFileTest", this.file);
-      }
     },
 
     addFile(files) {

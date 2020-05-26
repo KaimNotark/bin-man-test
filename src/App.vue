@@ -132,8 +132,8 @@
                 @editById="editById"
                 @rowIndex="rowIndex"
               />
-
-              <!-- {{ allApplicants[0] }} -->
+              <!-- {{ allApplicants[0].photo }} -->
+              <!-- {{ allApplicants }} -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -194,6 +194,14 @@ export default {
 
   methods: {
     resetFilePhoto(file) {
+      // console.log("App-- resetFilePhoto- index= " + index);
+      // this.allApplicants[0].photo = null;
+      // console.log(
+      //   "App-- resetFilePhoto- this.allApplicants[" +
+      //     index +
+      //     "].photo= " +
+      //     this.allApplicants[index].photo
+      // );
       this.filePhoto = file;
       console.log("App-- resetFilePhoto- this.filePhoto= " + this.filePhoto);
     },
@@ -227,21 +235,24 @@ export default {
     },
 
     async onEditFromForm(payload, id) {
-      // console.log("APP -- onEditFromForm - RUN");
-      // console.log("APP -- onEditFromForm - id= " + id);
-      // console.log("APP -- onEditFromForm - payload= ", payload);
-
+// создаю объект FormData(), который, по идее, должен быть пустым.
       const data = new FormData();
-
-      data.append("files.photo", this.filePhoto);
+// удаляю файл с фотографией (от безысходности, объект-то и так пустой)
+      data.delete("files.photo");
+// добавляю файл с фотографией, которого нет, т.е. =null
+      data.set("files.photo", this.filePhoto);
       console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
+      // data.splise("files.photo", 1);
 
-      data.append("files.summary", this.fileSummary);
-      data.append("files.test", this.fileTest);
+      // data.append("files.photo", this.filePhoto);
+      // data.append("files.summary", this.fileSummary);
+      // data.append("files.test", this.fileTest);
+// добавляю остальные поля, имя и т.п.
       data.append("data", JSON.stringify(payload));
-
+// отправляю данные на сервер, чтобы изменить данные соискателя
       try {
         await Applicants.editApplicants(data, id);
+        console.log("App-- onEditFromForm- data= " + data);
         await this.showApplicants();
         alert("Данные успешно изменены.");
       } catch (error) {
