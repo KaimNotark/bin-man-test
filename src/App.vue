@@ -87,6 +87,7 @@
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
               <p class="main-title__counter">Всего соискателей: {{ allApplicants.length }}</p>
+              <!-- <p class="main-title__counter">Всего соискателей: {{ counterApplicants }}</p> -->
             </div>
 
             <div class="main-button">
@@ -96,6 +97,11 @@
                 <span class="main-button__text">forEach</span>
               </button>
               -->
+
+              <button @click="dellFile" class="main-button__selected" type="button">
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">dell File</span>
+              </button>
 
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
@@ -134,6 +140,7 @@
               />
               <!-- {{ allApplicants[0].photo }} -->
               <!-- {{ allApplicants }} -->
+              <!-- {{ counterApplicants }} -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -178,7 +185,12 @@ export default {
 
       counterApplicants: 0,
       modalIsOpened: false,
-      allApplicants: [],
+      allApplicants: [
+        {
+          name: "Записи отсутствуют."
+        }
+      ],
+
       idDell: null,
       addOneApplicant: {
         name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -235,11 +247,11 @@ export default {
     },
 
     async onEditFromForm(payload, id) {
-// создаю объект FormData(), который, по идее, должен быть пустым.
+      // создаю объект FormData(), который, по идее, должен быть пустым.
       const data = new FormData();
-// удаляю файл с фотографией (от безысходности, объект-то и так пустой)
+      // удаляю файл с фотографией (от безысходности, объект-то и так пустой)
       data.delete("files.photo");
-// добавляю файл с фотографией, которого нет, т.е. =null
+      // добавляю файл с фотографией, которого нет, т.е. =null
       data.set("files.photo", this.filePhoto);
       console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
       // data.splise("files.photo", 1);
@@ -247,9 +259,9 @@ export default {
       // data.append("files.photo", this.filePhoto);
       // data.append("files.summary", this.fileSummary);
       // data.append("files.test", this.fileTest);
-// добавляю остальные поля, имя и т.п.
+      // добавляю остальные поля, имя и т.п.
       data.append("data", JSON.stringify(payload));
-// отправляю данные на сервер, чтобы изменить данные соискателя
+      // отправляю данные на сервер, чтобы изменить данные соискателя
       try {
         await Applicants.editApplicants(data, id);
         console.log("App-- onEditFromForm- data= " + data);
@@ -277,6 +289,20 @@ export default {
       this.isButtonSubmitHide = true;
       this.isButtonEditHide = false;
       this.modalOpen();
+    },
+
+    async dellFile() {
+      console.log("button DELL FILE was pressed");
+      try {
+        this.allApplicants = await Applicants.dellFile();
+        // await this.showApplicants();
+        // alert("Соискатель удалён.");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз."
+        );
+      }
     },
 
     async removeById(id) {
@@ -315,6 +341,7 @@ export default {
     async showApplicants() {
       try {
         this.allApplicants = await Applicants.showApplicants();
+        // this.counterApplicants = this.allApplicants.length;
 
         // Creating a url for the avatar. If the user has not uploaded the photo,
         // then placeholder is placed.
