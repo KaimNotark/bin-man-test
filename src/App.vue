@@ -8,10 +8,16 @@
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
               <FormAdditionApplicant
+                @resetFilePhoto="resetFilePhoto"
                 @addApplicants="addApplicants"
                 @addFilePhoto="addFilePhoto"
                 @addFileSummary="addFileSummary"
                 @addFileTest="addFileTest"
+                @onEdit="onEditFromForm"
+                :all-applicants="allApplicants"
+                :is-button-submit-hide="isButtonSubmitHide"
+                :is-button-edit-hide="isButtonEditHide"
+                ref="formAdditionApplicant"
               />
             </simplebar>
           </div>
@@ -81,6 +87,7 @@
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
               <p class="main-title__counter">Всего соискателей: {{ allApplicants.length }}</p>
+              <!-- <p class="main-title__counter">Всего соискателей: {{ counterApplicants }}</p> -->
             </div>
 
             <div class="main-button">
@@ -91,12 +98,17 @@
               </button>
               -->
 
+              <button @click="dellFile" class="main-button__selected" type="button">
+                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+                <span class="main-button__text">dell File</span>
+              </button>
+
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">обновить</span>
               </button>
 
-              <button class="main-button__add" type="button" @click="modalOpen">
+              <button class="main-button__add" type="button" @click="showAddForm">
                 <span class="_increase">+</span>
                 <span>Добавить соискателя</span>
               </button>
@@ -120,10 +132,15 @@
             </table>
 
             <simplebar data-simplebar-auto-hide="false" class="main-table__body">
-              <Table :all-applicants="allApplicants" @removeById="removeById" />
-              <!-- begin ax2 -->
-              <!-- <ax2 /> -->
-              <!-- end ax2 -->
+              <Table
+                :all-applicants="allApplicants"
+                @removeById="removeById"
+                @editById="editById"
+                @rowIndex="rowIndex"
+              />
+              <!-- {{ allApplicants[0].photo }} -->
+              <!-- {{ allApplicants }} -->
+              <!-- {{ counterApplicants }} -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -143,7 +160,6 @@ import { Applicants } from "./Api";
 
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
-// import ax2 from "./components/ax2.vue"
 
 export default {
   name: "app",
@@ -152,13 +168,15 @@ export default {
     simplebar,
     Table,
     FormAdditionApplicant
-    // ax2
   },
 
   data() {
     return {
       file: "",
       name: "",
+
+      isButtonSubmitHide: true,
+      isButtonEditHide: true,
 
       errors: null,
       filePhoto: null,
@@ -167,7 +185,12 @@ export default {
 
       counterApplicants: 0,
       modalIsOpened: false,
-      allApplicants: [],
+      allApplicants: [
+        {
+          name: "Записи отсутствуют."
+        }
+      ],
+
       idDell: null,
       addOneApplicant: {
         name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -182,6 +205,18 @@ export default {
   },
 
   methods: {
+    resetFilePhoto(file) {
+      // console.log("App-- resetFilePhoto- index= " + index);
+      // this.allApplicants[0].photo = null;
+      // console.log(
+      //   "App-- resetFilePhoto- this.allApplicants[" +
+      //     index +
+      //     "].photo= " +
+      //     this.allApplicants[index].photo
+      // );
+      this.filePhoto = file;
+      console.log("App-- resetFilePhoto- this.filePhoto= " + this.filePhoto);
+    },
     addFilePhoto(file) {
       this.filePhoto = file;
     },
@@ -192,28 +227,82 @@ export default {
       this.fileTest = file;
     },
 
-    // async uploadFiles({ target }) {
-    //   const { name } = this;
-    //   const payload = new FormData();
-    //   const image = target.querySelector("input[type=file]").files[0];
-
-    //   payload.append("files.photo", image);
-    //   payload.append("data", JSON.stringify({ name }));
-
-    //   try {
-    //     const result = await Applicants.create(payload);
-    //     console.log(result);
-    //   } catch (error) {
-    //     this.errors = error;
-    //   }
-    // },
+    showAddForm() {
+      this.modalOpen();
+      this.hideButtons();
+    },
 
     modalOpen() {
       this.modalIsOpened = true;
     },
 
+    hideButtons() {
+      this.isButtonSubmitHide = false;
+      this.isButtonEditHide = true;
+    },
+
     modalClose() {
       this.modalIsOpened = false;
+      this.$refs.formAdditionApplicant.onReset();
+    },
+
+    async onEditFromForm(payload, id) {
+      // создаю объект FormData(), который, по идее, должен быть пустым.
+      const data = new FormData();
+      // удаляю файл с фотографией (от безысходности, объект-то и так пустой)
+      data.delete("files.photo");
+      // добавляю файл с фотографией, которого нет, т.е. =null
+      data.set("files.photo", this.filePhoto);
+      console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
+      // data.splise("files.photo", 1);
+
+      // data.append("files.photo", this.filePhoto);
+      // data.append("files.summary", this.fileSummary);
+      // data.append("files.test", this.fileTest);
+      // добавляю остальные поля, имя и т.п.
+      data.append("data", JSON.stringify(payload));
+      // отправляю данные на сервер, чтобы изменить данные соискателя
+      try {
+        await Applicants.editApplicants(data, id);
+        console.log("App-- onEditFromForm- data= " + data);
+        await this.showApplicants();
+        alert("Данные успешно изменены.");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "Что-то пошло не так. Данные не были изменены. Попробуйте ещё раз."
+        );
+      }
+    },
+
+    editById(id) {
+      // console.log("APP -- button edit was pressed - id= " + id);
+
+      this.$refs.formAdditionApplicant.editRow(id);
+      // this.modalOpen();
+    },
+
+    rowIndex(index) {
+      // console.log("APP -- button edit was pressed - index= " + index);
+
+      this.$refs.formAdditionApplicant.editRowByIndex(index);
+      this.isButtonSubmitHide = true;
+      this.isButtonEditHide = false;
+      this.modalOpen();
+    },
+
+    async dellFile() {
+      console.log("button DELL FILE was pressed");
+      try {
+        this.allApplicants = await Applicants.dellFile();
+        // await this.showApplicants();
+        // alert("Соискатель удалён.");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз."
+        );
+      }
     },
 
     async removeById(id) {
@@ -252,6 +341,7 @@ export default {
     async showApplicants() {
       try {
         this.allApplicants = await Applicants.showApplicants();
+        // this.counterApplicants = this.allApplicants.length;
 
         // Creating a url for the avatar. If the user has not uploaded the photo,
         // then placeholder is placed.

@@ -8,7 +8,11 @@
       @submit="onSubmit"
       @reset="onReset"
     >
-      <h1 class="form-title">Добавление соискателя</h1>
+      <h1 class="form-title">
+        <span :class="{'_hide' : isButtonSubmitHide}">Добавление</span>
+        <span :class="{'_hide' : isButtonEditHide}">Изменить данные</span>
+        соискателя
+      </h1>
       <hr class="form-devider" />
       <h2 class="form-subtitle">Основные данные</h2>
 
@@ -50,31 +54,47 @@
         ref="photoInput"
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
+        @resetFilePhoto="resetFilePhoto"
+        :all-applicants="allApplicants"
       />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
 
       <span class="form__span form__input-header">Номер телефона</span>
-      <InputInForm v-bind="phone" @formInputsPhone="formInputsPhone" />
+      <InputInForm
+        ref="inputPhone"
+        v-bind="phone"
+        @formInputsPhone="formInputsPhone"
+        :all-applicants="allApplicants"
+      />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm v-bind="mail" @formInputsMail="formInputsMail" />
+      <InputInForm
+        ref="inputMail"
+        v-bind="mail"
+        @formInputsMail="formInputsMail"
+        :all-applicants="allApplicants"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Резюме и результаты тестового задания</h2>
 
-      <InputLoad 
-      load-id="1" 
-      ref="summaryInput"
-      accept-type="summary" 
-      @addFileSummary="addFileSummary" />
+      <InputLoad
+        load-id="1"
+        ref="summaryInput"
+        accept-type="summary"
+        @addFileSummary="addFileSummary"
+        :all-applicants="allApplicants"
+      />
 
-      <InputLoad 
-      load-id="2" 
-      ref="testInput"
-      accept-type="test" 
-      @addFileTest="addFileTest" />
+      <InputLoad
+        load-id="2"
+        ref="testInput"
+        accept-type="test"
+        @addFileTest="addFileTest"
+        :all-applicants="allApplicants"
+      />
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Оценка соискателя</h2>
@@ -85,6 +105,7 @@
           v-model="ratings[index]"
           :key="rating.id"
           :rating="rating"
+          :all-applicants="allApplicants"
           ref="ratings"
           @raitingNumber="raitingNumber"
           @raitingIndex="raitingIndex(index)"
@@ -94,14 +115,18 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <!-- @click="$refs.photo.onReset()" -->
-        <!-- @click="$refs.photoInput.onReset(), $refs.summaryInput.onReset(), $refs.testInput.onReset()" -->
-        <button 
-        type="reset" 
-        class="form__btn-reset"
-        @click="onReset"
-        >Отменить</button>
-        <button type="submit" class="form__btn-submit">Добавить соискателя</button>
+        <button type="reset" class="form__btn-reset" @click="onReset">Очистить</button>
+
+        <button
+          type="submit"
+          :class="[ 'form__btn-submit', { '_hide' : isButtonSubmitHide }]"
+        >Добавить соискателя</button>
+
+        <button
+          type="button"
+          :class="[ 'form__btn-submit', { '_hide' : isButtonEditHide }]"
+          @click="onEdit"
+        >Изменить данные</button>
       </div>
     </form>
   </div>
@@ -128,6 +153,21 @@ export default {
     mask: AwesomeMask
   },
 
+  props: {
+    allApplicants: {
+      type: Array,
+      required: true
+    },
+    isButtonSubmitHide: {
+      type: Boolean,
+      required: true
+    },
+    isButtonEditHide: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   data: () => ({
     isLight: true,
     errors: null,
@@ -137,7 +177,7 @@ export default {
     ratingTest: 0,
     ratingInterview: 0,
 
-    // filePhoto: null,
+    editRowId: null,
 
     formFields: {
       name: "",
@@ -219,10 +259,61 @@ export default {
   }),
 
   methods: {
+    onEdit(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const payload = {
+        name: this.formFields.name,
+        vacancy: this.formFields.vacancy,
+        phone1: this.formFields.phone1,
+        mail1: this.formFields.mail1,
+        ratingSummary: this.ratingSummary,
+        ratingTest: this.ratingTest,
+        ratingInterview: this.ratingInterview
+      };
+
+      this.$emit("onEdit", payload, this.editRowId);
+
+      // this.onReset();
+      // event.target.reset();
+    },
+
+    editRow(id) {
+      // console.log("FORM -- editRow method run - ID =", id);
+      this.editRowId = id;
+      // console.log("FORM -- editRow method run - editRowId= ", this.editRowId);
+    },
+
+    editRowByIndex(index) {
+      console.log("FORM -- editRowByIndex method run - index= ", index);
+
+      this.lighted();
+
+      this.formFields.name = this.allApplicants[index].name;
+      this.formFields.vacancy = this.allApplicants[index].vacancy;
+
+      this.$refs.inputPhone.editPhone1(index);
+      this.$refs.inputMail.editMail1(index);
+
+      this.$refs.ratings[0].editSummary(index);
+      this.$refs.ratings[1].editTest(index);
+      this.$refs.ratings[2].editInterview(index);
+
+      this.$refs.photoInput.onEditPhoto(index);
+      this.$refs.summaryInput.onEditSummary(index);
+      this.$refs.testInput.onEditTest(index);
+    },
+
     lighted() {
       this.isLight = false;
       // console.log("isLight = " + this.isLight);
       // console.log("options.id = " + this.options[2].id);
+    },
+
+    resetFilePhoto(file) {
+      this.$emit("resetFilePhoto", file);
+      console.log("FAA-- resetFilePhoto- file = " + file);
     },
 
     addFilePhoto(file) {
@@ -275,16 +366,24 @@ export default {
     },
 
     onReset() {
-      console.log("FORM -- onReset method is run.");
+      // console.log("FORM -- onReset method is run.");
+
       this.$refs.photoInput.onReset();
       this.$refs.summaryInput.onReset();
       this.$refs.testInput.onReset();
+
+      // this.$refs.photoInput.$refs.fileUpload.value = null;
+
       this.$refs.ratings[0].onReset();
       this.$refs.ratings[1].onReset();
       this.$refs.ratings[2].onReset();
-      // this.$refs.photo.onReset();
-      // event.preventDefault();
-      // event.stopPropagation();
+
+      this.$refs.inputPhone.onReset();
+      this.$refs.inputMail.onReset();
+
+      this.formFields.name = null;
+      this.formFields.vacancy = null;
+      this.isLight = true;
     },
 
     raitingNumber(selected) {
@@ -606,5 +705,9 @@ input:-webkit-autofill:active {
 
 ._button-hidden {
   visibility: hidden;
+}
+
+._hide {
+  display: none;
 }
 </style>

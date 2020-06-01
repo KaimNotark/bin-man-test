@@ -36,6 +36,10 @@ export default {
     rating: {
       type: Object,
       required: true
+    },
+    allApplicants: {
+      type: Array,
+      required: true
     }
   },
 
@@ -49,6 +53,39 @@ export default {
   },
 
   methods: {
+    switchColors(key) {
+      switch (key) {
+        case 1:
+          this.colorStar = "#ff5d00";
+          break;
+        case 2:
+          this.colorStar = "#ffa800";
+          break;
+        case 3:
+          this.colorStar = "#dae700";
+          break;
+        case 4:
+          this.colorStar = "#abd02d";
+          break;
+        case 5:
+          this.colorStar = "#67c600";
+          break;
+      }
+    },
+
+    editSummary(index) {
+      this.ratingValue = this.allApplicants[index].ratingSummary;
+      this.switchColors(this.ratingValue);
+    },
+    editTest(index) {
+      this.ratingValue = this.allApplicants[index].ratingTest;
+      this.switchColors(this.ratingValue);
+    },
+    editInterview(index) {
+      this.ratingValue = this.allApplicants[index].ratingInterview;
+      this.switchColors(this.ratingValue);
+    },
+
     onReset() {
       // console.log("RATING -- onReset - RUN");
       this.ratingValue = 0;
@@ -57,11 +94,26 @@ export default {
     },
 
     setRating(selected) {
-      if (selected == 1) { this.colorStar = "#ff5d00"; this.ratingValue = 1 }
-      if (selected == 2) { this.colorStar = "#ffa800"; this.ratingValue = 2 }
-      if (selected == 3) { this.colorStar = "#dae700"; this.ratingValue = 3 }
-      if (selected == 4) { this.colorStar = "#abd02d"; this.ratingValue = 4 }
-      if (selected == 5) { this.colorStar = "#67c600"; this.ratingValue = 5 }
+      if (selected == 1) {
+        this.colorStar = "#ff5d00";
+        this.ratingValue = 1;
+      }
+      if (selected == 2) {
+        this.colorStar = "#ffa800";
+        this.ratingValue = 2;
+      }
+      if (selected == 3) {
+        this.colorStar = "#dae700";
+        this.ratingValue = 3;
+      }
+      if (selected == 4) {
+        this.colorStar = "#abd02d";
+        this.ratingValue = 4;
+      }
+      if (selected == 5) {
+        this.colorStar = "#67c600";
+        this.ratingValue = 5;
+      }
 
       this.$emit("raitingNumber", selected);
       this.$emit("raitingIndex");

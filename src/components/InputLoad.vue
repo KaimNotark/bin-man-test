@@ -5,18 +5,30 @@
     <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
 
+      <!-- <form
+        class="form-for-input"
+        id="formForInputId"
+        name="formforInput"
+        @reset="onResetFormForInput"
+      >-->
+      <!-- v-if="uploadReady" -->
       <input
         @change="addFile($event.target.files)"
         :id="loadId"
+        ref="fileUpload"
         type="file"
         name="fileName"
         autocomplete="off"
         :accept="variants[acceptType].accept"
         class="form__input-file"
       />
+      <!-- </form> -->
     </label>
     <span
-      :class="['form__file-name', {'_color-text-light' : !isFileInInput}, { '_color-text' : isFileInInput } ]"
+      :class="['form__file-name', 
+      {'_color-text-light' : !isFileInInput}, 
+      { '_color-text' : isFileInInput } 
+      ]"
     >{{ fileName }}</span>
   </div>
 </template>
@@ -26,6 +38,11 @@ export default {
   name: "InputLoad",
 
   props: {
+    allApplicants: {
+      type: Array,
+      required: true
+    },
+
     loadId: {
       type: String,
       required: true
@@ -43,6 +60,7 @@ export default {
     fileSize: 0,
     file: null,
     sizeOfFile: 0
+    // uploadReady: true
   }),
 
   computed: {
@@ -74,13 +92,69 @@ export default {
   },
 
   methods: {
+    onEditPhoto(index) {
+      // console.log("INPUT-LOAD -- onEditPhoto - RUN, index= " + index);
+      this.isFileInInput = true;
+      this.fileName = this.allApplicants[index].photo.name;
+    },
+    onEditSummary(index) {
+      // console.log("INPUT-LOAD -- onEditSummary - RUN, index= " + index);
+      this.isFileInInput = true;
+      this.fileName = this.allApplicants[index].summary.name;
+      // console.log("INPUT-LOAD -- onEditSummary - fileName= " + this.allApplicants[index].summary.name);
+    },
+    onEditTest(index) {
+      // console.log("INPUT-LOAD -- onEditTest - RUN, index= " + index);
+      this.isFileInInput = true;
+      this.fileName = this.allApplicants[index].test.name;
+      // console.log("INPUT-LOAD -- onEditTest - fileName= " + this.allApplicants[index].test.name);
+    },
+
+    // onResetFormForInput(event) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    //   event.target.reset();
+    // },
+
     onReset() {
-      // console.log("INPUT-LOAD -- onReset is RUN");
       this.fileName = "Файл не выбран";
       this.isFileInInput = false;
       this.file = null;
       this.fileSize = 0;
       this.sizeOfFile = 0;
+
+      if (this.acceptType === "photo") {
+        console.log("InputLoad-- reset file photo- this.file= " + this.file);
+        this.$emit("resetFilePhoto", this.file);
+      }
+      if (this.acceptType === "summary") {
+        this.$emit("addFileSummary", this.file);
+      }
+      if (this.acceptType === "test") {
+        this.$emit("addFileTest", this.file);
+      }
+      // --- 1 ---
+      // this.uploadReady = false;
+      // this.$nextTick(() => {
+      //   this.uploadReady = true;
+      // });
+      // --- 2 ----
+      // this.$refs.fileUpload.value = null;
+      // --- 3 ----
+      // const input = this.$refs.fileUpload;
+      // input.type = "text";
+      // input.type = "file";
+      // --- 4 ---
+      // this.$refs.fileUpload.files = null;
+      // console.log("files (null) = " + this.$refs.fileUpload.files);
+      // --- 5 ---
+      // this.onResetFormForInput();
+
+      // console.log("type = " + this.$refs.fileUpload.type);
+      // console.log("value = " + this.$refs.fileUpload.value);
+      // console.log("fils = " + this.$refs.fileUpload.files);
+      // console.log("file.name = " + this.$refs.fileUpload.files[0].name);
+      // console.log("name = " + this.$refs.fileUpload.name);
     },
 
     addFile(files) {
@@ -109,6 +183,7 @@ export default {
       }
 
       if (this.acceptType === "photo") {
+        console.log("change file photo -- this.file.name - " + this.file.name);
         this.$emit("addFilePhoto", this.file);
       }
       if (this.acceptType === "summary") {
