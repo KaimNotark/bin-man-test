@@ -54,9 +54,9 @@
         ref="photoInput"
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
-        @resetFilePhoto="resetFilePhoto"
         :all-applicants="allApplicants"
       />
+        <!-- @resetFilePhoto="resetFilePhoto" -->
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -311,10 +311,10 @@ export default {
       // console.log("options.id = " + this.options[2].id);
     },
 
-    resetFilePhoto(file) {
-      this.$emit("resetFilePhoto", file);
-      console.log("FAA-- resetFilePhoto- file = " + file);
-    },
+    // resetFilePhoto(file) {
+    //   this.$emit("resetFilePhoto", file);
+    //   console.log("FAA-- resetFilePhoto- file = " + file);
+    // },
 
     addFilePhoto(file) {
       // this.filePhoto = file;

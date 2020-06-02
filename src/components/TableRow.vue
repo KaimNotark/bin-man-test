@@ -1,5 +1,6 @@
 <template>
   <tr>
+    <!-- {{row.photo.url}} -->
     <td>
       <div class="container-applicant">
         <img :src="row.photo.url" alt="Аватар" class="applicant-img applicant-img__text" />
@@ -158,6 +159,11 @@ export default {
       }
     ]
   }),
+
+  // created(row) {
+  //   const createdUrl = row.photo.url;
+  //   console.log("TableRow--created-URL = " + createdUrl);
+  // },
 
   methods: {
     editById(row) {

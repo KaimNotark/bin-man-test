@@ -123,10 +123,10 @@ export default {
       this.fileSize = 0;
       this.sizeOfFile = 0;
 
-      if (this.acceptType === "photo") {
-        console.log("InputLoad-- reset file photo- this.file= " + this.file);
-        this.$emit("resetFilePhoto", this.file);
-      }
+      // if (this.acceptType === "photo") {
+      //   console.log("InputLoad-- reset file photo- this.file= " + this.file);
+      //   this.$emit("resetFilePhoto", this.file);
+      // }
       if (this.acceptType === "summary") {
         this.$emit("addFileSummary", this.file);
       }

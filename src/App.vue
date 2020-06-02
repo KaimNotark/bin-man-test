@@ -186,9 +186,9 @@ export default {
       counterApplicants: 0,
       modalIsOpened: false,
       allApplicants: [
-        {
-          name: "Записи отсутствуют."
-        }
+        // {
+        //   name: "Записи отсутствуют."
+        // }
       ],
 
       idDell: null,
@@ -558,6 +558,7 @@ body {
       width: 116px;
       height: 36px;
       margin-right: 10px;
+      padding-top: 10px;
       border: solid 1px $color-button-border;
       border-radius: 3px;
       background: $color-white;
@@ -589,6 +590,7 @@ body {
     &__add {
       display: flex;
       justify-content: space-around;
+      padding-top: 11px;
       width: 181px;
       height: 36px;
       border: solid 1px #d4e2e7;
