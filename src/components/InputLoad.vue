@@ -99,7 +99,9 @@ export default {
   methods: {
     onEditPhoto(index) {
       // console.log("INPUT-LOAD -- onEditPhoto - RUN, index= " + index);
-      this.isFilePhotoInCard = this.allApplicants[index].photo !== null;
+      this.isFilePhotoInCard =
+        this.allApplicants[index].photo.url !==
+        "https://via.placeholder.com/40x40/e8eff1/282e37?text=A";
 
       if (this.isFilePhotoInCard) {
         this.isFileInInput = true;
