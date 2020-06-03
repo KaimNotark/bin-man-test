@@ -286,8 +286,7 @@ export default {
     },
 
     editRowByIndex(index) {
-      console.log("FORM -- editRowByIndex method run - index= ", index);
-
+      
       this.lighted();
 
       this.formFields.name = this.allApplicants[index].name;
@@ -302,6 +301,7 @@ export default {
 
       this.$refs.photoInput.onEditPhoto(index);
       this.$refs.summaryInput.onEditSummary(index);
+      console.log("FORM -- editRowByIndex method run - index= ", index);
       this.$refs.testInput.onEditTest(index);
     },
 

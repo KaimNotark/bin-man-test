@@ -56,7 +56,12 @@ export default {
 
   data: () => ({
     fileName: "Файл не выбран",
+
     isFileInInput: false,
+    isFilePhotoInCard: false,
+    isFileSummaryInCard: false,
+    isFileTestInCard: false,
+
     fileSize: 0,
     file: null,
     sizeOfFile: 0
@@ -94,20 +99,30 @@ export default {
   methods: {
     onEditPhoto(index) {
       // console.log("INPUT-LOAD -- onEditPhoto - RUN, index= " + index);
-      this.isFileInInput = true;
-      this.fileName = this.allApplicants[index].photo.name;
+      this.isFilePhotoInCard = this.allApplicants[index].photo !== null;
+
+      if (this.isFilePhotoInCard) {
+        this.isFileInInput = true;
+        this.fileName = this.allApplicants[index].photo.name;
+      }
     },
     onEditSummary(index) {
       // console.log("INPUT-LOAD -- onEditSummary - RUN, index= " + index);
-      this.isFileInInput = true;
-      this.fileName = this.allApplicants[index].summary.name;
-      // console.log("INPUT-LOAD -- onEditSummary - fileName= " + this.allApplicants[index].summary.name);
+      this.isFileSummaryInCard = this.allApplicants[index].summary !== null;
+
+      if (this.isFileSummaryInCard) {
+        this.isFileInInput = true;
+        this.fileName = this.allApplicants[index].summary.name;
+      }
     },
     onEditTest(index) {
       // console.log("INPUT-LOAD -- onEditTest - RUN, index= " + index);
-      this.isFileInInput = true;
-      this.fileName = this.allApplicants[index].test.name;
-      // console.log("INPUT-LOAD -- onEditTest - fileName= " + this.allApplicants[index].test.name);
+      this.isFileTestInCard = this.allApplicants[index].test !== null;
+
+      if (this.isFileTestInCard) {
+        this.isFileInInput = true;
+        this.fileName = this.allApplicants[index].test.name;
+      }
     },
 
     // onResetFormForInput(event) {

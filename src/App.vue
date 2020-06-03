@@ -250,15 +250,15 @@ export default {
       // создаю объект FormData(), который, по идее, должен быть пустым.
       const data = new FormData();
       // удаляю файл с фотографией (от безысходности, объект-то и так пустой)
-      data.delete("files.photo");
+      // data.delete("files.photo");
       // добавляю файл с фотографией, которого нет, т.е. =null
-      data.set("files.photo", this.filePhoto);
-      console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
+      // data.set("files.photo", this.filePhoto);
+      // console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
       // data.splise("files.photo", 1);
 
-      // data.append("files.photo", this.filePhoto);
-      // data.append("files.summary", this.fileSummary);
-      // data.append("files.test", this.fileTest);
+      data.append("files.photo", this.filePhoto);
+      data.append("files.summary", this.fileSummary);
+      data.append("files.test", this.fileTest);
       // добавляю остальные поля, имя и т.п.
       data.append("data", JSON.stringify(payload));
       // отправляю данные на сервер, чтобы изменить данные соискателя
@@ -276,16 +276,16 @@ export default {
     },
 
     editById(id) {
-      // console.log("APP -- button edit was pressed - id= " + id);
-
+      
       this.$refs.formAdditionApplicant.editRow(id);
+      // console.log("APP -- editById - id= " + id);
       // this.modalOpen();
     },
 
     rowIndex(index) {
-      // console.log("APP -- button edit was pressed - index= " + index);
-
+      
       this.$refs.formAdditionApplicant.editRowByIndex(index);
+      console.log("APP -- rowIndex - index= " + index);
       this.isButtonSubmitHide = true;
       this.isButtonEditHide = false;
       this.modalOpen();
