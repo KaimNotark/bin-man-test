@@ -276,14 +276,12 @@ export default {
     },
 
     editById(id) {
-      
       this.$refs.formAdditionApplicant.editRow(id);
       // console.log("APP -- editById - id= " + id);
       // this.modalOpen();
     },
 
     rowIndex(index) {
-      
       this.$refs.formAdditionApplicant.editRowByIndex(index);
       console.log("APP -- rowIndex - index= " + index);
       this.isButtonSubmitHide = true;
@@ -308,7 +306,9 @@ export default {
     async removeById(id) {
       try {
         this.allApplicants = await Applicants.removeById(id);
+        console.log("APP--removeById-RUN= 1");
         await this.showApplicants();
+        console.log("APP--removeById-RUN= 2");
         // alert("Соискатель удалён.");
       } catch (error) {
         console.error(error);
@@ -365,7 +365,7 @@ export default {
               3
           );
           allApplicants[i].ratingAverage = ratingAverage;
-
+          console.log("APP--showApplicants-ratingAverage= " + allApplicants[i].ratingAverage);
           // Forming the starRating color on the table depending on the average rating.
           let ratingColor = "";
           if (ratingAverage == 1) ratingColor = "#ff5d00";
