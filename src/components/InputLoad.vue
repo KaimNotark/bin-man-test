@@ -104,6 +104,9 @@ export default {
       if (this.isFilePhotoInCard) {
         this.isFileInInput = true;
         this.fileName = this.allApplicants[index].photo.name;
+      } else {
+        this.isFileInInput = false;
+        this.fileName = "Файл отсутствует";
       }
     },
     onEditSummary(index) {
@@ -113,6 +116,9 @@ export default {
       if (this.isFileSummaryInCard) {
         this.isFileInInput = true;
         this.fileName = this.allApplicants[index].summary.name;
+      } else {
+        this.isFileInInput = false;
+        this.fileName = "Файл отсутствует";
       }
     },
     onEditTest(index) {
@@ -122,6 +128,9 @@ export default {
       if (this.isFileTestInCard) {
         this.isFileInInput = true;
         this.fileName = this.allApplicants[index].test.name;
+      } else {
+        this.isFileInInput = false;
+        this.fileName = "Файл отсутствует";
       }
     },
 
