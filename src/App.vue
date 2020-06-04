@@ -185,11 +185,7 @@ export default {
 
       counterApplicants: 0,
       modalIsOpened: false,
-      allApplicants: [
-        // {
-        //   name: "Записи отсутствуют."
-        // }
-      ],
+      allApplicants: [],
 
       idDell: null,
       addOneApplicant: {
@@ -306,10 +302,43 @@ export default {
     async removeById(id) {
       try {
         this.allApplicants = await Applicants.removeById(id);
-        console.log("APP--removeById-RUN= 1");
-        await this.showApplicants();
-        console.log("APP--removeById-RUN= 2");
-        // alert("Соискатель удалён.");
+        // console.log("APP--removeById-RUN");
+
+        // Creating a url for the avatar. If the user has not uploaded the photo,
+        // then placeholder is placed.
+        let allApplicants = this.allApplicants;
+        allApplicants.forEach(function(v, i, allApplicants) {
+          if (allApplicants[i].photo === null) {
+            allApplicants[i].photo = {
+              url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+            };
+          } else {
+            allApplicants[i].photo.url =
+              "http://localhost:1337" + allApplicants[i].photo.url;
+          }
+
+          // Calculating the average rating value.
+          let ratingAverage = 0;
+          ratingAverage = Math.floor(
+            (allApplicants[i].ratingSummary +
+              allApplicants[i].ratingTest +
+              allApplicants[i].ratingInterview) /
+              3
+          );
+          allApplicants[i].ratingAverage = ratingAverage;
+          console.log(
+            "APP--showApplicants-ratingAverage= " +
+              allApplicants[i].ratingAverage
+          );
+          // Forming the starRating color on the table depending on the average rating.
+          let ratingColor = "";
+          if (ratingAverage == 1) ratingColor = "#ff5d00";
+          if (ratingAverage == 2) ratingColor = "#ffa800";
+          if (ratingAverage == 3) ratingColor = "#dae700";
+          if (ratingAverage == 4) ratingColor = "#abd02d";
+          if (ratingAverage == 5) ratingColor = "#67c600";
+          allApplicants[i].ratingColor = ratingColor;
+        });
       } catch (error) {
         console.error(error);
         alert(
@@ -365,7 +394,10 @@ export default {
               3
           );
           allApplicants[i].ratingAverage = ratingAverage;
-          console.log("APP--showApplicants-ratingAverage= " + allApplicants[i].ratingAverage);
+          console.log(
+            "APP--showApplicants-ratingAverage= " +
+              allApplicants[i].ratingAverage
+          );
           // Forming the starRating color on the table depending on the average rating.
           let ratingColor = "";
           if (ratingAverage == 1) ratingColor = "#ff5d00";
@@ -378,7 +410,7 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    }
+    },
   }
 };
 </script>

@@ -50,6 +50,7 @@
 
     <td>
       <Raiting :rating-color="row.ratingColor" :rating-value="row.ratingAverage" />
+      {{row.ratingColor}}
     </td>
 
     <td>
