@@ -303,42 +303,7 @@ export default {
       try {
         this.allApplicants = await Applicants.removeById(id);
         // console.log("APP--removeById-RUN");
-
-        // Creating a url for the avatar. If the user has not uploaded the photo,
-        // then placeholder is placed.
-        let allApplicants = this.allApplicants;
-        allApplicants.forEach(function(v, i, allApplicants) {
-          if (allApplicants[i].photo === null) {
-            allApplicants[i].photo = {
-              url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
-            };
-          } else {
-            allApplicants[i].photo.url =
-              "http://localhost:1337" + allApplicants[i].photo.url;
-          }
-
-          // Calculating the average rating value.
-          let ratingAverage = 0;
-          ratingAverage = Math.floor(
-            (allApplicants[i].ratingSummary +
-              allApplicants[i].ratingTest +
-              allApplicants[i].ratingInterview) /
-              3
-          );
-          allApplicants[i].ratingAverage = ratingAverage;
-          console.log(
-            "APP--showApplicants-ratingAverage= " +
-              allApplicants[i].ratingAverage
-          );
-          // Forming the starRating color on the table depending on the average rating.
-          let ratingColor = "";
-          if (ratingAverage == 1) ratingColor = "#ff5d00";
-          if (ratingAverage == 2) ratingColor = "#ffa800";
-          if (ratingAverage == 3) ratingColor = "#dae700";
-          if (ratingAverage == 4) ratingColor = "#abd02d";
-          if (ratingAverage == 5) ratingColor = "#67c600";
-          allApplicants[i].ratingColor = ratingColor;
-        });
+        this.addingData();
       } catch (error) {
         console.error(error);
         alert(
@@ -370,47 +335,63 @@ export default {
     async showApplicants() {
       try {
         this.allApplicants = await Applicants.showApplicants();
-        // this.counterApplicants = this.allApplicants.length;
-
-        // Creating a url for the avatar. If the user has not uploaded the photo,
-        // then placeholder is placed.
-        let allApplicants = this.allApplicants;
-        allApplicants.forEach(function(v, i, allApplicants) {
-          if (allApplicants[i].photo === null) {
-            allApplicants[i].photo = {
-              url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
-            };
-          } else {
-            allApplicants[i].photo.url =
-              "http://localhost:1337" + allApplicants[i].photo.url;
-          }
-
-          // Calculating the average rating value.
-          let ratingAverage = 0;
-          ratingAverage = Math.floor(
-            (allApplicants[i].ratingSummary +
-              allApplicants[i].ratingTest +
-              allApplicants[i].ratingInterview) /
-              3
-          );
-          allApplicants[i].ratingAverage = ratingAverage;
-          console.log(
-            "APP--showApplicants-ratingAverage= " +
-              allApplicants[i].ratingAverage
-          );
-          // Forming the starRating color on the table depending on the average rating.
-          let ratingColor = "";
-          if (ratingAverage == 1) ratingColor = "#ff5d00";
-          if (ratingAverage == 2) ratingColor = "#ffa800";
-          if (ratingAverage == 3) ratingColor = "#dae700";
-          if (ratingAverage == 4) ratingColor = "#abd02d";
-          if (ratingAverage == 5) ratingColor = "#67c600";
-          allApplicants[i].ratingColor = ratingColor;
-        });
+        this.addingData();
       } catch (error) {
         console.error(error);
       }
     },
+    
+    // Creating a url for the avatar.
+    // If the user has not uploaded the photo, then placeholder is placed.
+    creatingUrlForAvatar(allApplicants) {
+      allApplicants.forEach(function(v, i, allApplicants) {
+        if (allApplicants[i].photo === null) {
+          allApplicants[i].photo = {
+            url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+          };
+        } else {
+          allApplicants[i].photo.url =
+            "http://localhost:1337" + allApplicants[i].photo.url;
+        }
+      });
+    },
+
+    // Calculating the average rating value to display in a table row.
+    calculationAverageRatingValue(allApplicants) {
+      allApplicants.forEach(function(v, i, allApplicants) {
+        let ratingAverage = 0;
+        ratingAverage = Math.floor(
+          (allApplicants[i].ratingSummary +
+            allApplicants[i].ratingTest +
+            allApplicants[i].ratingInterview) /
+            3
+        );
+        allApplicants[i].ratingAverage = ratingAverage;
+      });
+    },
+
+    // Forming the starRating color depending
+    // on the average rating to display in a table row.
+    definitionRatingColor(allApplicants) {
+      allApplicants.forEach(function(v, i, allApplicants) {
+        let ratingColor = "";
+        if (allApplicants[i].ratingAverage == 1) ratingColor = "#ff5d00";
+        if (allApplicants[i].ratingAverage == 2) ratingColor = "#ffa800";
+        if (allApplicants[i].ratingAverage == 3) ratingColor = "#dae700";
+        if (allApplicants[i].ratingAverage == 4) ratingColor = "#abd02d";
+        if (allApplicants[i].ratingAverage == 5) ratingColor = "#67c600";
+
+        allApplicants[i].ratingColor = ratingColor;
+      });
+    },
+
+    addingData() {
+      let allApplicants = this.allApplicants;
+
+      this.creatingUrlForAvatar(allApplicants);
+      this.calculationAverageRatingValue(allApplicants);
+      this.definitionRatingColor(allApplicants);
+    }
   }
 };
 </script>
