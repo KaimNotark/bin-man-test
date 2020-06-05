@@ -340,7 +340,7 @@ export default {
         console.error(error);
       }
     },
-    
+
     // Creating a url for the avatar.
     // If the user has not uploaded the photo, then placeholder is placed.
     creatingUrlForAvatar(allApplicants) {
@@ -385,6 +385,7 @@ export default {
       });
     },
 
+    // adding data to display in a table row.
     addingData() {
       let allApplicants = this.allApplicants;
 
