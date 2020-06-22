@@ -126,7 +126,7 @@ export default {
       this.formInputs[0] = "";
       this.inputValue = "";
     },
-   
+
     addInput() {
       if (this.formInputs.length < 3) {
         this.formInputs.push(this.inputContent);
@@ -264,8 +264,12 @@ button:focus {
     background-color: $color-input-background;
   }
 }
-input:-webkit-autofill {
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
+  -webkit-box-shadow: inset 0 0 0 10em $color-input-background !important;
 }
 </style>

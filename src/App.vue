@@ -731,6 +731,7 @@ th {
   width: 30px;
   height: 30px;
   font-size: 24px;
+  padding: 0px 5px 1px 6px;
   margin-top: 12px;
   margin-right: 10px;
   background: $color-white;

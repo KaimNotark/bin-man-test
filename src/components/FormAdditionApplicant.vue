@@ -535,6 +535,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
+  -webkit-box-shadow: inset 0 0 0 10em $color-input-background !important;
 }
 
 .container-row {
