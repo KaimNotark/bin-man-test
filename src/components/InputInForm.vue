@@ -24,7 +24,7 @@
 
     <button
       type="button"
-      :class="[{'_button-hidden' : isButtonVisible }, inputButtonStyle]"
+      :class="[{'_button-hidden' : isButtonHidden }, inputButtonStyle]"
       @click="addInput"
     >{{ inputButtonText }}</button>
   </div>
@@ -108,7 +108,7 @@ export default {
     formInputs: [],
     inputValue: "",
 
-    isButtonVisible: false
+    isButtonHidden: false
   }),
 
   methods: {
@@ -123,6 +123,8 @@ export default {
     },
 
     onReset() {
+      this.isButtonHidden = false;
+      this.formInputs.splice(0, 3);
       this.formInputs[0] = "";
       this.inputValue = "";
     },
@@ -131,7 +133,7 @@ export default {
       if (this.formInputs.length < 3) {
         this.formInputs.push(this.inputContent);
 
-        this.isButtonVisible = this.formInputs.length > 2;
+        this.isButtonHidden = this.formInputs.length > 2;
       }
     },
 

@@ -19,9 +19,9 @@
         type="file"
         name="fileName"
         autocomplete="off"
-        :accept="variants[acceptType].accept"
         class="form__input-file"
       />
+        <!-- :accept="variants[acceptType].accept" -->
       <!-- </form> -->
     </label>
     <span
