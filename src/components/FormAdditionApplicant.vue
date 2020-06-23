@@ -56,7 +56,7 @@
         @addFilePhoto="addFilePhoto"
         :all-applicants="allApplicants"
       />
-        <!-- @resetFilePhoto="resetFilePhoto" -->
+      <!-- @resetFilePhoto="resetFilePhoto" -->
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -286,7 +286,6 @@ export default {
     },
 
     editRowByIndex(index) {
-      
       this.lighted();
 
       this.formFields.name = this.allApplicants[index].name;
@@ -330,28 +329,32 @@ export default {
 
     onSubmit(event) {
       // console.log("FORM onSubmit method run.");
+      // console.log("Phone length - ", this.formFields.phone1.length);
+        event.preventDefault();
+        event.stopPropagation();
 
-      event.preventDefault();
-      event.stopPropagation();
+      if (this.formFields.phone1.length === 17) {
 
-      const payload = {
-        name: this.formFields.name,
-        vacancy: this.formFields.vacancy,
-        phone1: this.formFields.phone1,
-        mail1: this.formFields.mail1,
-        ratingSummary: this.ratingSummary,
-        ratingTest: this.ratingTest,
-        ratingInterview: this.ratingInterview
-        // photo: this.FilePhoto
-      };
-      // payload.append('photo', this.FilePhoto);
+        const payload = {
+          name: this.formFields.name,
+          vacancy: this.formFields.vacancy,
+          phone1: this.formFields.phone1,
+          mail1: this.formFields.mail1,
+          ratingSummary: this.ratingSummary,
+          ratingTest: this.ratingTest,
+          ratingInterview: this.ratingInterview
+          // photo: this.FilePhoto
+        };
+        // payload.append('photo', this.FilePhoto);
 
-      this.$emit("addApplicants", payload);
-      // console.log("raitingSummary = " + this.ratingSummary);
+        this.$emit("addApplicants", payload);
+        // console.log("raitingSummary = " + this.ratingSummary);
 
-      this.onReset();
-      event.target.reset();
-
+        this.onReset();
+        event.target.reset();
+      } else {
+        alert("Телефонный номер не правильный, в нём мало цифр.");
+      }
       // console.log("FORM payload = " + payload);
     },
 
