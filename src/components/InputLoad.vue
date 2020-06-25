@@ -21,7 +21,7 @@
         autocomplete="off"
         class="form__input-file"
       />
-        <!-- :accept="variants[acceptType].accept" -->
+      <!-- :accept="variants[acceptType].accept" -->
       <!-- </form> -->
     </label>
     <span
@@ -206,18 +206,65 @@ export default {
         alert("Файл '" + this.fileName + "' слишком большой.");
         this.fileName = "Файл не выбран";
         this.isFileInInput = false;
-      }
+      } else {
+        if (this.acceptType === "photo") {
+          // console.log("change file photo -- this.file.name - " + this.file.name);
+          // console.log("change file photo -- this.file.type - " + this.file.type);
+          if (
+            this.file.type !== "image/png" &&
+            this.file.type !== "image/jpeg"
+          ) {
+            alert(
+              "Файл '" +
+                this.fileName +
+                "' не верного формата. Нужен файл 'jpg' или 'png'."
+            );
+            this.fileName = "Файл не выбран";
+            this.isFileInInput = false;
+          } else {
+            this.$emit("addFilePhoto", this.file);
+          }
+        }
 
-      if (this.acceptType === "photo") {
-        console.log("change file photo -- this.file.name - " + this.file.name);
-        this.$emit("addFilePhoto", this.file);
+        if (this.acceptType === "summary") {
+          if (
+            this.getFileExtension(this.file.name) !== "doc" &&
+            this.getFileExtension(this.file.name) !== "docx" &&
+            this.getFileExtension(this.file.name) !== "pdf"
+          ) {
+            alert(
+              "Файл '" +
+                this.fileName +
+                "' не верного формата. Нужен файл 'doc' или 'pdf'."
+            );
+            this.fileName = "Файл не выбран";
+            this.isFileInInput = false;
+          } else {
+            this.$emit("addFileSummary", this.file);
+          }
+        }
+        
+        if (this.acceptType === "test") {
+          if (
+            this.getFileExtension(this.file.name) !== "zip" &&
+            this.getFileExtension(this.file.name) !== "rar"
+          ) {
+            alert(
+              "Файл '" +
+                this.fileName +
+                "' не верного формата. Нужен файл 'zip' или 'rar'."
+            );
+            this.fileName = "Файл не выбран";
+            this.isFileInInput = false;
+          } else {
+            this.$emit("addFileTest", this.file);
+          }
+        }
       }
-      if (this.acceptType === "summary") {
-        this.$emit("addFileSummary", this.file);
-      }
-      if (this.acceptType === "test") {
-        this.$emit("addFileTest", this.file);
-      }
+    },
+
+    getFileExtension(fileName) {
+      return fileName.split(".").splice(-1, 1)[0];
     }
   }
 };
