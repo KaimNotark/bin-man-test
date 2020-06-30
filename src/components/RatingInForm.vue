@@ -48,12 +48,13 @@ export default {
       selected: 0,
       isFiveStars: true,
       colorStar: "#ff5d00",
-      ratingValue: 0
+      ratingValue: 0,
+      selectedRating: 0
     };
   },
 
   methods: {
-    switchColors(key) {
+    setColorStar(key) {
       switch (key) {
         case 1:
           this.colorStar = "#ff5d00";
@@ -73,50 +74,62 @@ export default {
       }
     },
 
+    setRatingValue(key) {
+      switch (key) {
+        case 1:
+          this.ratingValue = 1;
+          break;
+        case 2:
+          this.ratingValue = 2;
+          break;
+        case 3:
+          this.ratingValue = 3;
+          break;
+        case 4:
+          this.ratingValue = 4;
+          break;
+        case 5:
+          this.ratingValue = 5;
+          break;
+      }
+    },
+
     editSummary(index) {
       this.ratingValue = this.allApplicants[index].ratingSummary;
-      this.switchColors(this.ratingValue);
+      this.setColorStar(this.ratingValue);
     },
     editTest(index) {
       this.ratingValue = this.allApplicants[index].ratingTest;
-      this.switchColors(this.ratingValue);
+      this.setColorStar(this.ratingValue);
     },
     editInterview(index) {
       this.ratingValue = this.allApplicants[index].ratingInterview;
-      this.switchColors(this.ratingValue);
+      this.setColorStar(this.ratingValue);
     },
 
     onReset() {
       // console.log("RATING -- onReset - RUN");
       this.ratingValue = 0;
       this.colorStar = "#ff5d00";
+      this.selectedRating = 0;
+
+      this.$emit("raitingNumber", this.selectedRating);
+      this.$emit("raitingIndex");
       // console.log("RATING -- onReset - this.ratingValue = " + this.ratingValue);
+      // console.log("RATING -- onReset - selected = " + selected);
     },
 
     setRating(selected) {
-      if (selected == 1) {
-        this.colorStar = "#ff5d00";
-        this.ratingValue = 1;
-      }
-      if (selected == 2) {
-        this.colorStar = "#ffa800";
-        this.ratingValue = 2;
-      }
-      if (selected == 3) {
-        this.colorStar = "#dae700";
-        this.ratingValue = 3;
-      }
-      if (selected == 4) {
-        this.colorStar = "#abd02d";
-        this.ratingValue = 4;
-      }
-      if (selected == 5) {
-        this.colorStar = "#67c600";
-        this.ratingValue = 5;
-      }
+      this.selectedRating = selected;
 
-      this.$emit("raitingNumber", selected);
+      this.setColorStar(selected);
+      this.setRatingValue(selected);
+
+      this.$emit("raitingNumber", this.selectedRating);
       this.$emit("raitingIndex");
+
+      selected = 0;
+      // console.log("RATING -- setRating - selected = " + selected);
     }
   }
 };
