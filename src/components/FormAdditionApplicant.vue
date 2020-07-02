@@ -386,6 +386,8 @@ export default {
 
       this.formFields.name = null;
       this.formFields.vacancy = null;
+      this.formFields.phone1 = null;
+      this.formFields.mail1 = null;
       this.isLight = true;
     },
 
