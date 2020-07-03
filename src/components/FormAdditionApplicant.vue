@@ -263,26 +263,47 @@ export default {
       event.preventDefault();
       event.stopPropagation();
 
-      const payload = {
-        name: this.formFields.name,
-        vacancy: this.formFields.vacancy,
-        phone1: this.formFields.phone1,
-        mail1: this.formFields.mail1,
-        ratingSummary: this.ratingSummary,
-        ratingTest: this.ratingTest,
-        ratingInterview: this.ratingInterview
-      };
+      if (this.formFields.name === null || this.formFields.name.length == 0) {
+        alert("Укажите ФИО.");
+      } else {
+        if (
+          this.formFields.vacancy === null ||
+          this.formFields.vacancy.length == 0 ||
+          this.formFields.vacancy === 550
+        ) {
+          alert("Выберите вакансию.");
+        } else {
+          if (
+            this.formFields.phone1 === null ||
+            this.formFields.phone1.length == 0
+          ) {
+            alert("Укажите телефон.");
+          } else {
+            if (
+              this.formFields.mail1 === null ||
+              this.formFields.mail1.length == 0
+            ) {
+              alert("Введите E-mail.");
+            } else {
+              const payload = {
+                name: this.formFields.name,
+                vacancy: this.formFields.vacancy,
+                phone1: this.formFields.phone1,
+                mail1: this.formFields.mail1,
+                ratingSummary: this.ratingSummary,
+                ratingTest: this.ratingTest,
+                ratingInterview: this.ratingInterview
+              };
 
-      this.$emit("onEdit", payload, this.editRowId);
-
-      // this.onReset();
-      // event.target.reset();
+              this.$emit("onEdit", payload, this.editRowId);
+            }
+          }
+        }
+      }
     },
 
     editRow(id) {
-      // console.log("FORM -- editRow method run - ID =", id);
       this.editRowId = id;
-      // console.log("FORM -- editRow method run - editRowId= ", this.editRowId);
     },
 
     editRowByIndex(index) {
@@ -290,6 +311,8 @@ export default {
 
       this.formFields.name = this.allApplicants[index].name;
       this.formFields.vacancy = this.allApplicants[index].vacancy;
+      this.formFields.phone1 = this.allApplicants[index].phone1;
+      this.formFields.mail1 = this.allApplicants[index].mail1;
 
       this.$refs.inputPhone.editPhone1(index);
       this.$refs.inputMail.editMail1(index);
@@ -300,24 +323,14 @@ export default {
 
       this.$refs.photoInput.onEditPhoto(index);
       this.$refs.summaryInput.onEditSummary(index);
-      console.log("FORM -- editRowByIndex method run - index= ", index);
       this.$refs.testInput.onEditTest(index);
     },
 
     lighted() {
       this.isLight = false;
-      // console.log("isLight = " + this.isLight);
-      // console.log("options.id = " + this.options[2].id);
     },
 
-    // resetFilePhoto(file) {
-    //   this.$emit("resetFilePhoto", file);
-    //   console.log("FAA-- resetFilePhoto- file = " + file);
-    // },
-
     addFilePhoto(file) {
-      // this.filePhoto = file;
-      // console.log("filePhoto = " + this.filePhoto);
       this.$emit("addFilePhoto", file);
     },
     addFileSummary(file) {
@@ -328,13 +341,10 @@ export default {
     },
 
     onSubmit(event) {
-      // console.log("FORM onSubmit method run.");
-      // console.log("Phone length - ", this.formFields.phone1.length);
-        event.preventDefault();
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
       if (this.formFields.phone1.length === 17) {
-
         const payload = {
           name: this.formFields.name,
           vacancy: this.formFields.vacancy,
@@ -343,19 +353,15 @@ export default {
           ratingSummary: this.ratingSummary,
           ratingTest: this.ratingTest,
           ratingInterview: this.ratingInterview
-          // photo: this.FilePhoto
         };
-        // payload.append('photo', this.FilePhoto);
 
         this.$emit("addApplicants", payload);
-        // console.log("raitingSummary = " + this.ratingSummary);
 
         this.onReset();
         event.target.reset();
       } else {
         alert("Телефонный номер не правильный, в нём мало цифр.");
       }
-      // console.log("FORM payload = " + payload);
     },
 
     formInputsPhone(phone1) {

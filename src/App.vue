@@ -215,6 +215,7 @@ export default {
     },
     addFilePhoto(file) {
       this.filePhoto = file;
+      console.log("App-- addFilePhoto- this.filePhoto= " + this.filePhoto);
     },
     addFileSummary(file) {
       this.fileSummary = file;
@@ -253,6 +254,8 @@ export default {
       // data.splise("files.photo", 1);
 
       data.append("files.photo", this.filePhoto);
+      console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
+
       data.append("files.summary", this.fileSummary);
       data.append("files.test", this.fileTest);
       // добавляю остальные поля, имя и т.п.
