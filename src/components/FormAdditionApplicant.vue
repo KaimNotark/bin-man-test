@@ -279,23 +279,27 @@ export default {
           ) {
             alert("Укажите телефон.");
           } else {
-            if (
-              this.formFields.mail1 === null ||
-              this.formFields.mail1.length == 0
-            ) {
-              alert("Введите E-mail.");
+            if (this.formFields.phone1.length !== 17) {
+              alert("Телефонный номер не правильный, в нём мало цифр.");
             } else {
-              const payload = {
-                name: this.formFields.name,
-                vacancy: this.formFields.vacancy,
-                phone1: this.formFields.phone1,
-                mail1: this.formFields.mail1,
-                ratingSummary: this.ratingSummary,
-                ratingTest: this.ratingTest,
-                ratingInterview: this.ratingInterview
-              };
+              if (
+                this.formFields.mail1 === null ||
+                this.formFields.mail1.length == 0
+              ) {
+                alert("Введите E-mail.");
+              } else {
+                const payload = {
+                  name: this.formFields.name,
+                  vacancy: this.formFields.vacancy,
+                  phone1: this.formFields.phone1,
+                  mail1: this.formFields.mail1,
+                  ratingSummary: this.ratingSummary,
+                  ratingTest: this.ratingTest,
+                  ratingInterview: this.ratingInterview
+                };
 
-              this.$emit("onEdit", payload, this.editRowId);
+                this.$emit("onEdit", payload, this.editRowId);
+              }
             }
           }
         }
