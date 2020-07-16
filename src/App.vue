@@ -244,28 +244,22 @@ export default {
     },
 
     async onEditFromForm(payload, id) {
-      // создаю объект FormData(), который, по идее, должен быть пустым.
       const data = new FormData();
-      // удаляю файл с фотографией (от безысходности, объект-то и так пустой)
-      // data.delete("files.photo");
-      // добавляю файл с фотографией, которого нет, т.е. =null
-      // data.set("files.photo", this.filePhoto);
-      // console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
-      // data.splise("files.photo", 1);
 
       data.append("files.photo", this.filePhoto);
-      console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
-
       data.append("files.summary", this.fileSummary);
       data.append("files.test", this.fileTest);
-      // добавляю остальные поля, имя и т.п.
       data.append("data", JSON.stringify(payload));
-      // отправляю данные на сервер, чтобы изменить данные соискателя
+
+      // в лекции по clean code рекомендовали, всё, что между try и catch
+      // выносить в отдельный метод и вызывать его
+      // так удобнее читать код другому программисту
       try {
         await Applicants.editApplicants(data, id);
         console.log("App-- onEditFromForm- data= " + data);
         await this.showApplicants();
         alert("Данные успешно изменены.");
+        // await this.editDataInForm(data, id);
       } catch (error) {
         console.error(error);
         alert(
@@ -273,6 +267,13 @@ export default {
         );
       }
     },
+
+    // editDataInForm(data, id) {
+    //   Applicants.editApplicants(data, id);
+    //   console.log("App-- onEditFromForm- data= " + data);
+    //   this.showApplicants();
+    //   alert("Данные успешно изменены.");
+    // },
 
     editById(id) {
       this.$refs.formAdditionApplicant.editRow(id);
