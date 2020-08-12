@@ -5,6 +5,7 @@
       :key="formInput.formInputId"
       class="form__label"
     >
+    <ValidationProvider v-slot="">
       <input
         v-model="formInputs[index]"
         class="form__input"
@@ -19,6 +20,7 @@
         @change="changeInput"
         :value="inputValue"
       />
+      </ValidationProvider>
       <!-- :content="inputContent" -->
     </label>
 
@@ -32,9 +34,14 @@
 
 <script>
 import AwesomeMask from "awesome-mask";
+import { ValidationProvider } from "vee-validate";
 
 export default {
   name: "InputInForm",
+
+  components: {
+    ValidationProvider
+  },
 
   directives: {
     mask: AwesomeMask
