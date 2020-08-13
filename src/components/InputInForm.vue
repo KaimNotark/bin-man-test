@@ -5,21 +5,43 @@
       :key="formInput.formInputId"
       class="form__label"
     >
-    <ValidationProvider v-slot="">
-      <input
-        v-model="formInputs[index]"
-        class="form__input"
-        :type="inputType"
-        :name="inputName"
-        :maxlength="inputMaxlength"
-        :autocomplete="inputAutocomplete"
-        :placeholder="inputText"
-        required
-        v-mask="inputMask"
-        :spellcheck="inputSpellcheck"
-        @change="changeInput"
-        :value="inputValue"
-      />
+      <ValidationProvider
+        v-slot="{ errors }"
+        :bails="false"
+        mode="lazy"
+        class="form__validator"
+        rules="required|min:3|email|max:100"
+      >
+        <input
+          v-model="formInputs[index]"
+          class="form__input"
+          :type="inputType"
+          :name="inputName"
+          :maxlength="inputMaxlength"
+          :autocomplete="inputAutocomplete"
+          :placeholder="inputText"
+          required
+          v-mask="inputMask"
+          :spellcheck="inputSpellcheck"
+          @change="changeInput"
+          :value="inputValue"
+        />
+        <span class="form__errors-text">Error: {{ errors[0] }}</span>
+      </ValidationProvider>
+
+      <ValidationProvider
+        name="Поле E-mail"
+        rules="required|min:3|email|max:10"
+        :bails="false"
+        v-slot="{
+          valid,
+          errors
+        }"
+      >
+        <div class="control" :class="`is-${valid}`">
+          <input type="text" v-model="value" />
+          <span>valid: {{ valid }} / errors: {{ errors[0] }}</span>
+        </div>
       </ValidationProvider>
       <!-- :content="inputContent" -->
     </label>
@@ -34,79 +56,89 @@
 
 <script>
 import AwesomeMask from "awesome-mask";
+
 import { ValidationProvider } from "vee-validate";
+import { extend } from 'vee-validate';
+import * as rules from 'vee-validate/dist/rules';
+import { localize } from "vee-validate";
+import ru from "vee-validate/dist/locale/ru.json";
+// install rules and localization vee-validate
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule]);
+});
+localize("ru", ru);
 
 export default {
   name: "InputInForm",
 
   components: {
-    ValidationProvider
+    ValidationProvider,
   },
 
   directives: {
-    mask: AwesomeMask
+    mask: AwesomeMask,
   },
 
   props: {
     allApplicants: {
       type: Array,
-      required: true
+      required: true,
     },
 
     inputButtonText: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputButtonStyle: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputMask: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputSpellcheck: {
       type: Boolean,
-      required: true
+      required: true,
     },
 
     inputTitle: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputText: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputType: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputName: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputAutocomplete: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputMaxlength: {
       type: Number,
-      required: true
+      required: true,
     },
 
     inputPattern: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data: () => ({
@@ -115,7 +147,8 @@ export default {
     formInputs: [],
     inputValue: "",
 
-    isButtonHidden: false
+    isButtonHidden: false,
+    value: "",
   }),
 
   methods: {
@@ -152,12 +185,12 @@ export default {
       if (this.inputName === "email") {
         this.$emit("formInputsMail", this.formInputs[0]);
       }
-    }
+    },
   },
 
   created() {
     this.addInput();
-  }
+  },
 };
 </script>
 
@@ -219,9 +252,18 @@ button:focus {
     flex-direction: column;
   }
 
+  // &__validator {
+  //   width: 600px;
+  // }
+
+  &__errors-text {
+    display: block;
+  }
+
   &__input {
     @extend %text-input;
     @extend %input;
+    width: 600px;
   }
 
   &__btn-add-phone {
@@ -282,4 +324,20 @@ input:-webkit-autofill:active {
   -webkit-animation-fill-mode: both;
   -webkit-box-shadow: inset 0 0 0 10em $color-input-background !important;
 }
+
+.control {
+  width: 100%;
+}
+.is-true {
+  color: green;
+}
+.is-false {
+  color: red;
+}
+
+// &.valid
+//   input, span
+//     color: #045929
+//   input
+//     border: 1px #045929 solid
 </style>
