@@ -70,10 +70,11 @@
       />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm
+      <InputInFormEmail
         ref="inputMail"
         v-bind="mail"
         @formInputsMail="formInputsMail"
+        @formInputsEmailIsValid="formInputsEmailIsValid"
         :all-applicants="allApplicants"
       />
 
@@ -138,6 +139,7 @@ import InputLoad from "./InputLoad.vue";
 import RatingInForm from "./RatingInForm.vue";
 import OptionInSelect from "./OptionInSelect.vue";
 import InputInForm from "./InputInForm.vue";
+import InputInFormEmail from "./InputInFormEmail.vue";
 
 export default {
   name: "FormAdditionApplicant",
@@ -146,26 +148,27 @@ export default {
     InputLoad,
     OptionInSelect,
     RatingInForm,
-    InputInForm
+    InputInForm,
+    InputInFormEmail,
   },
 
   directives: {
-    mask: AwesomeMask
+    mask: AwesomeMask,
   },
 
   props: {
     allApplicants: {
       type: Array,
-      required: true
+      required: true,
     },
     isButtonSubmitHide: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isButtonEditHide: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data: () => ({
@@ -183,35 +186,36 @@ export default {
       name: "",
       vacancy: "",
       phone1: "",
-      mail1: ""
+      mail1: "",
+      isEmailValid: "",
     },
 
     options: [
       {
         id: "0",
         value: 550,
-        content: "Выберите вакансию"
+        content: "Выберите вакансию",
       },
       {
         id: "1",
         value: "Junior Frontend Developer",
-        content: "Junior Frontend Developer"
+        content: "Junior Frontend Developer",
       },
       {
         id: "2",
         value: "Middle Frontend Developer",
-        content: "Middle Frontend Developer"
+        content: "Middle Frontend Developer",
       },
       {
         id: "3",
         value: "Senior Frontend Developer",
-        content: "Senior Frontend Developer"
+        content: "Senior Frontend Developer",
       },
       {
         id: "4",
         value: "TeamLead Frontend Developer",
-        content: "TeamLead Frontend Developer"
-      }
+        content: "TeamLead Frontend Developer",
+      },
     ],
 
     phone: {
@@ -225,7 +229,7 @@ export default {
       inputMaxlength: 11,
       inputButtonStyle: "form__btn-add-phone",
       inputPattern: "", //2[0-9]{3}-[0-9]{3}
-      inputMask: "9 (999) 999-99-99"
+      inputMask: "9 (999) 999-99-99",
     },
 
     mail: {
@@ -239,23 +243,23 @@ export default {
       inputMaxlength: 80,
       inputPattern: "",
       inputSpellcheck: false,
-      inputMask: ""
+      inputMask: "",
     },
 
     ratings: [
       {
         id: "0",
-        title: "Оценка резюме"
+        title: "Оценка резюме",
       },
       {
         id: "1",
-        title: "Оценка тестового задания"
+        title: "Оценка тестового задания",
       },
       {
         id: "2",
-        title: "Оценка собеседования"
-      }
-    ]
+        title: "Оценка собеседования",
+      },
+    ],
   }),
 
   methods: {
@@ -295,7 +299,7 @@ export default {
                   mail1: this.formFields.mail1,
                   ratingSummary: this.ratingSummary,
                   ratingTest: this.ratingTest,
-                  ratingInterview: this.ratingInterview
+                  ratingInterview: this.ratingInterview,
                 };
 
                 this.$emit("onEdit", payload, this.editRowId);
@@ -356,7 +360,7 @@ export default {
           mail1: this.formFields.mail1,
           ratingSummary: this.ratingSummary,
           ratingTest: this.ratingTest,
-          ratingInterview: this.ratingInterview
+          ratingInterview: this.ratingInterview,
         };
 
         this.$emit("addApplicants", payload);
@@ -375,7 +379,12 @@ export default {
 
     formInputsMail(mail1) {
       this.formFields.mail1 = mail1;
-      // console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
+      console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
+    },
+
+    formInputsEmailIsValid(isValid) {
+      this.formFields.isEmailValid = isValid;
+      console.log("FORM -- formInputsEmailIsValid = " + this.formFields.isEmailValid );
     },
 
     onReset() {
@@ -417,8 +426,8 @@ export default {
       // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
 
-    created() {}
-  }
+    created() {},
+  },
 };
 </script>
 
