@@ -292,17 +292,21 @@ export default {
               ) {
                 alert("Введите E-mail.");
               } else {
-                const payload = {
-                  name: this.formFields.name,
-                  vacancy: this.formFields.vacancy,
-                  phone1: this.formFields.phone1,
-                  mail1: this.formFields.mail1,
-                  ratingSummary: this.ratingSummary,
-                  ratingTest: this.ratingTest,
-                  ratingInterview: this.ratingInterview,
-                };
+                if (this.formFields.isEmailValid === false) {
+                  alert("Введите корректный E-mail.");
+                } else {
+                  const payload = {
+                    name: this.formFields.name,
+                    vacancy: this.formFields.vacancy,
+                    phone1: this.formFields.phone1,
+                    mail1: this.formFields.mail1,
+                    ratingSummary: this.ratingSummary,
+                    ratingTest: this.ratingTest,
+                    ratingInterview: this.ratingInterview,
+                  };
 
-                this.$emit("onEdit", payload, this.editRowId);
+                  this.$emit("onEdit", payload, this.editRowId);
+                }
               }
             }
           }
@@ -374,17 +378,14 @@ export default {
 
     formInputsPhone(phone1) {
       this.formFields.phone1 = phone1;
-      // console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
     },
 
     formInputsMail(mail1) {
       this.formFields.mail1 = mail1;
-      console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
     },
 
     formInputsEmailIsValid(isValid) {
       this.formFields.isEmailValid = isValid;
-      console.log("FORM -- formInputsEmailIsValid = " + this.formFields.isEmailValid );
     },
 
     onReset() {
