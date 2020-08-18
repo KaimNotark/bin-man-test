@@ -8,6 +8,7 @@
       <ValidationProvider
         class="form__validator"
         name="E-MAIL"
+        ref="provider"
         v-slot="{ valid, errors }"
         :bails="false"
         :rules="{
@@ -20,7 +21,7 @@
         <span
           class="form__errors-text"
           :class="`__is-${valid}`"
-        >{{ errors[0] }} / Valid: {{ valid }}</span>
+        >{{ errors[0] }}</span>
         <input
           class="form__input"
           v-model="formInputs[index]"
@@ -32,7 +33,7 @@
           required
           v-mask="inputMask"
           :spellcheck="inputSpellcheck"
-          @change="changeInput"
+          @change="changeInput()"
           :value="inputValue"
         />
       </ValidationProvider>
@@ -142,7 +143,7 @@ export default {
 
     isButtonHidden: false,
     value: "",
-    valid: false
+    valid: false,
   }),
 
   methods: {
@@ -171,18 +172,15 @@ export default {
       }
     },
 
-    changeInput() {
+    async changeInput() {
       if (this.inputName === "phone") {
         // console.log("Phone length - ", this.formInputs[0].length);
         this.$emit("formInputsPhone", this.formInputs[0]);
       }
       if (this.inputName === "email") {
+        const isValid = this.$refs.provider[0].flags.valid;
         this.$emit("formInputsMail", this.formInputs[0]);
-        this.$emit("formInputsEmailIsValid", this.valid);
-        
-        console.log("isValid ", this.valid);
-
-        
+        this.$emit("formInputsEmailIsValid", isValid);
       }
     },
   },
