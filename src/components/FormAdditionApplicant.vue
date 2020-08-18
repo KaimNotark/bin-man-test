@@ -54,9 +54,9 @@
         ref="photoInput"
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
-        @resetFilePhoto="resetFilePhoto"
         :all-applicants="allApplicants"
       />
+      <!-- @resetFilePhoto="resetFilePhoto" -->
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -70,10 +70,11 @@
       />
 
       <span class="form__span form__input-header">Введите E-mail</span>
-      <InputInForm
+      <InputInFormEmail
         ref="inputMail"
         v-bind="mail"
         @formInputsMail="formInputsMail"
+        @formInputsEmailIsValid="formInputsEmailIsValid"
         :all-applicants="allApplicants"
       />
 
@@ -138,6 +139,7 @@ import InputLoad from "./InputLoad.vue";
 import RatingInForm from "./RatingInForm.vue";
 import OptionInSelect from "./OptionInSelect.vue";
 import InputInForm from "./InputInForm.vue";
+import InputInFormEmail from "./InputInFormEmail.vue";
 
 export default {
   name: "FormAdditionApplicant",
@@ -146,26 +148,27 @@ export default {
     InputLoad,
     OptionInSelect,
     RatingInForm,
-    InputInForm
+    InputInForm,
+    InputInFormEmail,
   },
 
   directives: {
-    mask: AwesomeMask
+    mask: AwesomeMask,
   },
 
   props: {
     allApplicants: {
       type: Array,
-      required: true
+      required: true,
     },
     isButtonSubmitHide: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isButtonEditHide: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data: () => ({
@@ -183,35 +186,36 @@ export default {
       name: "",
       vacancy: "",
       phone1: "",
-      mail1: ""
+      mail1: "",
+      isEmailValid: "",
     },
 
     options: [
       {
         id: "0",
         value: 550,
-        content: "Выберите вакансию"
+        content: "Выберите вакансию",
       },
       {
         id: "1",
         value: "Junior Frontend Developer",
-        content: "Junior Frontend Developer"
+        content: "Junior Frontend Developer",
       },
       {
         id: "2",
         value: "Middle Frontend Developer",
-        content: "Middle Frontend Developer"
+        content: "Middle Frontend Developer",
       },
       {
         id: "3",
         value: "Senior Frontend Developer",
-        content: "Senior Frontend Developer"
+        content: "Senior Frontend Developer",
       },
       {
         id: "4",
         value: "TeamLead Frontend Developer",
-        content: "TeamLead Frontend Developer"
-      }
+        content: "TeamLead Frontend Developer",
+      },
     ],
 
     phone: {
@@ -225,7 +229,7 @@ export default {
       inputMaxlength: 11,
       inputButtonStyle: "form__btn-add-phone",
       inputPattern: "", //2[0-9]{3}-[0-9]{3}
-      inputMask: "9 (999) 999-99-99"
+      inputMask: "9 (999) 999-99-99",
     },
 
     mail: {
@@ -239,23 +243,23 @@ export default {
       inputMaxlength: 80,
       inputPattern: "",
       inputSpellcheck: false,
-      inputMask: ""
+      inputMask: "",
     },
 
     ratings: [
       {
         id: "0",
-        title: "Оценка резюме"
+        title: "Оценка резюме",
       },
       {
         id: "1",
-        title: "Оценка тестового задания"
+        title: "Оценка тестового задания",
       },
       {
         id: "2",
-        title: "Оценка собеседования"
-      }
-    ]
+        title: "Оценка собеседования",
+      },
+    ],
   }),
 
   methods: {
@@ -263,35 +267,64 @@ export default {
       event.preventDefault();
       event.stopPropagation();
 
-      const payload = {
-        name: this.formFields.name,
-        vacancy: this.formFields.vacancy,
-        phone1: this.formFields.phone1,
-        mail1: this.formFields.mail1,
-        ratingSummary: this.ratingSummary,
-        ratingTest: this.ratingTest,
-        ratingInterview: this.ratingInterview
-      };
+      if (this.formFields.name === null || this.formFields.name.length == 0) {
+        alert("Укажите ФИО.");
+      } else {
+        if (
+          this.formFields.vacancy === null ||
+          this.formFields.vacancy.length == 0 ||
+          this.formFields.vacancy === 550
+        ) {
+          alert("Выберите вакансию.");
+        } else {
+          if (
+            this.formFields.phone1 === null ||
+            this.formFields.phone1.length == 0
+          ) {
+            alert("Укажите телефон.");
+          } else {
+            if (this.formFields.phone1.length !== 17) {
+              alert("Телефонный номер не правильный, в нём мало цифр.");
+            } else {
+              if (
+                this.formFields.mail1 === null ||
+                this.formFields.mail1.length == 0
+              ) {
+                alert("Введите E-mail.");
+              } else {
+                if (this.formFields.isEmailValid === false) {
+                  alert("Введите корректный E-mail.");
+                } else {
+                  const payload = {
+                    name: this.formFields.name,
+                    vacancy: this.formFields.vacancy,
+                    phone1: this.formFields.phone1,
+                    mail1: this.formFields.mail1,
+                    ratingSummary: this.ratingSummary,
+                    ratingTest: this.ratingTest,
+                    ratingInterview: this.ratingInterview,
+                  };
 
-      this.$emit("onEdit", payload, this.editRowId);
-
-      // this.onReset();
-      // event.target.reset();
+                  this.$emit("onEdit", payload, this.editRowId);
+                }
+              }
+            }
+          }
+        }
+      }
     },
 
     editRow(id) {
-      // console.log("FORM -- editRow method run - ID =", id);
       this.editRowId = id;
-      // console.log("FORM -- editRow method run - editRowId= ", this.editRowId);
     },
 
     editRowByIndex(index) {
-      console.log("FORM -- editRowByIndex method run - index= ", index);
-
       this.lighted();
 
       this.formFields.name = this.allApplicants[index].name;
       this.formFields.vacancy = this.allApplicants[index].vacancy;
+      this.formFields.phone1 = this.allApplicants[index].phone1;
+      this.formFields.mail1 = this.allApplicants[index].mail1;
 
       this.$refs.inputPhone.editPhone1(index);
       this.$refs.inputMail.editMail1(index);
@@ -307,18 +340,9 @@ export default {
 
     lighted() {
       this.isLight = false;
-      // console.log("isLight = " + this.isLight);
-      // console.log("options.id = " + this.options[2].id);
-    },
-
-    resetFilePhoto(file) {
-      this.$emit("resetFilePhoto", file);
-      console.log("FAA-- resetFilePhoto- file = " + file);
     },
 
     addFilePhoto(file) {
-      // this.filePhoto = file;
-      // console.log("filePhoto = " + this.filePhoto);
       this.$emit("addFilePhoto", file);
     },
     addFileSummary(file) {
@@ -329,40 +353,39 @@ export default {
     },
 
     onSubmit(event) {
-      // console.log("FORM onSubmit method run.");
-
       event.preventDefault();
       event.stopPropagation();
 
-      const payload = {
-        name: this.formFields.name,
-        vacancy: this.formFields.vacancy,
-        phone1: this.formFields.phone1,
-        mail1: this.formFields.mail1,
-        ratingSummary: this.ratingSummary,
-        ratingTest: this.ratingTest,
-        ratingInterview: this.ratingInterview
-        // photo: this.FilePhoto
-      };
-      // payload.append('photo', this.FilePhoto);
+      if (this.formFields.phone1.length === 17) {
+        const payload = {
+          name: this.formFields.name,
+          vacancy: this.formFields.vacancy,
+          phone1: this.formFields.phone1,
+          mail1: this.formFields.mail1,
+          ratingSummary: this.ratingSummary,
+          ratingTest: this.ratingTest,
+          ratingInterview: this.ratingInterview,
+        };
 
-      this.$emit("addApplicants", payload);
-      // console.log("raitingSummary = " + this.ratingSummary);
+        this.$emit("addApplicants", payload);
 
-      this.onReset();
-      event.target.reset();
-
-      // console.log("FORM payload = " + payload);
+        this.onReset();
+        event.target.reset();
+      } else {
+        alert("Телефонный номер не правильный, в нём мало цифр.");
+      }
     },
 
     formInputsPhone(phone1) {
       this.formFields.phone1 = phone1;
-      // console.log("FORM -- formInputsPhone - formFields.phone1 = " + this.formFields.phone1 );
     },
 
     formInputsMail(mail1) {
       this.formFields.mail1 = mail1;
-      // console.log("FORM -- formInputsPhone - formFields.mail1 = " + this.formFields.mail1 );
+    },
+
+    formInputsEmailIsValid(isValid) {
+      this.formFields.isEmailValid = isValid;
     },
 
     onReset() {
@@ -383,6 +406,8 @@ export default {
 
       this.formFields.name = null;
       this.formFields.vacancy = null;
+      this.formFields.phone1 = null;
+      this.formFields.mail1 = null;
       this.isLight = true;
     },
 
@@ -402,8 +427,8 @@ export default {
       // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
 
-    created() {}
-  }
+    created() {},
+  },
 };
 </script>
 
@@ -535,6 +560,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
+  -webkit-box-shadow: inset 0 0 0 10em $color-input-background !important;
 }
 
 .container-row {

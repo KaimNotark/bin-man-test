@@ -185,11 +185,7 @@ export default {
 
       counterApplicants: 0,
       modalIsOpened: false,
-      allApplicants: [
-        {
-          name: "Записи отсутствуют."
-        }
-      ],
+      allApplicants: [],
 
       idDell: null,
       addOneApplicant: {
@@ -219,6 +215,7 @@ export default {
     },
     addFilePhoto(file) {
       this.filePhoto = file;
+      console.log("App-- addFilePhoto- this.filePhoto= " + this.filePhoto);
     },
     addFileSummary(file) {
       this.fileSummary = file;
@@ -247,26 +244,22 @@ export default {
     },
 
     async onEditFromForm(payload, id) {
-      // создаю объект FormData(), который, по идее, должен быть пустым.
       const data = new FormData();
-      // удаляю файл с фотографией (от безысходности, объект-то и так пустой)
-      data.delete("files.photo");
-      // добавляю файл с фотографией, которого нет, т.е. =null
-      data.set("files.photo", this.filePhoto);
-      console.log("App-- onEditFromForm- this.filePhoto= " + this.filePhoto);
-      // data.splise("files.photo", 1);
 
-      // data.append("files.photo", this.filePhoto);
-      // data.append("files.summary", this.fileSummary);
-      // data.append("files.test", this.fileTest);
-      // добавляю остальные поля, имя и т.п.
+      data.append("files.photo", this.filePhoto);
+      data.append("files.summary", this.fileSummary);
+      data.append("files.test", this.fileTest);
       data.append("data", JSON.stringify(payload));
-      // отправляю данные на сервер, чтобы изменить данные соискателя
+
+      // в лекции по clean code рекомендовали, всё, что между try и catch
+      // выносить в отдельный метод и вызывать его
+      // так удобнее читать код другому программисту
       try {
         await Applicants.editApplicants(data, id);
         console.log("App-- onEditFromForm- data= " + data);
         await this.showApplicants();
         alert("Данные успешно изменены.");
+        // await this.editDataInForm(data, id);
       } catch (error) {
         console.error(error);
         alert(
@@ -275,17 +268,22 @@ export default {
       }
     },
 
-    editById(id) {
-      // console.log("APP -- button edit was pressed - id= " + id);
+    // editDataInForm(data, id) {
+    //   Applicants.editApplicants(data, id);
+    //   console.log("App-- onEditFromForm- data= " + data);
+    //   this.showApplicants();
+    //   alert("Данные успешно изменены.");
+    // },
 
+    editById(id) {
       this.$refs.formAdditionApplicant.editRow(id);
+      // console.log("APP -- editById - id= " + id);
       // this.modalOpen();
     },
 
     rowIndex(index) {
-      // console.log("APP -- button edit was pressed - index= " + index);
-
       this.$refs.formAdditionApplicant.editRowByIndex(index);
+      console.log("APP -- rowIndex - index= " + index);
       this.isButtonSubmitHide = true;
       this.isButtonEditHide = false;
       this.modalOpen();
@@ -308,8 +306,8 @@ export default {
     async removeById(id) {
       try {
         this.allApplicants = await Applicants.removeById(id);
-        await this.showApplicants();
-        // alert("Соискатель удалён.");
+        // console.log("APP--removeById-RUN");
+        this.addingData();
       } catch (error) {
         console.error(error);
         alert(
@@ -341,43 +339,63 @@ export default {
     async showApplicants() {
       try {
         this.allApplicants = await Applicants.showApplicants();
-        // this.counterApplicants = this.allApplicants.length;
-
-        // Creating a url for the avatar. If the user has not uploaded the photo,
-        // then placeholder is placed.
-        let allApplicants = this.allApplicants;
-        allApplicants.forEach(function(v, i, allApplicants) {
-          if (allApplicants[i].photo === null) {
-            allApplicants[i].photo = {
-              url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
-            };
-          } else {
-            allApplicants[i].photo.url =
-              "http://localhost:1337" + allApplicants[i].photo.url;
-          }
-
-          // Calculating the average rating value.
-          let ratingAverage = 0;
-          ratingAverage = Math.floor(
-            (allApplicants[i].ratingSummary +
-              allApplicants[i].ratingTest +
-              allApplicants[i].ratingInterview) /
-              3
-          );
-          allApplicants[i].ratingAverage = ratingAverage;
-
-          // Forming the starRating color on the table depending on the average rating.
-          let ratingColor = "";
-          if (ratingAverage == 1) ratingColor = "#ff5d00";
-          if (ratingAverage == 2) ratingColor = "#ffa800";
-          if (ratingAverage == 3) ratingColor = "#dae700";
-          if (ratingAverage == 4) ratingColor = "#abd02d";
-          if (ratingAverage == 5) ratingColor = "#67c600";
-          allApplicants[i].ratingColor = ratingColor;
-        });
+        this.addingData();
       } catch (error) {
         console.error(error);
       }
+    },
+
+    // Creating a url for the avatar.
+    // If the user has not uploaded the photo, then placeholder is placed.
+    creatingUrlForAvatar(allApplicants) {
+      allApplicants.forEach(function(v, i, allApplicants) {
+        if (allApplicants[i].photo === null) {
+          allApplicants[i].photo = {
+            url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+          };
+        } else {
+          allApplicants[i].photo.url =
+            "http://localhost:1337" + allApplicants[i].photo.url;
+        }
+      });
+    },
+
+    // Calculating the average rating value to display in a table row.
+    calculationAverageRatingValue(allApplicants) {
+      allApplicants.forEach(function(v, i, allApplicants) {
+        let ratingAverage = 0;
+        ratingAverage = Math.floor(
+          (allApplicants[i].ratingSummary +
+            allApplicants[i].ratingTest +
+            allApplicants[i].ratingInterview) /
+            3
+        );
+        allApplicants[i].ratingAverage = ratingAverage;
+      });
+    },
+
+    // Forming the starRating color depending
+    // on the average rating to display in a table row.
+    definitionRatingColor(allApplicants) {
+      allApplicants.forEach(function(v, i, allApplicants) {
+        let ratingColor = "";
+        if (allApplicants[i].ratingAverage == 1) ratingColor = "#ff5d00";
+        if (allApplicants[i].ratingAverage == 2) ratingColor = "#ffa800";
+        if (allApplicants[i].ratingAverage == 3) ratingColor = "#dae700";
+        if (allApplicants[i].ratingAverage == 4) ratingColor = "#abd02d";
+        if (allApplicants[i].ratingAverage == 5) ratingColor = "#67c600";
+
+        allApplicants[i].ratingColor = ratingColor;
+      });
+    },
+
+    // adding data to display in a table row.
+    addingData() {
+      let allApplicants = this.allApplicants;
+
+      this.creatingUrlForAvatar(allApplicants);
+      this.calculationAverageRatingValue(allApplicants);
+      this.definitionRatingColor(allApplicants);
     }
   }
 };
@@ -558,6 +576,7 @@ body {
       width: 116px;
       height: 36px;
       margin-right: 10px;
+      padding-top: 10px;
       border: solid 1px $color-button-border;
       border-radius: 3px;
       background: $color-white;
@@ -589,6 +608,7 @@ body {
     &__add {
       display: flex;
       justify-content: space-around;
+      padding-top: 11px;
       width: 181px;
       height: 36px;
       border: solid 1px #d4e2e7;
@@ -715,6 +735,7 @@ th {
   width: 30px;
   height: 30px;
   font-size: 24px;
+  padding: 0px 5px 1px 6px;
   margin-top: 12px;
   margin-right: 10px;
   background: $color-white;

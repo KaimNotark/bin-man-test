@@ -26,6 +26,7 @@ class ApplicantsApi {
       try {
         const response = await axios.delete(`${this.baseUrl}/${id}`);
         console.log(response);
+        console.log("APIjs--removeById(id)-showApplicants() = ", this.showApplicants());
         return this.showApplicants();
       } catch (error) {
         console.log(error);
@@ -81,13 +82,13 @@ class ApplicantsApi {
   }
 
   async showApplicants() {
-    console.log("CLASS Function SHOW ALL APPLICANTS run.");
-
+    console.log("APIjs--showApplicants()-RUN.");
+    
     try {
       const {
         data
       } = await axios.get(this.baseUrl);
-      // console.log("CLASS allApplicants -- ", data);
+      // console.log("APIjs--showApplicants()-data = ", data);
       return data;
     } catch (error) {
       console.log(error);

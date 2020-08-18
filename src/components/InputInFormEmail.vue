@@ -5,20 +5,38 @@
       :key="formInput.formInputId"
       class="form__label"
     >
-      <input
-        class="form__input"
-        v-model="formInputs[index]"
-        :type="inputType"
-        :name="inputName"
-        :maxlength="inputMaxlength"
-        :autocomplete="inputAutocomplete"
-        :placeholder="inputText"
-        required
-        v-mask="inputMask"
-        :spellcheck="inputSpellcheck"
-        @change="changeInput"
-        :value="inputValue"
-      />
+      <ValidationProvider
+        class="form__validator"
+        name="E-MAIL"
+        ref="provider"
+        v-slot="{ valid, errors }"
+        :bails="false"
+        :rules="{
+          required: true,
+          email: true,
+          min: 3,
+          max: 80 }"
+      >
+        <!-- mode="lazy" -->
+        <span
+          class="form__errors-text"
+          :class="`__is-${valid}`"
+        >{{ errors[0] }}</span>
+        <input
+          class="form__input"
+          v-model="formInputs[index]"
+          :type="inputType"
+          :name="inputName"
+          :maxlength="inputMaxlength"
+          :autocomplete="inputAutocomplete"
+          :placeholder="inputText"
+          required
+          v-mask="inputMask"
+          :spellcheck="inputSpellcheck"
+          @change="changeInput()"
+          :value="inputValue"
+        />
+      </ValidationProvider>
       <!-- :content="inputContent" -->
     </label>
 
@@ -33,8 +51,23 @@
 <script>
 import AwesomeMask from "awesome-mask";
 
+import { ValidationProvider } from "vee-validate";
+import { extend } from "vee-validate";
+import * as rules from "vee-validate/dist/rules";
+import { localize } from "vee-validate";
+import ru from "vee-validate/dist/locale/ru.json";
+// install rules and localization vee-validate
+Object.keys(rules).forEach((rule) => {
+  extend(rule, rules[rule]);
+});
+localize("ru", ru);
+
 export default {
-  name: "InputInForm",
+  name: "InputInFormEmail",
+
+  components: {
+    ValidationProvider,
+  },
 
   directives: {
     mask: AwesomeMask,
@@ -110,6 +143,7 @@ export default {
 
     isButtonHidden: false,
     value: "",
+    valid: false,
   }),
 
   methods: {
@@ -138,13 +172,15 @@ export default {
       }
     },
 
-    changeInput() {
+    async changeInput() {
       if (this.inputName === "phone") {
         // console.log("Phone length - ", this.formInputs[0].length);
         this.$emit("formInputsPhone", this.formInputs[0]);
       }
       if (this.inputName === "email") {
+        const isValid = this.$refs.provider[0].flags.valid;
         this.$emit("formInputsMail", this.formInputs[0]);
+        this.$emit("formInputsEmailIsValid", isValid);
       }
     },
   },
@@ -204,7 +240,7 @@ button:focus {
 }
 
 .container-form-input {
-  margin-top: 10px;
+  margin-top: 1px;
 }
 
 .form {
@@ -213,8 +249,17 @@ button:focus {
     flex-direction: column;
   }
 
+  // &__validator {
+  //   width: 600px;
+  // }
+
   &__errors-text {
     display: block;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    margin-top: 3px;
+    height: 12px;
   }
 
   &__input {
@@ -280,5 +325,12 @@ input:-webkit-autofill:active {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
   -webkit-box-shadow: inset 0 0 0 10em $color-input-background !important;
+}
+
+.__is-true {
+  color: green;
+}
+.__is-false {
+  color: red;
 }
 </style>
