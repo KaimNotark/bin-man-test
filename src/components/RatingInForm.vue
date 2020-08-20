@@ -114,15 +114,12 @@ export default {
     },
 
     onReset() {
-      // console.log("RATING -- onReset - RUN");
       this.ratingValue = 0;
       this.colorStar = "#ff5d00";
       this.selectedRating = 0;
 
       this.$emit("raitingNumber", this.selectedRating);
       this.$emit("raitingIndex");
-      // console.log("RATING -- onReset - this.ratingValue = " + this.ratingValue);
-      // console.log("RATING -- onReset - selected = " + selected);
     },
 
     setRating(selected) {
@@ -135,7 +132,6 @@ export default {
       this.$emit("raitingIndex");
 
       selected = 0;
-      // console.log("RATING -- setRating - selected = " + selected);
     }
   }
 };

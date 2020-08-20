@@ -8,12 +8,10 @@ class ApplicantsApi {
   }
 
   async dellFile() {
-    // console.log("APIjs method 'removeById' is run. ID = " + id);
     if (confirm("Удалить файл?")) {
       try {
         const response = await axios.delete(`${this.fileUrl}`);
         console.log(response);
-        // this.showApplicants();
       } catch (error) {
         console.log(error);
       }
@@ -21,7 +19,6 @@ class ApplicantsApi {
   }
 
   async removeById(id) {
-    // console.log("APIjs method 'removeById' is run. ID = " + id);
     if (confirm("Вы действительно хотите удалить соискателя?")) {
       try {
         const response = await axios.delete(`${this.baseUrl}/${id}`);
@@ -71,9 +68,6 @@ class ApplicantsApi {
         options,
       );
 
-      // console.log("APIjs -- editApplicants - data= ", data);
-      // console.log("APIjs -- editApplicants - id= " + id);
-
       return data;
     } catch (error) {
       console.error(error);
@@ -88,7 +82,6 @@ class ApplicantsApi {
       const {
         data
       } = await axios.get(this.baseUrl);
-      // console.log("APIjs--showApplicants()-data = ", data);
       return data;
     } catch (error) {
       console.log(error);

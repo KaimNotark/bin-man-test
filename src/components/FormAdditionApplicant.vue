@@ -56,7 +56,6 @@
         @addFilePhoto="addFilePhoto"
         :all-applicants="allApplicants"
       />
-      <!-- @resetFilePhoto="resetFilePhoto" -->
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -389,13 +388,10 @@ export default {
     },
 
     onReset() {
-      // console.log("FORM -- onReset method is run.");
 
       this.$refs.photoInput.onReset();
       this.$refs.summaryInput.onReset();
       this.$refs.testInput.onReset();
-
-      // this.$refs.photoInput.$refs.fileUpload.value = null;
 
       this.$refs.ratings[0].onReset();
       this.$refs.ratings[1].onReset();
@@ -412,19 +408,13 @@ export default {
     },
 
     raitingNumber(selected) {
-      // console.log("FORM -- raitingNumber - № = " + selected);
       this.raitingBuffer = selected;
     },
 
     raitingIndex(index) {
-      // console.log("FORM -- raitingNumber - index = " + index);
       if (index === 0) this.ratingSummary = this.raitingBuffer;
       if (index === 1) this.ratingTest = this.raitingBuffer;
       if (index === 2) this.ratingInterview = this.raitingBuffer;
-
-      // console.log("FORM -- ratingSummary = " + this.ratingSummary);
-      // console.log("FORM -- ratingTest = " + this.ratingTest);
-      // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
 
     created() {},
@@ -539,14 +529,6 @@ select:focus {
   color: $color-text-light;
   opacity: 1;
 }
-
-// change background color by autofill
-// input:-webkit-autofill,
-// input:-webkit-autofill:hover,
-// input:-webkit-autofill:focus,
-// input:-webkit-autofill:active {
-//   -webkit-box-shadow: 0 0 0px 10em $color-input-background inset !important;
-// }
 
 @-webkit-keyframes autofill {
   to {

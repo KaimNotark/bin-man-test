@@ -88,7 +88,6 @@ export default {
 
   methods: {
     onEditPhoto(index) {
-      // console.log("INPUT-LOAD -- onEditPhoto - RUN, index= " + index);
       this.isFilePhotoInCard =
         this.allApplicants[index].photo.url !==
         "https://via.placeholder.com/40x40/e8eff1/282e37?text=A";
@@ -102,7 +101,6 @@ export default {
       }
     },
     onEditSummary(index) {
-      // console.log("INPUT-LOAD -- onEditSummary - RUN, index= " + index);
       this.isFileSummaryInCard = this.allApplicants[index].summary !== null;
 
       if (this.isFileSummaryInCard) {
@@ -114,7 +112,6 @@ export default {
       }
     },
     onEditTest(index) {
-      // console.log("INPUT-LOAD -- onEditTest - RUN, index= " + index);
       this.isFileTestInCard = this.allApplicants[index].test !== null;
 
       if (this.isFileTestInCard) {
@@ -152,16 +149,6 @@ export default {
 
       this.isFileInInput = files.length > 0;
 
-      // files.length > 0
-      //   ? (this.isFileInInput = true)
-      //   : (this.isFileInInput = false);
-
-      // if (files.length > 0) {
-      //   this.isFileInInput = true;
-      // } else {
-      //   this.isFileInInput = false;
-      // }
-
       this.fileSize = files[0].size;
       if (this.fileSize > this.sizeOfFile) {
         alert("Файл '" + this.fileName + "' слишком большой.");
@@ -169,8 +156,6 @@ export default {
         this.isFileInInput = false;
       } else {
         if (this.acceptType === "photo") {
-          // console.log("change file photo -- this.file.name - " + this.file.name);
-          // console.log("change file photo -- this.file.type - " + this.file.type);
           if (
             this.file.type !== "image/png" &&
             this.file.type !== "image/jpeg"

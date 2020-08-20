@@ -37,7 +37,6 @@
           :value="inputValue"
         />
       </ValidationProvider>
-      <!-- :content="inputContent" -->
     </label>
 
     <button
@@ -174,7 +173,6 @@ export default {
 
     async changeInput() {
       if (this.inputName === "phone") {
-        // console.log("Phone length - ", this.formInputs[0].length);
         this.$emit("formInputsPhone", this.formInputs[0]);
       }
       if (this.inputName === "email") {
@@ -248,10 +246,6 @@ button:focus {
     display: flex;
     flex-direction: column;
   }
-
-  // &__validator {
-  //   width: 600px;
-  // }
 
   &__errors-text {
     display: block;

@@ -87,26 +87,14 @@
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
               <p class="main-title__counter">Всего соискателей: {{ allApplicants.length }}</p>
-              <!-- <p class="main-title__counter">Всего соискателей: {{ counterApplicants }}</p> -->
             </div>
 
             <div class="main-button">
-              <!--
-              <button @click="forEachApplicants" class="main-button__selected" type="button">
-                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">forEach</span>
-              </button>
-              -->
-
-              <button @click="dellFile" class="main-button__selected" type="button">
-                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">dell File</span>
-              </button>
 
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
-                <span class="main-button__text">обновить</span>
-              </button>
+                <span class="main-button__text">Избранные</span>
+              </button> 
 
               <button class="main-button__add" type="button" @click="showAddForm">
                 <span class="_increase">+</span>
@@ -138,9 +126,7 @@
                 @editById="editById"
                 @rowIndex="rowIndex"
               />
-              <!-- {{ allApplicants[0].photo }} -->
-              <!-- {{ allApplicants }} -->
-              <!-- {{ counterApplicants }} -->
+
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -202,14 +188,6 @@ export default {
 
   methods: {
     resetFilePhoto(file) {
-      // console.log("App-- resetFilePhoto- index= " + index);
-      // this.allApplicants[0].photo = null;
-      // console.log(
-      //   "App-- resetFilePhoto- this.allApplicants[" +
-      //     index +
-      //     "].photo= " +
-      //     this.allApplicants[index].photo
-      // );
       this.filePhoto = file;
       console.log("App-- resetFilePhoto- this.filePhoto= " + this.filePhoto);
     },
@@ -268,17 +246,8 @@ export default {
       }
     },
 
-    // editDataInForm(data, id) {
-    //   Applicants.editApplicants(data, id);
-    //   console.log("App-- onEditFromForm- data= " + data);
-    //   this.showApplicants();
-    //   alert("Данные успешно изменены.");
-    // },
-
     editById(id) {
       this.$refs.formAdditionApplicant.editRow(id);
-      // console.log("APP -- editById - id= " + id);
-      // this.modalOpen();
     },
 
     rowIndex(index) {
@@ -293,8 +262,6 @@ export default {
       console.log("button DELL FILE was pressed");
       try {
         this.allApplicants = await Applicants.dellFile();
-        // await this.showApplicants();
-        // alert("Соискатель удалён.");
       } catch (error) {
         console.error(error);
         alert(
@@ -306,7 +273,6 @@ export default {
     async removeById(id) {
       try {
         this.allApplicants = await Applicants.removeById(id);
-        // console.log("APP--removeById-RUN");
         this.addingData();
       } catch (error) {
         console.error(error);
@@ -421,7 +387,6 @@ $font-family-primary: "Roboto", "Verdana", "Arial", sans-serif;
 .simplebar-track.simplebar-vertical {
   background-color: $color-white;
 }
-
 // end -- styling the scroll bar --
 
 html {
@@ -568,7 +533,6 @@ body {
   &-button {
     display: flex;
     justify-content: space-between;
-    // width: 306px;
 
     &__selected {
       display: flex;
