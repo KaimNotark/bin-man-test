@@ -1,11 +1,4 @@
 <template>
-  <!-- 
-Site:
-https://www.vuescript.com/star-rating-component-vue-2/
-https://github.com/craigh411/vue-star-rating
-
-npm install vue-star-rating
-  -->
   <div class="form__rating-container">
     <p class="form__rating-title">{{ rating.title }}</p>
     <star-rating
@@ -74,10 +67,10 @@ export default {
       }
     },
 
-    // слушал лекцию по clean code и там сказали, что switch вообще нельзя 
+    // слушал лекцию по clean code и там сказали, что switch вообще нельзя
     // применять, т.к. забывают ставить break + ряд других причин...
     // рекомендовали использовать вместо него if
-    // я решил оставить switch, т.к. здесь слишком простые методы 
+    // я решил оставить switch, т.к. здесь слишком простые методы
     // и ошибиться сложно
 
     setRatingValue(key) {
@@ -126,7 +119,7 @@ export default {
       this.selectedRating = selected;
 
       this.setColorStar(selected);
-      this.setRatingValue(selected);
+      this.ratingValue = selected;
 
       this.$emit("raitingNumber", this.selectedRating);
       this.$emit("raitingIndex");

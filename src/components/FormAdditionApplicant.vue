@@ -118,8 +118,9 @@
         <button type="reset" class="form__btn-reset" @click="onReset">Очистить</button>
 
         <button
+          v-if="!editorMode"
           type="submit"
-          :class="[ 'form__btn-submit', { '_hide' : isButtonSubmitHide }]"
+          :class="[ 'form__btn-submit']"
         >Добавить соискателя</button>
 
         <button
@@ -156,6 +157,10 @@ export default {
   },
 
   props: {
+    applicantId: {
+      type: String,
+    },
+
     allApplicants: {
       type: Array,
       required: true,
@@ -260,6 +265,10 @@ export default {
       },
     ],
   }),
+
+  beforeDestroy () {
+    // clean form
+  },
 
   methods: {
     onEdit(event) {
@@ -418,6 +427,12 @@ export default {
     },
 
     created() {},
+  },
+
+  computed: {
+    editorMode () {
+      return Boolean(this.applicantId.length)
+    }
   },
 };
 </script>

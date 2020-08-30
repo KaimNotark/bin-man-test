@@ -2,7 +2,20 @@
   <tr>
     <td>
       <div class="container-applicant">
-        <img :src="row.photo.url" alt="Аватар" class="applicant-img applicant-img__text" />
+        <img
+          v-if="row.photo"
+          :src="row.photo.url"
+          :alt="row.name"
+          class="applicant-img applicant-img__text"
+        />
+
+        <img
+          v-else
+          :src="'https://via.placeholder.com/40x40/e8eff1/282e37?text=' + 'первая буква row.name'"
+          :alt="row.name"
+          class="applicant-img applicant-img__text"
+        />
+
         <div class="applicant-text">
           <p class="applicant-text__name">{{ row.name }}</p>
           <p class="applicant-text__vacancy">{{ row.vacancy }}</p>
@@ -20,6 +33,11 @@
         </div>
       </div>
     </td>
+
+    {
+      phone1
+      phone2
+    }
 
     <td>
       <div class="container-mail">
@@ -136,13 +154,13 @@ export default {
   methods: {
     editById(row) {
       this.rowId = row.id;
-      this.$emit("editById", this.rowId);
-      this.$emit("rowIndex");
+      this.$emit("edit-by-id", this.rowId);
+      this.$emit("row-index");
     },
 
     removeById(row) {
       this.rowId = row.id;
-      this.$emit("removeById", this.rowId);
+      this.$emit("remove-by-id", this.rowId);
     }
   },
 

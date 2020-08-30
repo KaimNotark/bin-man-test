@@ -8,6 +8,7 @@
           <div class="modal-backing">
             <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
               <FormAdditionApplicant
+                :current-applicant-id="currentApplicantId"
                 @resetFilePhoto="resetFilePhoto"
                 @addApplicants="addApplicants"
                 @addFilePhoto="addFilePhoto"
@@ -90,11 +91,10 @@
             </div>
 
             <div class="main-button">
-
               <button @click="showApplicants" class="main-button__selected" type="button">
                 <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
                 <span class="main-button__text">Избранные</span>
-              </button> 
+              </button>
 
               <button class="main-button__add" type="button" @click="showAddForm">
                 <span class="_increase">+</span>
@@ -126,7 +126,6 @@
                 @editById="editById"
                 @rowIndex="rowIndex"
               />
-
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">Показать еще</button>
@@ -142,7 +141,7 @@
 import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 
-import { Applicants } from "./Api";
+import { Applicants } from "./providers/applicants";
 
 import Table from "./components/Table.vue";
 import FormAdditionApplicant from "./components/FormAdditionApplicant.vue";
@@ -153,11 +152,13 @@ export default {
   components: {
     simplebar,
     Table,
-    FormAdditionApplicant
+    FormAdditionApplicant,
   },
 
   data() {
     return {
+      currentApplicantId: '',
+
       file: "",
       name: "",
 
@@ -177,8 +178,8 @@ export default {
       addOneApplicant: {
         name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
         vacancy: "dddddddddddddddddddd",
-        phone1: "89642255230"
-      }
+        phone1: "89642255230",
+      },
     };
   },
 
@@ -198,6 +199,7 @@ export default {
     addFileSummary(file) {
       this.fileSummary = file;
     },
+
     addFileTest(file) {
       this.fileTest = file;
     },
@@ -218,7 +220,6 @@ export default {
 
     modalClose() {
       this.modalIsOpened = false;
-      this.$refs.formAdditionApplicant.onReset();
     },
 
     async onEditFromForm(payload, id) {
@@ -271,14 +272,16 @@ export default {
     },
 
     async removeById(id) {
-      try {
-        this.allApplicants = await Applicants.removeById(id);
-        this.addingData();
-      } catch (error) {
-        console.error(error);
-        alert(
-          "Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз."
-        );
+      if (confirm("Вы действительно хотите удалить соискателя?")) {
+        try {
+          this.allApplicants = await Applicants.removeById(id);
+          this.addingData();
+        } catch (error) {
+          console.error(error);
+          alert(
+            "Что-то пошло не так. Соискатель не был удалён. Попробуйте ещё раз."
+          );
+        }
       }
     },
 
@@ -314,10 +317,10 @@ export default {
     // Creating a url for the avatar.
     // If the user has not uploaded the photo, then placeholder is placed.
     creatingUrlForAvatar(allApplicants) {
-      allApplicants.forEach(function(v, i, allApplicants) {
+      allApplicants.forEach(function (v, i, allApplicants) {
         if (allApplicants[i].photo === null) {
           allApplicants[i].photo = {
-            url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+            url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A",
           };
         } else {
           allApplicants[i].photo.url =
@@ -328,7 +331,7 @@ export default {
 
     // Calculating the average rating value to display in a table row.
     calculationAverageRatingValue(allApplicants) {
-      allApplicants.forEach(function(v, i, allApplicants) {
+      allApplicants.forEach(function (v, i, allApplicants) {
         let ratingAverage = 0;
         ratingAverage = Math.floor(
           (allApplicants[i].ratingSummary +
@@ -343,15 +346,16 @@ export default {
     // Forming the starRating color depending
     // on the average rating to display in a table row.
     definitionRatingColor(allApplicants) {
-      allApplicants.forEach(function(v, i, allApplicants) {
+      allApplicants.forEach(v => {
         let ratingColor = "";
-        if (allApplicants[i].ratingAverage == 1) ratingColor = "#ff5d00";
-        if (allApplicants[i].ratingAverage == 2) ratingColor = "#ffa800";
-        if (allApplicants[i].ratingAverage == 3) ratingColor = "#dae700";
-        if (allApplicants[i].ratingAverage == 4) ratingColor = "#abd02d";
-        if (allApplicants[i].ratingAverage == 5) ratingColor = "#67c600";
 
-        allApplicants[i].ratingColor = ratingColor;
+        if (v.ratingAverage == 1) ratingColor = "#ff5d00";
+        if (v.ratingAverage == 2) ratingColor = "#ffa800";
+        if (v.ratingAverage == 3) ratingColor = "#dae700";
+        if (v.ratingAverage == 4) ratingColor = "#abd02d";
+        if (v.ratingAverage == 5) ratingColor = "#67c600";
+
+        v.ratingColor = ratingColor;
       });
     },
 
@@ -362,8 +366,8 @@ export default {
       this.creatingUrlForAvatar(allApplicants);
       this.calculationAverageRatingValue(allApplicants);
       this.definitionRatingColor(allApplicants);
-    }
-  }
+    },
+  },
 };
 </script>
 

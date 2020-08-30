@@ -1,10 +1,14 @@
-import axios from "axios";
+import { RestProvider } from './base';
 
+const urls = {
+  list: '/foo',
+  getById: (id) => `/foo/${id}`
+}
 
-class ApplicantsApi {
-  constructor() {
-    this.baseUrl = 'http://localhost:1337/applicants';
-    this.fileUrl = 'http://localhost:1337/uploads/a5d81b5953d34bb79a0199f9beae9b06.png';
+class Applicants extends RestProvider {
+  constructor () {
+    super();
+    this.namespace = '/applicants';
   }
 
   async dellFile() {
@@ -19,15 +23,14 @@ class ApplicantsApi {
   }
 
   async removeById(id) {
-    if (confirm("Вы действительно хотите удалить соискателя?")) {
-      try {
-        const response = await axios.delete(`${this.baseUrl}/${id}`);
-        console.log(response);
-        console.log("APIjs--removeById(id)-showApplicants() = ", this.showApplicants());
-        return this.showApplicants();
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const response = await this.agent.delete(urls.getById(id));
+      console.log(response);
+      console.log("APIjs--removeById(id)-showApplicants() = ", this.showApplicants());
+      return this.showApplicants();
+    } catch (error) {
+      console.log(error);
+      throw error
     }
   }
 
@@ -77,7 +80,7 @@ class ApplicantsApi {
 
   async showApplicants() {
     console.log("APIjs--showApplicants()-RUN.");
-    
+
     try {
       const {
         data
@@ -94,4 +97,4 @@ class ApplicantsApi {
   }
 }
 
-export const Applicants = new ApplicantsApi();
+export const ApplicantsProvider = new Applicants();
