@@ -174,7 +174,6 @@ export default {
 
     async changeInput() {
       if (this.inputName === "phone") {
-        // console.log("Phone length - ", this.formInputs[0].length);
         this.$emit("formInputsPhone", this.formInputs[0]);
       }
       if (this.inputName === "email") {

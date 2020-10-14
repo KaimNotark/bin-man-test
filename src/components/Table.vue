@@ -24,10 +24,6 @@ export default {
     TableRow
   },
 
-  data: () => ({
-    // rowId: null
-  }),
-
   props: {
     allApplicants: {
       type: Array,
@@ -37,17 +33,14 @@ export default {
 
   methods: {
     editById(rowId) {
-      // console.log("TABLE -- button edit was pressed - rowId= " + rowId);
       this.$emit("editById", rowId);
     },
 
     rowIndex(index) {
-      // console.log("TABLE -- button edit was pressed - rowIndex= " + index);
       this.$emit("rowIndex", index);
     },
 
     removeById(rowId) {
-      // console.log("TABLE it's work ID = " + rowId);
       this.$emit("removeById", rowId);
     }
   }

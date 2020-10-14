@@ -29,18 +29,18 @@ export default {
   name: "RatingInForm",
 
   components: {
-    StarRating
+    StarRating,
   },
 
   props: {
     rating: {
       type: Object,
-      required: true
+      required: true,
     },
     allApplicants: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
@@ -49,11 +49,17 @@ export default {
       isFiveStars: true,
       colorStar: "#ff5d00",
       ratingValue: 0,
-      selectedRating: 0
+      selectedRating: 0,
     };
   },
 
   methods: {
+    // слушал лекцию по clean code и там сказали, что switch вообще нельзя
+    // применять, т.к. забывают ставить break + ряд других причин...
+    // рекомендовали использовать вместо него if
+    // я решил оставить switch, т.к. здесь слишком простые методы
+    // и ошибиться сложно
+
     setColorStar(key) {
       switch (key) {
         case 1:
@@ -74,30 +80,8 @@ export default {
       }
     },
 
-    // слушал лекцию по clean code и там сказали, что switch вообще нельзя 
-    // применять, т.к. забывают ставить break + ряд других причин...
-    // рекомендовали использовать вместо него if
-    // я решил оставить switch, т.к. здесь слишком простые методы 
-    // и ошибиться сложно
-
     setRatingValue(key) {
-      switch (key) {
-        case 1:
-          this.ratingValue = 1;
-          break;
-        case 2:
-          this.ratingValue = 2;
-          break;
-        case 3:
-          this.ratingValue = 3;
-          break;
-        case 4:
-          this.ratingValue = 4;
-          break;
-        case 5:
-          this.ratingValue = 5;
-          break;
-      }
+      this.ratingValue = key;
     },
 
     editSummary(index) {
@@ -114,15 +98,12 @@ export default {
     },
 
     onReset() {
-      // console.log("RATING -- onReset - RUN");
       this.ratingValue = 0;
       this.colorStar = "#ff5d00";
       this.selectedRating = 0;
 
       this.$emit("raitingNumber", this.selectedRating);
-      this.$emit("raitingIndex");
-      // console.log("RATING -- onReset - this.ratingValue = " + this.ratingValue);
-      // console.log("RATING -- onReset - selected = " + selected);
+      this.$emit("raitingIndex");      
     },
 
     setRating(selected) {
@@ -135,9 +116,8 @@ export default {
       this.$emit("raitingIndex");
 
       selected = 0;
-      // console.log("RATING -- setRating - selected = " + selected);
-    }
-  }
+    },
+  },
 };
 </script>
 

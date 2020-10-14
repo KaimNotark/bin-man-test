@@ -1,6 +1,5 @@
 <template>
   <tr>
-    <!-- {{row.photo.url}} -->
     <td>
       <div class="container-applicant">
         <img :src="row.photo.url" alt="Аватар" class="applicant-img applicant-img__text" />
@@ -14,13 +13,10 @@
       <div class="container-phone">
         <div class="phone-border">
           <img src="/images/phone.png" alt="Телефон" class="phone-border__img" />
-          <!-- :class="{ '_light-gray-img': isLightGrayPhone }" -->
         </div>
         <div class="phone-text">
           <p class="phone-text__number">{{ row.phone1 }}</p>
-          <!-- :class="{ '_margin-top-10px': isHiddenPhone, '_light-gray': isLightGrayPhone }" -->
           <button type="button" class="phone-text__button">Показать еще 1 номер</button>
-          <!-- :class="{ '_hidden': isHiddenPhone }" -->
         </div>
       </div>
     </td>
@@ -29,13 +25,10 @@
       <div class="container-mail">
         <div class="mail-border">
           <img src="/images/mail.png" alt="E-mail" class="mail-border__img" />
-          <!-- :class="{ '_light-gray-img': isLightGrayMail }" -->
         </div>
         <div class="mail-text">
           <p class="mail-text__e-mail">{{ row.mail1 }}</p>
-          <!-- :class="{ '_margin-top-10px': isHiddenMail, '_light-gray': isLightGrayMail }" -->
           <button type="button" class="mail-text__button">Показать еще 1 e-mail</button>
-          <!-- :class="{ '_hidden': isHiddenMail }" -->
         </div>
       </div>
     </td>
@@ -116,26 +109,6 @@ export default {
       type: Object,
       required: true
     }
-
-    // isHiddenPhone: {
-    //   type: Boolean,
-    //   required: true
-    // },
-
-    // isHiddenMail: {
-    //   type: Boolean,
-    //   required: true
-    // },
-
-    // isLightGrayPhone: {
-    //   type: Boolean,
-    //   required: true
-    // },
-
-    // isLightGrayMail: {
-    //   type: Boolean,
-    //   required: true
-    // }
   },
 
   data: () => ({
@@ -160,22 +133,16 @@ export default {
     ]
   }),
 
-  // created(row) {
-  //   const createdUrl = row.photo.url;
-  //   console.log("TableRow--created-URL = " + createdUrl);
-  // },
 
   methods: {
     editById(row) {
       this.rowId = row.id;
-      // console.log("TABLE-ROW -- button edit was pressed ID = " + this.rowId);
       this.$emit("editById", this.rowId);
       this.$emit("rowIndex");
     },
 
     removeById(row) {
       this.rowId = row.id;
-      // console.log("button remove was pressed ID = " + this.rowId);
       this.$emit("removeById", this.rowId);
     }
   },
