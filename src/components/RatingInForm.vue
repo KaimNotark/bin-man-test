@@ -83,7 +83,7 @@ export default {
     setRatingValue(key) {
       this.ratingValue = key;
     },
-
+    /*
     editSummary(index) {
       this.ratingValue = this.allApplicants[index].ratingSummary;
       this.setColorStar(this.ratingValue);
@@ -96,14 +96,14 @@ export default {
       this.ratingValue = this.allApplicants[index].ratingInterview;
       this.setColorStar(this.ratingValue);
     },
-
+*/
     onReset() {
       this.ratingValue = 0;
       this.colorStar = "#ff5d00";
       this.selectedRating = 0;
 
       this.$emit("raitingNumber", this.selectedRating);
-      this.$emit("raitingIndex");      
+      this.$emit("raitingIndex");
     },
 
     setRating(selected) {
@@ -117,6 +117,12 @@ export default {
 
       selected = 0;
     },
+/*
+    created() {
+      this.colorStar = "#67c600";
+      console.log('colorStar=', this.colorStar);
+    },
+*/
   },
 };
 </script>

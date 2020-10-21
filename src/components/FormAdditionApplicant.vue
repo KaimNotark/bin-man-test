@@ -329,9 +329,9 @@ export default {
       this.$refs.inputPhone.editPhone1(index);
       this.$refs.inputMail.editMail1(index);
 
-      this.$refs.ratings[0].editSummary(index);
-      this.$refs.ratings[1].editTest(index);
-      this.$refs.ratings[2].editInterview(index);
+      // this.$refs.ratings[0].editSummary(index);
+      // this.$refs.ratings[1].editTest(index);
+      // this.$refs.ratings[2].editInterview(index);
 
       this.$refs.photoInput.onEditPhoto(index);
       this.$refs.summaryInput.onEditSummary(index);
