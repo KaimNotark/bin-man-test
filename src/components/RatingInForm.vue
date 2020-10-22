@@ -41,6 +41,10 @@ export default {
       type: Array,
       required: true,
     },
+    rowIndexForEdit: {
+      type: Number,
+      required: true,
+    },
   },
 
   data() {
@@ -117,12 +121,35 @@ export default {
 
       selected = 0;
     },
-/*
-    created() {
-      this.colorStar = "#67c600";
-      console.log('colorStar=', this.colorStar);
-    },
-*/
+
+    // mettt() {
+    //   this.colorStar = "#67c600";
+    //   console.log("colorStar=", this.colorStar);
+    // },
+  },
+  beforeCreate() {
+    console.log("RAITING beforeCreate");
+  },
+  created() {
+    console.log("RAITING created");
+  },
+  beforeMount() {
+    console.log(`RAITING beforeMount`);
+  },
+  mounted() {
+    console.log("RAITING mounted");
+  },
+  beforeUpdate() {
+    console.log("RAITING beforeUpdate");
+  },
+  updated() {
+    console.log("RAITING updated");
+  },
+  beforeDestroy() {
+    console.log("RAITING beforeDestroy");
+  },
+  destroyed() {
+    console.log("RAITING destroyed");
   },
 };
 </script>

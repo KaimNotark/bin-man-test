@@ -2,11 +2,21 @@
   <div id="app">
     <div id="wrapper" class="wrapper">
       <!-- modal window form -->
-      <div id="modal-overlay-form" class="modal-overlay-form" :class="{ _opened: modalIsOpened }">
+      <div
+        id="modal-overlay-form"
+        class="modal-overlay-form"
+        v-if="modalIsOpened"
+      >
+        <!-- :class="{ _opened: modalIsOpened }" -->
         <div modal-overlay-close="modal-overlay" class="modal__overlay">
-          <button class="modal-button-close" type="button" @click="modalClose">×</button>
+          <button class="modal-button-close" type="button" @click="modalClose">
+            ×
+          </button>
           <div class="modal-backing">
-            <simplebar data-simplebar-auto-hide="false" class="modal-form__simplebar">
+            <simplebar
+              data-simplebar-auto-hide="false"
+              class="modal-form__simplebar"
+            >
               <FormAdditionApplicant
                 @resetFilePhoto="resetFilePhoto"
                 @addApplicants="addApplicants"
@@ -17,6 +27,7 @@
                 :all-applicants="allApplicants"
                 :is-button-submit-hide="isButtonSubmitHide"
                 :is-button-edit-hide="isButtonEditHide"
+                :row-index-for-edit="rowIndexForEdit"
                 ref="formAdditionApplicant"
               />
             </simplebar>
@@ -56,7 +67,11 @@
             </svg>
 
             <button class="nav-button _active" type="button">
-              <img src="/images/clients.png" alt="Клиенты" class="nav-button__img" />
+              <img
+                src="/images/clients.png"
+                alt="Клиенты"
+                class="nav-button__img"
+              />
             </button>
 
             <svg
@@ -86,7 +101,9 @@
           <div class="main-header">
             <div class="main-title">
               <h1 class="main-title__title">Ваши соискатели</h1>
-              <p class="main-title__counter">Всего соискателей: {{ allApplicants.length }}</p>
+              <p class="main-title__counter">
+                Всего соискателей: {{ allApplicants.length }}
+              </p>
               <!-- <p class="main-title__counter">Всего соискателей: {{ counterApplicants }}</p> -->
             </div>
 
@@ -98,17 +115,37 @@
               </button>
               -->
 
-              <button @click="dellFile" class="main-button__selected" type="button">
-                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+              <button
+                @click="dellFile"
+                class="main-button__selected"
+                type="button"
+              >
+                <img
+                  src="/images/favorites.png"
+                  alt="Избранные"
+                  class="main-button__img"
+                />
                 <span class="main-button__text">dell File</span>
               </button>
 
-              <button @click="showApplicants" class="main-button__selected" type="button">
-                <img src="/images/favorites.png" alt="Избранные" class="main-button__img" />
+              <button
+                @click="showApplicants"
+                class="main-button__selected"
+                type="button"
+              >
+                <img
+                  src="/images/favorites.png"
+                  alt="Избранные"
+                  class="main-button__img"
+                />
                 <span class="main-button__text">обновить</span>
               </button>
 
-              <button class="main-button__add" type="button" @click="showAddForm">
+              <button
+                class="main-button__add"
+                type="button"
+                @click="showAddForm"
+              >
                 <span class="_increase">+</span>
                 <span>Добавить соискателя</span>
               </button>
@@ -131,7 +168,10 @@
               </thead>
             </table>
 
-            <simplebar data-simplebar-auto-hide="false" class="main-table__body">
+            <simplebar
+              data-simplebar-auto-hide="false"
+              class="main-table__body"
+            >
               <Table
                 :all-applicants="allApplicants"
                 @removeById="removeById"
@@ -141,9 +181,12 @@
               <!-- {{ allApplicants[0].photo }} -->
               <!-- {{ allApplicants }} -->
               <!-- {{ counterApplicants }} -->
+              <!-- {{ rowIndexForEdit }} -->
             </simplebar>
             <div class="main-table__footer">
-              <button type="button" class="main-table__button">Показать еще</button>
+              <button type="button" class="main-table__button">
+                Показать еще
+              </button>
             </div>
           </div>
         </main>
@@ -167,7 +210,7 @@ export default {
   components: {
     simplebar,
     Table,
-    FormAdditionApplicant
+    FormAdditionApplicant,
   },
 
   data() {
@@ -191,8 +234,10 @@ export default {
       addOneApplicant: {
         name: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
         vacancy: "dddddddddddddddddddd",
-        phone1: "89642255230"
-      }
+        phone1: "89642255230",
+      },
+
+      rowIndexForEdit: 0,
     };
   },
 
@@ -211,11 +256,11 @@ export default {
       //     this.allApplicants[index].photo
       // );
       this.filePhoto = file;
-      console.log("App-- resetFilePhoto- this.filePhoto= " + this.filePhoto);
+      // console.log("App-- resetFilePhoto- this.filePhoto= " + this.filePhoto);
     },
     addFilePhoto(file) {
       this.filePhoto = file;
-      console.log("App-- addFilePhoto- this.filePhoto= " + this.filePhoto);
+      // console.log("App-- addFilePhoto- this.filePhoto= " + this.filePhoto);
     },
     addFileSummary(file) {
       this.fileSummary = file;
@@ -268,24 +313,18 @@ export default {
       }
     },
 
-    // editDataInForm(data, id) {
-    //   Applicants.editApplicants(data, id);
-    //   console.log("App-- onEditFromForm- data= " + data);
-    //   this.showApplicants();
-    //   alert("Данные успешно изменены.");
-    // },
-
     editById(id) {
+      this.modalOpen();
       this.$refs.formAdditionApplicant.editRow(id);
-      // console.log("APP -- editById - id= " + id);
-      // this.modalOpen();
     },
 
     rowIndex(index) {
-      this.$refs.formAdditionApplicant.editRowByIndex(index);
-      console.log("APP -- rowIndex - index= " + index);
+      // console.log("APP -- rowIndex - index= " + index);
+      this.rowIndexForEdit = index;
+      // console.log("APP -- rowIndex - rowIndexForEdit= ", this.rowIndexForEdit);
       this.isButtonSubmitHide = true;
       this.isButtonEditHide = false;
+      this.$refs.formAdditionApplicant.editRowByIndex(index);
       this.modalOpen();
     },
 
@@ -293,8 +332,6 @@ export default {
       console.log("button DELL FILE was pressed");
       try {
         this.allApplicants = await Applicants.dellFile();
-        // await this.showApplicants();
-        // alert("Соискатель удалён.");
       } catch (error) {
         console.error(error);
         alert(
@@ -351,7 +388,7 @@ export default {
       allApplicants.forEach(function(v, i, allApplicants) {
         if (allApplicants[i].photo === null) {
           allApplicants[i].photo = {
-            url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A"
+            url: "https://via.placeholder.com/40x40/e8eff1/282e37?text=A",
           };
         } else {
           allApplicants[i].photo.url =
@@ -396,8 +433,8 @@ export default {
       this.creatingUrlForAvatar(allApplicants);
       this.calculationAverageRatingValue(allApplicants);
       this.definitionRatingColor(allApplicants);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -709,8 +746,10 @@ th {
 
 // begin -- modal overlay form
 .modal-overlay-form {
-  display: none;
-  opacity: 0;
+  // display: none;
+  // opacity: 0;
+  display: inline;
+  opacity: 1;
   z-index: 900;
   position: absolute;
   min-width: 100%;
@@ -720,10 +759,10 @@ th {
   transition: visibility 200ms ease-in, opacity 200ms ease-in;
 }
 
-.modal-overlay-form._opened {
-  display: inline;
-  opacity: 1;
-}
+// .modal-overlay-form._opened {
+//   display: inline;
+//   opacity: 1;
+// }
 
 .modal__overlay {
   display: flex;

@@ -9,8 +9,8 @@
       @reset="onReset"
     >
       <h1 class="form-title">
-        <span :class="{'_hide' : isButtonSubmitHide}">Добавление</span>
-        <span :class="{'_hide' : isButtonEditHide}">Изменить данные</span>
+        <span :class="{ _hide: isButtonSubmitHide }">Добавление</span>
+        <span :class="{ _hide: isButtonEditHide }">Изменить данные</span>
         соискателя
       </h1>
       <hr class="form-devider" />
@@ -35,7 +35,7 @@
 
         <select
           @change="lighted"
-          :class="[ 'form__select', { '_light' : isLight }]"
+          :class="['form__select', { _light: isLight }]"
           required
           v-model="formFields.vacancy"
         >
@@ -107,6 +107,7 @@
           :key="rating.id"
           :rating="rating"
           :all-applicants="allApplicants"
+          :row-index-for-edit="rowIndexForEdit"
           ref="ratings"
           @raitingNumber="raitingNumber"
           @raitingIndex="raitingIndex(index)"
@@ -116,18 +117,24 @@
       <hr class="form-devider" />
 
       <div class="container-row">
-        <button type="reset" class="form__btn-reset" @click="onReset">Очистить</button>
+        <button type="reset" class="form__btn-reset" @click="onReset">
+          Очистить
+        </button>
 
         <button
           type="submit"
-          :class="[ 'form__btn-submit', { '_hide' : isButtonSubmitHide }]"
-        >Добавить соискателя</button>
+          :class="['form__btn-submit', { _hide: isButtonSubmitHide }]"
+        >
+          Добавить соискателя
+        </button>
 
         <button
           type="button"
-          :class="[ 'form__btn-submit', { '_hide' : isButtonEditHide }]"
+          :class="['form__btn-submit', { _hide: isButtonEditHide }]"
           @click="onEdit"
-        >Изменить данные</button>
+        >
+          Изменить данные
+        </button>
       </div>
     </form>
   </div>
@@ -167,6 +174,10 @@ export default {
     },
     isButtonEditHide: {
       type: Boolean,
+      required: true,
+    },
+    rowIndexForEdit: {
+      type: Number,
       required: true,
     },
   },
@@ -336,6 +347,12 @@ export default {
       this.$refs.photoInput.onEditPhoto(index);
       this.$refs.summaryInput.onEditSummary(index);
       this.$refs.testInput.onEditTest(index);
+
+      // console.log("FAA -- editRowByIndex - index= " + index);
+      // console.log(
+      //   "FAA -- editRowByIndex - rowIndexForEdit:",
+      //   this.rowIndexForEdit
+      // );
     },
 
     lighted() {
@@ -426,8 +443,30 @@ export default {
       // console.log("FORM -- ratingTest = " + this.ratingTest);
       // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
-
-    created() {},
+  },
+  beforeCreate() {
+    console.log("FORM beforeCreate");
+  },
+  created() {
+    console.log("FORM created");
+  },
+  beforeMount() {
+    console.log(`FORM beforeMount`);
+  },
+  mounted() {
+    console.log("FORM mounted");
+  },
+  beforeUpdate() {
+    console.log("FORM beforeUpdate");
+  },
+  updated() {
+    console.log("FORM updated");
+  },
+  beforeDestroy() {
+    console.log("FORM beforeDestroy");
+  },
+  destroyed() {
+    console.log("FORM destroyed");
   },
 };
 </script>
