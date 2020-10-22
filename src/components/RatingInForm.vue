@@ -44,7 +44,7 @@ export default {
     rowIndexForEdit: {
       type: Number,
       required: true,
-    },
+    },    
   },
 
   data() {
@@ -58,12 +58,6 @@ export default {
   },
 
   methods: {
-    // слушал лекцию по clean code и там сказали, что switch вообще нельзя
-    // применять, т.к. забывают ставить break + ряд других причин...
-    // рекомендовали использовать вместо него if
-    // я решил оставить switch, т.к. здесь слишком простые методы
-    // и ошибиться сложно
-
     setColorStar(key) {
       switch (key) {
         case 1:
@@ -84,23 +78,6 @@ export default {
       }
     },
 
-    setRatingValue(key) {
-      this.ratingValue = key;
-    },
-    /*
-    editSummary(index) {
-      this.ratingValue = this.allApplicants[index].ratingSummary;
-      this.setColorStar(this.ratingValue);
-    },
-    editTest(index) {
-      this.ratingValue = this.allApplicants[index].ratingTest;
-      this.setColorStar(this.ratingValue);
-    },
-    editInterview(index) {
-      this.ratingValue = this.allApplicants[index].ratingInterview;
-      this.setColorStar(this.ratingValue);
-    },
-*/
     onReset() {
       this.ratingValue = 0;
       this.colorStar = "#ff5d00";
@@ -112,44 +89,30 @@ export default {
 
     setRating(selected) {
       this.selectedRating = selected;
+      this.ratingValue = selected;
 
       this.setColorStar(selected);
-      this.setRatingValue(selected);
 
       this.$emit("raitingNumber", this.selectedRating);
       this.$emit("raitingIndex");
 
       selected = 0;
     },
+  },
 
-    // mettt() {
-    //   this.colorStar = "#67c600";
-    //   console.log("colorStar=", this.colorStar);
-    // },
-  },
-  beforeCreate() {
-    console.log("RAITING beforeCreate");
-  },
   created() {
-    console.log("RAITING created");
-  },
-  beforeMount() {
-    console.log(`RAITING beforeMount`);
-  },
-  mounted() {
-    console.log("RAITING mounted");
-  },
-  beforeUpdate() {
-    console.log("RAITING beforeUpdate");
-  },
-  updated() {
-    console.log("RAITING updated");
-  },
-  beforeDestroy() {
-    console.log("RAITING beforeDestroy");
-  },
-  destroyed() {
-    console.log("RAITING destroyed");
+    switch (+this.rating.id) {
+      case 0:
+        this.ratingValue = this.allApplicants[this.rowIndexForEdit].ratingSummary;
+        break;
+      case 1:
+        this.ratingValue = this.allApplicants[this.rowIndexForEdit].ratingTest;
+        break;
+      case 2:
+        this.ratingValue = this.allApplicants[this.rowIndexForEdit].ratingInterview;
+        break;
+    }
+    this.setColorStar(this.ratingValue);
   },
 };
 </script>

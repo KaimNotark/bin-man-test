@@ -444,6 +444,7 @@ export default {
       // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
   },
+  /*
   beforeCreate() {
     console.log("FORM beforeCreate");
   },
@@ -468,6 +469,7 @@ export default {
   destroyed() {
     console.log("FORM destroyed");
   },
+  */
 };
 </script>
 
