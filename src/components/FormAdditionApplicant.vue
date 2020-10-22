@@ -108,7 +108,6 @@
           :rating="rating"
           :all-applicants="allApplicants"
           :row-index-for-edit="rowIndexForEdit"
-          ref="ratings"
           @raitingNumber="raitingNumber"
           @raitingIndex="raitingIndex(index)"
         />
@@ -340,19 +339,9 @@ export default {
       this.$refs.inputPhone.editPhone1(index);
       this.$refs.inputMail.editMail1(index);
 
-      // this.$refs.ratings[0].editSummary(index);
-      // this.$refs.ratings[1].editTest(index);
-      // this.$refs.ratings[2].editInterview(index);
-
       this.$refs.photoInput.onEditPhoto(index);
       this.$refs.summaryInput.onEditSummary(index);
       this.$refs.testInput.onEditTest(index);
-
-      // console.log("FAA -- editRowByIndex - index= " + index);
-      // console.log(
-      //   "FAA -- editRowByIndex - rowIndexForEdit:",
-      //   this.rowIndexForEdit
-      // );
     },
 
     lighted() {
