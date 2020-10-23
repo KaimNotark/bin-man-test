@@ -55,8 +55,8 @@
         class="form__input-load-file"
         @addFilePhoto="addFilePhoto"
         :all-applicants="allApplicants"
+        :row-index-for-edit="rowIndexForEdit"
       />
-      <!-- @resetFilePhoto="resetFilePhoto" -->
 
       <hr class="form-devider" />
       <h2 class="form-subtitle">Контактные данные</h2>
@@ -67,6 +67,7 @@
         v-bind="phone"
         @formInputsPhone="formInputsPhone"
         :all-applicants="allApplicants"
+        :row-index-for-edit="rowIndexForEdit"
       />
 
       <span class="form__span form__input-header">Введите E-mail</span>
@@ -76,6 +77,7 @@
         @formInputsMail="formInputsMail"
         @formInputsEmailIsValid="formInputsEmailIsValid"
         :all-applicants="allApplicants"
+        :row-index-for-edit="rowIndexForEdit"
       />
 
       <hr class="form-devider" />
@@ -87,6 +89,7 @@
         accept-type="summary"
         @addFileSummary="addFileSummary"
         :all-applicants="allApplicants"
+        :row-index-for-edit="rowIndexForEdit"
       />
 
       <InputLoad
@@ -95,6 +98,7 @@
         accept-type="test"
         @addFileTest="addFileTest"
         :all-applicants="allApplicants"
+        :row-index-for-edit="rowIndexForEdit"
       />
 
       <hr class="form-devider" />
@@ -335,13 +339,6 @@ export default {
       this.formFields.vacancy = this.allApplicants[index].vacancy;
       this.formFields.phone1 = this.allApplicants[index].phone1;
       this.formFields.mail1 = this.allApplicants[index].mail1;
-
-      this.$refs.inputPhone.editPhone1(index);
-      this.$refs.inputMail.editMail1(index);
-
-      this.$refs.photoInput.onEditPhoto(index);
-      this.$refs.summaryInput.onEditSummary(index);
-      this.$refs.testInput.onEditTest(index);
     },
 
     lighted() {

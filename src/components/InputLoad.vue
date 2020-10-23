@@ -5,10 +5,10 @@
     <label class="form__label" :for="loadId">
       <p class="form__lable-text">Выберите файл</p>
 
+        <!-- ref="fileUpload" -->
       <input
         @change="addFile($event.target.files)"
         :id="loadId"
-        ref="fileUpload"
         type="file"
         name="fileName"
         autocomplete="off"
@@ -16,11 +16,13 @@
       />
     </label>
     <span
-      :class="['form__file-name', 
-      {'_color-text-light' : !isFileInInput}, 
-      { '_color-text' : isFileInInput } 
+      :class="[
+        'form__file-name',
+        { '_color-text-light': !isFileInInput },
+        { '_color-text': isFileInInput },
       ]"
-    >{{ fileName }}</span>
+      >{{ fileName }}</span
+    >
   </div>
 </template>
 
@@ -31,18 +33,23 @@ export default {
   props: {
     allApplicants: {
       type: Array,
-      required: true
+      required: true,
     },
 
     loadId: {
       type: String,
-      required: true
+      required: true,
     },
 
     acceptType: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+
+    rowIndexForEdit: {
+      type: Number,
+      required: true,
+    },
   },
 
   data: () => ({
@@ -55,7 +62,7 @@ export default {
 
     fileSize: 0,
     file: null,
-    sizeOfFile: 0
+    sizeOfFile: 0,
   }),
 
   computed: {
@@ -66,66 +73,27 @@ export default {
           comment:
             "Размер файла вложения не должен превышать 5 Мб, для загрузки допустимы следующие форматы файлов: jpg, png",
           size: 5242881, // byte
-          accept: "image/jpeg, image/png"
+          accept: "image/jpeg, image/png",
         },
         summary: {
           header: "резюме",
           comment:
             "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: pdf, doc",
           size: 52428801, // byte
-          accept: "image/jpeg, image/png"
+          accept: "image/jpeg, image/png",
         },
         test: {
           header: "Архив с результатами тестового задания",
           comment:
             "Размер файла вложения не должен превышать 50 Мб, для загрузки допустимы следующие форматы файлов: zip, rar",
           size: 52428801, // byte
-          accept: "image/jpeg, image/png"
-        }
+          accept: "image/jpeg, image/png",
+        },
       };
-    }
+    },
   },
 
   methods: {
-    onEditPhoto(index) {
-      // console.log("INPUT-LOAD -- onEditPhoto - RUN, index= " + index);
-      this.isFilePhotoInCard =
-        this.allApplicants[index].photo.url !==
-        "https://via.placeholder.com/40x40/e8eff1/282e37?text=A";
-
-      if (this.isFilePhotoInCard) {
-        this.isFileInInput = true;
-        this.fileName = this.allApplicants[index].photo.name;
-      } else {
-        this.isFileInInput = false;
-        this.fileName = "Файл отсутствует";
-      }
-    },
-    onEditSummary(index) {
-      // console.log("INPUT-LOAD -- onEditSummary - RUN, index= " + index);
-      this.isFileSummaryInCard = this.allApplicants[index].summary !== null;
-
-      if (this.isFileSummaryInCard) {
-        this.isFileInInput = true;
-        this.fileName = this.allApplicants[index].summary.name;
-      } else {
-        this.isFileInInput = false;
-        this.fileName = "Файл отсутствует";
-      }
-    },
-    onEditTest(index) {
-      // console.log("INPUT-LOAD -- onEditTest - RUN, index= " + index);
-      this.isFileTestInCard = this.allApplicants[index].test !== null;
-
-      if (this.isFileTestInCard) {
-        this.isFileInInput = true;
-        this.fileName = this.allApplicants[index].test.name;
-      } else {
-        this.isFileInInput = false;
-        this.fileName = "Файл отсутствует";
-      }
-    },
-
     onReset() {
       this.fileName = "Файл не выбран";
       this.isFileInInput = false;
@@ -226,8 +194,62 @@ export default {
 
     getFileExtension(fileName) {
       return fileName.split(".").splice(-1, 1)[0];
-    }
-  }
+    },
+
+    onEditPhoto(index) {
+      console.log(
+        "INPUT-LOAD -- onEditPhoto - RUN, index= " + index,
+        this.acceptType
+      );
+      this.isFilePhotoInCard =
+        this.allApplicants[index].photo.url !==
+        "https://via.placeholder.com/40x40/e8eff1/282e37?text=A";
+
+      if (this.isFilePhotoInCard) {
+        this.isFileInInput = true;
+        this.fileName = this.allApplicants[index].photo.name;
+      } else {
+        this.isFileInInput = false;
+        this.fileName = "Файл отсутствует";
+      }
+    },
+    onEditSummary(index) {
+      console.log(
+        "INPUT-LOAD -- onEditSummary - RUN, index= " + index,
+        this.acceptType
+      );
+      this.isFileSummaryInCard = this.allApplicants[index].summary !== null;
+
+      if (this.isFileSummaryInCard) {
+        this.isFileInInput = true;
+        this.fileName = this.allApplicants[index].summary.name;
+      } else {
+        this.isFileInInput = false;
+        this.fileName = "Файл отсутствует";
+      }
+    },
+    onEditTest(index) {
+      console.log(
+        "INPUT-LOAD -- onEditTest - RUN, index= " + index,
+        this.acceptType
+      );
+      this.isFileTestInCard = this.allApplicants[index].test !== null;
+
+      if (this.isFileTestInCard) {
+        this.isFileInInput = true;
+        this.fileName = this.allApplicants[index].test.name;
+      } else {
+        this.isFileInInput = false;
+        this.fileName = "Файл отсутствует";
+      }
+    },
+  },
+
+  created() {
+    if (this.acceptType === "photo") this.onEditPhoto(this.rowIndexForEdit);
+    if (this.acceptType === "summary") this.onEditSummary(this.rowIndexForEdit);
+    if (this.acceptType === "test") this.onEditTest(this.rowIndexForEdit);
+  },
 };
 </script>
 

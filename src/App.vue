@@ -2,38 +2,43 @@
   <div id="app">
     <div id="wrapper" class="wrapper">
       <!-- modal window form -->
-      <div
-        id="modal-overlay-form"
-        class="modal-overlay-form"
-        v-if="modalIsOpened"
-      >
-        <!-- :class="{ _opened: modalIsOpened }" -->
-        <div modal-overlay-close="modal-overlay" class="modal__overlay">
-          <button class="modal-button-close" type="button" @click="modalClose">
-            ×
-          </button>
-          <div class="modal-backing">
-            <simplebar
-              data-simplebar-auto-hide="false"
-              class="modal-form__simplebar"
+      <transition name="fade-overlay-form">
+        <div
+          id="modal-overlay-form"
+          class="modal-overlay-form"
+          v-if="modalIsOpened"
+        >
+          <div modal-overlay-close="modal-overlay" class="modal__overlay">
+            <button
+              class="modal-button-close"
+              type="button"
+              @click="modalClose"
             >
-              <FormAdditionApplicant
-                @resetFilePhoto="resetFilePhoto"
-                @addApplicants="addApplicants"
-                @addFilePhoto="addFilePhoto"
-                @addFileSummary="addFileSummary"
-                @addFileTest="addFileTest"
-                @onEdit="onEditFromForm"
-                :all-applicants="allApplicants"
-                :is-button-submit-hide="isButtonSubmitHide"
-                :is-button-edit-hide="isButtonEditHide"
-                :row-index-for-edit="rowIndexForEdit"
-                ref="formAdditionApplicant"
-              />
-            </simplebar>
+              ×
+            </button>
+            <div class="modal-backing">
+              <simplebar
+                data-simplebar-auto-hide="false"
+                class="modal-form__simplebar"
+              >
+                <FormAdditionApplicant
+                  @resetFilePhoto="resetFilePhoto"
+                  @addApplicants="addApplicants"
+                  @addFilePhoto="addFilePhoto"
+                  @addFileSummary="addFileSummary"
+                  @addFileTest="addFileTest"
+                  @onEdit="onEditFromForm"
+                  :all-applicants="allApplicants"
+                  :is-button-submit-hide="isButtonSubmitHide"
+                  :is-button-edit-hide="isButtonEditHide"
+                  :row-index-for-edit="rowIndexForEdit"
+                  ref="formAdditionApplicant"
+                />
+              </simplebar>
+            </div>
           </div>
         </div>
-      </div>
+      </transition>
       <!-- / modal window form -->
 
       <header class="header">
@@ -178,10 +183,6 @@
                 @editById="editById"
                 @rowIndex="rowIndex"
               />
-              <!-- {{ allApplicants[0].photo }} -->
-              <!-- {{ allApplicants }} -->
-              <!-- {{ counterApplicants }} -->
-              <!-- {{ rowIndexForEdit }} -->
             </simplebar>
             <div class="main-table__footer">
               <button type="button" class="main-table__button">
@@ -745,11 +746,16 @@ th {
 }
 
 // begin -- modal overlay form
+.fade-overlay-form-enter-active,
+.fade-overlay-form-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-overlay-form-enter,
+.fade-overlay-form-leave-to {
+  opacity: 0;
+}
 .modal-overlay-form {
-  // display: none;
-  // opacity: 0;
   display: inline;
-  opacity: 1;
   z-index: 900;
   position: absolute;
   min-width: 100%;
@@ -758,11 +764,6 @@ th {
   background: rgba(0, 0, 0, 0.5);
   transition: visibility 200ms ease-in, opacity 200ms ease-in;
 }
-
-// .modal-overlay-form._opened {
-//   display: inline;
-//   opacity: 1;
-// }
 
 .modal__overlay {
   display: flex;
