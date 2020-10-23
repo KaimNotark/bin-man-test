@@ -9,8 +9,8 @@
       @reset="onReset"
     >
       <h1 class="form-title">
-        <span :class="{ _hide: isButtonSubmitHide }">Добавление</span>
-        <span :class="{ _hide: isButtonEditHide }">Изменить данные</span>
+        <span v-if="isButtonEditHide">Добавление</span>
+        <span v-if="isButtonSubmitHide">Изменить данные</span>
         соискателя
       </h1>
       <hr class="form-devider" />
@@ -124,16 +124,14 @@
           Очистить
         </button>
 
-        <button
-          type="submit"
-          :class="['form__btn-submit', { _hide: isButtonSubmitHide }]"
-        >
+        <button type="submit" v-if="isButtonEditHide" class="form__btn-submit">
           Добавить соискателя
         </button>
 
         <button
           type="button"
-          :class="['form__btn-submit', { _hide: isButtonEditHide }]"
+          v-if="isButtonSubmitHide"
+          class="form__btn-submit"
           @click="onEdit"
         >
           Изменить данные
@@ -753,9 +751,5 @@ input:-webkit-autofill:active {
 
 ._button-hidden {
   visibility: hidden;
-}
-
-._hide {
-  display: none;
 }
 </style>
