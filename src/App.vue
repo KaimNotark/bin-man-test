@@ -32,7 +32,7 @@
                   :is-button-submit-hide="isButtonSubmitHide"
                   :is-button-edit-hide="isButtonEditHide"
                   :row-index-for-edit="rowIndexForEdit"
-                  ref="formAdditionApplicant"
+                  :edit-row-id="editRowId"
                 />
               </simplebar>
             </div>
@@ -239,6 +239,7 @@ export default {
       },
 
       rowIndexForEdit: 0,
+      editRowId: null,
     };
   },
 
@@ -286,7 +287,6 @@ export default {
 
     modalClose() {
       this.modalIsOpened = false;
-      this.$refs.formAdditionApplicant.onReset();
     },
 
     async onEditFromForm(payload, id) {
@@ -315,18 +315,14 @@ export default {
     },
 
     editById(id) {
-      this.modalOpen();
-      this.$refs.formAdditionApplicant.editRow(id);
+      this.editRowId = id;
     },
 
     rowIndex(index) {
-      // console.log("APP -- rowIndex - index= " + index);
+      this.modalOpen();
       this.rowIndexForEdit = index;
-      // console.log("APP -- rowIndex - rowIndexForEdit= ", this.rowIndexForEdit);
       this.isButtonSubmitHide = true;
       this.isButtonEditHide = false;
-      this.$refs.formAdditionApplicant.editRowByIndex(index);
-      this.modalOpen();
     },
 
     async dellFile() {

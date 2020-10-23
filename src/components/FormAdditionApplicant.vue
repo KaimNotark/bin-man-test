@@ -183,6 +183,10 @@ export default {
       type: Number,
       required: true,
     },
+    editRowId: {
+      type: Number,
+      required: true,
+    },
   },
 
   data: () => ({
@@ -194,7 +198,7 @@ export default {
     ratingTest: 0,
     ratingInterview: 0,
 
-    editRowId: null,
+    // editRowId: null,
 
     formFields: {
       name: "",
@@ -328,10 +332,6 @@ export default {
       }
     },
 
-    editRow(id) {
-      this.editRowId = id;
-    },
-
     editRowByIndex(index) {
       this.lighted();
 
@@ -398,8 +398,6 @@ export default {
       this.$refs.summaryInput.onReset();
       this.$refs.testInput.onReset();
 
-      // this.$refs.photoInput.$refs.fileUpload.value = null;
-
       this.$refs.ratings[0].onReset();
       this.$refs.ratings[1].onReset();
       this.$refs.ratings[2].onReset();
@@ -420,22 +418,14 @@ export default {
     },
 
     raitingIndex(index) {
-      // console.log("FORM -- raitingNumber - index = " + index);
       if (index === 0) this.ratingSummary = this.raitingBuffer;
       if (index === 1) this.ratingTest = this.raitingBuffer;
       if (index === 2) this.ratingInterview = this.raitingBuffer;
-
-      // console.log("FORM -- ratingSummary = " + this.ratingSummary);
-      // console.log("FORM -- ratingTest = " + this.ratingTest);
-      // console.log("FORM -- ratingInterview = " + this.ratingInterview);
     },
   },
   /*
   beforeCreate() {
     console.log("FORM beforeCreate");
-  },
-  created() {
-    console.log("FORM created");
   },
   beforeMount() {
     console.log(`FORM beforeMount`);
@@ -449,13 +439,18 @@ export default {
   updated() {
     console.log("FORM updated");
   },
-  beforeDestroy() {
-    console.log("FORM beforeDestroy");
-  },
   destroyed() {
     console.log("FORM destroyed");
   },
   */
+  created() {
+    // console.log("FORM created");
+    this.editRowByIndex(this.rowIndexForEdit);
+  },
+  beforeDestroy() {
+    // console.log("FORM beforeDestroy");
+    this.onReset();
+  },
 };
 </script>
 
